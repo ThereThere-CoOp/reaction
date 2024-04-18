@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo1j8hfmmg12p"]
+
+[ext_resource type="Script" path="res://reaction/autoloads/reaction_globals.gd" id="1_yloxl"]
+
+[node name="ReactionGlobals" type="Node"]
+script = ExtResource("1_yloxl")
