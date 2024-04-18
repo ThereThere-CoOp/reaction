@@ -1,12 +1,19 @@
 @tool
 extends EditorPlugin
 
+# autoloads vars
+const AUTOLOADS_BASE_FOLDER = "res://addons/reaction/autoloads/"
+const GLOBALS_SINGLETON_NAME = "ReactionGlobals"
+const SIGNALS_SINGLETON_NAME = "ReactionSignals"
+
+
 
 func _enter_tree():
-	# Initialization of the plugin goes here.
-	pass
+	if Engine.is_editor_hint():
+		add_autoload_singleton(GLOBALS_SINGLETON_NAME, AUTOLOADS_BASE_FOLDER + "reaction_globals.tscn")
+		add_autoload_singleton(SIGNALS_SINGLETON_NAME, AUTOLOADS_BASE_FOLDER + "reaction_signals.tscn")
 
 
 func _exit_tree():
-	# Clean-up of the plugin goes here.
-	pass
+	remove_autoload_singleton(GLOBALS_SINGLETON_NAME)
+	remove_autoload_singleton(SIGNALS_SINGLETON_NAME)

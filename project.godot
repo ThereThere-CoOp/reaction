@@ -14,9 +14,14 @@ config/name="Reaction"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ReactionGlobals="*res://addons/reaction/autoloads/reaction_globals.tscn"
+ReactionSignals="*res://addons/reaction/autoloads/reaction_signals.tscn"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/reaction/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
 
 [rendering]
 
