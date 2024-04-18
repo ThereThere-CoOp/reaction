@@ -6,6 +6,10 @@ An implementation for the Godot 4 Engine of the [Valve's Response System](https:
 
 This plugin is still on early development and testing, at the moment is a barebone implementation. Hoping to be able to keep working on it while developing my own game. 
 
+### Dependencies
+
+* [GUT Plugin for unit testing](https://github.com/bitwes/Gut)
+
 ### External references
 * [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System)
 * [Valve's GDC talk about the system](https://www.youtube.com/watch?v=tAbBID3N64A)
