@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bqf20gwkbuy8n"]
+
+[node name="MainView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainRows" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PluginTitle" type="Label" parent="MainRows"]
+layout_mode = 2
+text = "Reaction"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="MainRows"]
+layout_mode = 2
+
+[node name="Events" type="VBoxContainer" parent="MainRows/TabContainer"]
+layout_mode = 2
+
+[node name="Global Facts" type="VBoxContainer" parent="MainRows/TabContainer"]
+visible = false
+layout_mode = 2
