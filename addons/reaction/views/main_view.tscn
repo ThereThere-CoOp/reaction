@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 
-[sub_resource type="Image" id="Image_hj6du"]
+[sub_resource type="Image" id="Image_bly5d"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,8 +11,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_0xdf2"]
-image = SubResource("Image_hj6du")
+[sub_resource type="ImageTexture" id="ImageTexture_7uogn"]
+image = SubResource("Image_bly5d")
 
 [sub_resource type="ImageTexture" id="ImageTexture_k72uq"]
 
@@ -48,7 +48,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_0xdf2")
+icon = SubResource("ImageTexture_7uogn")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -58,7 +58,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Default Database"
-icon = SubResource("ImageTexture_0xdf2")
+icon = SubResource("ImageTexture_7uogn")
 item_count = 1
 popup/item_0/text = "Default database"
 popup/item_0/icon = SubResource("ImageTexture_k72uq")
@@ -68,28 +68,30 @@ popup/item_0/id = 0
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_0xdf2")
+icon = SubResource("ImageTexture_7uogn")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_0xdf2")
+icon = SubResource("ImageTexture_7uogn")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_0xdf2")
+icon = SubResource("ImageTexture_7uogn")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 1
 
 [node name="Global Facts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
@@ -141,33 +143,89 @@ text = "Remove Fact
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FactNameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer"]
+[node name="ColumnsContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="LeftColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="FactNameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/FactNameInputContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
 layout_mode = 2
 text = "Fact Name: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/FactNameInputContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PLAYER_VITALITY"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer"]
+[node name="TypeInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="LeftColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/HBoxContainer"]
+[node name="TypeLabel" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
+layout_mode = 2
+text = "Type:"
+
+[node name="TypeMenuButton" type="MenuButton" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Number"
+item_count = 3
+popup/item_0/text = "Number"
+popup/item_0/id = 0
+popup/item_1/text = "String"
+popup/item_1/id = 1
+popup/item_2/text = "Boolean"
+popup/item_2/id = 2
 
-[node name="RightColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/HBoxContainer"]
+[node name="RightColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="UidContainerContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+layout_mode = 2
+
+[node name="UidLabel" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
+layout_mode = 2
+text = "Uid:
+"
+
+[node name="UidValue" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123e4567-e89b-12d3-a456-426655440000"
+editable = false
+
+[node name="IsEmunInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/IsEmunInputContainer"]
+layout_mode = 2
+text = "Is enum?:"
+
+[node name="HintStringInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+layout_mode = 2
+text = "Hint String: "
+
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "hello,world"
 
 [node name="Events" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
@@ -220,26 +278,47 @@ text = "Remove Event
 [node name="RulesContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 5
 
-[node name="NameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
+[node name="NameUidContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameInputContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer/NameInputContainer"]
 layout_mode = 2
 text = "Event Name: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameInputContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer/NameInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CHAR_OLD_MAN"
+
+[node name="UidContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UidLabel" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer/UidContainer"]
+layout_mode = 2
+text = "Uid:
+"
+
+[node name="UidValue" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/NameUidContainer/UidContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123e4567-e89b-12d3-a456-426655440000"
+editable = false
 
 [node name="RulesLabel" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
 layout_mode = 2
 text = "Rules:"
 
 [node name="RulesList" type="ItemList" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
-custom_minimum_size = Vector2(0, 250)
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 item_count = 2
 item_0/text = "firstMeeting"
@@ -247,7 +326,6 @@ item_1/text = "firstMeetingIntelligent"
 
 [node name="RuleManagmentContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="LeftColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/RuleManagmentContainer"]
 layout_mode = 2
@@ -269,5 +347,38 @@ text = "firstMeeting"
 [node name="RightColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/RuleManagmentContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="UidContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/RuleManagmentContainer/RightColumnContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UidLabel" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/RuleManagmentContainer/RightColumnContainer/UidContainer"]
+layout_mode = 2
+text = "Uid: "
+
+[node name="UidValue" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/RuleManagmentContainer/RightColumnContainer/UidContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123e4567-e89b-12d3-a456-426655440000"
+editable = false
+
+[node name="TabContainer" type="TabContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="General" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Criterias" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Modifications" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Responses" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/TabContainer"]
+visible = false
+layout_mode = 2
 
 [connection signal="theme_changed" from="." to="." method="_on_main_view_theme_changed"]
