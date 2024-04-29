@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 
-[sub_resource type="Image" id="Image_tnd1p"]
+[sub_resource type="Image" id="Image_lndws"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,8 +11,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_7ab13"]
-image = SubResource("Image_tnd1p")
+[sub_resource type="ImageTexture" id="ImageTexture_i7eqe"]
+image = SubResource("Image_lndws")
 
 [sub_resource type="ImageTexture" id="ImageTexture_k72uq"]
 
@@ -48,7 +48,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_7ab13")
+icon = SubResource("ImageTexture_i7eqe")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -58,7 +58,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Default Database"
-icon = SubResource("ImageTexture_7ab13")
+icon = SubResource("ImageTexture_i7eqe")
 item_count = 1
 popup/item_0/text = "Default database"
 popup/item_0/icon = SubResource("ImageTexture_k72uq")
@@ -68,30 +68,106 @@ popup/item_0/id = 0
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_7ab13")
+icon = SubResource("ImageTexture_i7eqe")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_7ab13")
+icon = SubResource("ImageTexture_i7eqe")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_7ab13")
+icon = SubResource("ImageTexture_i7eqe")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Events" type="VBoxContainer" parent="MainRows/DatabaseDataManagment"]
+[node name="Events" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events"]
 layout_mode = 2
 
-[node name="Global Facts" type="VBoxContainer" parent="MainRows/DatabaseDataManagment"]
+[node name="EventsMainPanel" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="EventsListContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
+layout_mode = 2
+text = "Events:
+"
+
+[node name="EventSearcher" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
+layout_mode = 2
+placeholder_text = "Search event name"
+
+[node name="EventsList" type="ItemList" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+auto_height = true
+item_count = 2
+item_0/text = "CHAR_OLD_MAN"
+item_1/text = "ROOM_PRISON_CELL"
+
+[node name="ButtonsContainer" type="GridContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+columns = 2
+
+[node name="AddEventButton" type="Button" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Add Event"
+
+[node name="RemoveEventButton" type="Button" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Remove Event
+"
+
+[node name="RulesContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/HBoxContainer"]
+layout_mode = 2
+text = "Event Name: "
+
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CHAR_OLD_MAN"
+
+[node name="RulesLabel" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
+layout_mode = 2
+text = "Rules:"
+
+[node name="RulesList" type="ItemList" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/RulesContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+item_count = 2
+item_0/text = "firstMeeting"
+item_1/text = "firstMeetingIntelligent"
+
+[node name="Global Facts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 visible = false
 layout_mode = 2
 
