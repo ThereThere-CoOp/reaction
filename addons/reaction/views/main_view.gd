@@ -1,6 +1,10 @@
 @tool
 extends Control
 
+const ReactionSettings = preload("../utilities/settings.gd")
+
+var current_database_id: String = ""
+
 var undo_redo: EditorUndoRedoManager:
 	set(next_undo_redo):
 		undo_redo = next_undo_redo
@@ -18,6 +22,13 @@ var undo_redo: EditorUndoRedoManager:
 func _ready() -> void:
 	call_deferred("apply_theme")
 
+	# Get databases
+	go_to_database(ReactionSettings.get_setting("current_database_id", ""))
+	if current_database_id != "" and ReactionGlobals.databases.has(current_database_id):
+		pass
+	else:
+		current_database_id = ""
+
 
 func apply_theme() -> void:
 	# Simple check if onready
@@ -30,17 +41,17 @@ func apply_theme() -> void:
 
 
 func go_to_database(id: String) -> void:
-	if ReactionGlobals.current_database_uid != id:
+	if current_database_id != id:
 		# save_board()
 
-		ReactionGlobals.current_database_uid = id
+		current_database_id = id
 		# PuzzleSettings.set_setting("current_board_id", id)
 
-		if ReactionGlobals.databases.has(ReactionGlobals.current_database_uid):
-			var database_data = ReactionGlobals.databases.get(ReactionGlobals.current_database_uid)
+		if ReactionGlobals.databases.has(current_database_id):
+			var database_data = ReactionGlobals.databases.get(current_database_id)
 			# board.from_serialized(board_data)
 
-	if ReactionGlobals.current_database_uid == "":
+	if current_database_id == "":
 		database_managment_panel.hide()
 		edit_database_button.disabled = true
 		remove_database_button.disabled = true
@@ -62,7 +73,8 @@ func build_databases_menu() -> void:
 
 	if menu.index_pressed.is_connected(_on_databases_menu_index_pressed):
 		menu.index_pressed.disconnect(_on_databases_menu_index_pressed)
-
+	
+	print("yupi", ReactionGlobals.databases.size())
 	if ReactionGlobals.databases.size() == 0:
 		database_menu_button.text = "No databases yet"
 		database_menu_button.disabled = true
@@ -77,9 +89,9 @@ func build_databases_menu() -> void:
 		for label in labels:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
-		if ReactionGlobals.databases.has(ReactionGlobals.current_database_uid):
+		if ReactionGlobals.databases.has(current_database_id):
 			database_menu_button.text = (
-				ReactionGlobals.databases.get(ReactionGlobals.current_database_uid).name
+				ReactionGlobals.databases.get(current_database_id).name
 			)
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
@@ -97,5 +109,5 @@ func _on_databases_menu_index_pressed(index):
 		if database.name == label:
 			undo_redo.create_action("Change database")
 			undo_redo.add_do_method(self, "go_to_database", database.uid)
-			undo_redo.add_undo_method(self, "go_to_database", ReactionGlobals.current_database_uid)
+			undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 			undo_redo.commit_action()
