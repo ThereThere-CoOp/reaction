@@ -1,7 +1,7 @@
 class_name ReactionDatabase
 extends Resource
 
-@export var name: String
+@export var label: String
 
 @export var uid: String = Uuid.v4()
 

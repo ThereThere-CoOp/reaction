@@ -16,7 +16,10 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_button = %EditDatabaseButton
 @onready var remove_database_button = %RemoveDatabaseButton
 @onready var settings_button = %SettingsButton
+# panels
 @onready var database_managment_panel = %DatabaseDataManagment
+# dialogs
+@onready var edit_database_dialog = %EditDatabaseDialog
 
 
 func _ready() -> void:
@@ -73,8 +76,7 @@ func build_databases_menu() -> void:
 
 	if menu.index_pressed.is_connected(_on_databases_menu_index_pressed):
 		menu.index_pressed.disconnect(_on_databases_menu_index_pressed)
-	
-	print("yupi", ReactionGlobals.databases.size())
+
 	if ReactionGlobals.databases.size() == 0:
 		database_menu_button.text = "No databases yet"
 		database_menu_button.disabled = true
@@ -84,19 +86,22 @@ func build_databases_menu() -> void:
 		# Add databases labels to the menu in alphabetical order
 		var labels := []
 		for database in ReactionGlobals.databases.values():
-			labels.append(database.name)
+			labels.append(database.label)
 		labels.sort()
 		for label in labels:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
 		if ReactionGlobals.databases.has(current_database_id):
-			database_menu_button.text = (
-				ReactionGlobals.databases.get(current_database_id).name
-			)
+			database_menu_button.text = (ReactionGlobals.databases.get(current_database_id).label)
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
 ### signals
+
+
+func _on_add_database_button_pressed() -> void:
+	edit_database_dialog.edit_database(ReactionDatabase.new())
+
 
 func _on_database_menu_about_to_popup() -> void:
 	build_databases_menu()
@@ -106,7 +111,7 @@ func _on_databases_menu_index_pressed(index):
 	var popup = database_menu_button.get_popup()
 	var label = popup.get_item_text(index)
 	for database in ReactionGlobals.databases.values():
-		if database.name == label:
+		if database.label == label:
 			undo_redo.create_action("Change database")
 			undo_redo.add_do_method(self, "go_to_database", database.uid)
 			undo_redo.add_undo_method(self, "go_to_database", current_database_id)
