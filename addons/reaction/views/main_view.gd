@@ -58,7 +58,7 @@ func go_to_database(id: String) -> void:
 			var database_data = ReactionGlobals.databases.get(current_database_id)
 			# board.from_serialized(board_data)
 
-	if current_database_id == "":
+	if current_database_id == "" or not ReactionGlobals.databases.has(current_database_id):
 		database_managment_panel.hide()
 		edit_database_button.disabled = true
 		remove_database_button.disabled = true
@@ -138,7 +138,7 @@ func _on_add_database_button_pressed() -> void:
 
 func _on_remove_database_button_pressed():
 	remove_database_dialog.dialog_text = (
-		"Remove '%s'" % ReactionGlobals.databases.get(current_database_id).label
+		"Remove '%s'?" % ReactionGlobals.databases.get(current_database_id).label
 	)
 	remove_database_dialog.popup_centered()
 
