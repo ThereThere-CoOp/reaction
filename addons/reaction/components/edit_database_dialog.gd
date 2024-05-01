@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func edit_database(database_data: ReactionDatabase) -> void:
 	label_edit.text = database_data.label
-	data = database_data
+	data = 	DeepClone.deep_clone(database_data)
 	popup_centered()
 	label_edit.grab_focus()
 	label_edit.select_all()

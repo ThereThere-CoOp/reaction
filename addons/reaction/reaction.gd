@@ -19,6 +19,7 @@ func _enter_tree():
 
 		main_view_instance = MainView.instantiate()
 		EditorInterface.get_editor_main_screen().add_child(main_view_instance)
+		main_view_instance.undo_redo = get_undo_redo()
 		_make_visible(false)
 
 

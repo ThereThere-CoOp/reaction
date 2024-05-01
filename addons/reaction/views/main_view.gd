@@ -20,6 +20,7 @@ var undo_redo: EditorUndoRedoManager:
 @onready var database_managment_panel = %DatabaseDataManagment
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
+@onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
 
 
 func _ready() -> void:
@@ -96,12 +97,68 @@ func build_databases_menu() -> void:
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
+func set_database_data(data: ReactionDatabase) -> void:
+	ReactionGlobals.databases[data.uid] = data
+	build_databases_menu()
+
+
+func _remove_database(id: String) -> void:
+	ReactionGlobals.databases.erase(id)
+	go_to_database(
+		ReactionGlobals.databases.keys().front() if ReactionGlobals.databases.size() > 0 else ""
+	)
+	build_databases_menu()
+
+
+func remove_database() -> void:
+	var database_data = ReactionGlobals.databases.get(current_database_id)
+	var undo_database_data = DeepClone.deep_clone(database_data)
+
+	undo_redo.create_action("Delete databse")
+	undo_redo.add_do_method(self, "_remove_database", current_database_id)
+	undo_redo.add_undo_method(self, "_unremove_board", undo_database_data)
+	undo_redo.commit_action()
+
+
+func _unremove_board(data: ReactionDatabase) -> void:
+	ReactionGlobals.databases[data.uid] = data
+	build_databases_menu()
+	go_to_database(data.uid)
+
+
 ### signals
 
 
 func _on_add_database_button_pressed() -> void:
 	edit_database_dialog.edit_database(ReactionDatabase.new())
 
+
+func _on_remove_database_button_pressed():
+	remove_database_dialog.dialog_text = (
+		"Remove '%s'" % ReactionGlobals.databases.get(current_database_id).label
+	)
+	remove_database_dialog.popup_centered()
+
+
+func _on_remove_database_confirmation_dialog_confirmed():
+	remove_database()
+
+
+func _on_edit_database_dialog_database_updated(data:ReactionDatabase):
+	if ReactionGlobals.databases.has(data.uid):
+		var current_data = ReactionGlobals.databases.get(data.uid)
+		undo_redo.create_action("Set database data")
+		undo_redo.add_do_method(self, "set_database_data", data)
+		undo_redo.add_undo_method(self, "set_database_data", current_data)
+		undo_redo.commit_action()
+	else:
+		undo_redo.create_action("Set database data")
+		undo_redo.add_do_method(self, "set_database_data", data)
+		undo_redo.add_undo_method(self, "_remove_database", data.uid)
+		undo_redo.add_do_method(self, "go_to_database", data.uid)
+		undo_redo.add_undo_method(self, "go_to_database", current_database_id)
+		undo_redo.commit_action()
+	
 
 func _on_database_menu_about_to_popup() -> void:
 	build_databases_menu()
