@@ -23,6 +23,10 @@ ReactionSignals="*res://addons/reaction/autoloads/reaction_signals.tscn"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
 
+[reaction]
+
+databases_path="res://examples/databases"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

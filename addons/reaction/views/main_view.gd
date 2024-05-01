@@ -21,13 +21,16 @@ var undo_redo: EditorUndoRedoManager:
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
+@onready var settings_dialog = %SettingsDialog
 
 
 func _ready() -> void:
 	call_deferred("apply_theme")
 
 	# Get databases
-	go_to_database(ReactionSettings.get_setting("current_database_id", ""))
+	go_to_database(
+		ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
+	)
 	if current_database_id != "" and ReactionGlobals.databases.has(current_database_id):
 		pass
 	else:
@@ -49,7 +52,7 @@ func go_to_database(id: String) -> void:
 		# save_board()
 
 		current_database_id = id
-		# PuzzleSettings.set_setting("current_board_id", id)
+		ReactionSettings.set_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, id)
 
 		if ReactionGlobals.databases.has(current_database_id):
 			var database_data = ReactionGlobals.databases.get(current_database_id)
@@ -144,7 +147,11 @@ func _on_remove_database_confirmation_dialog_confirmed():
 	remove_database()
 
 
-func _on_edit_database_dialog_database_updated(data:ReactionDatabase):
+func _on_settings_button_pressed():
+	settings_dialog.popup_centered()
+
+
+func _on_edit_database_dialog_database_updated(data: ReactionDatabase):
 	if ReactionGlobals.databases.has(data.uid):
 		var current_data = ReactionGlobals.databases.get(data.uid)
 		undo_redo.create_action("Set database data")
@@ -158,7 +165,7 @@ func _on_edit_database_dialog_database_updated(data:ReactionDatabase):
 		undo_redo.add_do_method(self, "go_to_database", data.uid)
 		undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 		undo_redo.commit_action()
-	
+
 
 func _on_database_menu_about_to_popup() -> void:
 	build_databases_menu()
