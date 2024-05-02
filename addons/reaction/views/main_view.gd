@@ -3,6 +3,8 @@ extends Control
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
+var databases : Dictionary = {}
+
 var current_database_id: String = ""
 
 var undo_redo: EditorUndoRedoManager:
@@ -30,15 +32,38 @@ func _ready() -> void:
 
 
 		# Get databases
+		load_databases_from_filesystem()
 		go_to_database(
 			ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
 		)
-		if current_database_id != "" and ReactionGlobals.databases.has(current_database_id):
+		if current_database_id != "" and databases.has(current_database_id):
 			pass
 		else:
 			current_database_id = ""
 
 		ReactionSignals.database_data_changed.connect(_on_database_data_changed)
+
+
+func load_databases_from_filesystem() -> void:
+	var databases_path = ReactionSettings.get_setting(
+		ReactionSettings.DATABASES_PATH_SETTING_NAME,
+		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+	)
+
+	var dir = DirAccess.open(databases_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				continue
+			else:
+				var resource_path_to_load = "%s/%s" % [databases_path, file_name]
+				var database: ReactionDatabase = load(resource_path_to_load) as ReactionDatabase
+				databases[database.uid] = database
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access databases path.")
 		
 
 
@@ -59,11 +84,11 @@ func go_to_database(id: String) -> void:
 		current_database_id = id
 		ReactionSettings.set_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, id)
 
-		if ReactionGlobals.databases.has(current_database_id):
-			var database_data = ReactionGlobals.databases.get(current_database_id)
+		if databases.has(current_database_id):
+			var database_data = databases.get(current_database_id)
 			# board.from_serialized(board_data)
 
-	if current_database_id == "" or not ReactionGlobals.databases.has(current_database_id):
+	if current_database_id == "" or not databases.has(current_database_id):
 		database_managment_panel.hide()
 		edit_database_button.disabled = true
 		remove_database_button.disabled = true
@@ -86,7 +111,7 @@ func build_databases_menu() -> void:
 	if menu.index_pressed.is_connected(_on_databases_menu_index_pressed):
 		menu.index_pressed.disconnect(_on_databases_menu_index_pressed)
 
-	if ReactionGlobals.databases.size() == 0:
+	if databases.size() == 0:
 		database_menu_button.text = "No databases yet"
 		database_menu_button.disabled = true
 		print("here")
@@ -95,34 +120,34 @@ func build_databases_menu() -> void:
 
 		# Add databases labels to the menu in alphabetical order
 		var labels := []
-		for database in ReactionGlobals.databases.values():
+		for database in databases.values():
 			labels.append(database.label)
 		labels.sort()
 		for label in labels:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
-		if ReactionGlobals.databases.has(current_database_id):
+		if databases.has(current_database_id):
 			print("here2")
-			database_menu_button.text = (ReactionGlobals.databases.get(current_database_id).label)
+			database_menu_button.text = (databases.get(current_database_id).label)
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
 func set_database_data(data: ReactionDatabase) -> void:
-	ReactionGlobals.databases[data.uid] = data
+	databases[data.uid] = data
 	ReactionSignals.database_data_changed.emit(data)
 	build_databases_menu()
 
 
 func _remove_database(id: String) -> void:
-	ReactionGlobals.databases.erase(id)
+	databases.erase(id)
 	go_to_database(
-		ReactionGlobals.databases.keys().front() if ReactionGlobals.databases.size() > 0 else ""
+		databases.keys().front() if databases.size() > 0 else ""
 	)
 	build_databases_menu()
 
 
 func remove_database() -> void:
-	var database_data = ReactionGlobals.databases.get(current_database_id)
+	var database_data = databases.get(current_database_id)
 	var undo_database_data = DeepClone.deep_clone(database_data)
 
 	undo_redo.create_action("Delete databse")
@@ -132,7 +157,7 @@ func remove_database() -> void:
 
 
 func _unremove_board(data: ReactionDatabase) -> void:
-	ReactionGlobals.databases[data.uid] = data
+	databases[data.uid] = data
 	build_databases_menu()
 	go_to_database(data.uid)
 
@@ -146,7 +171,7 @@ func _on_add_database_button_pressed() -> void:
 
 func _on_remove_database_button_pressed():
 	remove_database_dialog.dialog_text = (
-		"Remove '%s'?" % ReactionGlobals.databases.get(current_database_id).label
+		"Remove '%s'?" % databases.get(current_database_id).label
 	)
 	remove_database_dialog.popup_centered()
 
@@ -160,8 +185,8 @@ func _on_settings_button_pressed():
 
 
 func _on_edit_database_dialog_database_updated(data: ReactionDatabase):
-	if ReactionGlobals.databases.has(data.uid):
-		var current_data = ReactionGlobals.databases.get(data.uid)
+	if databases.has(data.uid):
+		var current_data = databases.get(data.uid)
 		undo_redo.create_action("Set database data")
 		undo_redo.add_do_method(self, "set_database_data", data)
 		undo_redo.add_undo_method(self, "set_database_data", current_data)
@@ -182,7 +207,7 @@ func _on_database_menu_about_to_popup() -> void:
 func _on_databases_menu_index_pressed(index):
 	var popup = database_menu_button.get_popup()
 	var label = popup.get_item_text(index)
-	for database in ReactionGlobals.databases.values():
+	for database in databases.values():
 		if database.label == label:
 			undo_redo.create_action("Change database")
 			undo_redo.add_do_method(self, "go_to_database", database.uid)
