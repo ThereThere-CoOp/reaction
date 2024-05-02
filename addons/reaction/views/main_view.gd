@@ -25,16 +25,21 @@ var undo_redo: EditorUndoRedoManager:
 
 
 func _ready() -> void:
-	call_deferred("apply_theme")
+	if Engine.is_editor_hint():
+		call_deferred("apply_theme")
 
-	# Get databases
-	go_to_database(
-		ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
-	)
-	if current_database_id != "" and ReactionGlobals.databases.has(current_database_id):
-		pass
-	else:
-		current_database_id = ""
+
+		# Get databases
+		go_to_database(
+			ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
+		)
+		if current_database_id != "" and ReactionGlobals.databases.has(current_database_id):
+			pass
+		else:
+			current_database_id = ""
+
+		ReactionSignals.database_data_changed.connect(_on_database_data_changed)
+		
 
 
 func apply_theme() -> void:
@@ -84,6 +89,7 @@ func build_databases_menu() -> void:
 	if ReactionGlobals.databases.size() == 0:
 		database_menu_button.text = "No databases yet"
 		database_menu_button.disabled = true
+		print("here")
 	else:
 		database_menu_button.disabled = false
 
@@ -96,12 +102,14 @@ func build_databases_menu() -> void:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
 		if ReactionGlobals.databases.has(current_database_id):
+			print("here2")
 			database_menu_button.text = (ReactionGlobals.databases.get(current_database_id).label)
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
 func set_database_data(data: ReactionDatabase) -> void:
 	ReactionGlobals.databases[data.uid] = data
+	ReactionSignals.database_data_changed.emit(data)
 	build_databases_menu()
 
 
@@ -180,3 +188,7 @@ func _on_databases_menu_index_pressed(index):
 			undo_redo.add_do_method(self, "go_to_database", database.uid)
 			undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 			undo_redo.commit_action()
+
+
+func _on_database_data_changed(database: ReactionDatabase) -> void:
+	database.save_data()
