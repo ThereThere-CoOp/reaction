@@ -30,20 +30,13 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		call_deferred("apply_theme")
 
-		# Get databases
-		load_databases_from_filesystem()
-		go_to_database(
-			ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
-		)
-		if current_database_id != "" and databases.has(current_database_id):
-			pass
-		else:
-			current_database_id = ""
+		load_databases_update_view()
 
 		ReactionSignals.database_data_changed.connect(_on_database_data_changed)
 
 
 func load_databases_from_filesystem() -> void:
+	databases.clear()
 	var databases_path = ReactionSettings.get_setting(
 		ReactionSettings.DATABASES_PATH_SETTING_NAME,
 		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
@@ -63,6 +56,17 @@ func load_databases_from_filesystem() -> void:
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access databases path.")
+
+
+func load_databases_update_view() -> void:
+	load_databases_from_filesystem()
+	go_to_database(
+			ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
+		)
+	if current_database_id != "" and databases.has(current_database_id):
+		pass
+	else:
+		current_database_id = ""
 
 
 func apply_theme() -> void:
@@ -124,7 +128,6 @@ func build_databases_menu() -> void:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
 		if databases.has(current_database_id):
-			print("here2")
 			database_menu_button.text = (databases.get(current_database_id).label)
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
@@ -212,3 +215,7 @@ func _on_databases_menu_index_pressed(index):
 
 func _on_database_data_changed(database: ReactionDatabase) -> void:
 	database.save_data()
+
+
+func _on_setting_database_path_updated() -> void:
+	load_databases_update_view()
