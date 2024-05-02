@@ -3,7 +3,7 @@ extends Control
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
-var databases : Dictionary = {}
+var databases: Dictionary = {}
 
 var current_database_id: String = ""
 
@@ -29,7 +29,6 @@ var undo_redo: EditorUndoRedoManager:
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		call_deferred("apply_theme")
-
 
 		# Get databases
 		load_databases_from_filesystem()
@@ -64,7 +63,6 @@ func load_databases_from_filesystem() -> void:
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access databases path.")
-		
 
 
 func apply_theme() -> void:
@@ -114,7 +112,6 @@ func build_databases_menu() -> void:
 	if databases.size() == 0:
 		database_menu_button.text = "No databases yet"
 		database_menu_button.disabled = true
-		print("here")
 	else:
 		database_menu_button.disabled = false
 
@@ -138,11 +135,10 @@ func set_database_data(data: ReactionDatabase) -> void:
 	build_databases_menu()
 
 
-func _remove_database(id: String) -> void:
-	databases.erase(id)
-	go_to_database(
-		databases.keys().front() if databases.size() > 0 else ""
-	)
+func _remove_database(uid: String) -> void:
+	databases[uid].remove_savedata()
+	databases.erase(uid)
+	go_to_database(databases.keys().front() if databases.size() > 0 else "")
 	build_databases_menu()
 
 
@@ -150,7 +146,7 @@ func remove_database() -> void:
 	var database_data = databases.get(current_database_id)
 	var undo_database_data = DeepClone.deep_clone(database_data)
 
-	undo_redo.create_action("Delete databse")
+	undo_redo.create_action("Delete database")
 	undo_redo.add_do_method(self, "_remove_database", current_database_id)
 	undo_redo.add_undo_method(self, "_unremove_board", undo_database_data)
 	undo_redo.commit_action()
@@ -160,6 +156,7 @@ func _unremove_board(data: ReactionDatabase) -> void:
 	databases[data.uid] = data
 	build_databases_menu()
 	go_to_database(data.uid)
+	ReactionSignals.database_data_changed.emit(data)
 
 
 ### signals
@@ -170,9 +167,7 @@ func _on_add_database_button_pressed() -> void:
 
 
 func _on_remove_database_button_pressed():
-	remove_database_dialog.dialog_text = (
-		"Remove '%s'?" % databases.get(current_database_id).label
-	)
+	remove_database_dialog.dialog_text = ("Remove '%s'?" % databases.get(current_database_id).label)
 	remove_database_dialog.popup_centered()
 
 

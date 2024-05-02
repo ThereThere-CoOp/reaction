@@ -26,7 +26,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/
 [reaction]
 
 databases_path="res://examples/databases"
-current_database_id="29af9273-2981-4e30-94e2-b365eb882582"
+current_database_id=""
 
 [rendering]
 
