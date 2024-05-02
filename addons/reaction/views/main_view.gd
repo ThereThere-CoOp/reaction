@@ -32,8 +32,6 @@ func _ready() -> void:
 
 		load_databases_update_view()
 
-		ReactionSignals.database_data_changed.connect(_on_database_data_changed)
-
 
 func load_databases_from_filesystem() -> void:
 	databases.clear()
@@ -134,7 +132,7 @@ func build_databases_menu() -> void:
 
 func set_database_data(data: ReactionDatabase) -> void:
 	databases[data.uid] = data
-	ReactionSignals.database_data_changed.emit(data)
+	data.save_data()
 	build_databases_menu()
 
 
@@ -143,6 +141,10 @@ func _remove_database(uid: String) -> void:
 	databases.erase(uid)
 	go_to_database(databases.keys().front() if databases.size() > 0 else "")
 	build_databases_menu()
+
+
+func _remove_database_savefile(data: ReactionDatabase) -> void:
+	data.remove_savedata()
 
 
 func remove_database() -> void:
@@ -159,7 +161,7 @@ func _unremove_board(data: ReactionDatabase) -> void:
 	databases[data.uid] = data
 	build_databases_menu()
 	go_to_database(data.uid)
-	ReactionSignals.database_data_changed.emit(data)
+	data.save_data()
 
 
 ### signals
@@ -167,6 +169,10 @@ func _unremove_board(data: ReactionDatabase) -> void:
 
 func _on_add_database_button_pressed() -> void:
 	edit_database_dialog.edit_database(ReactionDatabase.new())
+
+
+func _on_edit_database_button_pressed() -> void:
+	edit_database_dialog.edit_database(databases[current_database_id])
 
 
 func _on_remove_database_button_pressed():
@@ -186,8 +192,10 @@ func _on_edit_database_dialog_database_updated(data: ReactionDatabase):
 	if databases.has(data.uid):
 		var current_data = databases.get(data.uid)
 		undo_redo.create_action("Set database data")
+		undo_redo.add_do_method(self, "_remove_database_savefile", current_data)
 		undo_redo.add_do_method(self, "set_database_data", data)
 		undo_redo.add_undo_method(self, "set_database_data", current_data)
+		undo_redo.add_undo_method(self, "_remove_database_savefile", data)
 		undo_redo.commit_action()
 	else:
 		undo_redo.create_action("Set database data")
@@ -211,10 +219,6 @@ func _on_databases_menu_index_pressed(index):
 			undo_redo.add_do_method(self, "go_to_database", database.uid)
 			undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 			undo_redo.commit_action()
-
-
-func _on_database_data_changed(database: ReactionDatabase) -> void:
-	database.save_data()
 
 
 func _on_setting_database_path_updated() -> void:
