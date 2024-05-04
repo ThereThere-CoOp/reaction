@@ -13,6 +13,17 @@ const ReactionSettings = preload("../utilities/settings.gd")
 @export var global_facts: Dictionary = {}
 
 
+
+func add_fact(fact: ReactionFactItem):
+	global_facts[fact.uid] = fact
+	save_data()
+
+
+func remove_fact(fact_uid: String):
+	global_facts.erase(fact_uid)
+	save_data()
+
+
 func save_data() -> void:
 	ResourceSaver.save(
 		self,

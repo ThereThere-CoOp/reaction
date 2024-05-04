@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=7 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
+[ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
 [ext_resource type="PackedScene" uid="uid://jc4ei7i0bj2v" path="res://addons/reaction/components/edit_database_dialog.tscn" id="2_jeeb5"]
 [ext_resource type="PackedScene" uid="uid://tycacr0sxsef" path="res://addons/reaction/views/settings_view.tscn" id="3_6kxn8"]
 
-[sub_resource type="Image" id="Image_1mnhx"]
+[sub_resource type="Image" id="Image_beyda"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -13,8 +14,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_vs5tj"]
-image = SubResource("Image_1mnhx")
+[sub_resource type="ImageTexture" id="ImageTexture_m1v1f"]
+image = SubResource("Image_beyda")
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -48,7 +49,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_vs5tj")
+icon = SubResource("ImageTexture_m1v1f")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -58,122 +59,150 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-disabled = true
-text = "No databases yet"
-icon = SubResource("ImageTexture_vs5tj")
+text = "new database"
+icon = SubResource("ImageTexture_m1v1f")
+item_count = 1
+popup/item_0/text = "new database"
+popup/item_0/icon = SubResource("ImageTexture_m1v1f")
+popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-disabled = true
-icon = SubResource("ImageTexture_vs5tj")
+icon = SubResource("ImageTexture_m1v1f")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-disabled = true
-icon = SubResource("ImageTexture_vs5tj")
+icon = SubResource("ImageTexture_m1v1f")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_vs5tj")
+icon = SubResource("ImageTexture_m1v1f")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Global Facts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+[node name="GlobalFacts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
+script = ExtResource("2_bgi7c")
 
-[node name="FactsMainPanel" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts"]
+[node name="FactsMainPanel" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="FactsListContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel"]
+[node name="FactsListContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer"]
 layout_mode = 2
 text = "Facts:
 "
 
-[node name="FactSearcher" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer"]
+[node name="FactSearcher" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer"]
 layout_mode = 2
 placeholder_text = "Search fact name"
 
-[node name="FactsList" type="ItemList" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer"]
+[node name="FactsList" type="ItemList" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-auto_height = true
-item_count = 3
-item_0/text = "PLAYER_VITALITY"
-item_1/text = "isOldmanMet"
-item_2/text = "numTimeGameOver"
+item_count = 24
+item_0/text = "item_label"
+item_1/text = "item_label"
+item_2/text = "item_label"
+item_3/text = "item_label"
+item_4/text = "item_label"
+item_5/text = "item_label"
+item_6/text = "item_label"
+item_7/text = "item_label"
+item_8/text = "item_label"
+item_9/text = "item_label"
+item_10/text = "item_label"
+item_11/text = "item_label"
+item_12/text = "item_label"
+item_13/text = "item_label"
+item_14/text = "item_label"
+item_15/text = "item_label"
+item_16/text = "item_label"
+item_17/text = "item_label"
+item_18/text = "item_label"
+item_19/text = "item_label"
+item_20/text = "item_label"
+item_21/text = "item_label"
+item_22/text = "item_label"
+item_23/text = "item_label"
 
-[node name="ButtonsContainer" type="GridContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer"]
+[node name="ButtonsContainer" type="GridContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 5
 columns = 2
 
-[node name="AddFactButton" type="Button" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer/ButtonsContainer"]
+[node name="AddFactButton" type="Button" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Add Fact"
 
-[node name="RemoveFactButton" type="Button" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactsListContainer/ButtonsContainer"]
+[node name="RemoveFactButton" type="Button" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+disabled = true
 text = "Remove Fact
 "
 
-[node name="FactDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel"]
+[node name="FactDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColumnsContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer"]
+[node name="ColumnsContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="LeftColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
+[node name="LeftColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="FactNameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
+[node name="FactNameInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
 layout_mode = 2
 text = "Fact Name: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PLAYER_VITALITY"
 
-[node name="TypeInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
+[node name="TypeInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 layout_mode = 2
 
-[node name="TypeLabel" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
+[node name="TypeLabel" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
 layout_mode = 2
 text = "Type:"
 
-[node name="TypeMenuButton" type="MenuButton" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
+[node name="TypeMenuButton" type="MenuButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TypeInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Number"
@@ -185,47 +214,49 @@ popup/item_1/id = 1
 popup/item_2/text = "Boolean"
 popup/item_2/id = 2
 
-[node name="IsSiganlCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
+[node name="IsSiganlCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 layout_mode = 2
 text = "Send signal on modified?"
 
-[node name="RightColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
+[node name="RightColumnContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="UidContainerContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+[node name="UidContainerContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
 layout_mode = 2
 
-[node name="UidLabel" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
+[node name="UidLabel" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
 layout_mode = 2
 text = "Uid:
 "
 
-[node name="UidValue" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
+[node name="FactUidValue" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/UidContainerContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "123e4567-e89b-12d3-a456-426655440000"
 editable = false
 
-[node name="IsEnumCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+[node name="IsEnumCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
 layout_mode = 2
 text = "Is enum?:"
 
-[node name="HintStringInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+[node name="HintStringInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
 layout_mode = 2
 text = "Hint String: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Global Facts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "hello,world"
 
 [node name="Events" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
@@ -403,6 +434,9 @@ min_size = Vector2i(700, 300)
 [connection signal="pressed" from="MainRows/ToolBar/EditDatabaseButton" to="." method="_on_edit_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="item_selected" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_selected"]
+[connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer/AddFactButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_add_fact_button_pressed"]
+[connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer/RemoveFactButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_remove_fact_button_pressed"]
 [connection signal="confirmed" from="EditDatabaseDialog" to="EditDatabaseDialog" method="_on_edit_board_dialog_confirmed"]
 [connection signal="database_updated" from="EditDatabaseDialog" to="." method="_on_edit_database_dialog_database_updated"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]

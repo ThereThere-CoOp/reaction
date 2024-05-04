@@ -20,6 +20,8 @@ var undo_redo: EditorUndoRedoManager:
 @onready var settings_button = %SettingsButton
 # panels
 @onready var database_managment_panel = %DatabaseDataManagment
+@onready var global_facts_panel = %GlobalFacts
+@onready var events_panel = %Events
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
@@ -59,8 +61,8 @@ func load_databases_from_filesystem() -> void:
 func load_databases_update_view() -> void:
 	load_databases_from_filesystem()
 	go_to_database(
-			ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
-		)
+		ReactionSettings.get_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, "")
+	)
 	if current_database_id != "" and databases.has(current_database_id):
 		pass
 	else:
@@ -96,6 +98,7 @@ func go_to_database(id: String) -> void:
 		database_managment_panel.show()
 		edit_database_button.disabled = false
 		remove_database_button.disabled = false
+		global_facts_panel.setup_facts(databases[current_database_id])
 
 	build_databases_menu()
 
