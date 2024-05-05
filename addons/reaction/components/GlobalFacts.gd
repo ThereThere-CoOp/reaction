@@ -16,8 +16,11 @@ var undo_redo: EditorUndoRedoManager:
 @onready var remove_fact_button: Button = %RemoveFactButton
 
 # fact inputs
-@onready var fact_uid_value_label: LineEdit = %FactUidValue
-
+@onready var fact_label_edit: LineEdit = %FactNameInputLineEdit
+@onready var fact_uid_value_edit: LineEdit = %FactUidValue
+@onready var fact_is_enum_check: Button = %FactIsEnumCheckButton
+@onready var fact_hint_string_container: BoxContainer = %FactHintStringInputContainer
+@onready var fact_is_signal_check: Button = %FactIsSignalCheckButton
 
 func _ready() -> void:
 	if not facts_list.is_anything_selected():
@@ -56,12 +59,16 @@ func _remove_fact(data: Dictionary) -> void:
 		facts_list.deselect_all()
 
 func _set_fact(index: int) -> void:
-	var current_fact = facts_list.get_item_metadata(index)
+	var current_fact: ReactionFactItem = facts_list.get_item_metadata(index)
 	selected_item_index = index
 	facts_list.select(index)
 
 	# set input default values
-	fact_uid_value_label.text = current_fact.uid
+	fact_uid_value_edit.text = current_fact.uid
+	fact_label_edit.text = current_fact.label
+	fact_is_signal_check.button_pressed = current_fact.trigger_signal_on_modified
+	fact_is_enum_check.button_pressed = current_fact.is_enum
+	fact_hint_string_container.visible = current_fact.is_enum
 
 	remove_fact_button.disabled = false
 	fact_data_container.visible = true
@@ -94,3 +101,23 @@ func _on_remove_fact_button_pressed() -> void:
 
 func _on_facts_list_item_selected(index: int) -> void:
 	_set_fact(index)
+
+
+func _on_fact_name_input_line_edit_text_submitted(new_text: String) -> void:
+	var current_fact = facts_list.get_item_metadata(selected_item_index)
+	current_fact.label = new_text
+	facts_list.set_item_text(selected_item_index, new_text)
+	current_database.save_data()
+
+
+func _on_fact_is_signal_check_button_pressed():
+	var current_fact: ReactionFactItem = facts_list.get_item_metadata(selected_item_index)
+	current_fact.trigger_signal_on_modified = not current_fact.trigger_signal_on_modified
+	current_database.save_data()
+
+
+func _on_fact_is_enum_check_button_pressed():
+	var current_fact: ReactionFactItem = facts_list.get_item_metadata(selected_item_index)
+	current_fact.is_enum = not current_fact.is_enum
+	current_database.save_data()
+	fact_hint_string_container.visible = current_fact.is_enum

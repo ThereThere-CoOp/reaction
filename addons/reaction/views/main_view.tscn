@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jc4ei7i0bj2v" path="res://addons/reaction/components/edit_database_dialog.tscn" id="2_jeeb5"]
 [ext_resource type="PackedScene" uid="uid://tycacr0sxsef" path="res://addons/reaction/views/settings_view.tscn" id="3_6kxn8"]
 
-[sub_resource type="Image" id="Image_beyda"]
+[sub_resource type="Image" id="Image_ger64"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -14,8 +14,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_m1v1f"]
-image = SubResource("Image_beyda")
+[sub_resource type="ImageTexture" id="ImageTexture_g5t8d"]
+image = SubResource("Image_ger64")
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -49,7 +49,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_m1v1f")
+icon = SubResource("ImageTexture_g5t8d")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -60,31 +60,37 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "new database"
-icon = SubResource("ImageTexture_m1v1f")
-item_count = 1
+icon = SubResource("ImageTexture_g5t8d")
+item_count = 3
 popup/item_0/text = "new database"
-popup/item_0/icon = SubResource("ImageTexture_m1v1f")
+popup/item_0/icon = SubResource("ImageTexture_g5t8d")
 popup/item_0/id = 0
+popup/item_1/text = "new database"
+popup/item_1/icon = SubResource("ImageTexture_g5t8d")
+popup/item_1/id = 1
+popup/item_2/text = "other_database"
+popup/item_2/icon = SubResource("ImageTexture_g5t8d")
+popup/item_2/id = 2
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_m1v1f")
+icon = SubResource("ImageTexture_g5t8d")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_m1v1f")
+icon = SubResource("ImageTexture_g5t8d")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_m1v1f")
+icon = SubResource("ImageTexture_g5t8d")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -123,31 +129,10 @@ placeholder_text = "Search fact name"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-item_count = 24
-item_0/text = "item_label"
-item_1/text = "item_label"
-item_2/text = "item_label"
-item_3/text = "item_label"
-item_4/text = "item_label"
-item_5/text = "item_label"
-item_6/text = "item_label"
-item_7/text = "item_label"
-item_8/text = "item_label"
-item_9/text = "item_label"
-item_10/text = "item_label"
-item_11/text = "item_label"
-item_12/text = "item_label"
-item_13/text = "item_label"
-item_14/text = "item_label"
-item_15/text = "item_label"
-item_16/text = "item_label"
-item_17/text = "item_label"
-item_18/text = "item_label"
-item_19/text = "item_label"
-item_20/text = "item_label"
-item_21/text = "item_label"
-item_22/text = "item_label"
-item_23/text = "item_label"
+item_count = 3
+item_0/text = "VITALITY"
+item_1/text = "talkWithOldMan"
+item_2/text = "INTELLIGENCE"
 
 [node name="ButtonsContainer" type="GridContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer"]
 layout_mode = 2
@@ -190,7 +175,8 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Fact Name: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
+[node name="FactNameInputLineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "PLAYER_VITALITY"
@@ -214,7 +200,8 @@ popup/item_1/id = 1
 popup/item_2/text = "Boolean"
 popup/item_2/id = 2
 
-[node name="IsSiganlCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
+[node name="FactIsSignalCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Send signal on modified?"
 
@@ -238,19 +225,21 @@ size_flags_horizontal = 3
 text = "123e4567-e89b-12d3-a456-426655440000"
 editable = false
 
-[node name="IsEnumCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+[node name="FactIsEnumCheckButton" type="CheckButton" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Is enum?:"
 
-[node name="HintStringInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+[node name="FactHintStringInputContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactHintStringInputContainer"]
 layout_mode = 2
 text = "Hint String: "
 
-[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/HintStringInputContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactHintStringInputContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "hello,world"
@@ -437,6 +426,9 @@ min_size = Vector2i(700, 300)
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_selected"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer/AddFactButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_add_fact_button_pressed"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsListContainer/ButtonsContainer/RemoveFactButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_remove_fact_button_pressed"]
+[connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer/FactNameInputLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_name_input_line_edit_text_submitted"]
+[connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactIsSignalCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_signal_check_button_pressed"]
+[connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactIsEnumCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_enum_check_button_pressed"]
 [connection signal="confirmed" from="EditDatabaseDialog" to="EditDatabaseDialog" method="_on_edit_board_dialog_confirmed"]
 [connection signal="database_updated" from="EditDatabaseDialog" to="." method="_on_edit_database_dialog_database_updated"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
