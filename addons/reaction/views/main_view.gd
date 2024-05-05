@@ -51,7 +51,7 @@ func load_databases_from_filesystem() -> void:
 				continue
 			else:
 				var resource_path_to_load = "%s/%s" % [databases_path, file_name]
-				var database: ReactionDatabase = load(resource_path_to_load) as ReactionDatabase
+				var database: ReactionDatabase = ResourceLoader.load(resource_path_to_load) as ReactionDatabase
 				databases[database.uid] = database
 			file_name = dir.get_next()
 	else:
@@ -152,11 +152,11 @@ func _remove_database_savefile(data: ReactionDatabase) -> void:
 
 func remove_database() -> void:
 	var database_data = databases.get(current_database_id)
-	var undo_database_data = DeepClone.deep_clone(database_data)
+	# var undo_database_data = DeepClone.deep_clone(database_data)
 
 	undo_redo.create_action("Delete database")
 	undo_redo.add_do_method(self, "_remove_database", current_database_id)
-	undo_redo.add_undo_method(self, "_unremove_board", undo_database_data)
+	undo_redo.add_undo_method(self, "_unremove_board", database_data)
 	undo_redo.commit_action()
 
 
