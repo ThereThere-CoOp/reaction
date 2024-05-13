@@ -13,6 +13,10 @@ const ReactionSettings = preload("../utilities/settings.gd")
 @export var global_facts: Dictionary = {}
 
 
+func create_new_fact():
+	var fact = ReactionFactItem.new()
+	global_facts[fact.uid] = fact
+	save_data()
 
 func add_fact(fact: ReactionFactItem):
 	global_facts[fact.uid] = fact

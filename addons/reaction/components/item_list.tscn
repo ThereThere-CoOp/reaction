@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt65kcmm087t4"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/item_list.gd" id="1_ebbi5"]
+
+[node name="ItemList" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+script = ExtResource("1_ebbi5")
+
+[node name="ItemLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = ":"
+
+[node name="ItemSearcher" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Search fact name"
+
+[node name="ItemList" type="ItemList" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 5
+item_0/text = "VITALITY"
+item_1/text = "oldManAttitudeTowardsYou"
+item_2/text = "CHARISMA"
+item_3/text = "talkedWithOldMan"
+item_4/text = "INTELLIGENCE"
+
+[node name="ButtonsContainer" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+columns = 2
+
+[node name="AddItemButton" type="Button" parent="ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add "
+
+[node name="RemoveItemButton" type="Button" parent="ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Remove "
+
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="ButtonsContainer/AddItemButton" to="." method="_on_add_item_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/RemoveItemButton" to="." method="_on_remove_item_button_pressed"]

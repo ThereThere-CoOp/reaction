@@ -35,6 +35,11 @@ var hint_string: String:
 
 var enum_names: PackedStringArray = []
 
+
+func get_new_object():
+	return ReactionFactItem.new()
+	
+	
 func _get_property_list() -> Array:
 	var properties: Array = []
 

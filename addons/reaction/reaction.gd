@@ -21,6 +21,7 @@ func _enter_tree():
 		EditorInterface.get_editor_main_screen().add_child(main_view_instance)
 		main_view_instance.undo_redo = get_undo_redo()
 		main_view_instance.global_facts_panel.undo_redo = get_undo_redo()
+		main_view_instance.global_facts_panel.facts_list.undo_redo = get_undo_redo()
 		_make_visible(false)
 
 
