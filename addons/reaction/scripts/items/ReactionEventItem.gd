@@ -50,8 +50,44 @@ func _sort_priority_rules(a, b):
 		return a.get_criterias_count() > b.get_criterias_count()
 
 	return false
+	
 
-
+## ----------------------------------------------------------------------------[br]
+## Add a rule to event and reorder the rules using priority and rule's criteria 
+## numbers [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* rule | ReactionRuleItem:[/b] New rule to add [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
+func add_rule(rule: ReactionRuleItem) -> void:
+	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
+	new_rules.append(rule)
+	
+	## reordering occurs cause set method
+	rules = new_rules
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a rule from event and reorder the rules using priority and rule's 
+## criteria numbers [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* rule_uid | String:[/b] Uid of the rule to remove [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
+func remove_rule(rule_uid: String) -> void:
+	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
+	var index = 0
+	for rule in new_rules:
+		if rule.uid == rule_uid:
+			break
+		index += 1
+	
+	new_rules.remove_at(index)
+	
+	## reordering occurs cause set method
+	rules = new_rules
+	
+	
 ## ----------------------------------------------------------------------------[br]
 ## Get responses for this event based on the rules and current world's game
 ## context [br]

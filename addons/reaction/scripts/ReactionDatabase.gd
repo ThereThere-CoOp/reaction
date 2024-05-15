@@ -18,6 +18,7 @@ func create_new_fact():
 	global_facts[fact.uid] = fact
 	save_data()
 
+
 func add_fact(fact: ReactionFactItem):
 	global_facts[fact.uid] = fact
 	save_data()
@@ -25,6 +26,28 @@ func add_fact(fact: ReactionFactItem):
 
 func remove_fact(fact_uid: String):
 	global_facts.erase(fact_uid)
+	save_data()
+	
+
+func add_event(event: ReactionEventItem):
+	events[event.uid] = event
+	save_data()
+	
+	
+func remove_event(event_uid: String) -> void:
+	events.erase(event_uid)
+	save_data()
+	
+	
+func add_rule_to_event(event_uid: String, rule_uid: String) -> void:
+	var event: ReactionEventItem = events[event_uid]
+	event.remove_rule(rule_uid)
+	save_data()
+	
+	
+func remove_rule_from_event(event_uid: String, new_rule: ReactionRuleItem) -> void:
+	var event: ReactionEventItem = events[event_uid]
+	event.add_rule(new_rule)
 	save_data()
 
 
