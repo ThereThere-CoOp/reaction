@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=12 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://tycacr0sxsef" path="res://addons/reaction/views/settings_view.tscn" id="3_6kxn8"]
 [ext_resource type="PackedScene" uid="uid://dt65kcmm087t4" path="res://addons/reaction/components/item_list.tscn" id="3_cpcid"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_jdoy6"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionEventItem.gd" id="5_b3ord"]
 
-[sub_resource type="Image" id="Image_dvqum"]
+[sub_resource type="Image" id="Image_gu5ti"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -16,8 +17,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_mn43r"]
-image = SubResource("Image_dvqum")
+[sub_resource type="ImageTexture" id="ImageTexture_ysg38"]
+image = SubResource("Image_gu5ti")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -25,6 +26,14 @@ type = 0
 is_enum = false
 trigger_signal_on_modified = false
 uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
+label = "item_label"
+description = "Item long description"
+scope = "Global"
+
+[sub_resource type="Resource" id="Resource_ayc12"]
+script = ExtResource("5_b3ord")
+rules = Array[Resource("res://addons/reaction/scripts/items/ReactionRuleItem.gd")]([])
+uid = "808b11c9-053a-4ee8-91c1-ccec8b6105b9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
@@ -61,7 +70,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_mn43r")
+icon = SubResource("ImageTexture_ysg38")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -72,43 +81,45 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_mn43r")
+icon = SubResource("ImageTexture_ysg38")
 item_count = 2
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_mn43r")
+popup/item_0/icon = SubResource("ImageTexture_ysg38")
 popup/item_0/id = 0
 popup/item_1/text = "other database"
-popup/item_1/icon = SubResource("ImageTexture_mn43r")
+popup/item_1/icon = SubResource("ImageTexture_ysg38")
 popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_mn43r")
+icon = SubResource("ImageTexture_ysg38")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_mn43r")
+icon = SubResource("ImageTexture_ysg38")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_mn43r")
+icon = SubResource("ImageTexture_ysg38")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 1
 
 [node name="GlobalFacts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
@@ -233,7 +244,6 @@ text = "Tip: Hint string must be comma separeted values"
 
 [node name="Events" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
@@ -248,40 +258,14 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="EventsListContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
-custom_minimum_size = Vector2(300, 0)
+[node name="EventsList" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel" instance=ExtResource("3_cpcid")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
-layout_mode = 2
-text = "Events:
-"
-
-[node name="EventSearcher" type="LineEdit" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
-layout_mode = 2
-placeholder_text = "Search event name"
-
-[node name="EventsList" type="ItemList" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-auto_height = true
-item_count = 2
-item_0/text = "CHAR_OLD_MAN"
-item_1/text = "ROOM_PRISON_CELL"
-
-[node name="ButtonsContainer" type="GridContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 5
-columns = 2
-
-[node name="AddEventButton" type="Button" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer/ButtonsContainer"]
-layout_mode = 2
-text = "Add Event"
-
-[node name="RemoveEventButton" type="Button" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsListContainer/ButtonsContainer"]
-layout_mode = 2
-text = "Remove Event
-"
+item_name = "event"
+item_database_field_name = "events"
+add_function_name = "add_event"
+remove_function_name = "remove_event"
+reaction_resource = SubResource("Resource_ayc12")
 
 [node name="RulesContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 layout_mode = 2

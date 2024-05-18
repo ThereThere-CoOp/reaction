@@ -12,6 +12,7 @@ layout_mode = 2
 text = ":"
 
 [node name="ItemSearcher" type="LineEdit" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Search fact name"
 
