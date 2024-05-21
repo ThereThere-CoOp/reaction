@@ -98,7 +98,10 @@ func go_to_database(id: String) -> void:
 		database_managment_panel.show()
 		edit_database_button.disabled = false
 		remove_database_button.disabled = false
+		
+		# setup database panel data
 		global_facts_panel.setup_facts(databases[current_database_id])
+		events_panel.setup_events(databases[current_database_id])
 
 	build_databases_menu()
 
