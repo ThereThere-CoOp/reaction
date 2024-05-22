@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func setup_facts(database: ReactionDatabase) -> void:
 	current_database = database
-	facts_list.setup_items(current_database)
+	facts_list.setup_items(current_database, current_database)
 
 
 func _set_fact_type_menu_text(value: Variant.Type) -> String:

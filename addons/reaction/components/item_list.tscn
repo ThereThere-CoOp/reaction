@@ -9,12 +9,12 @@ script = ExtResource("1_ebbi5")
 [node name="ItemLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-text = ":"
+text = "s:"
 
 [node name="ItemSearcher" type="LineEdit" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Search fact name"
+placeholder_text = "Search by 's name"
 
 [node name="ItemList" type="ItemList" parent="."]
 unique_name_in_owner = true

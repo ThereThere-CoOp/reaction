@@ -66,3 +66,7 @@ func test(context: ReactionBlackboard) -> bool:
 func execute_modifications(context: ReactionBlackboard) -> void:
 	for modification in modifications:
 		modification.execute(context)
+		
+		
+func get_new_object():
+	return ReactionRuleItem.new()

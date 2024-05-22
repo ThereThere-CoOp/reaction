@@ -15,6 +15,7 @@ var undo_redo: EditorUndoRedoManager:
 
 @onready var events_list: VBoxContainer = %EventsList
 @onready var event_data_container: VBoxContainer = %EventDataContainer
+@onready var rules_panel = %Rules
 
 # event inputs
 @onready var event_name_input: LineEdit = %EventNameLineEdit
@@ -27,7 +28,7 @@ func _ready() -> void:
 
 func setup_events(database: ReactionDatabase) -> void:
 	current_database = database
-	events_list.setup_items(current_database)
+	events_list.setup_items(current_database, current_database)
 	
 	
 func _set_event(event_data: ReactionEventItem) -> void:
@@ -36,6 +37,7 @@ func _set_event(event_data: ReactionEventItem) -> void:
 	event_name_input.text = current_event.label
 	event_uid_input.text = current_event.uid
 	
+	rules_panel.setup_rules(current_database, current_event)
 	event_data_container.visible = true
 
 

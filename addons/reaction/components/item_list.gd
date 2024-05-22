@@ -13,7 +13,9 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
-var current_database: ReactionDatabase
+var database_object: ReactionDatabase
+
+var parent_object: Resource
 
 var current_item: Resource
 
@@ -26,7 +28,7 @@ var current_item_index: int = -1
 	get:
 		return item_name
 
-@export var item_database_field_name: String = "global_facts"
+@export var item_list_field_name: String = "global_facts"
 @export var item_name_field: String = "label"
 @export var add_function_name: String = "add_fact"
 @export var remove_function_name: String = "remove_fact"
@@ -52,12 +54,19 @@ func _ready():
 		remove_item_button.disabled = true
 
 
-func setup_items(database: ReactionDatabase) -> void:
+func setup_items(database: ReactionDatabase, new_parent_object: Resource) -> void:
 	items_list.clear()
 	remove_item_button.disabled = true
 
-	current_database = database
-	for item in current_database.get(item_database_field_name).values():
+	database_object = database
+	parent_object = new_parent_object
+	var tmp_item_list = []
+	if parent_object.get(item_list_field_name) is Dictionary:
+		tmp_item_list = parent_object.get(item_list_field_name).values()
+	else:
+		tmp_item_list = parent_object.get(item_list_field_name)
+		
+	for item in tmp_item_list:
 		var index = items_list.add_item(item.get(item_name_field))
 		items_list.set_item_metadata(index, item)
 
@@ -74,8 +83,9 @@ func _select_item(index: int, is_emit_signal: bool = true) -> void:
 
 
 func _add_item(item: Resource, index_to_add: int = -1) -> void:
-	var add_function_callable = Callable(current_database, add_function_name)
+	var add_function_callable = Callable(parent_object, add_function_name)
 	add_function_callable.call(item)
+	database_object.save_data()
 	var index = items_list.add_item(item.get(item_name_field))
 	items_list.set_item_metadata(index, item)
 
@@ -88,17 +98,18 @@ func _add_item(item: Resource, index_to_add: int = -1) -> void:
 
 
 func _remove_item(item: Resource, index: int) -> void:
-	var add_function_callable = Callable(current_database, remove_function_name)
-	add_function_callable.call(item.uid)
+	var remove_function_callable = Callable(parent_object, remove_function_name)
+	remove_function_callable.call(item.uid)
+	database_object.save_data()
 	items_list.remove_item(index)
 
-	if current_database.global_facts.size() == 0:
+	if parent_object.get(item_list_field_name).size() == 0:
 		current_item_index = -1
 		remove_item_button.disabled = true
 		items_list.deselect_all()
 	else:
-		if current_item_index >= current_database.global_facts.size():
-			current_item_index = current_database.global_facts.size() - 1
+		if current_item_index >=  parent_object.get(item_list_field_name).size():
+			current_item_index =  parent_object.get(item_list_field_name).size() - 1
 			current_item = items_list.get_item_metadata(current_item_index)
 		else:
 			current_item_index -= 1
@@ -125,7 +136,7 @@ func _on_add_item_button_pressed():
 	var new_item = reaction_resource.get_new_object()
 	undo_redo.create_action("Add %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_add_item", new_item)
-	undo_redo.add_undo_method(self, "_remove_item", new_item, current_database.global_facts.size())
+	undo_redo.add_undo_method(self, "_remove_item", new_item, parent_object.get(item_list_field_name).size())
 	undo_redo.commit_action()
 
 
