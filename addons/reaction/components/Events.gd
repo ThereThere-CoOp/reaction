@@ -38,6 +38,8 @@ func _set_event(event_data: ReactionEventItem) -> void:
 	event_uid_input.text = current_event.uid
 	
 	rules_panel.setup_rules(current_database, current_event)
+	rules_panel.current_event = current_event
+	rules_panel.rule_data_container.visible = false
 	event_data_container.visible = true
 
 
