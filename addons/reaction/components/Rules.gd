@@ -16,13 +16,17 @@ var undo_redo: EditorUndoRedoManager:
 @onready var rules_list: VBoxContainer = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 
-# event inputs
+# rules inputs
 @onready var rule_name_input: LineEdit = %RuleNameLineEdit
 @onready var rule_uid_input: LineEdit = %RuleUidLineEdit
 
+@onready var rule_match_once_button: CheckButton = %RuleMatchOnceCheckButton
+@onready var rule_priority_input: SpinBox = %RulePrioritySpinBox
+@onready var rule_priority_text_edit: LineEdit = rule_priority_input.get_line_edit()
 
 func _ready() -> void:
 	rule_data_container.visible = false
+	rule_priority_text_edit.connect("text_submitted", _on_rule_priority_spin_box_text_submitted)
 
 
 func setup_rules(database: ReactionDatabase, current_event: ReactionEventItem) -> void:
@@ -33,8 +37,11 @@ func setup_rules(database: ReactionDatabase, current_event: ReactionEventItem) -
 func _set_rule(rule_data: ReactionRuleItem) -> void:
 	current_rule = rule_data
 	# set input default values
+	# general
 	rule_name_input.text = rule_data.label
 	rule_uid_input.text = rule_data.uid
+	rule_match_once_button.button_pressed = rule_data.match_once
+	rule_priority_input.set_value_no_signal(rule_data.priority)
 
 	rule_data_container.visible = true
 
@@ -65,3 +72,12 @@ func _on_rules_list_item_removed(index: int, item_data: ReactionRuleItem):
 		_set_rule(rules_list.current_item)
 	else:
 		rule_data_container.visible = false
+
+
+func _on_rule_match_once_check_button_pressed():
+	_set_rule_property("match_once", not current_rule.match_once) # Replace with function body.
+
+
+func _on_rule_priority_spin_box_text_submitted(new_text: String):
+	_set_rule_property("priority", float(new_text))
+	rule_priority_text_edit.release_focus()
