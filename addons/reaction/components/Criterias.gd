@@ -1,12 +1,21 @@
 @tool
 extends MarginContainer
 
+var current_databaase: ReactionDatabase
+var current_rule: ReactionRuleItem
 
-# Called when the node enters the scene tree for the first time.
+@onready var criteria_scene = preload("res://addons/reaction/components/criteria.tscn")
+@onready var criterias_rows : HBoxContainer = %CriteriasRows
+
+
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func setup_criterias(databaase: ReactionDatabase, rule: ReactionRuleItem) -> void:
+	current_databaase = databaase
+	current_rule = rule
+	
+	for criteria in current_rule.criterias:
+		var new_criteria_object = criteria_scene.instantiate()
+		
