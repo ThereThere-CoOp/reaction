@@ -9,7 +9,6 @@ var criteria_object : ReactionRuleCriteria
 
 # input components
 @onready var label_input: LineEdit = %LabelLineEdit
-@onready var type_menu: MenuButton = %TypeMenuButton
 @onready var operation_menu: MenuButton = %OperationMenuButton
 @onready var value_a_input: LineEdit = %ValueALineEdit
 @onready var value_b_input: LineEdit = %ValueBLineEdit
@@ -26,7 +25,7 @@ func setup(criteria: ReactionRuleCriteria, index: int) -> void:
 	criteria_object = criteria
 	
 	label_input.text = criteria_object.label
-	type_menu.text = criteria.operation
+	operation_menu.text = criteria.operation
 	
 
 func apply_theme() -> void:

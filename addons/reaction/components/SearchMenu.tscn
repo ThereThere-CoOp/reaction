@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://doabmy6rit131"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/SearchMenu.gd" id="1_bcoiq"]
+
+[node name="SearchMenu" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bcoiq")
+
+[node name="SearchLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Input the name"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
+position = Vector2i(0, 40)
+item_count = 1
+item_0/text = ""
+item_0/id = 0
+
+[connection signal="text_changed" from="SearchLineEdit" to="." method="_on_search_line_edit_text_changed"]
+[connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]
