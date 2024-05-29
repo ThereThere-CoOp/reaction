@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/reaction/components/criteria.gd" id="1_8jhr2"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="2_nmi7d"]
 
-[sub_resource type="Image" id="Image_0p6py"]
+[sub_resource type="Image" id="Image_xm6yx"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -12,8 +12,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_hfob4"]
-image = SubResource("Image_0p6py")
+[sub_resource type="ImageTexture" id="ImageTexture_skh30"]
+image = SubResource("Image_xm6yx")
 
 [node name="Criteria" type="HBoxContainer"]
 offset_right = 952.0
@@ -35,20 +35,26 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="FactLabel" type="Label" parent="."]
+[node name="FactContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FactLabel" type="Label" parent="FactContainer"]
 layout_mode = 2
 text = "Fact:"
 
-[node name="FactsSearchMenu" parent="." instance=ExtResource("2_nmi7d")]
+[node name="FactsSearchMenu" parent="FactContainer" instance=ExtResource("2_nmi7d")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="OperationLabel" type="Label" parent="."]
+[node name="OperationContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OperationLabel" type="Label" parent="OperationContainer"]
 layout_mode = 2
 text = "Opt:"
 
-[node name="OperationMenuButton" type="MenuButton" parent="."]
+[node name="OperationMenuButton" type="MenuButton" parent="OperationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "="
@@ -62,35 +68,41 @@ popup/item_2/id = 2
 popup/item_3/text = "a<=x<=b"
 popup/item_3/id = 3
 
-[node name="ValueLabel" type="Label" parent="."]
+[node name="ValueContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ValueLabel" type="Label" parent="ValueContainer"]
 layout_mode = 2
 text = "Value:"
 
-[node name="ValueALineEdit" type="LineEdit" parent="."]
+[node name="ValueALineEdit" type="LineEdit" parent="ValueContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="EnumValuesMenuButton" type="MenuButton" parent="."]
+[node name="EnumValuesMenuButton" type="MenuButton" parent="ValueContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValueBLabel" type="Label" parent="."]
+[node name="BooleanValueCheckBox" type="CheckBox" parent="ValueContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ValueBContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ValueBLabel" type="Label" parent="ValueBContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Value B:"
 
-[node name="ValueBLineEdit" type="LineEdit" parent="."]
+[node name="ValueBLineEdit" type="LineEdit" parent="ValueBContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="BooleanValueCheckBox" type="CheckBox" parent="."]
-unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="NegateCheckButton" type="CheckButton" parent="."]
@@ -102,9 +114,9 @@ text = "Negate"
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove criteria"
-icon = SubResource("ImageTexture_hfob4")
+icon = SubResource("ImageTexture_skh30")
 flat = true
 
 [connection signal="text_submitted" from="LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
-[connection signal="item_selected" from="FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
+[connection signal="item_selected" from="FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
 [connection signal="pressed" from="RemoveCriteriaButton" to="." method="_on_remove_criteria_button_pressed"]
