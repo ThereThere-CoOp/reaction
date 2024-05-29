@@ -137,4 +137,5 @@ func _on_label_line_edit_text_submitted(new_text):
 
 func _on_remove_criteria_button_pressed():
 	current_rule.remove_criteria_by_index(criteria_index)
+	current_database.save_data()
 	queue_free()

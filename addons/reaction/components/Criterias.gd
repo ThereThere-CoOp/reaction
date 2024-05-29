@@ -37,6 +37,7 @@ func _on_add_criteria_button_pressed():
 	var reaction_criteria = ReactionRuleCriteria.new()
 	reaction_criteria.label = "newCriteria"
 	current_rule.add_criteria(reaction_criteria)
+	current_database.save_data()
 	var index = current_rule.criterias.size() - 1
 	var new_criteria_object = criteria_scene.instantiate()
 	new_criteria_object.setup(current_database, current_rule, reaction_criteria, index, true)
