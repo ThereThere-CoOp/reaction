@@ -56,44 +56,45 @@ var _internal_value_b: int
 
 func _get_property_list() -> Array:
 	var properties: Array = []
-
-	var value_a_usage = (
-		PROPERTY_USAGE_DEFAULT
-		if (
-			(fact != null and fact.type != null and not fact.is_enum)
-			or (
-				fact != null
-				and fact.type != null
-				and fact.is_enum
-				and fact.hint_string
+	
+	if fact:
+		var value_a_usage = (
+			PROPERTY_USAGE_DEFAULT
+			if (
+				(fact != null and fact.type != null and not fact.is_enum)
+				or (
+					fact != null
+					and fact.type != null
+					and fact.is_enum
+					and fact.hint_string
+				)
 			)
+			else PROPERTY_USAGE_READ_ONLY
 		)
-		else PROPERTY_USAGE_READ_ONLY
-	)
 
-	var value_a_hint = (
-		PROPERTY_HINT_NONE if not fact.is_enum else PROPERTY_HINT_ENUM
-	)
-	var value_a_hint_string = "" if not fact.is_enum else fact.hint_string
+		var value_a_hint = (
+			PROPERTY_HINT_NONE if not fact.is_enum else PROPERTY_HINT_ENUM
+		)
+		var value_a_hint_string = "" if not fact.is_enum else fact.hint_string
 
-	var value_b_usage = (
-		PROPERTY_USAGE_DEFAULT
-		if fact != null and fact.type != null and operation == "a<=x<=b"
-		else PROPERTY_USAGE_READ_ONLY
-	)
+		var value_b_usage = (
+			PROPERTY_USAGE_DEFAULT
+			if fact != null and fact.type != null and operation == "a<=x<=b"
+			else PROPERTY_USAGE_READ_ONLY
+		)
 
-	properties.append_array(
-		[
-			{
-				"name": "value_a",
-				"type": fact.type,
-				"usage": value_a_usage,
-				"hint": value_a_hint,
-				"hint_string": value_a_hint_string
-			},
-			{"name": "value_b", "type": fact.type, "usage": value_b_usage}
-		]
-	)
+		properties.append_array(
+			[
+				{
+					"name": "value_a",
+					"type": fact.type,
+					"usage": value_a_usage,
+					"hint": value_a_hint,
+					"hint_string": value_a_hint_string
+				},
+				{"name": "value_b", "type": fact.type, "usage": value_b_usage}
+			]
+		)
 
 	return properties
 

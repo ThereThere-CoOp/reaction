@@ -3,7 +3,7 @@ extends HBoxContainer
 
 signal item_selected(item: Resource)
 
-var items_list : Array[Resource] = []
+@export var items_list : Array = []
 
 var current_list : Array[Resource] = []
 

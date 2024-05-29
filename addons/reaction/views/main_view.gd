@@ -100,9 +100,10 @@ func go_to_database(id: String) -> void:
 		edit_database_button.disabled = false
 		remove_database_button.disabled = false
 		
-		# setup database panel data
-		global_facts_panel.setup_facts(databases[current_database_id])
-		events_panel.setup_events(databases[current_database_id])
+		# emit database selected signal to setup database panel data
+		ReactionSignals.database_selected.emit(databases[current_database_id])
+		# global_facts_panel.setup_facts(databases[current_database_id])
+		# events_panel.setup_events(databases[current_database_id])
 
 	build_databases_menu()
 

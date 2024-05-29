@@ -38,11 +38,13 @@ func _ready() -> void:
 		menu.add_item(fact_type_menu_text_options_values[i], i)
 	
 	fact_data_container.visible = false
+	
+	ReactionSignals.connect("database_selected", setup_facts)
 
 
 func setup_facts(database: ReactionDatabase) -> void:
 	current_database = database
-	facts_list.setup_items(current_database, current_database)
+	facts_list.setup_items(current_database)
 
 
 func _set_fact_type_menu_text(value: Variant.Type) -> String:

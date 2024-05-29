@@ -52,13 +52,14 @@ func _ready():
 
 	if not items_list.is_anything_selected():
 		remove_item_button.disabled = true
+		
+	ReactionSignals.connect("database_selected", _on_database_selected)
 
 
-func setup_items(database: ReactionDatabase, new_parent_object: Resource) -> void:
+func setup_items(new_parent_object: Resource) -> void:
 	items_list.clear()
 	remove_item_button.disabled = true
-
-	database_object = database
+	
 	parent_object = new_parent_object
 	var tmp_item_list = []
 	if parent_object.get(item_list_field_name) is Dictionary:
@@ -122,6 +123,10 @@ func _remove_item(item: Resource, index: int) -> void:
 
 
 ### signals
+
+
+func _on_database_selected(database: ReactionDatabase) -> void:
+	database_object = database
 
 
 func _on_item_list_item_selected(index):

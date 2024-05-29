@@ -15,6 +15,8 @@ var undo_redo: EditorUndoRedoManager:
 
 @onready var rules_list: VBoxContainer = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
+@onready var criterias_container: MarginContainer = %Criterias
+
 
 # rules inputs
 @onready var rule_name_input: LineEdit = %RuleNameLineEdit
@@ -26,12 +28,13 @@ var undo_redo: EditorUndoRedoManager:
 
 func _ready() -> void:
 	rule_data_container.visible = false
+	
+	ReactionSignals.connect("database_selected", _on_database_selected)
 	rule_priority_text_edit.connect("text_submitted", _on_rule_priority_spin_box_text_submitted)
 
 
-func setup_rules(database: ReactionDatabase, current_event: ReactionEventItem) -> void:
-	current_database = database
-	rules_list.setup_items(current_database, current_event)
+func setup_rules(current_event: ReactionEventItem) -> void:
+	rules_list.setup_items(current_event)
 
 
 func _set_rule(rule_data: ReactionRuleItem) -> void:
@@ -42,6 +45,9 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	rule_uid_input.text = rule_data.uid
 	rule_match_once_button.button_pressed = rule_data.match_once
 	rule_priority_input.set_value_no_signal(rule_data.priority)
+	
+	#criterias
+	criterias_container.setup_criterias(current_rule)
 
 	rule_data_container.visible = true
 
@@ -52,6 +58,10 @@ func _set_rule_property(property_name: StringName, value: Variant) -> void:
 
 
 ## signals
+
+
+func _on_database_selected(database: ReactionDatabase) -> void:
+	current_database = database
 
 
 func _on_rules_list_item_selected(item_data: ReactionRuleItem) -> void:

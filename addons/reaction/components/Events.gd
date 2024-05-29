@@ -24,11 +24,13 @@ var undo_redo: EditorUndoRedoManager:
 
 func _ready() -> void:
 	event_data_container.visible = false
+	
+	ReactionSignals.connect("database_selected", setup_events)
 
 
 func setup_events(database: ReactionDatabase) -> void:
 	current_database = database
-	events_list.setup_items(current_database, current_database)
+	events_list.setup_items(current_database)
 	
 	
 func _set_event(event_data: ReactionEventItem) -> void:
@@ -37,7 +39,7 @@ func _set_event(event_data: ReactionEventItem) -> void:
 	event_name_input.text = current_event.label
 	event_uid_input.text = current_event.uid
 	
-	rules_panel.setup_rules(current_database, current_event)
+	rules_panel.setup_rules(current_event)
 	rules_panel.current_event = current_event
 	rules_panel.rule_data_container.visible = false
 	event_data_container.visible = true
