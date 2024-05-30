@@ -91,8 +91,8 @@ func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: Reactio
 	label_input.text = criteria_object.label
 	
 	if criteria.fact:
-		fact_search_menu.search_input.text = criteria.fact.label
-		
+		fact_search_menu.search_input_text = criteria.fact.label
+	
 	fact_search_menu.items_list = current_database.global_facts.values()
 	
 	value_a_input.text = criteria.value_a

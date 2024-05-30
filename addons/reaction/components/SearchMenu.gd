@@ -3,6 +3,8 @@ extends HBoxContainer
 
 signal item_selected(item: Resource)
 
+@export var search_input_text: String = ""
+
 @export var popup_wait_time: float = 5.0
 
 @export var items_list : Array = []
@@ -21,6 +23,7 @@ var _current_search_text: String
 
 func _ready():
 	popup_timer.wait_time = popup_wait_time
+	search_input.text = search_input_text
 
 
 func _get_new_list(word: String) -> Array[Resource]:

@@ -15,10 +15,10 @@ func _ready():
 func setup_criterias(rule: ReactionRuleItem) -> void:
 	current_rule = rule
 	
-	var index = 0
 	for criteria in criterias_rows.get_children():
 		criteria.queue_free()
-		
+	
+	var index = 0
 	for criteria in current_rule.criterias:
 		var new_criteria_object = criteria_scene.instantiate()
 		new_criteria_object.setup(current_database, current_rule, criteria, index)
