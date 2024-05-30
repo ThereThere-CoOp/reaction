@@ -37,6 +37,7 @@ func update_operation_menu_items() -> void:
 	else:
 		operation_menu_labels = ["="]
 	
+	menu.clear()
 	for operation in operation_menu_labels:
 		menu.add_item(operation)
 		
@@ -54,6 +55,7 @@ func update_values_input() -> void:
 			enum_values_menu.visible = true
 			 
 			var enum_menu = enum_values_menu.get_popup()
+			enum_menu.clear()
 			var values = criteria_object.fact.enum_names
 			for value in values:
 				enum_menu.add_item(value)
