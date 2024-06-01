@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="8_kxxc4"]
 [ext_resource type="Script" path="res://addons/reaction/components/Criterias.gd" id="9_ivsn0"]
 
-[sub_resource type="Image" id="Image_o63md"]
+[sub_resource type="Image" id="Image_q40ls"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -21,8 +21,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_rph2y"]
-image = SubResource("Image_o63md")
+[sub_resource type="ImageTexture" id="ImageTexture_2l7yq"]
+image = SubResource("Image_q40ls")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -86,7 +86,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_rph2y")
+icon = SubResource("ImageTexture_2l7yq")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -97,34 +97,31 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_rph2y")
-item_count = 2
+icon = SubResource("ImageTexture_2l7yq")
+item_count = 1
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_rph2y")
+popup/item_0/icon = SubResource("ImageTexture_2l7yq")
 popup/item_0/id = 0
-popup/item_1/text = "other database"
-popup/item_1/icon = SubResource("ImageTexture_rph2y")
-popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_rph2y")
+icon = SubResource("ImageTexture_2l7yq")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_rph2y")
+icon = SubResource("ImageTexture_2l7yq")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_rph2y")
+icon = SubResource("ImageTexture_2l7yq")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -467,7 +464,7 @@ min_size = Vector2i(700, 300)
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer/FactNameInputLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactIsSignalCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_signal_check_button_pressed"]
-[connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactIsEnumCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_enum_check_button_pressed"]
+[connection signal="toggled" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactIsEnumCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_enum_check_button_toogled"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactHintStringInputContainer/HintStringInputContainer/FactHintStringLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_hint_string_line_edit_text_submitted"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_added"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_removed"]

@@ -6,7 +6,6 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_bcoiq")
-search_text = null
 popup_wait_time = 2.0
 
 [node name="SearchLineEdit" type="LineEdit" parent="."]

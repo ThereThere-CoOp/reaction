@@ -17,9 +17,6 @@ extends ReactionBaseItem
 	set(value):
 		is_enum = value
 
-		if value:
-			type = TYPE_INT
-
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 

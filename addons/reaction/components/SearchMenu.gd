@@ -56,4 +56,4 @@ func _on_popup_timer_timeout() -> void:
 		for item in current_list:
 			popup_menu.add_item(item.get(field_search_name))
 		
-		popup_menu.popup(Rect2i(global_position.x, global_position.y + 100 , size.x, 150))
+		popup_menu.popup(Rect2i(global_position.x, global_position.y + 60 , size.x, 150))

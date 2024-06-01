@@ -21,9 +21,9 @@ var fact_type_menu_text_options: Dictionary = {
 # fact inputs
 @onready var fact_label_edit: LineEdit = %FactNameInputLineEdit
 @onready var fact_uid_value_edit: LineEdit = %FactUidValue
-@onready var fact_is_enum_check: Button = %FactIsEnumCheckButton
+@onready var fact_is_enum_check: CheckButton = %FactIsEnumCheckButton
 @onready var fact_hint_string_container: BoxContainer = %FactHintStringInputContainer
-@onready var fact_is_signal_check: Button = %FactIsSignalCheckButton
+@onready var fact_is_signal_check: CheckButton = %FactIsSignalCheckButton
 @onready var fact_hint_string_edit: LineEdit = %FactHintStringLineEdit
 @onready var fact_type_menu: MenuButton = %FactTypeMenuButton
 
@@ -64,12 +64,11 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 	# set input default values
 	fact_uid_value_edit.text = current_fact.uid
 	fact_label_edit.text = current_fact.label
-	fact_is_signal_check.button_pressed = current_fact.trigger_signal_on_modified
-
-	fact_is_enum_check.button_pressed = current_fact.is_enum
-	fact_hint_string_container.visible = current_fact.is_enum
-	fact_hint_string_edit.text = current_fact.hint_string
+	fact_is_signal_check.set_pressed_no_signal(current_fact.trigger_signal_on_modified)
+	
 	fact_type_menu.text = _set_fact_type_menu_text(current_fact.type)
+	fact_is_enum_check.set_pressed_no_signal(current_fact.is_enum)
+	fact_hint_string_edit.text = current_fact.hint_string
 
 	if fact_type_menu.text == fact_type_menu_text_options["string"]:
 		_set_visibility_enum_hint(true)
@@ -86,11 +85,14 @@ func _set_fact_property(property_name: StringName, value: Variant) -> void:
 
 func _set_visibility_enum_hint(value: bool) -> void:
 	fact_is_enum_check.visible = value
-	fact_hint_string_container.visible = value
+	if value:
+		fact_hint_string_container.visible = current_fact.is_enum
+	else:
+		fact_hint_string_container.visible = false
 
 
 func _set_fact_type_value(is_visible_enum: bool, value: Variant, menu_text: String) -> void:
-	_set_fact_property( "type", value)
+	_set_fact_property("type", value)
 	_set_visibility_enum_hint(is_visible_enum)
 	fact_type_menu.text = menu_text
 
@@ -113,13 +115,15 @@ func _on_fact_is_signal_check_button_pressed():
 	)
 	
 
-func _on_fact_is_enum_check_button_pressed():
+func _on_fact_is_enum_check_button_toogled(toggled_on: bool):
 	_set_fact_property(
-		"trigger_signal_on_modified", not current_fact.is_enum
+		"is_enum", 
+		toggled_on
 	)
-	_set_fact_property("hint_string", fact_hint_string_edit.text)
-	fact_hint_string_container.visible = current_fact.is_enum
-
+	if toggled_on:
+		_set_fact_property("hint_string", fact_hint_string_edit.text)
+	fact_hint_string_container.visible = toggled_on
+	
 	
 func _on_fact_hint_string_line_edit_text_submitted(new_text):
 	_set_fact_property("hint_string", new_text)
@@ -128,36 +132,12 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 func _on_fact_type_menu_index_pressed(index):
 	var popup = fact_type_menu.get_popup()
 	var label = popup.get_item_text(index)
-	undo_redo.create_action("Change type")
 	if fact_type_menu_text_options["string"] == label:
-		undo_redo.add_do_method(
-			self,
-			"_set_fact_type_value",
-			true, TYPE_STRING, label
-		)
+		_set_fact_type_value(true, TYPE_STRING, label)
 	if fact_type_menu_text_options["boolean"] == label:
-		undo_redo.add_do_method(
-			self,
-			"_set_fact_type_value",
-		 false,  TYPE_BOOL, label
-		)
+		_set_fact_type_value(false,  TYPE_BOOL, label)
 	if fact_type_menu_text_options["number"] == label:
-		undo_redo.add_do_method(
-			self,
-				"_set_fact_type_value",
-		false, TYPE_INT, label
-		)
-
-	undo_redo.add_undo_method(
-		self,
-		"_set_fact_type_value",
-		
-		current_fact.type == TYPE_STRING,
-		current_fact.type,
-		fact_type_menu.text
-		
-	)
-	undo_redo.commit_action()
+		_set_fact_type_value(false, TYPE_INT, label)
 
 
 func _on_facts_list_item_added(index, item_data):
