@@ -60,23 +60,52 @@ func update_operation_menu_items() -> void:
 	menu.clear()
 	for operation in operation_menu_labels:
 		menu.add_item(operation)
-		
-	operation_menu.text = criteria_object.operation
-
+	
+	if criteria_object.operation:
+		operation_menu.text = criteria_object.operation
+	else:
+		operation_menu.text = "Select opt"
+	
+	
+func _get_value_a() -> Variant:
+	if criteria_object.value_a:
+		return criteria_object.value_a
+	else:
+		match criteria_object.fact.type:
+			TYPE_STRING:
+				return "Select value"
+			_:
+				return 0
+	
+				
+func _get_value_b() -> Variant:
+	if criteria_object.value_b:
+		return criteria_object.value_b
+	else:
+		return 0
+	
 
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
 	if criteria_object.fact:
 		value_a_label.visible = true
+		
+		var current_value_a = _get_value_a()
+		
+		var current_value_b = _get_value_b()
+			
 		if criteria_object.fact.type == TYPE_INT:
 			value_a_numeric_input.visible = true
+			value_a_numeric_input.set_value_no_signal(int(current_value_a))
 			
 		if criteria_object.fact.type == TYPE_BOOL:
 			boolean_value_check.visible = true
+			boolean_value_check.set_pressed_no_signal(bool(current_value_a))
 			
 		if criteria_object.fact.type == TYPE_STRING and not criteria_object.fact.is_enum:
 			value_a_input.visible = true
+			value_a_input.text = str(current_value_a)
 			
 		if criteria_object.fact.type == TYPE_STRING and criteria_object.fact.is_enum:
 			enum_values_menu.visible = true
@@ -87,11 +116,12 @@ func update_values_input() -> void:
 			for value in values:
 				enum_menu.add_item(value)
 				
-			enum_values_menu.text = criteria_object.value_a
+			enum_values_menu.text = str(current_value_a)
 		
-	if criteria_object.operation == "a<=x<=b":
-		value_b_input.visible = true
-		value_b_label.visible = true
+		if criteria_object.operation == "a<=x<=b":
+			value_b_input.visible = true
+			value_b_label.visible = true
+			value_b_input.set_value_no_signal(int(current_value_b))
 
 
 func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: ReactionRuleCriteria, index: int, is_new_criteria: bool = false) -> void:
@@ -119,9 +149,6 @@ func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: Reactio
 		fact_search_menu.search_input_text = criteria.fact.label
 	
 	fact_search_menu.items_list = current_database.global_facts.values()
-	
-	value_a_input.text = criteria.value_a
-	value_b_input.text = criteria.value_b
 	
 	negate_check.button_pressed = criteria.is_reverse
 	
