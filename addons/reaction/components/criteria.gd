@@ -18,9 +18,11 @@ var operation_menu: MenuButton
 var value_a_label: Label
 var value_a_input: LineEdit
 var value_a_numeric_input: SpinBox
+var value_a_numeric_text_edit: LineEdit
 var enum_values_menu: MenuButton
 var value_b_label: Label
 var value_b_input: SpinBox
+var value_b_text_edit: LineEdit
 var boolean_value_check: CheckBox
 var negate_check: CheckButton
 
@@ -42,6 +44,7 @@ func _set_no_visible_inputs() -> void:
 func _set_operation_input_visibility(value: bool) -> void:
 	operation_menu.visible = value
 	operation_label.visible = value
+
 
 func update_operation_menu_items() -> void:
 	var operation_menu_labels : Array[String]
@@ -84,7 +87,7 @@ func _get_value_b() -> Variant:
 	else:
 		return 0
 	
-
+	
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
@@ -122,8 +125,8 @@ func update_values_input() -> void:
 			value_b_input.visible = true
 			value_b_label.visible = true
 			value_b_input.set_value_no_signal(int(current_value_b))
-
-
+			
+			
 func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: ReactionRuleCriteria, index: int, is_new_criteria: bool = false) -> void:
 	label_input = %LabelLineEdit
 	fact_search_menu = %FactsSearchMenu
@@ -132,11 +135,22 @@ func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: Reactio
 	value_a_label = %ValueLabel
 	value_a_input = %ValueALineEdit
 	value_a_numeric_input = %ValueSpinBox
+	value_a_numeric_text_edit = value_a_numeric_input.get_line_edit()
 	enum_values_menu = %EnumValuesMenuButton
 	value_b_label = %ValueBLabel
 	value_b_input = %ValueBSpinBox
+	value_b_text_edit = value_b_input.get_line_edit()
 	boolean_value_check = %BooleanValueCheckBox
 	negate_check = %NegateCheckButton
+	
+	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
+	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
+	
+	operation_popup_menu.index_pressed.connect(_on_operation_menu_index_pressed)
+	values_popup_menu.index_pressed.connect(_on_values_menu_index_pressed)
+	value_a_numeric_text_edit.connect("text_submitted", _on_value_a_numeric_text_submitted)
+	value_b_text_edit.connect("text_submitted", _on_value_b_text_submitted)
+	
 	
 	current_database = database
 	current_rule = rule
@@ -193,3 +207,41 @@ func _on_remove_criteria_button_pressed():
 	current_rule.remove_criteria_by_index(criteria_index)
 	current_database.save_data()
 	queue_free()
+	
+	
+func _on_value_a_numeric_text_submitted(new_text: String) -> void:
+	_set_criteria_property("value_a", int(new_text))
+	value_a_numeric_text_edit.release_focus()
+	
+	
+func _on_value_b_text_submitted(new_text: String) -> void:
+	_set_criteria_property("value_b", int(new_text))
+	value_b_text_edit.release_focus()
+	
+	
+func _on_operation_menu_index_pressed(index: int) -> void:
+	var popup = operation_menu.get_popup()
+	var label = popup.get_item_text(index)
+	_set_criteria_property("operation", label)
+	operation_menu.text = label
+	update_values_input()
+
+
+func _on_value_a_line_edit_text_submitted(new_text):
+	_set_criteria_property("value_a", new_text)
+	
+	
+func _on_values_menu_index_pressed(index: int):
+	var popup = enum_values_menu.get_popup()
+	var label = popup.get_item_text(index)
+	_set_criteria_property("value_a", label)
+	enum_values_menu.text = label
+	enum_values_menu.tooltip_text = label
+
+
+func _on_boolean_value_check_box_toggled(toggled_on):
+	_set_criteria_property("value_a", toggled_on)
+
+
+func _on_negate_check_button_toggled(toggled_on):
+	_set_criteria_property("is_reverse", toggled_on)
