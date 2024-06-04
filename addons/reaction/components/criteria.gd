@@ -11,6 +11,7 @@ var criteria_object : ReactionRuleCriteria
 
 @onready var remove_criteria_button: Button = %RemoveCriteriaButton
 
+var index_label: Label
 var label_input: LineEdit
 var fact_search_menu: HBoxContainer
 var operation_label: Label
@@ -128,6 +129,7 @@ func update_values_input() -> void:
 			
 			
 func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: ReactionRuleCriteria, index: int, is_new_criteria: bool = false) -> void:
+	index_label = %IndexLabel
 	label_input = %LabelLineEdit
 	fact_search_menu = %FactsSearchMenu
 	operation_label = %OperationLabel
@@ -143,6 +145,7 @@ func setup(database: ReactionDatabase, rule: ReactionRuleItem, criteria: Reactio
 	boolean_value_check = %BooleanValueCheckBox
 	negate_check = %NegateCheckButton
 	
+	index_label.text = "#%d" % (index + 1)
 	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
 	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
 	
