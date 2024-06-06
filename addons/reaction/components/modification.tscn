@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfd0rhffnoafa"]
+
+[sub_resource type="GDScript" id="GDScript_wsckm"]
+script/source = "@tool
+extends HBoxContainer
+
+
+func _ready():
+	pass # Replace with function body.
+
+
+"
+
+[node name="Modification" type="HBoxContainer"]
+script = SubResource("GDScript_wsckm")

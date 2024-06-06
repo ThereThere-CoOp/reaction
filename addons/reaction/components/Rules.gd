@@ -15,7 +15,7 @@ var undo_redo: EditorUndoRedoManager:
 
 @onready var rules_list: VBoxContainer = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
-@onready var criterias_container: MarginContainer = %Criterias
+@onready var criterias_container: ListObjectForm = %Criterias
 
 
 # rules inputs
@@ -47,7 +47,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	rule_priority_input.set_value_no_signal(rule_data.priority)
 	
 	#criterias
-	criterias_container.setup_criterias(current_rule)
+	criterias_container.setup_objects(current_rule)
 
 	rule_data_container.visible = true
 

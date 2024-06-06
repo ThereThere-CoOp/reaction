@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bujjba3nge54o"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/ListObjectForm.gd" id="1_63s57"]
+
+[node name="ListObjectForm" type="MarginContainer"]
+script = ExtResource("1_63s57")
+object_scene = null
+
+[node name="Rows" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AddObjectButton" type="Button" parent="Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add object"
+
+[node name="ObjectsScrollContainer" type="ScrollContainer" parent="Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ObjectsRows" type="VBoxContainer" parent="Rows/ObjectsScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="Rows/AddObjectButton" to="." method="_on_add_criteria_button_pressed"]

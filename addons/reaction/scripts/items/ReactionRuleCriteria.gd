@@ -156,3 +156,7 @@ func test(blackboard_fact: ReactionBlackboardFact) -> bool:
 		and blackboard_fact.value <= _internal_value_b
 	)
 	return criteria_test_result if not is_reverse else not criteria_test_result
+
+
+func get_new_object() -> ReactionRuleCriteria:
+	return ReactionRuleCriteria.new()

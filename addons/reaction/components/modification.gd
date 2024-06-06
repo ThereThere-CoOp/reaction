@@ -1,5 +1,5 @@
 @tool
-class_name Criteria
+class_name Modification
 extends HBoxContainer
 
 var current_database: ReactionDatabase
