@@ -35,36 +35,37 @@ var operation: String:  ## Operation of the modification
 
 func _get_property_list() -> Array:
 	var properties: Array = []
+	
+	if fact:
+		var numeric_operations_string_hints = "+,-,=,erase"
+		var default_operations_string_hints = "=,erase"
 
-	var numeric_operations_string_hints = "+,-,=,erase"
-	var default_operations_string_hints = "=,erase"
+		var modification_value_usage = (
+			PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
+		)
 
-	var modification_value_usage = (
-		PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
-	)
+		var operation_usage = (
+			PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
+		)
 
-	var operation_usage = (
-		PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
-	)
+		var operation_string_hint = (
+			numeric_operations_string_hints
+			if fact.type == TYPE_INT or fact.type == TYPE_FLOAT
+			else default_operations_string_hints
+		)
 
-	var operation_string_hint = (
-		numeric_operations_string_hints
-		if fact.type == TYPE_INT or fact.type == TYPE_FLOAT
-		else default_operations_string_hints
-	)
-
-	properties.append_array(
-		[
-			{"name": "modification_value", "type": fact.type, "usage": modification_value_usage},
-			{
-				"name": "operation",
-				"type": TYPE_STRING,
-				"usage": operation_usage,
-				"hint": PROPERTY_HINT_ENUM,
-				"hint_string": operation_string_hint
-			}
-		]
-	)
+		properties.append_array(
+			[
+				{"name": "modification_value", "type": fact.type, "usage": modification_value_usage},
+				{
+					"name": "operation",
+					"type": TYPE_STRING,
+					"usage": operation_usage,
+					"hint": PROPERTY_HINT_ENUM,
+					"hint_string": operation_string_hint
+				}
+			]
+		)
 
 	return properties
 
@@ -100,3 +101,7 @@ func execute(context: ReactionBlackboard) -> void:
 					else modification_value
 				)
 				context.set_fact_value(fact, new_value)
+				
+				
+func get_new_object() -> ReactionContextModification:
+	return ReactionContextModification.new()

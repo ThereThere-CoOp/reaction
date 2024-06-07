@@ -13,9 +13,11 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
+
 @onready var rules_list: VBoxContainer = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ListObjectForm = %Criterias
+@onready var modifications_container: ListObjectForm = %Modifications
 
 
 # rules inputs
@@ -29,8 +31,8 @@ var undo_redo: EditorUndoRedoManager:
 func _ready() -> void:
 	rule_data_container.visible = false
 	
-	ReactionSignals.connect("database_selected", _on_database_selected)
-	rule_priority_text_edit.connect("text_submitted", _on_rule_priority_spin_box_text_submitted)
+	ReactionSignals.database_selected.connect(_on_database_selected)
+	rule_priority_text_edit.text_submitted.connect(_on_rule_priority_spin_box_text_submitted)
 
 
 func setup_rules(current_event: ReactionEventItem) -> void:
@@ -48,6 +50,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	#criterias
 	criterias_container.setup_objects(current_rule)
+	modifications_container.setup_objects(current_rule)
 
 	rule_data_container.visible = true
 

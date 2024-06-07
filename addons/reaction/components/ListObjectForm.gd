@@ -7,10 +7,9 @@ var current_parent_object: Resource
 
 @export var object_name: String = "object"
 @export var objects_list_field_name: String = "objects"
-@export var current_component_id: String = "id"
 @export var parent_object_add_function_name: String = "addObjects"
 @export var object_resource_class: Resource
-@export var object_removed_signal_component_id: String
+@export var object_removed_signal_component_id: String = "id"
 @export var object_scene = preload("res://addons/reaction/components/criteria.tscn")
 
 @onready var add_object_button : Button = %AddObjectButton
@@ -38,7 +37,7 @@ func setup_objects(parent_object: Resource) -> void:
 	var index = 0
 	for object in current_parent_object.get(objects_list_field_name):
 		var new_object = object_scene.instantiate()
-		new_object.setup(current_database, current_parent_object, object, index, current_component_id)
+		new_object.setup(current_database, current_parent_object, object, index, object_removed_signal_component_id)
 		objects_rows.add_child(new_object)
 		index += 1
 	
@@ -61,7 +60,7 @@ func _on_add_object_button_pressed():
 	current_database.save_data()
 	var index = current_parent_object.get(objects_list_field_name).size() - 1
 	var new_criteria_ui = object_scene.instantiate()
-	new_criteria_ui.setup(current_database, current_parent_object, new_object, index, current_component_id, true)
+	new_criteria_ui.setup(current_database, current_parent_object, new_object, index, object_removed_signal_component_id, true)
 	_objects_scroll_to_end = true
 	objects_rows.add_child(new_criteria_ui)
 	
@@ -72,7 +71,7 @@ func _on_objects_scroll_changed() -> void:
 		
 		
 func _on_object_removed(component_id: String, index: int) -> void:
-	if component_id == current_component_id:
+	if component_id == object_removed_signal_component_id:
 		var current_objects_array = current_parent_object.get(objects_list_field_name)
 		var current_object_form_components = objects_rows.get_children()
 		if index < current_objects_array.size():
