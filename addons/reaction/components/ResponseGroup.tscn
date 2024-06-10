@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh24p2h4c5igc"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/ResponseGroup.gd" id="1_66lh8"]
+
+[node name="ResponseGroup" type="MarginContainer"]
+script = ExtResource("1_66lh8")
