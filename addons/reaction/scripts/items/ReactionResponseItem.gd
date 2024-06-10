@@ -10,5 +10,5 @@ extends ReactionResponseBaseItem
 ## ----------------------------------------------------------------------------
 
 
-## Event that this response triggers
-@export var triggers: ReactionEventItem
+## Uuid of the event that this response triggers
+@export var triggers: String

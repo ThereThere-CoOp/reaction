@@ -18,5 +18,24 @@ extends ReactionResponseItem
 @export var choices: Array[ReactionDialogChoice]
 
 
+## ----------------------------------------------------------------------------[br]
+## Return the array of choices that met their criterias by the current context
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* context | [ReactionBlackboard]:[/b] Blackboard context to check if choice
+## match with facts data [br]
+## [b]Returns: Array[ReactionDialogChoice][/b] [br]
+## Returns array of choices that met their criterias by the current context  [br]
+## ----------------------------------------------------------------------------
+func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoice]:
+	var result_choices = []
+	if has_choice:
+		for choice in choices:
+			if choice.test(context):
+				result_choices.append(choice)
+			
+	return result_choices
+
+
 
 

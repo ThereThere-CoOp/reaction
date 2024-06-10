@@ -14,4 +14,4 @@ extends ReactionResponseBaseItem
 
 
 func get_responses():
-    return responses
+	return responses
