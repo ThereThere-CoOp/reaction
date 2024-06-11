@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh24p2h4c5igc"]
+[gd_scene load_steps=2 format=3 uid="uid://dh24p2h4c5igc"]
 
 [ext_resource type="Script" path="res://addons/reaction/components/ResponseGroup.gd" id="1_66lh8"]
-[ext_resource type="PackedScene" uid="uid://ts611j5eh0q4" path="res://addons/reaction/components/ResponseComponent.tscn" id="2_urrrv"]
 
 [node name="ResponseGroup" type="MarginContainer"]
 anchors_preset = 15
@@ -16,6 +15,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("1_66lh8")
+responses_types = null
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -30,11 +30,12 @@ layout_mode = 2
 text = "Add Response Group"
 
 [node name="AddResponsesMenuButton" type="MenuButton" parent="Rows/ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Add reponse
 "
 item_count = 1
-popup/item_0/text = "Add Dialog Response"
+popup/item_0/text = "Dialog Response"
 popup/item_0/id = 0
 
 [node name="ShowHideResponsesButton" type="CheckButton" parent="Rows"]
@@ -53,29 +54,5 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="ResponseComponent" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent2" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent3" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent4" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent5" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent6" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent7" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
-
-[node name="ResponseComponent8" parent="Rows/ResponsesScrollContainer/ResponsesContainer" instance=ExtResource("2_urrrv")]
-layout_mode = 2
 
 [connection signal="toggled" from="Rows/ShowHideResponsesButton" to="." method="_on_show_hide_responses_button_toggled"]
