@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=24 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dsufgalqph53w" path="res://addons/reaction/components/criteria.tscn" id="9_s7bes"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModification.gd" id="10_d3i24"]
 [ext_resource type="PackedScene" uid="uid://vvxwx2ncxim0" path="res://addons/reaction/components/modification.tscn" id="11_xre8e"]
+[ext_resource type="PackedScene" uid="uid://dh24p2h4c5igc" path="res://addons/reaction/components/ResponseGroup.tscn" id="12_rl7p8"]
 
 [sub_resource type="Image" id="Image_vueen"]
 data = {
@@ -649,7 +650,7 @@ object_resource_class = SubResource("Resource_2u5i3")
 object_removed_signal_component_id = "event_modifications_tab"
 object_scene = ExtResource("11_xre8e")
 
-[node name="Responses" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer"]
+[node name="Responses" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer" instance=ExtResource("12_rl7p8")]
 visible = false
 layout_mode = 2
 
