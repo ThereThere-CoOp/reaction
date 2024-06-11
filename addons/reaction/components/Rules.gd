@@ -13,7 +13,7 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
-
+@onready var response_group_scene: PackedScene = preload("res://addons/reaction/components/ResponseGroup.tscn")
 @onready var rules_list: VBoxContainer = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ListObjectForm = %Criterias
@@ -27,6 +27,9 @@ var undo_redo: EditorUndoRedoManager:
 @onready var rule_match_once_button: CheckButton = %RuleMatchOnceCheckButton
 @onready var rule_priority_input: SpinBox = %RulePrioritySpinBox
 @onready var rule_priority_text_edit: LineEdit = rule_priority_input.get_line_edit()
+
+var responses_container: ResponseGroup
+
 
 func _ready() -> void:
 	rule_data_container.visible = false
@@ -50,8 +53,29 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	#criterias
 	criterias_container.setup_objects(current_rule)
+	
+	# modifications
 	modifications_container.setup_objects(current_rule)
-
+	
+	# responses
+	var responses : ReactionResponseGroupItem = null
+	if current_rule.responses:
+		responses = current_rule.responses
+	else: 
+		responses = ReactionResponseGroupItem.get_new_object()
+	
+	responses_container = response_group_scene.instantiate()
+	responses_container.setup(current_database, responses)
+	
+	if rule_data_container.get_child_count() > 3:
+		var old_responses_node = rule_data_container.get_child(3)
+		rule_data_container.remove_child(old_responses_node)
+	
+	responses_container.name = "Responses"
+	rule_data_container.add_child(responses_container)
+	
+	# show container
+	rule_data_container.current_tab = 0
 	rule_data_container.visible = true
 
 

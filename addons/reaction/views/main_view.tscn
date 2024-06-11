@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=23 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -13,9 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dsufgalqph53w" path="res://addons/reaction/components/criteria.tscn" id="9_s7bes"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModification.gd" id="10_d3i24"]
 [ext_resource type="PackedScene" uid="uid://vvxwx2ncxim0" path="res://addons/reaction/components/modification.tscn" id="11_xre8e"]
-[ext_resource type="PackedScene" uid="uid://dh24p2h4c5igc" path="res://addons/reaction/components/ResponseGroup.tscn" id="12_rl7p8"]
 
-[sub_resource type="Image" id="Image_vueen"]
+[sub_resource type="Image" id="Image_0u74j"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -24,8 +23,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_12fpa"]
-image = SubResource("Image_vueen")
+[sub_resource type="ImageTexture" id="ImageTexture_mbtd6"]
+image = SubResource("Image_0u74j")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -307,7 +306,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_12fpa")
+icon = SubResource("ImageTexture_mbtd6")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -318,31 +317,31 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_12fpa")
+icon = SubResource("ImageTexture_mbtd6")
 item_count = 1
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_12fpa")
+popup/item_0/icon = SubResource("ImageTexture_mbtd6")
 popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_12fpa")
+icon = SubResource("ImageTexture_mbtd6")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_12fpa")
+icon = SubResource("ImageTexture_mbtd6")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_12fpa")
+icon = SubResource("ImageTexture_mbtd6")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -649,10 +648,6 @@ parent_object_add_function_name = "add_modification"
 object_resource_class = SubResource("Resource_2u5i3")
 object_removed_signal_component_id = "event_modifications_tab"
 object_scene = ExtResource("11_xre8e")
-
-[node name="Responses" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer" instance=ExtResource("12_rl7p8")]
-visible = false
-layout_mode = 2
 
 [node name="EditDatabaseDialog" parent="." instance=ExtResource("2_jeeb5")]
 unique_name_in_owner = true

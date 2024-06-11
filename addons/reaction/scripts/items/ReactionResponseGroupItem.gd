@@ -10,8 +10,18 @@ extends ReactionResponseBaseItem
 
 
 ## list of responses or responses groups
-@export var responses: Array[ReactionResponseBaseItem] = []
+@export var responses = {}
 
 
+func add_new_response(response_type: String) -> ReactionResponseItem:
+	return ReactionResponseItem.new()
+	
+	
 func get_responses():
-	return responses
+	return responses.values()
+	
+	
+static func get_new_object() -> ReactionResponseGroupItem:
+	var new_response_group = ReactionResponseGroupItem.new()
+	new_response_group.label = "newResponseGroup"
+	return new_response_group
