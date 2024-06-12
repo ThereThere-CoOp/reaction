@@ -5,7 +5,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 var databases: Dictionary = {}
 
-@export_enum("Dialog Response") var responses_types: String
+@export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
 @onready var global_context: ReactionBlackboard = ReactionBlackboard.new()
 

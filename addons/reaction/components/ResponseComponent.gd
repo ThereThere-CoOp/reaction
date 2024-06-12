@@ -8,7 +8,7 @@ var index: int = -1
 
 var response_object : ReactionResponseBaseItem
 
-var current_parent_object: Resource
+var current_parent_object: ReactionResponseGroupItem
 
 var current_response_group_scene: ResponseGroup
 
@@ -19,7 +19,7 @@ var current_response_group_scene: ResponseGroup
 
 
 # call it before add to the scene
-func setup(database: ReactionDatabase, response: ReactionResponseBaseItem, parent_object: Resource, new_index: int, response_group_scene: ResponseGroup = null) -> void:
+func setup(database: ReactionDatabase, response: ReactionResponseBaseItem, parent_object: ReactionResponseGroupItem, new_index: int, response_group_scene: ResponseGroup = null) -> void:
 	current_database = database
 	response_object = response
 	current_parent_object = parent_object
@@ -32,12 +32,13 @@ func _ready():
 	
 	index_label.text = "#%s:" % (index + 1)
 	
-	if response_object is ReactionResponseGroupItem:
-		response_button.visible = false
-		response_container.add_child(current_response_group_scene)
-	else:
-		response_button.visible = true
-		response_button.text = response_object.label
+	if response_object:
+		if response_object is ReactionResponseGroupItem:
+			response_button.visible = false
+			response_container.add_child(current_response_group_scene)
+		else:
+			response_button.visible = true
+			response_button.text = response_object.label
 		
 	
 func apply_theme() -> void:

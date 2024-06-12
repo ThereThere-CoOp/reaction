@@ -25,14 +25,18 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="AddResponseGroupButton" type="Button" parent="Rows/ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Add Response Group"
+text = "Add response group"
 
 [node name="AddResponsesMenuButton" type="MenuButton" parent="Rows/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Add reponse
+text = "Add response
 "
+item_count = 1
+popup/item_0/text = "Dialog"
+popup/item_0/id = 0
 
 [node name="ShowHideResponsesButton" type="CheckButton" parent="Rows"]
 unique_name_in_owner = true
@@ -50,5 +54,3 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[connection signal="toggled" from="Rows/ShowHideResponsesButton" to="." method="_on_show_hide_responses_button_toggled"]

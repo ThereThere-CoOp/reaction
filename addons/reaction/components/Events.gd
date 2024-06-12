@@ -60,7 +60,6 @@ func _on_event_name_input_line_edit_text_submitted(new_text: String) -> void:
 	_set_event_property("label", new_text)
 	events_list.items_list.set_item_text(events_list.current_item_index, new_text)
 	
-	
 func _on_events_list_item_added(index, item_data):
 	_set_event(item_data)
 

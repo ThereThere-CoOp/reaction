@@ -9,12 +9,29 @@ extends ReactionResponseBaseItem
 ## ----------------------------------------------------------------------------
 
 
-## list of responses or responses groups
+## dict of responses or responses groups
 @export var responses = {}
 
 
 func add_new_response(response_type: String) -> ReactionResponseItem:
-	return ReactionResponseItem.new()
+	var new_response: ReactionResponseItem
+	
+	if response_type == ReactionGlobals.responses_types["Dialog"]:
+		new_response = ReactionResponseDialogItem.new()
+		new_response.label = "newDialogResponse"
+	else:
+		new_response = ReactionResponseDialogItem.new()
+		new_response.label = "newDialogResponse"
+	
+	responses[new_response.uid] = new_response
+	return new_response
+		
+		
+func add_new_response_group() -> ReactionResponseGroupItem:
+	var new_response_group = ReactionResponseGroupItem.new()
+	new_response_group.label = "newResponseGroup"
+	responses[new_response_group.uid] = new_response_group
+	return new_response_group
 	
 	
 func get_responses():

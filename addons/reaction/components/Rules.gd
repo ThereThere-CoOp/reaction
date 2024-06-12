@@ -59,13 +59,15 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	# responses
 	var responses : ReactionResponseGroupItem = null
-	if current_rule.responses:
+	if current_rule.responses != null:
 		responses = current_rule.responses
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
+		current_rule.responses = responses
+		current_database.save_data()
 	
 	responses_container = response_group_scene.instantiate()
-	responses_container.setup(current_database, responses)
+	responses_container.setup(current_database, responses, null)
 	
 	if rule_data_container.get_child_count() > 3:
 		var old_responses_node = rule_data_container.get_child(3)
