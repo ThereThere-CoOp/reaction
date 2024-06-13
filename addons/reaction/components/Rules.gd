@@ -18,7 +18,7 @@ var undo_redo: EditorUndoRedoManager:
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ListObjectForm = %Criterias
 @onready var modifications_container: ListObjectForm = %Modifications
-
+@onready var responses_container: Responses = %Responses
 
 # rules inputs
 @onready var rule_name_input: LineEdit = %RuleNameLineEdit
@@ -64,6 +64,9 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 		responses = ReactionResponseGroupItem.get_new_object()
 		current_rule.responses = responses
 		current_database.save_data()
+	
+	responses_container.setup(responses)
+	
 	
 	# show container
 	rule_data_container.current_tab = 0

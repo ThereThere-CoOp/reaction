@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp6pp31ltd4g4"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/Responses.gd" id="1_m1ukv"]
+
+[node name="Responses" type="MarginContainer"]
+visible = false
+script = ExtResource("1_m1ukv")
+
+[node name="Rows" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ButtonsContainers" type="HBoxContainer" parent="Rows"]
+layout_mode = 2
+
+[node name="AddResponseMenuButton" type="MenuButton" parent="Rows/ButtonsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add response"
+item_count = 1
+popup/item_0/text = "Dialog"
+popup/item_0/id = 0
+
+[node name="AddResponseGroupButton" type="Button" parent="Rows/ButtonsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add response group"
+
+[node name="EditResponseButton" type="Button" parent="Rows/ButtonsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Edit response"
+
+[node name="RemoveResponseButton" type="Button" parent="Rows/ButtonsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Remove response"
+
+[node name="ResponsesTree" type="Tree" parent="Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+
+[connection signal="pressed" from="Rows/ButtonsContainers/AddResponseGroupButton" to="." method="_on_add_response_group_button_pressed"]
+[connection signal="pressed" from="Rows/ButtonsContainers/RemoveResponseButton" to="." method="_on_remove_response_button_pressed"]
+[connection signal="item_selected" from="Rows/ResponsesTree" to="." method="_on_responses_tree_item_selected"]
+[connection signal="nothing_selected" from="Rows/ResponsesTree" to="." method="_on_responses_tree_nothing_selected"]
