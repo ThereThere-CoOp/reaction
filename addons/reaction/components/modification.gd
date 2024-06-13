@@ -1,6 +1,6 @@
 @tool
 class_name Modification
-extends HBoxContainer
+extends PanelContainer
 
 signal object_list_form_removed(object_index: int)
 

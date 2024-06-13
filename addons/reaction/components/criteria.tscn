@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsufgalqph53w"]
+[gd_scene load_steps=6 format=3 uid="uid://dsufgalqph53w"]
 
 [ext_resource type="Script" path="res://addons/reaction/components/criteria.gd" id="1_8jhr2"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="2_nmi7d"]
 
-[sub_resource type="Image" id="Image_ue1c5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xeiux"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Image" id="Image_p6ug8"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -12,58 +24,61 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_jn083"]
-image = SubResource("Image_ue1c5")
+[sub_resource type="ImageTexture" id="ImageTexture_33vnr"]
+image = SubResource("Image_p6ug8")
 
-[node name="Criteria" type="HBoxContainer"]
+[node name="Criteria" type="PanelContainer"]
 offset_right = 952.0
 offset_bottom = 31.0
-size_flags_horizontal = 2
-theme_override_constants/separation = 10
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xeiux")
 script = ExtResource("1_8jhr2")
 
-[node name="IndexLabel" type="Label" parent="."]
+[node name="Columns" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IndexLabel" type="Label" parent="Columns"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 text = "#1"
 vertical_alignment = 2
 
-[node name="LabelContainer" type="VBoxContainer" parent="."]
+[node name="LabelContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LabelContainer"]
+[node name="Label" type="Label" parent="Columns/LabelContainer"]
 layout_mode = 2
 text = "Label:
 "
 
-[node name="LabelLineEdit" type="LineEdit" parent="LabelContainer"]
+[node name="LabelLineEdit" type="LineEdit" parent="Columns/LabelContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="FactContainer" type="VBoxContainer" parent="."]
+[node name="FactContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="FactLabel" type="Label" parent="FactContainer"]
+[node name="FactLabel" type="Label" parent="Columns/FactContainer"]
 layout_mode = 2
 text = "Fact:"
 
-[node name="FactsSearchMenu" parent="FactContainer" instance=ExtResource("2_nmi7d")]
+[node name="FactsSearchMenu" parent="Columns/FactContainer" instance=ExtResource("2_nmi7d")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="OperationContainer" type="VBoxContainer" parent="."]
+[node name="OperationContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="OperationLabel" type="Label" parent="OperationContainer"]
+[node name="OperationLabel" type="Label" parent="Columns/OperationContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Opt:"
 
-[node name="OperationMenuButton" type="MenuButton" parent="OperationContainer"]
+[node name="OperationMenuButton" type="MenuButton" parent="Columns/OperationContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(75, 0)
@@ -79,66 +94,66 @@ popup/item_2/id = 2
 popup/item_3/text = "a<=x<=b"
 popup/item_3/id = 3
 
-[node name="ValueContainer" type="VBoxContainer" parent="."]
+[node name="ValueContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="ValueLabel" type="Label" parent="ValueContainer"]
+[node name="ValueLabel" type="Label" parent="Columns/ValueContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Value:"
 
-[node name="ValueALineEdit" type="LineEdit" parent="ValueContainer"]
+[node name="ValueALineEdit" type="LineEdit" parent="Columns/ValueContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="ValueSpinBox" type="SpinBox" parent="ValueContainer"]
+[node name="ValueSpinBox" type="SpinBox" parent="Columns/ValueContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="EnumValuesMenuButton" type="MenuButton" parent="ValueContainer"]
+[node name="EnumValuesMenuButton" type="MenuButton" parent="Columns/ValueContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 
-[node name="BooleanValueCheckBox" type="CheckBox" parent="ValueContainer"]
+[node name="BooleanValueCheckBox" type="CheckBox" parent="Columns/ValueContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValueBContainer" type="VBoxContainer" parent="."]
+[node name="ValueBContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="ValueBLabel" type="Label" parent="ValueBContainer"]
+[node name="ValueBLabel" type="Label" parent="Columns/ValueBContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Value B:"
 
-[node name="ValueBSpinBox" type="SpinBox" parent="ValueBContainer"]
+[node name="ValueBSpinBox" type="SpinBox" parent="Columns/ValueBContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="NegateCheckButton" type="CheckButton" parent="."]
+[node name="NegateCheckButton" type="CheckButton" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Negate"
 
-[node name="RemoveCriteriaButton" type="Button" parent="."]
+[node name="RemoveCriteriaButton" type="Button" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove criteria"
-icon = SubResource("ImageTexture_jn083")
+icon = SubResource("ImageTexture_33vnr")
 flat = true
 
-[connection signal="text_submitted" from="LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
-[connection signal="item_selected" from="FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
-[connection signal="text_submitted" from="ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]
-[connection signal="toggled" from="ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]
-[connection signal="toggled" from="NegateCheckButton" to="." method="_on_negate_check_button_toggled"]
-[connection signal="pressed" from="RemoveCriteriaButton" to="." method="_on_remove_criteria_button_pressed"]
+[connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
+[connection signal="item_selected" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
+[connection signal="text_submitted" from="Columns/ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]
+[connection signal="toggled" from="Columns/ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]
+[connection signal="toggled" from="Columns/NegateCheckButton" to="." method="_on_negate_check_button_toggled"]
+[connection signal="pressed" from="Columns/RemoveCriteriaButton" to="." method="_on_remove_criteria_button_pressed"]
