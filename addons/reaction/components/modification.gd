@@ -2,11 +2,11 @@
 class_name Modification
 extends HBoxContainer
 
+signal object_list_form_removed(object_index: int)
+
 var current_database: ReactionDatabase
 
 var current_parent_object: Resource
-
-var current_component_id: String
 
 var object_index: int = -1
 
@@ -111,7 +111,7 @@ func update_values_input() -> void:
 			enum_values_menu.text = str(current_value_a)
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, modification: ReactionContextModification, index: int, component_id: String, is_new_criteria: bool = false) -> void:
+func setup(database: ReactionDatabase, parent_object: Resource, modification: ReactionContextModification, index: int, is_new_criteria: bool = false) -> void:
 	index_label = %IndexLabel
 	label_input = %LabelLineEdit
 	fact_search_menu = %FactsSearchMenu
@@ -124,7 +124,6 @@ func setup(database: ReactionDatabase, parent_object: Resource, modification: Re
 	enum_values_menu = %EnumValuesMenuButton
 	boolean_value_check = %BooleanValueCheckBox
 	
-	current_component_id = component_id
 	index_label.text = "#%d" % (index + 1)
 	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
 	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
@@ -192,7 +191,7 @@ func _on_remove_modification_button_pressed():
 	current_parent_object.remove_modification_by_index(object_index)
 	current_database.save_data()
 	queue_free()
-	ReactionSignals.object_list_form_removed.emit(current_component_id, object_index)
+	object_list_form_removed.emit(object_index)
 	
 	
 func _on_value_numeric_text_submitted(new_text: String) -> void:

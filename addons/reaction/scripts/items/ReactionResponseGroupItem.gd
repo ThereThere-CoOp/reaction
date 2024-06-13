@@ -34,6 +34,10 @@ func add_new_response_group() -> ReactionResponseGroupItem:
 	return new_response_group
 	
 	
+func remove_response(response_uid: String) -> void:
+	responses.erase(response_uid)
+	
+	
 func get_responses():
 	return responses.values()
 	
