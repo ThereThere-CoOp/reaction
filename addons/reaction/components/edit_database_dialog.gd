@@ -25,4 +25,4 @@ func edit_database(database_data: ReactionDatabase) -> void:
 
 func _on_edit_board_dialog_confirmed():
 	data.label = label_edit.text
-	emit_signal("database_updated", data)
+	database_updated.emit(data)

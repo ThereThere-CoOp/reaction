@@ -15,6 +15,7 @@ var root_response_group: ReactionResponseGroupItem
 
 
 func _ready():
+	call_deferred("apply_theme")
 	ReactionSignals.database_selected.connect(_on_database_selected)
 	
 	var add_response_menu_popup: PopupMenu = add_response_menu_button.get_popup()
@@ -36,6 +37,13 @@ func _create_response_tree_item(parent_node: TreeItem, response: ReactionRespons
 		child.set_icon(0, get_theme_icon("GraphNode", "EditorIcons"))
 		
 	return child
+	
+	
+func apply_theme() -> void:
+	# Simple check if onready
+	if is_instance_valid(edit_response_button):
+		edit_response_button.icon = get_theme_icon("Edit", "EditorIcons")
+		remove_response_button.icon = get_theme_icon("Remove", "EditorIcons")
 		
 		
 func add_child_responses_to_tree(parent_node: TreeItem, response_group: ReactionResponseGroupItem) -> void:
@@ -85,6 +93,10 @@ func _deselect_item() -> void:
 		
 		
 ### signals
+
+
+func _on_main_view_theme_changed() -> void:
+	apply_theme()
 
 
 func _on_database_selected(database: ReactionDatabase) -> void:
