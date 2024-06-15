@@ -62,6 +62,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 		responses = current_rule.responses
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
+		responses.label = "rootResponseGroup"
 		current_rule.responses = responses
 		current_database.save_data()
 	

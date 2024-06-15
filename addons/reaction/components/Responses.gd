@@ -6,12 +6,18 @@ var current_database: ReactionDatabase
 
 var root_response_group: ReactionResponseGroupItem
 
+@onready var response_group_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ResponseGroupEditForm.tscn")
+@onready var dialog_response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/DialogResponseEditForm.tscn")
+
 @onready var add_response_group_button: Button = %AddResponseGroupButton
 @onready var add_response_menu_button: MenuButton = %AddResponseMenuButton
 @onready var edit_response_button: Button = %EditResponseButton
 @onready var remove_response_button: Button = %RemoveResponseButton
 
 @onready var responses_tree: Tree = %ResponsesTree
+@onready var edit_response_dialog: AcceptDialog = %EditResponsetDialog
+
+var _dictionary_responses_data = {}
 
 
 func _ready():
@@ -57,7 +63,6 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 func setup(response_group: ReactionResponseGroupItem) -> void:
 	root_response_group = response_group
 	
-	edit_response_button.disabled = true
 	remove_response_button.disabled = true
 	
 	responses_tree.clear()
@@ -87,9 +92,30 @@ func _get_selected_response() -> ReactionResponseBaseItem:
 		
 
 func _deselect_item() -> void:
-	edit_response_button.disabled = true
 	remove_response_button.disabled = true
 	_get_selected_tree_item().deselect(0)
+	
+	
+func _show_edit_dialog() -> void:
+	var selected_response = _get_selected_response()
+	var response_type = ReactionGlobals.get_response_type(selected_response)
+	edit_response_dialog.title = ("Edit %s" % response_type)
+	var form_scene: MainResponseEditForm
+	
+	match response_type:
+		"Response Group":
+			form_scene = response_group_edit_form_scene.instantiate()
+		"Dialog":
+			form_scene = dialog_response_edit_form_scene.instantiate()
+		_:
+			form_scene = response_group_edit_form_scene.instantiate()
+	
+	for child in edit_response_dialog.get_children():
+		child.queue_free()
+	
+	form_scene.setup(current_database, selected_response, _get_selected_tree_item())
+	edit_response_dialog.add_child(form_scene)
+	edit_response_dialog.popup_centered()
 		
 		
 ### signals
@@ -107,7 +133,6 @@ func _on_responses_tree_item_selected():
 	var selected_item : TreeItem = responses_tree.get_selected()
 	var response = selected_item.get_metadata(0)
 	
-	edit_response_button.disabled = false
 	remove_response_button.disabled = false
 		
 		
@@ -149,3 +174,15 @@ func _on_remove_response_button_pressed():
 		parent_response.remove_response(response.uid)
 		_deselect_item()
 		parent.remove_child(selected_item)
+
+
+func _on_edit_response_button_pressed():
+	_show_edit_dialog()
+
+
+func _on_responses_tree_item_activated():
+	_show_edit_dialog()
+
+
+func _on_responses_tree_focus_exited():
+	_deselect_item()

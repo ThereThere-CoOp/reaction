@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://k3csipi6igv0"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/MainResponseEditForm.gd" id="1_u2w4w"]
+
+[node name="MainResponseEditForm" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_u2w4w")
+
+[node name="Columns" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Rows1" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelContainer" type="HBoxContainer" parent="Columns/Rows1"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Columns/Rows1/LabelContainer"]
+layout_mode = 2
+text = "Label:"
+
+[node name="LabelInputLineEdit" type="LineEdit" parent="Columns/Rows1/LabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Rows2" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UidContainer" type="HBoxContainer" parent="Columns/Rows2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Columns/Rows2/UidContainer"]
+layout_mode = 2
+text = "Uid:"
+
+[node name="UidLineEdit" type="LineEdit" parent="Columns/Rows2/UidContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[connection signal="text_submitted" from="Columns/Rows1/LabelContainer/LabelInputLineEdit" to="." method="_on_label_input_line_edit_text_submitted"]

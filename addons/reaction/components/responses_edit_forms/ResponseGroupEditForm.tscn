@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1532kie35qf"]
+
+[ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/MainResponseEditForm.tscn" id="1_87mw6"]
+[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ResponseGroupEditForm.gd" id="1_1024t"]
+
+[node name="ResponseGroupEditForm" instance=ExtResource("1_87mw6")]
+script = ExtResource("1_1024t")

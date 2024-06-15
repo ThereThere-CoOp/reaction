@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 
@@ -12,3 +13,12 @@ var databases: Dictionary = {}
 
 func _ready():
 	pass
+	
+	
+func get_response_type(response: ReactionResponseBaseItem) -> String:
+	if response is ReactionResponseGroupItem:
+		return "Response Group"
+	elif response is ReactionResponseDialogItem:
+		return responses_types["Dialog"]
+	else:
+		return "Response Group"
