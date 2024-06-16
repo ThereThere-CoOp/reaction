@@ -93,6 +93,8 @@ func _get_selected_response() -> ReactionResponseBaseItem:
 
 func _deselect_item() -> void:
 	remove_response_button.disabled = true
+	add_response_group_button.disabled = false
+	add_response_menu_button.disabled = false
 	_get_selected_tree_item().deselect(0)
 	
 	
@@ -130,12 +132,13 @@ func _on_database_selected(database: ReactionDatabase) -> void:
 
 
 func _on_responses_tree_item_selected():
-	var selected_item : TreeItem = responses_tree.get_selected()
-	var response = selected_item.get_metadata(0)
+	var response : ReactionResponseBaseItem = _get_selected_response()
 	
 	remove_response_button.disabled = false
+	add_response_group_button.disabled = bool(not response is ReactionResponseGroupItem)
+	add_response_menu_button.disabled = bool(not response is ReactionResponseGroupItem)
 		
-		
+			
 func _on_responses_tree_nothing_selected():
 	_deselect_item()
 
@@ -182,7 +185,3 @@ func _on_edit_response_button_pressed():
 
 func _on_responses_tree_item_activated():
 	_show_edit_dialog()
-
-
-func _on_responses_tree_focus_exited():
-	_deselect_item()
