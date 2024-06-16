@@ -1,4 +1,5 @@
 @tool
+class_name SearchMenu
 extends HBoxContainer
 
 signal item_selected(item: Resource)
@@ -23,6 +24,11 @@ var _current_search_text: String
 
 func _ready():
 	popup_timer.wait_time = popup_wait_time
+	search_input.text = search_input_text
+	
+	
+func update_search_text_value(value: String) -> void:
+	search_input_text = value
 	search_input.text = search_input_text
 
 
