@@ -27,6 +27,7 @@ func _ready():
 		triggers_container.visible = true
 		events_search_menu.item_selected.connect(_on_label_events_search_menu_item_selected)
 	
+	
 func setup(database: ReactionDatabase, response: ReactionResponseBaseItem, tree_item: TreeItem) -> void:
 	current_database = database
 	current_response = response
