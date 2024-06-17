@@ -6,6 +6,8 @@ extends MainResponseEditForm
 @onready var dialog_text_edit: TextEdit = %DialogTextEdit
 @onready var save_text_button: Button = %SaveTextButton
 
+@onready var choices_container: ListObjectForm = %Choices
+
 
 func _ready():
 	super()
