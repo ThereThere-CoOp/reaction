@@ -13,58 +13,62 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_u2w4w")
 
-[node name="Columns" type="HBoxContainer" parent="."]
+[node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Rows1" type="VBoxContainer" parent="Columns"]
+[node name="Columns" type="HBoxContainer" parent="Rows"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Rows1" type="VBoxContainer" parent="Rows/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LabelContainer" type="HBoxContainer" parent="Columns/Rows1"]
+[node name="LabelContainer" type="HBoxContainer" parent="Rows/Columns/Rows1"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Columns/Rows1/LabelContainer"]
+[node name="Label" type="Label" parent="Rows/Columns/Rows1/LabelContainer"]
 layout_mode = 2
 text = "Label:"
 
-[node name="LabelInputLineEdit" type="LineEdit" parent="Columns/Rows1/LabelContainer"]
+[node name="LabelInputLineEdit" type="LineEdit" parent="Rows/Columns/Rows1/LabelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TriggersContainer" type="HBoxContainer" parent="Columns/Rows1"]
+[node name="TriggersContainer" type="HBoxContainer" parent="Rows/Columns/Rows1"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TriggersLabel" type="Label" parent="Columns/Rows1/TriggersContainer"]
+[node name="TriggersLabel" type="Label" parent="Rows/Columns/Rows1/TriggersContainer"]
 layout_mode = 2
 text = "Triggers:"
 
-[node name="EventsSearchMenu" parent="Columns/Rows1/TriggersContainer" instance=ExtResource("2_bfb3a")]
+[node name="EventsSearchMenu" parent="Rows/Columns/Rows1/TriggersContainer" instance=ExtResource("2_bfb3a")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Rows2" type="VBoxContainer" parent="Columns"]
+[node name="Rows2" type="VBoxContainer" parent="Rows/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="UidContainer" type="HBoxContainer" parent="Columns/Rows2"]
+[node name="UidContainer" type="HBoxContainer" parent="Rows/Columns/Rows2"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Columns/Rows2/UidContainer"]
+[node name="Label" type="Label" parent="Rows/Columns/Rows2/UidContainer"]
 layout_mode = 2
 text = "Uid:"
 
-[node name="UidLineEdit" type="LineEdit" parent="Columns/Rows2/UidContainer"]
+[node name="UidLineEdit" type="LineEdit" parent="Rows/Columns/Rows2/UidContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[connection signal="text_submitted" from="Columns/Rows1/LabelContainer/LabelInputLineEdit" to="." method="_on_label_input_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Rows/Columns/Rows1/LabelContainer/LabelInputLineEdit" to="." method="_on_label_input_line_edit_text_submitted"]
