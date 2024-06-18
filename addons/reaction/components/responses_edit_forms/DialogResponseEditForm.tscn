@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoice.gd" id="4_bktjk"]
 [ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.tscn" id="5_3qbpb"]
 
-[sub_resource type="Image" id="Image_7lp3b"]
+[sub_resource type="Image" id="Image_kcbdw"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -15,8 +15,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_ssamj"]
-image = SubResource("Image_7lp3b")
+[sub_resource type="ImageTexture" id="ImageTexture_xa10w"]
+image = SubResource("Image_kcbdw")
 
 [sub_resource type="Resource" id="Resource_8dtfh"]
 script = ExtResource("4_bktjk")
@@ -40,27 +40,27 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Rows/DialogDataContainer/Dialog" index="0"]
+[node name="Rows" type="VBoxContainer" parent="Rows/DialogDataContainer/Dialog" index="0"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HeaderMenu" type="HBoxContainer" parent="Rows/DialogDataContainer/Dialog/VBoxContainer" index="0"]
+[node name="HeaderMenu" type="HBoxContainer" parent="Rows/DialogDataContainer/Dialog/Rows" index="0"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="DialogTextLabel" type="Label" parent="Rows/DialogDataContainer/Dialog/VBoxContainer/HeaderMenu" index="0"]
+[node name="DialogTextLabel" type="Label" parent="Rows/DialogDataContainer/Dialog/Rows/HeaderMenu" index="0"]
 layout_mode = 2
 text = "Dialog text"
 
-[node name="SaveTextButton" type="Button" parent="Rows/DialogDataContainer/Dialog/VBoxContainer/HeaderMenu" index="1"]
+[node name="SaveTextButton" type="Button" parent="Rows/DialogDataContainer/Dialog/Rows/HeaderMenu" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Save dialog text"
 disabled = true
-icon = SubResource("ImageTexture_ssamj")
+icon = SubResource("ImageTexture_xa10w")
 flat = true
 
-[node name="DialogTextEdit" type="TextEdit" parent="Rows/DialogDataContainer/Dialog/VBoxContainer" index="1"]
+[node name="DialogTextEdit" type="TextEdit" parent="Rows/DialogDataContainer/Dialog/Rows" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -90,6 +90,6 @@ parent_object_add_function_name = "add_choice"
 object_resource_class = SubResource("Resource_8dtfh")
 object_scene = ExtResource("5_3qbpb")
 
-[connection signal="pressed" from="Rows/DialogDataContainer/Dialog/VBoxContainer/HeaderMenu/SaveTextButton" to="." method="_on_save_text_button_pressed"]
-[connection signal="text_changed" from="Rows/DialogDataContainer/Dialog/VBoxContainer/DialogTextEdit" to="." method="_on_dialog_text_edit_text_changed"]
+[connection signal="pressed" from="Rows/DialogDataContainer/Dialog/Rows/HeaderMenu/SaveTextButton" to="." method="_on_save_text_button_pressed"]
+[connection signal="text_changed" from="Rows/DialogDataContainer/Dialog/Rows/DialogTextEdit" to="." method="_on_dialog_text_edit_text_changed"]
 [connection signal="toggled" from="Rows/DialogDataContainer/Choices/Rows/HasChoicesCheckButton" to="." method="_on_has_choices_check_button_toggled"]
