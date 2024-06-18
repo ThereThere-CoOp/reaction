@@ -15,6 +15,10 @@ var fact_type_menu_text_options: Dictionary = {
 	"string": "String", "number": "Number", "boolean": "Boolean"
 }
 
+var fact_scope_menu_text_options: Dictionary = {
+	"global": "Global", "event": "Event"
+}
+
 @onready var facts_list: VBoxContainer = %FactsList
 @onready var fact_data_container: VBoxContainer = %FactDataContainer
 
@@ -26,20 +30,29 @@ var fact_type_menu_text_options: Dictionary = {
 @onready var fact_is_signal_check: CheckButton = %FactIsSignalCheckButton
 @onready var fact_hint_string_edit: LineEdit = %FactHintStringLineEdit
 @onready var fact_type_menu: MenuButton = %FactTypeMenuButton
-
+@onready var fact_scope_menu: MenuButton = %FactScopeMenuButton
 
 func _ready() -> void:
-	var menu: PopupMenu = fact_type_menu.get_popup()
-	menu.index_pressed.connect(_on_fact_type_menu_index_pressed)
-	menu.clear()
+	var type_menu: PopupMenu = fact_type_menu.get_popup()
+	type_menu.index_pressed.connect(_on_fact_type_menu_index_pressed)
+	type_menu.clear()
 
 	var fact_type_menu_text_options_values = fact_type_menu_text_options.values()
 	for i in range(fact_type_menu_text_options_values.size()):
-		menu.add_item(fact_type_menu_text_options_values[i], i)
+		type_menu.add_item(fact_type_menu_text_options_values[i], i)
+		
+	
+	var scope_menu: PopupMenu = fact_scope_menu.get_popup()
+	scope_menu.index_pressed.connect(_on_fact_scope_menu_index_pressed)
+	scope_menu.clear()
+
+	var fact_scope_menu_text_options_values = fact_scope_menu_text_options.values()
+	for i in range(fact_scope_menu_text_options_values.size()):
+		scope_menu.add_item(fact_scope_menu_text_options_values[i], i)
 	
 	fact_data_container.visible = false
 	
-	ReactionSignals.connect("database_selected", setup_facts)
+	ReactionSignals.database_selected.connect(setup_facts)
 
 
 func setup_facts(database: ReactionDatabase) -> void:
@@ -67,6 +80,7 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 	fact_is_signal_check.set_pressed_no_signal(current_fact.trigger_signal_on_modified)
 	
 	fact_type_menu.text = _set_fact_type_menu_text(current_fact.type)
+	fact_scope_menu.text = current_fact.scope
 	fact_is_enum_check.set_pressed_no_signal(current_fact.is_enum)
 	fact_hint_string_edit.text = current_fact.hint_string
 
@@ -138,7 +152,14 @@ func _on_fact_type_menu_index_pressed(index):
 		_set_fact_type_value(false,  TYPE_BOOL, label)
 	if fact_type_menu_text_options["number"] == label:
 		_set_fact_type_value(false, TYPE_INT, label)
-
+		
+		
+func _on_fact_scope_menu_index_pressed(index):
+	var popup = fact_scope_menu.get_popup()
+	var label = popup.get_item_text(index)
+	_set_fact_property("scope", label)
+	fact_scope_menu.text = label
+		
 
 func _on_facts_list_item_added(index, item_data):
 	_set_fact(item_data)
