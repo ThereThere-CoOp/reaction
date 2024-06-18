@@ -12,7 +12,7 @@ extends ReactionResponseItem
 @export_multiline var dialog_text: String
 
 ## true if the dialog have choices
-@export var has_choice: bool = false
+@export var have_choices: bool = false
 
 ## list of [ReactionDialogChoices] if [b]have_choice=true[/b]
 @export var choices: Array[ReactionDialogChoice]
@@ -29,7 +29,7 @@ extends ReactionResponseItem
 ## ----------------------------------------------------------------------------
 func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoice]:
 	var result_choices = []
-	if has_choice:
+	if have_choices:
 		for choice in choices:
 			if choice.test(context):
 				result_choices.append(choice)
