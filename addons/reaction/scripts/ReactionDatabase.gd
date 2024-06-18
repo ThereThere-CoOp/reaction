@@ -14,9 +14,14 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 @export var uid: String = Uuid.v4()
 
+## Events items of the reaction database
 @export var events: Dictionary = {}
 
+## Facts items of the reaction database
 @export var global_facts: Dictionary = {}
+
+## Tags of the reaction database
+@export var tags: Dictionary = {}
 
 
 ## ----------------------------------------------------------------------------[br]
