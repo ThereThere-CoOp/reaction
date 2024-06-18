@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://addons/reaction/components/ListObjectFormItem.gd" id="1_26434"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm2uu"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 1
 border_width_top = 1

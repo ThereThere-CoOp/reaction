@@ -76,8 +76,8 @@ func execute_modifications(context: ReactionBlackboard) -> void:
 ## ----------------------------------------------------------------------------
 func add_criteria(criteria: ReactionRuleCriteria) -> void:
 	criterias.append(criteria)
-	
-	
+
+
 ## ----------------------------------------------------------------------------[br]
 ## Remove a criteria from the rule using the index [br]
 ## [b]Parameter(s):[/b] [br]
@@ -86,6 +86,7 @@ func add_criteria(criteria: ReactionRuleCriteria) -> void:
 ## ----------------------------------------------------------------------------
 func remove_criteria_by_index(index: int) -> void:
 	criterias.remove_at(index)
+		
 		
 ## ----------------------------------------------------------------------------[br]
 ## Add a modification to the rule [br]
@@ -105,7 +106,7 @@ func add_modification(modification: ReactionContextModification) -> void:
 ## ----------------------------------------------------------------------------
 func remove_modification_by_index(index: int) -> void:
 	modifications.remove_at(index)
-	
-			
+
+
 func get_new_object():
 	return ReactionRuleItem.new()

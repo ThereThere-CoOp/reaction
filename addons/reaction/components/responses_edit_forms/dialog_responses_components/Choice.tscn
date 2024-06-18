@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp6pp31ltd4g4"]
+[gd_scene load_steps=6 format=3 uid="uid://02q75f4idhxw"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/Responses.gd" id="1_m1ukv"]
+[ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ListObjectFormItem.tscn" id="1_byubm"]
+[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.gd" id="2_cpiw2"]
+[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="3_kn8ok"]
 
-[sub_resource type="Image" id="Image_ktvpt"]
+[sub_resource type="Image" id="Image_c01eo"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,59 +13,66 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_gijuc"]
-image = SubResource("Image_ktvpt")
+[sub_resource type="ImageTexture" id="ImageTexture_wxeby"]
+image = SubResource("Image_c01eo")
 
-[node name="Responses" type="MarginContainer"]
-visible = false
-script = ExtResource("1_m1ukv")
+[node name="Choice" instance=ExtResource("1_byubm")]
+script = ExtResource("2_cpiw2")
+object_name = "choice"
+remove_object_function_name = "remove_choice_by_index"
 
-[node name="Rows" type="VBoxContainer" parent="."]
+[node name="Columns" parent="." index="0"]
+theme_override_constants/separation = 10
+
+[node name="LabelContainer" type="VBoxContainer" parent="Columns" index="1"]
 layout_mode = 2
-theme_override_constants/separation = 20
 
-[node name="ButtonsContainers" type="HBoxContainer" parent="Rows"]
+[node name="Label" type="Label" parent="Columns/LabelContainer" index="0"]
 layout_mode = 2
+text = "Label:"
 
-[node name="AddResponseMenuButton" type="MenuButton" parent="Rows/ButtonsContainers"]
+[node name="LabelLineEdit" type="LineEdit" parent="Columns/LabelContainer" index="1"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Add response"
-item_count = 1
-popup/item_0/text = "Dialog"
-popup/item_0/id = 0
 
-[node name="AddResponseGroupButton" type="Button" parent="Rows/ButtonsContainers"]
-unique_name_in_owner = true
+[node name="ChoiceTextContainer" type="VBoxContainer" parent="Columns" index="2"]
 layout_mode = 2
-text = "Add response group"
 
-[node name="EditResponseButton" type="Button" parent="Rows/ButtonsContainers"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="Columns/ChoiceTextContainer" index="0"]
 layout_mode = 2
-tooltip_text = "Edit response"
-icon = SubResource("ImageTexture_gijuc")
+text = "Choice text:"
 
-[node name="RemoveResponseButton" type="Button" parent="Rows/ButtonsContainers"]
+[node name="ChoiceTextLineEdit" type="LineEdit" parent="Columns/ChoiceTextContainer" index="1"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-tooltip_text = "Remove response"
-disabled = true
-icon = SubResource("ImageTexture_gijuc")
 
-[node name="ResponsesTree" type="Tree" parent="Rows"]
-unique_name_in_owner = true
+[node name="EventContainer" type="VBoxContainer" parent="Columns" index="3"]
 layout_mode = 2
-size_flags_vertical = 3
-hide_root = true
 
-[node name="EditResponsetDialog" type="AcceptDialog" parent="."]
+[node name="Label" type="Label" parent="Columns/EventContainer" index="0"]
+layout_mode = 2
+text = "Triggers:"
+
+[node name="EventSearchMenu" parent="Columns/EventContainer" index="1" instance=ExtResource("3_kn8ok")]
 unique_name_in_owner = true
-size = Vector2i(950, 500)
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 
-[connection signal="pressed" from="Rows/ButtonsContainers/AddResponseGroupButton" to="." method="_on_add_response_group_button_pressed"]
-[connection signal="pressed" from="Rows/ButtonsContainers/EditResponseButton" to="." method="_on_edit_response_button_pressed"]
-[connection signal="pressed" from="Rows/ButtonsContainers/RemoveResponseButton" to="." method="_on_remove_response_button_pressed"]
-[connection signal="item_activated" from="Rows/ResponsesTree" to="." method="_on_responses_tree_item_activated"]
-[connection signal="item_selected" from="Rows/ResponsesTree" to="." method="_on_responses_tree_item_selected"]
-[connection signal="nothing_selected" from="Rows/ResponsesTree" to="." method="_on_responses_tree_nothing_selected"]
+[node name="CriteriasButton" type="Button" parent="Columns" index="4"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Criterias"
+
+[node name="ModificationsButton" type="Button" parent="Columns" index="5"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Modifications"
+
+[node name="RemoveObjectButton" parent="Columns" index="6"]
+icon = SubResource("ImageTexture_wxeby")
+
+[connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Columns/ChoiceTextContainer/ChoiceTextLineEdit" to="." method="_on_choice_text_line_edit_text_submitted"]
+[connection signal="item_selected" from="Columns/EventContainer/EventSearchMenu" to="." method="_on_event_search_menu_item_selected"]

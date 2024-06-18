@@ -60,3 +60,49 @@ func test(context: ReactionBlackboard) -> bool:
 			return false
 
 	return true
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a criteria to the rule [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* criteria | ReactionRuleCriteria:[/b] Criteria to add to the rule [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func add_criteria(criteria: ReactionRuleCriteria) -> void:
+	criterias.append(criteria)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a criteria from the rule using the index [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* index | int:[/b] Index of the criteria to remove [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func remove_criteria_by_index(index: int) -> void:
+	criterias.remove_at(index)
+		
+		
+## ----------------------------------------------------------------------------[br]
+## Add a modification to the rule [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* criteria | ReactionContextModification:[/b] Modification to add to the rule [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func add_modification(modification: ReactionContextModification) -> void:
+	modifications.append(modification)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a modification from the rule using the index [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* index | int:[/b] Index of the modification to remove [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func remove_modification_by_index(index: int) -> void:
+	modifications.remove_at(index)
+	
+	
+func get_new_object() -> ReactionDialogChoice:
+	var new_dialog_choice = ReactionDialogChoice.new()
+	new_dialog_choice.label = "newDialogChoice"
+	return new_dialog_choice

@@ -17,6 +17,9 @@ func _ready():
 	if current_response.dialog_text:
 		dialog_text_edit.text = current_response.dialog_text
 	
+	choices_container.current_database = current_database
+	choices_container.setup_objects(current_response)
+	
 	
 func apply_theme() -> void:
 	# Simple check if onready

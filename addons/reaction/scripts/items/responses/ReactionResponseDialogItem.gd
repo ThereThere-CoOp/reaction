@@ -35,6 +35,45 @@ func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoice]:
 				result_choices.append(choice)
 			
 	return result_choices
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a new choice to the dialog response
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* None[/b] [br]
+## [b]Returns: ReactionDialogChoice[/b] [br]
+## The new added dialog choice  [br]
+## ----------------------------------------------------------------------------
+func add_new_choice() -> ReactionDialogChoice:
+	var new_dialog_choice = ReactionDialogChoice.new()
+	new_dialog_choice.label = "newDialogChoice"
+	choices.append(new_dialog_choice)
+			
+	return new_dialog_choice
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a choice to the dialog response
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* choice | ReactionDialogChoice:[/b] Choice to be added
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func add_choice(choice: ReactionDialogChoice) -> void:
+	choices.append(choice)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a choice from the response given an index of the choices array
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* index | int:[/b] Index of the choice to remove
+## match with facts data [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func remove_choice_by_index(index: int) -> void:
+	choices.remove_at(index)
 
 
 
