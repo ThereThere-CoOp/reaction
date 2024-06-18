@@ -38,8 +38,10 @@ func remove_response(response_uid: String) -> void:
 	responses.erase(response_uid)
 	
 	
-func get_responses():
-	return responses.values()
+func get_responses() -> Array[ReactionResponseBaseItem]:
+	var result: Array[ReactionResponseBaseItem]
+	result.assign(responses.values())
+	return result
 	
 	
 static func get_new_object() -> ReactionResponseGroupItem:

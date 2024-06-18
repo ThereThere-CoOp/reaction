@@ -1,4 +1,5 @@
 @tool
+class_name ReactionItemList
 extends VBoxContainer
 
 signal item_added(index: int, item_data: Resource)

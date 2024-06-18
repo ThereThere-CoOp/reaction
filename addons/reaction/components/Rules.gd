@@ -14,7 +14,7 @@ var undo_redo: EditorUndoRedoManager:
 		return undo_redo
 
 
-@onready var rules_list: VBoxContainer = %RulesList
+@onready var rules_list: ReactionItemList = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ListObjectForm = %Criterias
 @onready var modifications_container: ListObjectForm = %Modifications
@@ -52,6 +52,11 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	#criterias
 	criterias_container.setup_objects(current_rule)
+	if not criterias_container.object_added.is_connected(_on_criteria_added):
+		criterias_container.object_added.connect(_on_criteria_added)
+		
+	if not criterias_container.object_removed.is_connected(_on_criteria_removed):
+		criterias_container.object_removed.connect(_on_criteria_removed)
 	
 	# modifications
 	modifications_container.setup_objects(current_rule)
@@ -77,6 +82,11 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	current_rule.set(property_name, value)
 	current_database.save_data()
+	
+	
+func _sort_rules_item_list() -> void:
+	current_event.set("rules", current_event.rules.duplicate())
+	rules_list.setup_items(current_event)
 
 
 ## signals
@@ -113,3 +123,13 @@ func _on_rule_match_once_check_button_pressed():
 func _on_rule_priority_spin_box_text_submitted(new_text: String):
 	_set_rule_property("priority", float(new_text))
 	rule_priority_text_edit.release_focus()
+	_sort_rules_item_list()
+	
+	
+func _on_criteria_added(new_criteria: ReactionRuleCriteria) -> void:
+	_sort_rules_item_list()
+	
+	
+func _on_criteria_removed() -> void:
+	_sort_rules_item_list()
+	

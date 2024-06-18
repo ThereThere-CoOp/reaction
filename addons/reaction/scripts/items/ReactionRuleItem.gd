@@ -110,3 +110,7 @@ func remove_modification_by_index(index: int) -> void:
 
 func get_new_object():
 	return ReactionRuleItem.new()
+	
+	
+func _to_string():
+	return label

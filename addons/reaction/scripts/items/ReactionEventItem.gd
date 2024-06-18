@@ -14,27 +14,7 @@ extends ReactionBaseItem
 ## rules are ordered for their criteria count in descending order
 @export var rules: Array[ReactionRuleItem]:
 	set(value):
-		var new_rules: Array[ReactionRuleItem] = []
-		var temp_priority_rules: Array[ReactionRuleItem] = []
-		var temp_non_priority_rules: Array[ReactionRuleItem] = []
-
-		for rule in value:
-			if rule and rule.priority > 0:
-				temp_priority_rules.append(rule)
-			else:
-				temp_non_priority_rules.append(rule)
-
-		temp_priority_rules.sort_custom(_sort_priority_rules)
-
-		temp_non_priority_rules.sort_custom(
-			func(a, b): return a.get_criterias_count() > b.get_criterias_count()
-		)
-
-		new_rules.append_array(temp_priority_rules)
-		new_rules.append_array(temp_non_priority_rules)
-
-		rules = new_rules
-
+		rules = _sort_rules(value)
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 
@@ -50,6 +30,32 @@ func _sort_priority_rules(a, b):
 		return a.get_criterias_count() > b.get_criterias_count()
 
 	return false
+	
+
+## ----------------------------------------------------------------------------[br]
+## private fuction to sort rules [br]
+## ----------------------------------------------------------------------------
+func _sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem]:
+	var new_rules: Array[ReactionRuleItem] = []
+	var temp_priority_rules: Array[ReactionRuleItem] = []
+	var temp_non_priority_rules: Array[ReactionRuleItem] = []
+
+	for rule in rules_array:
+		if rule and rule.priority > 0:
+			temp_priority_rules.append(rule)
+		else:
+			temp_non_priority_rules.append(rule)
+
+	temp_priority_rules.sort_custom(_sort_priority_rules)
+
+	temp_non_priority_rules.sort_custom(
+		func(a, b): return a.get_criterias_count() > b.get_criterias_count()
+	)
+
+	new_rules.append_array(temp_priority_rules)
+	new_rules.append_array(temp_non_priority_rules)
+
+	return new_rules
 	
 
 ## ----------------------------------------------------------------------------[br]

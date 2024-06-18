@@ -129,23 +129,19 @@ func before_all():
 	# init responses groups
 	var response_group_your_a_mindundi = ReactionResponseGroupItem.new()
 	response_group_your_a_mindundi.label = "group_you_are_a_mindundi"
-	response_group_your_a_mindundi.responses.append_array(
-		[response_your_a_mindundi]
-	)
+	response_group_your_a_mindundi.responses[response_your_a_mindundi] = response_your_a_mindundi
+	
 
 	var response_group_not_comunism_low_pop = ReactionResponseGroupItem.new()
 	response_group_not_comunism_low_pop.label = "group_not_comunism_low_pop"
-	response_group_not_comunism_low_pop.responses.append_array(
-		[response_not_comunism_low_pop]
-	)
+	response_group_not_comunism_low_pop.responses[response_not_comunism_low_pop] = response_not_comunism_low_pop
 
 	var response_group_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseGroupItem.new()
 	)
 	response_group_mindundi_not_comunism_pop_100_400.label = "group_you_are_a_mindundi"
-	response_group_mindundi_not_comunism_pop_100_400.responses.append_array(
-		[response_mindundi_not_comunism_pop_100_400]
-	)
+	response_group_mindundi_not_comunism_pop_100_400.responses[response_mindundi_not_comunism_pop_100_400] = response_mindundi_not_comunism_pop_100_400
+	
 
 	_responses_groups[response_group_your_a_mindundi.label] = response_group_your_a_mindundi
 	_responses_groups[response_group_not_comunism_low_pop.label] = response_group_not_comunism_low_pop

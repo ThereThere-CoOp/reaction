@@ -2,6 +2,10 @@
 class_name ListObjectForm
 extends MarginContainer
 
+signal object_added(object: Resource)
+
+signal object_removed()
+
 var current_database: ReactionDatabase
 var current_parent_object: Resource
 
@@ -61,6 +65,7 @@ func _on_add_object_button_pressed():
 	_objects_scroll_to_end = true
 	new_criteria_ui.object_list_form_removed.connect(_on_object_removed)
 	objects_rows.add_child(new_criteria_ui)
+	object_added.emit(new_object)
 	
 	
 func _on_objects_scroll_changed() -> void:
@@ -75,6 +80,8 @@ func _on_object_removed(index: int) -> void:
 	if index < current_objects_array.size():
 		for i in range(index, current_object_form_components.size()):
 			current_object_form_components[i].update_index(i - 1)
+			
+	object_removed.emit()
 			
 			
 	
