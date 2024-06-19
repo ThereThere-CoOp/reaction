@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=27 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -15,8 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cbfw7b8fntg6q" path="res://addons/reaction/components/Criteria.tscn" id="10_xcu88"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/modification.tscn" id="12_m2k4m"]
 [ext_resource type="PackedScene" uid="uid://dp6pp31ltd4g4" path="res://addons/reaction/components/responses.tscn" id="13_giylq"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/ReactionTag.gd" id="14_2dj17"]
+[ext_resource type="Script" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
 
-[sub_resource type="Image" id="Image_jmtwc"]
+[sub_resource type="Image" id="Image_vs8l2"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -25,8 +27,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_44a2k"]
-image = SubResource("Image_jmtwc")
+[sub_resource type="ImageTexture" id="ImageTexture_wrkdv"]
+image = SubResource("Image_vs8l2")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -37,6 +39,7 @@ uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="GDScript" id="GDScript_qoikp"]
 script/source = "@tool
@@ -169,6 +172,7 @@ uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_egqoh"]
 script = ExtResource("8_oki5c")
@@ -179,6 +183,12 @@ is_reverse = false
 [sub_resource type="Resource" id="Resource_2u5i3"]
 script = ExtResource("10_d3i24")
 label = ""
+
+[sub_resource type="Resource" id="Resource_vsy2h"]
+script = ExtResource("14_2dj17")
+label = "tagLabel"
+uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
+description = ""
 
 [node name="MainView" type="Control"]
 clip_contents = true
@@ -213,7 +223,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_44a2k")
+icon = SubResource("ImageTexture_wrkdv")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -224,40 +234,42 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_44a2k")
+icon = SubResource("ImageTexture_wrkdv")
 item_count = 1
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_44a2k")
+popup/item_0/icon = SubResource("ImageTexture_wrkdv")
 popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_44a2k")
+icon = SubResource("ImageTexture_wrkdv")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_44a2k")
+icon = SubResource("ImageTexture_wrkdv")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_44a2k")
+icon = SubResource("ImageTexture_wrkdv")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 2
 
 [node name="GlobalFacts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
@@ -575,6 +587,86 @@ object_scene = ExtResource("12_m2k4m")
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Tags" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("14_qvwfu")
+
+[node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags"]
+layout_mode = 2
+
+[node name="TagsMainPanel" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TagList" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel" instance=ExtResource("3_cpcid")]
+unique_name_in_owner = true
+layout_mode = 2
+item_name = "tag"
+item_list_field_name = "tags"
+add_function_name = "add_tag"
+remove_function_name = "remove_tag"
+reaction_resource = SubResource("Resource_vsy2h")
+
+[node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Columns" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer"]
+layout_mode = 2
+
+[node name="RowsLeft" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer"]
+layout_mode = 2
+text = "Label:"
+
+[node name="TagLabelLineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RowsRigth" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsRigth"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsRigth/LabelContainer"]
+layout_mode = 2
+text = "Uid:"
+
+[node name="TagUidLineEdit" type="LineEdit" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsRigth/LabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="DescriptionLabel" type="Label" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer"]
+layout_mode = 2
+text = "Description:"
+
+[node name="TagDescriptionTextEdit" type="TextEdit" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
 [node name="EditDatabaseDialog" parent="." instance=ExtResource("2_jeeb5")]
 unique_name_in_owner = true
 position = Vector2i(0, 36)
@@ -612,6 +704,11 @@ min_size = Vector2i(700, 300)
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleNameInputContainer/RuleNameLineEdit" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleMatchOnceCheckButton" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_match_once_check_button_pressed"]
+[connection signal="item_added" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_added"]
+[connection signal="item_removed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_removed"]
+[connection signal="item_selected" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_selected"]
+[connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]
+[connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
 [connection signal="confirmed" from="EditDatabaseDialog" to="EditDatabaseDialog" method="_on_edit_board_dialog_confirmed"]
 [connection signal="database_updated" from="EditDatabaseDialog" to="." method="_on_edit_database_dialog_database_updated"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]

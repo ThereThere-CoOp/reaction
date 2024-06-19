@@ -17,3 +17,9 @@ extends Resource
 
 ## description of the tag
 @export_multiline var description: String
+
+
+func get_new_object() -> ReactionTag:
+	var new_tag = ReactionTag.new()
+	new_tag.label = "newTag"
+	return new_tag

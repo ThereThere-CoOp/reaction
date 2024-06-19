@@ -81,6 +81,30 @@ func add_event(event: ReactionEventItem) -> void:
 func remove_event(event_uid: String) -> void:
 	events.erase(event_uid)
 	save_data()
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a given tag to the database
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* event | ReactionTag:[/b] New tag to add [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
+func add_tag(tag: ReactionTag) -> void:
+	tags[tag.uid] = tag
+	save_data()
+
+
+## ----------------------------------------------------------------------------[br]
+## Remove a given tag from the database
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* tag_uid | String:[/b] The tag's uid [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
+func remove_tag(tag_uid: String) -> void:
+	tags.erase(tag_uid)
+	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]

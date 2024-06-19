@@ -23,6 +23,7 @@ var undo_redo: EditorUndoRedoManager:
 @onready var global_facts_panel = %GlobalFacts
 @onready var events_panel = %Events
 @onready var rules_panel = %Rules
+@onready var tags_panel = %Tags
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
