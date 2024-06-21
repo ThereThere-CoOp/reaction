@@ -70,3 +70,7 @@ func _on_events_list_item_removed(index, item_data):
 		_set_event(events_list.current_item)
 	else:
 		event_data_container.visible = false
+
+
+func _on_events_list_item_list_updated():
+	event_data_container.visible = false

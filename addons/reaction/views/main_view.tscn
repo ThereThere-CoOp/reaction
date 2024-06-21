@@ -19,7 +19,7 @@
 [ext_resource type="Script" path="res://addons/reaction/scripts/ReactionTag.gd" id="14_2dj17"]
 [ext_resource type="Script" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
 
-[sub_resource type="Image" id="Image_fcbat"]
+[sub_resource type="Image" id="Image_q2ej3"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -28,8 +28,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_nybrg"]
-image = SubResource("Image_fcbat")
+[sub_resource type="ImageTexture" id="ImageTexture_yadmi"]
+image = SubResource("Image_q2ej3")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -224,7 +224,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_nybrg")
+icon = SubResource("ImageTexture_yadmi")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -235,31 +235,31 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_nybrg")
+icon = SubResource("ImageTexture_yadmi")
 item_count = 1
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_nybrg")
+popup/item_0/icon = SubResource("ImageTexture_yadmi")
 popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_nybrg")
+icon = SubResource("ImageTexture_yadmi")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_nybrg")
+icon = SubResource("ImageTexture_yadmi")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_nybrg")
+icon = SubResource("ImageTexture_yadmi")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -453,6 +453,7 @@ reaction_resource = SubResource("Resource_ayc12")
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
@@ -717,6 +718,7 @@ min_size = Vector2i(700, 300)
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_added"]
+[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_list_updated"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_removed"]
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer/FactNameInputLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_name_input_line_edit_text_submitted"]
@@ -724,6 +726,7 @@ min_size = Vector2i(700, 300)
 [connection signal="toggled" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactIsEnumCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_enum_check_button_toogled"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactHintStringInputContainer/HintStringInputContainer/FactHintStringLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_hint_string_line_edit_text_submitted"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_added"]
+[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_list_updated"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_removed"]
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/NameUidContainer/EventNameInputContainer/EventNameLineEdit" to="MainRows/DatabaseDataManagment/Events" method="_on_event_name_input_line_edit_text_submitted"]
@@ -733,6 +736,7 @@ min_size = Vector2i(700, 300)
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleNameInputContainer/RuleNameLineEdit" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleMatchOnceCheckButton" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_match_once_check_button_pressed"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_added"]
+[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_list_updated"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_removed"]
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]

@@ -174,3 +174,7 @@ func _on_facts_list_item_removed(index, item_data):
 		_set_fact(facts_list.current_item)
 	else:
 		fact_data_container.visible = false
+
+
+func _on_facts_list_item_list_updated():
+	fact_data_container.visible = false

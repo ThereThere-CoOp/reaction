@@ -65,3 +65,7 @@ func _on_tags_list_item_removed(index, item_data):
 		_set_tag(tags_list.current_item)
 	else:
 		tag_data_container.visible = false
+
+
+func _on_tag_list_item_list_updated():
+	tag_data_container.visible = false
