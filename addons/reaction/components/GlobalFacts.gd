@@ -31,6 +31,8 @@ var fact_scope_menu_text_options: Dictionary = {
 @onready var fact_hint_string_edit: LineEdit = %FactHintStringLineEdit
 @onready var fact_type_menu: MenuButton = %FactTypeMenuButton
 @onready var fact_scope_menu: MenuButton = %FactScopeMenuButton
+@onready var fact_tags_multiselect: ReactionUIMultiselect = %TabsMultiselect
+
 
 func _ready() -> void:
 	var type_menu: PopupMenu = fact_type_menu.get_popup()
@@ -90,6 +92,8 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 		_set_visibility_enum_hint(false)
 		
 	fact_data_container.visible = true
+	
+	fact_tags_multiselect.setup(current_fact, current_database.tags.values())
 
 
 func _set_fact_property(property_name: StringName, value: Variant) -> void:

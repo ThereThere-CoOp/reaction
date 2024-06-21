@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://caa0vtulg73kt"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIMultiselect.gd" id="1_jkra5"]
+
+[node name="ReactionMultiselectUI" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jkra5")
+
+[node name="SelectedButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text_overrun_behavior = 4
+
+[node name="ListAcceptDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Select tag(s)"
+
+[node name="ItemList" type="ItemList" parent="ListAcceptDialog"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+select_mode = 1
+
+[connection signal="pressed" from="SelectedButton" to="." method="_on_selected_button_pressed"]
+[connection signal="confirmed" from="ListAcceptDialog" to="." method="_on_list_accept_dialog_confirmed"]

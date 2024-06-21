@@ -19,3 +19,18 @@ extends Resource
 @export var tags: Array[ReactionTag]
 
 @export_group("")
+
+
+func add_tag(tag: ReactionTag) -> void:
+	tags.append(tag)
+	
+	
+func remove_tag(tag_uid: String) -> void:
+	var index = 0
+	for tag in tags:
+		if tag.uid == tag_uid:
+			break
+		
+		index += 1
+		
+	tags.remove_at(index)

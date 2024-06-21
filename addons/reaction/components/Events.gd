@@ -25,7 +25,7 @@ var undo_redo: EditorUndoRedoManager:
 func _ready() -> void:
 	event_data_container.visible = false
 	
-	ReactionSignals.connect("database_selected", setup_events)
+	ReactionSignals.database_selected.connect(setup_events)
 
 
 func setup_events(database: ReactionDatabase) -> void:
