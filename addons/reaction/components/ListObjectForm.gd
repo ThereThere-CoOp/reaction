@@ -60,11 +60,11 @@ func _on_add_object_button_pressed():
 	add_function_callable.call(new_object)
 	current_database.save_data()
 	var index = current_parent_object.get(objects_list_field_name).size() - 1
-	var new_criteria_ui = object_scene.instantiate()
-	new_criteria_ui.setup(current_database, current_parent_object, new_object, index, true)
+	var item_ui = object_scene.instantiate()
+	item_ui.setup(current_database, current_parent_object, new_object, index, true)
 	_objects_scroll_to_end = true
-	new_criteria_ui.object_list_form_removed.connect(_on_object_removed)
-	objects_rows.add_child(new_criteria_ui)
+	item_ui.object_list_form_removed.connect(_on_object_removed)
+	objects_rows.add_child(item_ui)
 	object_added.emit(new_object)
 	
 	
