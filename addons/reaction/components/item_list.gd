@@ -48,6 +48,7 @@ var current_item_index: int = -1
 @onready var clear_filter_button: Button = %ClearFilterButton
 @onready var filter_accept_dialog: AcceptDialog = %FilterAcceptDialog
 @onready var tag_filter_item_list: ItemList = %TagFilterItemList
+@onready var tag_filter_label: Label = %FilterInformationLabel
 
 var _processed_item_text: String
 
@@ -161,6 +162,15 @@ func _remove_item(item: Resource, index: int) -> void:
 		_select_item(current_item_index, false)
 
 	item_removed.emit(index, item)
+	
+	
+func _update_filter_label_text(new_text: String) -> void:
+	if tag_filter_label.text == "No filter activated":
+		tag_filter_label.text = new_text
+		tag_filter_label.tooltip_text = new_text
+	else:
+		tag_filter_label.text += new_text
+		tag_filter_label.tooltip_text = new_text
 
 
 ### signals
@@ -206,11 +216,14 @@ func _on_item_searcher_text_submitted(new_text: String):
 			
 	_current_item_list = result
 	item_searcher_edit.text = ""
+	var filter_label_text = " ( name like '%s')" % new_text
+	_update_filter_label_text(filter_label_text)
 	_update_item_list()
 		
 
 func _on_clear_filter_button_pressed():
 	_current_item_list = _all_item_list
+	tag_filter_label.text = "No filter activated"
 	_update_item_list()
 
 
@@ -218,13 +231,16 @@ func _on_clear_filter_button_pressed():
 func _on_filter_accept_dialog_confirmed():
 	var selected_indexes = tag_filter_item_list.get_selected_items()
 	var result = []
+	var filter_label_text = ""
 	for index in selected_indexes:
 		var tag = tag_filter_item_list.get_item_metadata(index)
+		filter_label_text += " (tag = '%s')" % tag.label
 		for item in _current_item_list:
 			if result.find(item) == -1 and item.tags.find(tag) > -1:
 				result.append(item)
 				
 	_current_item_list = result
+	_update_filter_label_text(filter_label_text)
 	_update_item_list()
 
 
