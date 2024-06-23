@@ -23,6 +23,10 @@ const ReactionSettings = preload("../utilities/settings.gd")
 ## Tags of the reaction database
 @export var tags: Dictionary = {}
 
+## dictionary that store facts references logs
+## each key is a fact value, and each value is a dict
+var fact_log: Dictionary = {}
+
 
 ## ----------------------------------------------------------------------------[br]
 ## Create a clean fact and add it to the database 

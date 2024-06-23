@@ -8,6 +8,9 @@ extends Resource
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
 
+## criteria uid
+var uid: String = Uuid.v4()
+
 const INT64_MIN = -(1 << 63)  # -9223372036854775808
 const INT64_MAX = (1 << 63) - 1  # 9223372036854775807
 

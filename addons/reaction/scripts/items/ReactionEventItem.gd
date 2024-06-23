@@ -17,7 +17,7 @@ extends ReactionBaseItem
 		rules = _sort_rules(value)
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
-
+			
 
 ## ----------------------------------------------------------------------------[br]
 ## fuction to sort rules when have priority higher than 0 [br]

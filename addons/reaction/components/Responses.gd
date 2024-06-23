@@ -100,7 +100,7 @@ func _deselect_item() -> void:
 	
 func _show_edit_dialog() -> void:
 	var selected_response = _get_selected_response()
-	var response_type = ReactionGlobals.get_response_type(selected_response)
+	var response_type = ReactionGlobals.get_item_type(selected_response)
 	edit_response_dialog.title = ("Edit %s" % response_type)
 	var form_scene: MainResponseEditForm
 	

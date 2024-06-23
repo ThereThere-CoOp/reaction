@@ -9,6 +9,9 @@ extends Resource
 ## and any further detail.
 ## ----------------------------------------------------------------------------
 
+## modifiation uid
+var uid: String = Uuid.v4()
+
 ## label the identify modification used as a short description
 @export_group("General")
 @export var label: String

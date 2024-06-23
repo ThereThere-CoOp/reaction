@@ -232,3 +232,15 @@ func _on_databases_menu_index_pressed(index):
 
 func _on_setting_database_path_updated() -> void:
 	load_databases_update_view()
+
+
+func _on_database_data_managment_tab_selected(tab):
+	match tab:
+		0:
+			global_facts_panel.setup_facts(databases[current_database_id])
+		1:
+			events_panel.setup_events(databases[current_database_id])
+		2:
+			tags_panel.setup_tags(databases[current_database_id])
+		_:
+			global_facts_panel.setup_facts(databases[current_database_id])

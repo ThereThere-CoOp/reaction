@@ -13,12 +13,24 @@ var databases: Dictionary = {}
 
 func _ready():
 	pass
-	
-	
-func get_response_type(response: ReactionResponseBaseItem) -> String:
-	if response is ReactionResponseGroupItem:
+
+
+func get_item_type(item: Resource) -> String:
+	if item is ReactionEventItem:
+		return "Event"
+	elif item is ReactionFactItem:
+		return "Fact"
+	elif item is ReactionRuleItem:
+		return "Rule"
+	elif item is ReactionRuleCriteria:
+		return "Criteria"
+	elif item is ReactionContextModification:
+		return "Modification"
+	elif item is ReactionResponseGroupItem:
 		return "Response Group"
-	elif response is ReactionResponseDialogItem:
+	elif item is ReactionResponseItem:
+		return "Response"
+	elif item is ReactionResponseDialogItem:
 		return responses_types["Dialog"]
 	else:
-		return "Response Group"
+		return "Fact"
