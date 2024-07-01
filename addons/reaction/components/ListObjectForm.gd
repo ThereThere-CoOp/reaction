@@ -55,6 +55,7 @@ func _on_database_selected(database: ReactionDatabase) -> void:
 
 func _on_add_object_button_pressed():
 	var new_object = object_resource_class.get_new_object()
+	new_object.parent = current_parent_object
 	new_object.label = "new_%s" % object_name
 	var add_function_callable = Callable(current_parent_object, parent_object_add_function_name)
 	add_function_callable.call(new_object)
@@ -74,7 +75,6 @@ func _on_objects_scroll_changed() -> void:
 		
 		
 func _on_object_removed(index: int) -> void:
-
 	var current_objects_array = current_parent_object.get(objects_list_field_name)
 	var current_object_form_components = objects_rows.get_children()
 	if index < current_objects_array.size():

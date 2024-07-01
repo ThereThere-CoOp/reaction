@@ -9,6 +9,8 @@ extends Resource
 ## and any further detail.
 ## ----------------------------------------------------------------------------
 
+var parent: ReactionBaseItem
+
 ## modifiation uid
 var uid: String = Uuid.v4()
 
@@ -105,6 +107,14 @@ func execute(context: ReactionBlackboard) -> void:
 				)
 				context.set_fact_value(fact, new_value)
 				
+
+func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
+	parent.add_fact_reference_log(object)
+	
+
+func remove_fact_reference_log(item: ReactionBaseItem) -> void:
+	parent.remove_fact_reference_log(item)
+
 				
 func get_new_object() -> ReactionContextModification:
 	return ReactionContextModification.new()

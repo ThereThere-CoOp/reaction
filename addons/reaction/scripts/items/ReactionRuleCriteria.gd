@@ -8,6 +8,8 @@ extends Resource
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
 
+var parent: ReactionBaseItem
+
 ## criteria uid
 var uid: String = Uuid.v4()
 
@@ -161,5 +163,13 @@ func test(blackboard_fact: ReactionBlackboardFact) -> bool:
 	return criteria_test_result if not is_reverse else not criteria_test_result
 
 
+func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
+	parent.add_fact_reference_log(object)
+	
+
+func remove_fact_reference_log(item: ReactionBaseItem) -> void:
+	parent.remove_fact_reference_log(item)
+	
+	
 func get_new_object() -> ReactionRuleCriteria:
 	return ReactionRuleCriteria.new()

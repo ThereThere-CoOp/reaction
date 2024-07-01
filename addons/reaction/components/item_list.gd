@@ -194,6 +194,8 @@ func _on_item_list_item_selected(index):
 
 func _on_add_item_button_pressed():
 	var new_item = reaction_resource.get_new_object()
+	new_item.parent = parent_object
+	
 	undo_redo.create_action("Add %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_add_item", new_item)
 	undo_redo.add_undo_method(self, "_remove_item", new_item, parent_object.get(item_list_field_name).size())

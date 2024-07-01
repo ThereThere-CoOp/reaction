@@ -8,6 +8,8 @@ extends Resource
 ## and trigger a next event [br]
 ## ----------------------------------------------------------------------------
 
+var parent: ReactionBaseItem
+
 ## label of the dialog choice
 @export var label: String
 
@@ -69,6 +71,7 @@ func test(context: ReactionBlackboard) -> bool:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_criteria(criteria: ReactionRuleCriteria) -> void:
+	criterias[index].remove_fact_reference_log(criterias[index])
 	criterias.append(criteria)
 	
 	
@@ -99,8 +102,17 @@ func add_modification(modification: ReactionContextModification) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_modification_by_index(index: int) -> void:
+	modifications[index].remove_fact_reference_log(modifications[index])
 	modifications.remove_at(index)
+
+
+func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
+	parent.add_fact_reference_log(object)
 	
+
+func remove_fact_reference_log(item: Resource) -> void:
+	parent.remove_fact_reference_log(item)
+
 	
 func get_new_object() -> ReactionDialogChoice:
 	var new_dialog_choice = ReactionDialogChoice.new()

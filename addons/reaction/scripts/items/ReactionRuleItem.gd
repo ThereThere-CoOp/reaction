@@ -85,6 +85,7 @@ func add_criteria(criteria: ReactionRuleCriteria) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_criteria_by_index(index: int) -> void:
+	criterias[index].remove_fact_reference_log(criterias[index])
 	criterias.remove_at(index)
 		
 		
@@ -105,6 +106,7 @@ func add_modification(modification: ReactionContextModification) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_modification_by_index(index: int) -> void:
+	modifications[index].remove_fact_reference_log(modifications[index])
 	modifications.remove_at(index)
 
 

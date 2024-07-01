@@ -10,6 +10,8 @@ extends ReactionBaseItem
 ## the responses attached to it. [br]
 ## ----------------------------------------------------------------------------
 
+var fact_reference_log = {}
+
 ## array of ordered rules to be checked for this concept,
 ## rules are ordered for their criteria count in descending order
 @export var rules: Array[ReactionRuleItem]:
@@ -81,17 +83,15 @@ func add_rule(rule: ReactionRuleItem) -> void:
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
 func remove_rule(rule_uid: String) -> void:
-	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
 	var index = 0
-	for rule in new_rules:
+	for rule in rules:
 		if rule.uid == rule_uid:
+			rule.remove_fact_reference_log(rule)
 			break
+			
 		index += 1
 	
-	new_rules.remove_at(index)
-	
-	## reordering occurs cause set method
-	rules = new_rules
+	rules.remove_at(index)
 	
 	
 ## ----------------------------------------------------------------------------[br]
@@ -110,7 +110,31 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			return rule.responses.get_responses()
 
 	return []
+	
+	
+func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
+	var fact_uid: String = object.object.fact.uid
+	if fact_uid in fact_reference_log:
+		fact_reference_log[fact_uid][object.uid] = object
+	else:
+		fact_reference_log[fact_uid] = {}
+		fact_reference_log[fact_uid][object.uid] = object
+	
 
+func remove_fact_reference_log(item: Resource) -> void:
+	for object_log in fact_reference_log.values():
+		if item is ReactionRuleCriteria or item is ReactionContextModification:
+			object_log.erase(item.uid)
+		else:
+			for log_item in object_log.values():
+				if item is ReactionRuleItem:
+					if log_item.rule.uid == item.uid:
+						object_log.erase(log_item.uid)
+						
+				if item is ReactionResponseItem:
+					if log_item.response.uid == item.uid:
+						object_log.erase(log_item.uid)
+				
 
 func get_new_object():
 	return ReactionEventItem.new()
