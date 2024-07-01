@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_jdoy6"]
 [ext_resource type="Script" path="res://addons/reaction/components/Events.gd" id="5_s4hfs"]
 [ext_resource type="PackedScene" uid="uid://caa0vtulg73kt" path="res://addons/reaction/components/ReactionUIMultiselect.tscn" id="5_wmdgq"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionEventItem.gd" id="7_0knvx"]
 [ext_resource type="Script" path="res://addons/reaction/components/Rules.gd" id="7_4prge"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="7_jvxl4"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionRuleCriteria.gd" id="8_oki5c"]
@@ -19,7 +20,7 @@
 [ext_resource type="Script" path="res://addons/reaction/scripts/ReactionTag.gd" id="14_2dj17"]
 [ext_resource type="Script" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
 
-[sub_resource type="Image" id="Image_mxufn"]
+[sub_resource type="Image" id="Image_lvkmb"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -28,8 +29,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_dmxp8"]
-image = SubResource("Image_mxufn")
+[sub_resource type="ImageTexture" id="ImageTexture_3drqh"]
+image = SubResource("Image_lvkmb")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -42,126 +43,14 @@ description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("14_2dj17")]([])
 
-[sub_resource type="GDScript" id="GDScript_qoikp"]
-script/source = "@tool
-class_name ReactionEventItem
-extends ReactionBaseItem
-## ----------------------------------------------------------------------------[br]
-## Resource item to storage a reaction event.
-##
-## Event must have label like (OLD_MAN_NPC_CONVERSATION,
-## ROOM_DESCRIPTION) that represents the nature of the event. Have attached
-## several rules, and the ones that matchs the current world state will return
-## the responses attached to it. [br]
-## ----------------------------------------------------------------------------
-
-## array of ordered rules to be checked for this concept,
-## rules are ordered for their criteria count in descending order
-@export var rules: Array[ReactionRuleItem]:
-	set(value):
-		var new_rules: Array[ReactionRuleItem] = []
-		var temp_priority_rules: Array[ReactionRuleItem] = []
-		var temp_non_priority_rules: Array[ReactionRuleItem] = []
-
-		for rule in value:
-			if rule and rule.priority > 0:
-				temp_priority_rules.append(rule)
-			else:
-				temp_non_priority_rules.append(rule)
-
-		temp_priority_rules.sort_custom(_sort_priority_rules)
-
-		temp_non_priority_rules.sort_custom(
-			func(a, b): return a.get_criterias_count() > b.get_criterias_count()
-		)
-
-		new_rules.append_array(temp_priority_rules)
-		new_rules.append_array(temp_non_priority_rules)
-
-		rules = new_rules
-
-		if Engine.is_editor_hint():
-			notify_property_list_changed()
-
-
-## ----------------------------------------------------------------------------[br]
-## fuction to sort rules when have priority higher than 0 [br]
-## ----------------------------------------------------------------------------
-func _sort_priority_rules(a, b):
-	if a.priority < b.priority:
-		return true
-
-	if a.priority == b.priority:
-		return a.get_criterias_count() > b.get_criterias_count()
-
-	return false
-	
-
-## ----------------------------------------------------------------------------[br]
-## Add a rule to event and reorder the rules using priority and rule's criteria 
-## numbers [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* rule | ReactionRuleItem:[/b] New rule to add [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------
-func add_rule(rule: ReactionRuleItem) -> void:
-	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
-	new_rules.append(rule)
-	
-	## reordering occurs cause set method
-	rules = new_rules
-	
-	
-## ----------------------------------------------------------------------------[br]
-## Remove a rule from event and reorder the rules using priority and rule's 
-## criteria numbers [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* rule_uid | String:[/b] Uid of the rule to remove [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------
-func remove_rule(rule_uid: String) -> void:
-	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
-	var index = 0
-	for rule in new_rules:
-		if rule.uid == rule_uid:
-			break
-		index += 1
-	
-	new_rules.remove_at(index)
-	
-	## reordering occurs cause set method
-	rules = new_rules
-	
-	
-## ----------------------------------------------------------------------------[br]
-## Get responses for this event based on the rules and current world's game
-## context [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* context | [ReactionBlackboard]:[/b] Current world's game context [br]
-## [b]Returns:  Array[[ReactionResponseBaseItem]][/b] [br]
-## Responses group of the first matching rule  [br]
-## ----------------------------------------------------------------------------
-func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
-	for rule in rules:
-		if rule.test(context):
-			context.clean_scope(\"Event\")
-			rule.execute_modifications(context)
-			return rule.responses.get_responses()
-
-	return []
-
-
-func get_new_object():
-	return ReactionEventItem.new()
-"
-
-[sub_resource type="Resource" id="Resource_ayc12"]
-script = SubResource("GDScript_qoikp")
-rules = []
-uid = "808b11c9-053a-4ee8-91c1-ccec8b6105b9"
+[sub_resource type="Resource" id="Resource_57f2n"]
+script = ExtResource("7_0knvx")
+rules = Array[ExtResource("7_jvxl4")]([])
+uid = "7825e03c-4c9f-42e6-8813-19d34c215b16"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
@@ -224,7 +113,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_dmxp8")
+icon = SubResource("ImageTexture_3drqh")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -235,31 +124,31 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "default_database"
-icon = SubResource("ImageTexture_dmxp8")
+icon = SubResource("ImageTexture_3drqh")
 item_count = 1
 popup/item_0/text = "default_database"
-popup/item_0/icon = SubResource("ImageTexture_dmxp8")
+popup/item_0/icon = SubResource("ImageTexture_3drqh")
 popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_dmxp8")
+icon = SubResource("ImageTexture_3drqh")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_dmxp8")
+icon = SubResource("ImageTexture_3drqh")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_dmxp8")
+icon = SubResource("ImageTexture_3drqh")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -448,7 +337,7 @@ item_name = "event"
 item_list_field_name = "events"
 add_function_name = "add_event"
 remove_function_name = "remove_event"
-reaction_resource = SubResource("Resource_ayc12")
+reaction_resource = SubResource("Resource_57f2n")
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 unique_name_in_owner = true

@@ -4,7 +4,6 @@
 
 [node name="ListObjectForm" type="MarginContainer"]
 script = ExtResource("1_63s57")
-object_scene = null
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2

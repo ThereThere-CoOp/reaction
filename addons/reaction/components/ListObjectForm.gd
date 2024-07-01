@@ -13,7 +13,7 @@ var current_parent_object: Resource
 @export var objects_list_field_name: String = "objects"
 @export var parent_object_add_function_name: String = "addObjects"
 @export var object_resource_class: Resource
-@export var object_scene = preload("res://addons/reaction/components/criteria.tscn")
+@export var object_scene = preload("res://addons/reaction/components/Criteria.tscn")
 
 @onready var add_object_button : Button = %AddObjectButton
 @onready var objects_rows : VBoxContainer = %ObjectsRows

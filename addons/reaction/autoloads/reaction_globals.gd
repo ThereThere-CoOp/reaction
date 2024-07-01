@@ -28,9 +28,9 @@ func get_item_type(item: Resource) -> String:
 		return "Modification"
 	elif item is ReactionResponseGroupItem:
 		return "Response Group"
-	elif item is ReactionResponseItem:
-		return "Response"
 	elif item is ReactionResponseDialogItem:
 		return responses_types["Dialog"]
+	elif item is ReactionResponseItem:
+		return "Response"
 	else:
 		return "Fact"
