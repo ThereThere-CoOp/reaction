@@ -33,6 +33,15 @@ var hint_string: String:
 var enum_names: PackedStringArray = []
 
 
+func have_references(database: ReactionDatabase) -> bool:
+	for event in database.events.values():
+		if uid in event.fact_reference_log:
+			if event.fact_reference_log[uid].size() > 0:
+				return true
+		
+	return false
+
+
 func get_new_object():
 	return ReactionFactItem.new()
 	

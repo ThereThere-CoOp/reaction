@@ -50,6 +50,8 @@ var current_item_index: int = -1
 @onready var tag_filter_item_list: ItemList = %TagFilterItemList
 @onready var tag_filter_label: Label = %FilterInformationLabel
 
+@onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
+
 var _processed_item_text: String
 
 var _all_item_list = []
@@ -138,6 +140,12 @@ func _add_item(item: Resource, index_to_add: int = -1) -> void:
 
 
 func _remove_item(item: Resource, index: int) -> void:
+	if current_item.has_method("have_references"):
+		if current_item.have_references(database_object):
+			warning_dialog.dialog_text = "The item have references. You cannot delete it."
+			warning_dialog.popup_centered()
+			return
+	
 	var remove_function_callable = Callable(parent_object, remove_function_name)
 	database_object.remove_fact_reference_log(item)
 	remove_function_callable.call(item.uid)

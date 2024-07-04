@@ -25,6 +25,8 @@ var fact_scope_menu_text_options: Dictionary = {
 @onready var fact_references_dialog: AcceptDialog = %FactReferenceAcceptDialog
 @onready var fact_references_label: RichTextLabel = %FactReferencesRichTextLabel
 
+@onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
+
 # fact inputs
 @onready var fact_label_edit: LineEdit = %FactNameInputLineEdit
 @onready var fact_uid_value_edit: LineEdit = %FactUidValue
@@ -35,7 +37,6 @@ var fact_scope_menu_text_options: Dictionary = {
 @onready var fact_type_menu: MenuButton = %FactTypeMenuButton
 @onready var fact_scope_menu: MenuButton = %FactScopeMenuButton
 @onready var fact_tags_multiselect: ReactionUIMultiselect = %TabsMultiselect
-
 
 func _ready() -> void:
 	var type_menu: PopupMenu = fact_type_menu.get_popup()
@@ -151,14 +152,18 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 
 
 func _on_fact_type_menu_index_pressed(index):
-	var popup = fact_type_menu.get_popup()
-	var label = popup.get_item_text(index)
-	if fact_type_menu_text_options["string"] == label:
-		_set_fact_type_value(true, TYPE_STRING, label)
-	if fact_type_menu_text_options["boolean"] == label:
-		_set_fact_type_value(false,  TYPE_BOOL, label)
-	if fact_type_menu_text_options["number"] == label:
-		_set_fact_type_value(false, TYPE_INT, label)
+	if not current_fact.have_references(current_database):
+		var popup = fact_type_menu.get_popup()
+		var label = popup.get_item_text(index)
+		if fact_type_menu_text_options["string"] == label:
+			_set_fact_type_value(true, TYPE_STRING, label)
+		if fact_type_menu_text_options["boolean"] == label:
+			_set_fact_type_value(false,  TYPE_BOOL, label)
+		if fact_type_menu_text_options["number"] == label:
+			_set_fact_type_value(false, TYPE_INT, label)
+	else:
+		warning_dialog.dialog_text = "Cannot modify type. The fact have references."
+		warning_dialog.popup_centered()
 		
 		
 func _on_fact_scope_menu_index_pressed(index):
