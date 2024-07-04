@@ -333,7 +333,7 @@ text = "Tip: Hint string must be comma separeted values"
 [node name="FactReferenceAcceptDialog" type="AcceptDialog" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer"]
 unique_name_in_owner = true
 title = "References"
-size = Vector2i(500, 700)
+size = Vector2i(500, 850)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/FactReferenceAcceptDialog"]
 anchors_preset = 15

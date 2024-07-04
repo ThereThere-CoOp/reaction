@@ -11,6 +11,8 @@ extends Resource
 
 @export var response: ReactionResponseItem
 
+@export var choice: ReactionDialogChoiceItem
+
 @export var object: Resource
 
 
@@ -43,5 +45,13 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 					parent_rule = rul
 			rule = parent_rule
 		
+		# need rework is too hard typed
 		if object.parents.size() > 2:
 			response = _get_response(object.parents[-2], parent_rule.responses)
+			
+			var parent_choice = null
+			if response:
+				for cho in response.choices:
+					if cho.uid == object.parents[-1]:
+						parent_choice = cho
+				choice = parent_choice
