@@ -22,9 +22,9 @@ func get_item_type(item: Resource) -> String:
 		return "Fact"
 	elif item is ReactionRuleItem:
 		return "Rule"
-	elif item is ReactionRuleCriteria:
+	elif item is ReactionCriteriaItem:
 		return "Criteria"
-	elif item is ReactionContextModification:
+	elif item is ReactionContextModificationItem:
 		return "Modification"
 	elif item is ReactionResponseGroupItem:
 		return "Response Group"

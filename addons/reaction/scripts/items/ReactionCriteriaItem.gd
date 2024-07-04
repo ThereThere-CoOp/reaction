@@ -1,6 +1,6 @@
 @tool
-class_name ReactionRuleCriteria
-extends Resource
+class_name ReactionCriteriaItem
+extends ReactionBaseItem
 ## ----------------------------------------------------------------------------[br]
 ## Resource to storage a rule criteria for a rule item.
 ##
@@ -8,17 +8,8 @@ extends Resource
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
 
-var parent: ReactionBaseItem
-
-## criteria uid
-var uid: String = Uuid.v4()
-
 const INT64_MIN = -(1 << 63)  # -9223372036854775808
 const INT64_MAX = (1 << 63) - 1  # 9223372036854775807
-
-@export_group("General")
-## Criteria label to server as a short description. Must be unique on a same rule
-@export var label: String
 
 ## ----------------------------------------------------------------------------[br]
 ## Operation to use in criteria test. [br]
@@ -161,15 +152,7 @@ func test(blackboard_fact: ReactionBlackboardFact) -> bool:
 		and blackboard_fact.value <= _internal_value_b
 	)
 	return criteria_test_result if not is_reverse else not criteria_test_result
-
-
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	parent.add_fact_reference_log(object)
-	
-
-func remove_fact_reference_log(item: ReactionBaseItem) -> void:
-	parent.remove_fact_reference_log(item)
 	
 	
-func get_new_object() -> ReactionRuleCriteria:
-	return ReactionRuleCriteria.new()
+func get_new_object() -> ReactionCriteriaItem:
+	return ReactionCriteriaItem.new()

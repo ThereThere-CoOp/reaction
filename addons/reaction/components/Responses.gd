@@ -63,6 +63,8 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 func setup(response_group: ReactionResponseGroupItem) -> void:
 	root_response_group = response_group
 	
+	add_response_group_button.disabled = false
+	add_response_menu_button.disabled = false
 	remove_response_button.disabled = true
 	
 	responses_tree.clear()
@@ -149,6 +151,7 @@ func _on_add_response_group_button_pressed():
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
 	var new_response_group: ReactionResponseGroupItem = response.add_new_response_group()
+	new_response_group.update_parents(response)
 	current_database.save_data()
 	
 	_create_response_tree_item(selected_item, new_response_group)
@@ -162,6 +165,7 @@ func _on_add_response_menu_index_pressed(index):
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
 	var new_response: ReactionResponseItem = response.add_new_response(label)
+	new_response.update_parents(response)
 	current_database.save_data()
 	
 	_create_response_tree_item(selected_item, new_response)

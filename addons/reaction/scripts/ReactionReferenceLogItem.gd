@@ -14,16 +14,34 @@ extends Resource
 @export var object: Resource
 
 
-func update_log_objects(new_object: Resource) -> void:
-	object = new_object
-	var  current_parent = new_object.parent
-	
-	while current_parent:
-		if current_parent is ReactionResponseItem:
-			response = current_parent
-		if current_parent is ReactionRuleItem:
-			rule = current_parent
-		if current_parent is ReactionEventItem:
-			event = current_parent
+func _get_response(response_uid: String, responses_group: ReactionResponseGroupItem) -> ReactionResponseItem:
+	for response in responses_group.responses.values():
+		if response is ReactionResponseGroupItem:
+			return _get_response(response_uid, response)
+		else:
+			if response.uid == response_uid:
+				return response
+		
 			
-		current_parent = current_parent.parent
+	return null
+	
+	
+
+func update_log_objects(new_object: Resource, current_database: ReactionDatabase) -> void:
+	object = new_object
+	uid = object.uid
+	# var  current_parents = new_object.parents
+	
+	if object.parents.size() > 0:
+		var parent_event = current_database.events[object.parents[0]]
+		event = parent_event
+		
+		var parent_rule = null
+		if object.parents.size() > 1:
+			for rul in parent_event.rules:
+				if rul.uid == object.parents[1]:
+					parent_rule = rul
+			rule = parent_rule
+		
+		if object.parents.size() > 2:
+			response = _get_response(object.parents[-2], parent_rule.responses)

@@ -56,6 +56,7 @@ func _on_main_view_theme_changed() -> void:
 
 func _on_remove_object_button_pressed():
 	var remove_function_callable = Callable(current_parent_object, remove_object_function_name)
+	current_database.remove_fact_reference_log(item_object)
 	remove_function_callable.call(object_index)
 	# current_parent_object.remove_modification_by_index(object_index)
 	current_database.save_data()

@@ -8,7 +8,7 @@ extends Resource
 ## Contains common fields and functions for reaction items. [br]
 ## ----------------------------------------------------------------------------
 
-var parent: ReactionBaseItem
+@export var parents: Array[String] = []
 
 @export_group("Reaction item general data")
 @export var uid: String = Uuid.v4()
@@ -38,9 +38,16 @@ func remove_tag(tag_uid: String) -> void:
 	tags.remove_at(index)
 	
 	
+func update_parents(parent_object: Resource) -> void:
+	if parent_object and parent_object is ReactionBaseItem:
+		var new_parents = parent_object.parents.duplicate()
+		new_parents.append(parent_object.uid)
+		parents = new_parents
+	
+	
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	parent.add_fact_reference_log(object)
+	pass
 	
 
 func remove_fact_reference_log(item: Resource) -> void:
-	parent.remove_fact_reference_log(item)
+	pass

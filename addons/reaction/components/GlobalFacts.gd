@@ -22,6 +22,9 @@ var fact_scope_menu_text_options: Dictionary = {
 @onready var facts_list: VBoxContainer = %FactsList
 @onready var fact_data_container: VBoxContainer = %FactDataContainer
 
+@onready var fact_references_dialog: AcceptDialog = %FactReferenceAcceptDialog
+@onready var fact_references_label: RichTextLabel = %FactReferencesRichTextLabel
+
 # fact inputs
 @onready var fact_label_edit: LineEdit = %FactNameInputLineEdit
 @onready var fact_uid_value_edit: LineEdit = %FactUidValue
@@ -178,3 +181,28 @@ func _on_facts_list_item_removed(index, item_data):
 
 func _on_facts_list_item_list_updated():
 	fact_data_container.visible = false
+
+
+func _on_show_fact_references_button_pressed():
+	var text_result = ""
+	var references_count = 0
+	for event: ReactionEventItem in current_database.events.values():
+		print(event.fact_reference_log.size())
+		if current_fact.uid in event.fact_reference_log:
+			for log_item: ReactionReferenceLogItem in event.fact_reference_log[current_fact.uid].values():
+				references_count += 1
+				text_result += "[b]*[/b] %s %s: " % [ReactionGlobals.get_item_type(log_item.object), log_item.object.label]
+				
+				text_result += "[b]Event:[/b] %s" % event.label
+				if log_item.rule:
+					text_result += " -> [b]Rule:[/b] %s" % log_item.rule.label
+				if log_item.response:
+					text_result += " ->  [b]Response:[/b] %s" % log_item.response.label
+					
+				text_result += "\n"
+	
+	if references_count == 0:
+		text_result = "No references found"
+		
+	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
+	fact_references_dialog.popup_centered()			

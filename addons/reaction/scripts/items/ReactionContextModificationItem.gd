@@ -1,6 +1,6 @@
 @tool
-class_name ReactionContextModification
-extends Resource
+class_name ReactionContextModificationItem
+extends ReactionBaseItem
 ## ----------------------------------------------------------------------------[br]
 ## Resource to storage and assing modifications to blackboard fact values.
 ##
@@ -8,15 +8,6 @@ extends Resource
 ## on the blackboard context when a given rule is selected
 ## and any further detail.
 ## ----------------------------------------------------------------------------
-
-var parent: ReactionBaseItem
-
-## modifiation uid
-var uid: String = Uuid.v4()
-
-## label the identify modification used as a short description
-@export_group("General")
-@export var label: String
 
 ## fact resource to modify
 @export_group("Fact")
@@ -106,15 +97,7 @@ func execute(context: ReactionBlackboard) -> void:
 					else modification_value
 				)
 				context.set_fact_value(fact, new_value)
-				
-
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	parent.add_fact_reference_log(object)
-	
-
-func remove_fact_reference_log(item: ReactionBaseItem) -> void:
-	parent.remove_fact_reference_log(item)
 
 				
-func get_new_object() -> ReactionContextModification:
-	return ReactionContextModification.new()
+func get_new_object() -> ReactionContextModificationItem:
+	return ReactionContextModificationItem.new()

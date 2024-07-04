@@ -177,7 +177,17 @@ func _on_main_view_theme_changed() -> void:
 func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
+	
+	if item_object.fact:
+		current_database.remove_fact_reference_log(item_object)
+	
 	_set_criteria_property("fact", fact_search_menu.current_item)
+	
+	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
+	new_item_log.update_log_objects(item_object, current_database)
+	current_database.add_fact_reference_log(new_item_log)
+	current_database.save_data()
+	
 	update_operation_menu_items()
 	update_values_input()
 

@@ -68,7 +68,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
 		responses.label = "rootResponseGroup"
-		responses.parent = current_rule
+		responses.update_parents(current_rule)
 		current_rule.responses = responses
 		current_database.save_data()
 	
@@ -127,7 +127,7 @@ func _on_rule_priority_spin_box_text_submitted(new_text: String):
 	_sort_rules_item_list()
 	
 	
-func _on_criteria_added(new_criteria: ReactionRuleCriteria) -> void:
+func _on_criteria_added(new_criteria: ReactionCriteriaItem) -> void:
 	_sort_rules_item_list()
 	
 	

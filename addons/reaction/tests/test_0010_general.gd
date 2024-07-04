@@ -34,21 +34,21 @@ func before_all():
 	_facts[fact_is_comunism.label] = fact_is_comunism
 
 	# init rules criterias
-	var criteria_is_mindundi = ReactionRuleCriteria.new()
+	var criteria_is_mindundi = ReactionCriteriaItem.new()
 	criteria_is_mindundi.label = "mindtype_is_mindundi"
 	criteria_is_mindundi.fact = _facts["mind_type"]
 
 	criteria_is_mindundi.value_a = 2
 	criteria_is_mindundi.operation = "="
 
-	var criteria_population_lt_300 = ReactionRuleCriteria.new()
+	var criteria_population_lt_300 = ReactionCriteriaItem.new()
 	criteria_population_lt_300.label = "population_less_than_300"
 	criteria_population_lt_300.fact = _facts["population_size"]
 
 	criteria_population_lt_300.value_a = 300
 	criteria_population_lt_300.operation = "<"
 
-	var criteria_not_comunism = ReactionRuleCriteria.new()
+	var criteria_not_comunism = ReactionCriteriaItem.new()
 	criteria_not_comunism.label = "not_comunism"
 	criteria_not_comunism.fact = _facts["is_comunism"]
 
@@ -56,7 +56,7 @@ func before_all():
 	criteria_not_comunism.operation = "="
 	criteria_not_comunism.is_reverse = true
 
-	var criteria_population_b_100_400 = ReactionRuleCriteria.new()
+	var criteria_population_b_100_400 = ReactionCriteriaItem.new()
 	criteria_population_b_100_400.label = "population_between_100_400"
 	criteria_population_b_100_400.fact = _facts["population_size"]
 
@@ -64,7 +64,7 @@ func before_all():
 	criteria_population_b_100_400.value_b = 400
 	criteria_population_b_100_400.operation = "a<=x<=b"
 
-	var criteria_is_volao = ReactionRuleCriteria.new()
+	var criteria_is_volao = ReactionCriteriaItem.new()
 	criteria_is_volao.label = "mindtype_is_volao"
 	criteria_is_volao.fact = _facts["mind_type"]
 
@@ -78,25 +78,25 @@ func before_all():
 	_rules_criterias[criteria_is_volao.label] = criteria_is_volao
 
 	# init modifications
-	var modification_declare_comunism = ReactionContextModification.new()
+	var modification_declare_comunism = ReactionContextModificationItem.new()
 	modification_declare_comunism.label = "declare_comunism"
 	modification_declare_comunism.fact = _facts["is_comunism"]
 	modification_declare_comunism.modification_value = true
 	modification_declare_comunism.operation = "="
 
-	var modification_grow_population = ReactionContextModification.new()
+	var modification_grow_population = ReactionContextModificationItem.new()
 	modification_grow_population.label = "grow_population_in_500"
 	modification_grow_population.fact = _facts["population_size"]
 	modification_grow_population.modification_value = 500
 	modification_grow_population.operation = "+"
 
-	var modification_decrease_population = ReactionContextModification.new()
+	var modification_decrease_population = ReactionContextModificationItem.new()
 	modification_decrease_population.label = "decrease_population_in_100"
 	modification_decrease_population.fact = _facts["population_size"]
 	modification_decrease_population.modification_value = 100
 	modification_decrease_population.operation = "-"
 
-	var modification_erase_mindtype = ReactionContextModification.new()
+	var modification_erase_mindtype = ReactionContextModificationItem.new()
 	modification_erase_mindtype.label = "erase_mind_type"
 	modification_erase_mindtype.fact = _facts["mind_type"]
 	modification_erase_mindtype.operation = "erase"

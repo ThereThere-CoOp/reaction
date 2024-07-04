@@ -139,6 +139,7 @@ func _add_item(item: Resource, index_to_add: int = -1) -> void:
 
 func _remove_item(item: Resource, index: int) -> void:
 	var remove_function_callable = Callable(parent_object, remove_function_name)
+	database_object.remove_fact_reference_log(item)
 	remove_function_callable.call(item.uid)
 	database_object.save_data()
 	items_list.remove_item(index)
@@ -194,7 +195,7 @@ func _on_item_list_item_selected(index):
 
 func _on_add_item_button_pressed():
 	var new_item = reaction_resource.get_new_object()
-	new_item.parent = parent_object
+	new_item.update_parents(parent_object)
 	
 	undo_redo.create_action("Add %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_add_item", new_item)

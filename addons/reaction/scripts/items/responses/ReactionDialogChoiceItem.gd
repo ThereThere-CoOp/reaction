@@ -1,6 +1,6 @@
 @tool
-class_name ReactionDialogChoice
-extends Resource
+class_name ReactionDialogChoiceItem
+extends ReactionBaseItem
 ## ----------------------------------------------------------------------------[br]
 ## A resource to store Reaction Dialog Choice.
 ##
@@ -8,21 +8,14 @@ extends Resource
 ## and trigger a next event [br]
 ## ----------------------------------------------------------------------------
 
-var parent: ReactionBaseItem
-
-## label of the dialog choice
-@export var label: String
-
 ## text of the choice
 @export_multiline var choice_text: String
 
-
 ## criterias that the choice have to met
-@export var criterias: Array[ReactionRuleCriteria] = []
-
+@export var criterias: Array[ReactionCriteriaItem] = []
 
 ## modification to apply on the context when the choice is selected
-@export var modifications: Array[ReactionContextModification] = []
+@export var modifications: Array[ReactionContextModificationItem] = []
 
 ## Uuid of the event to trigger when choice is selected
 @export var triggers: String
@@ -70,8 +63,7 @@ func test(context: ReactionBlackboard) -> bool:
 ## [b]* criteria | ReactionRuleCriteria:[/b] Criteria to add to the rule [br]
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
-func add_criteria(criteria: ReactionRuleCriteria) -> void:
-	criterias[index].remove_fact_reference_log(criterias[index])
+func add_criteria(criteria: ReactionCriteriaItem) -> void:
 	criterias.append(criteria)
 	
 	
@@ -82,6 +74,7 @@ func add_criteria(criteria: ReactionRuleCriteria) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_criteria_by_index(index: int) -> void:
+	criterias[index].remove_fact_reference_log(criterias[index])
 	criterias.remove_at(index)
 		
 		
@@ -91,7 +84,7 @@ func remove_criteria_by_index(index: int) -> void:
 ## [b]* criteria | ReactionContextModification:[/b] Modification to add to the rule [br]
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
-func add_modification(modification: ReactionContextModification) -> void:
+func add_modification(modification: ReactionContextModificationItem) -> void:
 	modifications.append(modification)
 	
 	
@@ -105,16 +98,8 @@ func remove_modification_by_index(index: int) -> void:
 	modifications[index].remove_fact_reference_log(modifications[index])
 	modifications.remove_at(index)
 
-
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	parent.add_fact_reference_log(object)
 	
-
-func remove_fact_reference_log(item: Resource) -> void:
-	parent.remove_fact_reference_log(item)
-
-	
-func get_new_object() -> ReactionDialogChoice:
-	var new_dialog_choice = ReactionDialogChoice.new()
+func get_new_object() -> ReactionDialogChoiceItem:
+	var new_dialog_choice = ReactionDialogChoiceItem.new()
 	new_dialog_choice.label = "newDialogChoice"
 	return new_dialog_choice

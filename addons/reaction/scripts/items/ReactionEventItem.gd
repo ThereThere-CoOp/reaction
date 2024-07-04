@@ -10,7 +10,7 @@ extends ReactionBaseItem
 ## the responses attached to it. [br]
 ## ----------------------------------------------------------------------------
 
-var fact_reference_log = {}
+@export var fact_reference_log = {}
 
 ## array of ordered rules to be checked for this concept,
 ## rules are ordered for their criteria count in descending order
@@ -123,7 +123,7 @@ func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 
 func remove_fact_reference_log(item: Resource) -> void:
 	for object_log in fact_reference_log.values():
-		if item is ReactionRuleCriteria or item is ReactionContextModification:
+		if item is ReactionCriteriaItem or item is ReactionContextModificationItem:
 			object_log.erase(item.uid)
 		else:
 			for log_item in object_log.values():

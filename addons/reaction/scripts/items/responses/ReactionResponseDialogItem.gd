@@ -15,7 +15,7 @@ extends ReactionResponseItem
 @export var have_choices: bool = false
 
 ## list of [ReactionDialogChoices] if [b]have_choice=true[/b]
-@export var choices: Array[ReactionDialogChoice]
+@export var choices: Array[ReactionDialogChoiceItem]
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -27,7 +27,7 @@ extends ReactionResponseItem
 ## [b]Returns: Array[ReactionDialogChoice][/b] [br]
 ## Returns array of choices that met their criterias by the current context  [br]
 ## ----------------------------------------------------------------------------
-func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoice]:
+func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoiceItem]:
 	var result_choices = []
 	if have_choices:
 		for choice in choices:
@@ -45,8 +45,8 @@ func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoice]:
 ## [b]Returns: ReactionDialogChoice[/b] [br]
 ## The new added dialog choice  [br]
 ## ----------------------------------------------------------------------------
-func add_new_choice() -> ReactionDialogChoice:
-	var new_dialog_choice = ReactionDialogChoice.new()
+func add_new_choice() -> ReactionDialogChoiceItem:
+	var new_dialog_choice = ReactionDialogChoiceItem.new()
 	new_dialog_choice.label = "newDialogChoice"
 	choices.append(new_dialog_choice)
 			
@@ -60,7 +60,7 @@ func add_new_choice() -> ReactionDialogChoice:
 ## [b]* choice | ReactionDialogChoice:[/b] Choice to be added
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
-func add_choice(choice: ReactionDialogChoice) -> void:
+func add_choice(choice: ReactionDialogChoiceItem) -> void:
 	choices.append(choice)
 	
 	

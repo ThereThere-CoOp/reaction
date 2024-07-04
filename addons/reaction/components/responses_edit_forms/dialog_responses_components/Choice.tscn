@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.gd" id="2_cpiw2"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="3_kn8ok"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ListObjectForm.tscn" id="4_fnf1h"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionRuleCriteria.gd" id="5_g5kym"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="5_g5kym"]
 [ext_resource type="PackedScene" uid="uid://cbfw7b8fntg6q" path="res://addons/reaction/components/Criteria.tscn" id="6_tjld7"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModification.gd" id="7_c6onu"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_c6onu"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/modification.tscn" id="8_0k25i"]
 
 [sub_resource type="Image" id="Image_5esye"]

@@ -10,10 +10,10 @@ extends ReactionBaseItem
 ## ----------------------------------------------------------------------------
 
 ## rules criterias
-@export var criterias: Array[ReactionRuleCriteria]
+@export var criterias: Array[ReactionCriteriaItem]
 
 ## rules context modifications
-@export var modifications: Array[ReactionContextModification]
+@export var modifications: Array[ReactionContextModificationItem]
 
 ## specify if the rule need to match only once
 @export var match_once := false
@@ -71,10 +71,10 @@ func execute_modifications(context: ReactionBlackboard) -> void:
 ## ----------------------------------------------------------------------------[br]
 ## Add a criteria to the rule [br]
 ## [b]Parameter(s):[/b] [br]
-## [b]* criteria | ReactionRuleCriteria:[/b] Criteria to add to the rule [br]
+## [b]* criteria | ReactionCriteriaItem:[/b] Criteria to add to the rule [br]
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
-func add_criteria(criteria: ReactionRuleCriteria) -> void:
+func add_criteria(criteria: ReactionCriteriaItem) -> void:
 	criterias.append(criteria)
 
 
@@ -92,10 +92,10 @@ func remove_criteria_by_index(index: int) -> void:
 ## ----------------------------------------------------------------------------[br]
 ## Add a modification to the rule [br]
 ## [b]Parameter(s):[/b] [br]
-## [b]* criteria | ReactionContextModification:[/b] Modification to add to the rule [br]
+## [b]* criteria | ReactionContextModificationItem:[/b] Modification to add to the rule [br]
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
-func add_modification(modification: ReactionContextModification) -> void:
+func add_modification(modification: ReactionContextModificationItem) -> void:
 	modifications.append(modification)
 	
 	
