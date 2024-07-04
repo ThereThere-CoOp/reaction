@@ -41,6 +41,14 @@ func setup_rules(current_event: ReactionEventItem) -> void:
 	rules_list.setup_items(current_event)
 
 
+func _update_criterias_container_name() -> void:
+	criterias_container.name = "Criterias (%d)" % current_rule.criterias.size()
+
+	
+func _update_modifications_container_name() -> void:
+	modifications_container.name = "Modifications (%d)" % current_rule.modifications.size()
+	
+	
 func _set_rule(rule_data: ReactionRuleItem) -> void:
 	current_rule = rule_data
 	# set input default values
@@ -51,6 +59,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	rule_priority_input.set_value_no_signal(rule_data.priority)
 	
 	#criterias
+	_update_criterias_container_name()
 	criterias_container.setup_objects(current_rule)
 	if not criterias_container.object_added.is_connected(_on_criteria_added):
 		criterias_container.object_added.connect(_on_criteria_added)
@@ -59,7 +68,14 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 		criterias_container.object_removed.connect(_on_criteria_removed)
 	
 	# modifications
+	_update_modifications_container_name()
 	modifications_container.setup_objects(current_rule)
+	
+	if not modifications_container.object_added.is_connected(_on_modification_added):
+		modifications_container.object_added.connect(_on_modification_added)
+		
+	if not modifications_container.object_removed.is_connected(_on_modification_removed):
+		modifications_container.object_removed.connect(_on_modification_removed)
 	
 	# responses
 	var responses : ReactionResponseGroupItem = null
@@ -128,9 +144,19 @@ func _on_rule_priority_spin_box_text_submitted(new_text: String):
 	
 	
 func _on_criteria_added(new_criteria: ReactionCriteriaItem) -> void:
+	_update_criterias_container_name()
 	_sort_rules_item_list()
 	
 	
 func _on_criteria_removed() -> void:
+	_update_criterias_container_name()
 	_sort_rules_item_list()
+	
+
+func _on_modification_added(new_criteria: ReactionContextModificationItem) -> void:
+	_update_modifications_container_name()
+	
+	
+func _on_modification_removed() -> void:
+	_update_modifications_container_name()
 	

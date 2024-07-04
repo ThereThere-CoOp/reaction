@@ -1,15 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://02q75f4idhxw"]
+[gd_scene load_steps=12 format=3 uid="uid://02q75f4idhxw"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ListObjectFormItem.tscn" id="1_byubm"]
 [ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.gd" id="2_cpiw2"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="3_kn8ok"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ListObjectForm.tscn" id="4_fnf1h"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="5_g5kym"]
-[ext_resource type="PackedScene" uid="uid://cbfw7b8fntg6q" path="res://addons/reaction/components/Criteria.tscn" id="6_tjld7"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_c6onu"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/modification.tscn" id="8_0k25i"]
 
-[sub_resource type="Image" id="Image_5esye"]
+[sub_resource type="Image" id="Image_dkci6"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -18,18 +17,28 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_3p4d5"]
-image = SubResource("Image_5esye")
+[sub_resource type="ImageTexture" id="ImageTexture_xd12s"]
+image = SubResource("Image_dkci6")
 
 [sub_resource type="Resource" id="Resource_j3oa1"]
 script = ExtResource("5_g5kym")
-label = ""
 operation = ""
 is_reverse = false
+parents = Array[String]([])
+uid = "9aab4281-761a-4882-8dfd-d32535fbe433"
+label = ""
+description = "Item long description"
+scope = "Global"
+tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
 
 [sub_resource type="Resource" id="Resource_jbyyi"]
 script = ExtResource("7_c6onu")
+parents = Array[String]([])
+uid = "e50a93d9-8d0a-4fe0-ad95-f099a9890edf"
 label = ""
+description = "Item long description"
+scope = "Global"
+tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
 
 [node name="Choice" instance=ExtResource("1_byubm")]
 script = ExtResource("2_cpiw2")
@@ -76,18 +85,20 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="CriteriasButton" type="Button" parent="Columns" index="4"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 text = "Criterias"
 
 [node name="ModificationsButton" type="Button" parent="Columns" index="5"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 text = "Modifications"
 
 [node name="RemoveObjectButton" parent="Columns" index="6"]
 tooltip_text = "Remove choice"
-icon = SubResource("ImageTexture_3p4d5")
+icon = SubResource("ImageTexture_xd12s")
 
 [node name="CriteriasDialog" type="AcceptDialog" parent="." index="1"]
 unique_name_in_owner = true
@@ -100,7 +111,6 @@ object_name = "criteria"
 objects_list_field_name = "criterias"
 parent_object_add_function_name = "add_criteria"
 object_resource_class = SubResource("Resource_j3oa1")
-object_scene = ExtResource("6_tjld7")
 
 [node name="ModificationsDialog" type="AcceptDialog" parent="." index="2"]
 unique_name_in_owner = true
@@ -120,3 +130,7 @@ object_scene = ExtResource("8_0k25i")
 [connection signal="item_selected" from="Columns/EventContainer/EventSearchMenu" to="." method="_on_event_search_menu_item_selected"]
 [connection signal="pressed" from="Columns/CriteriasButton" to="." method="_on_criterias_button_pressed"]
 [connection signal="pressed" from="Columns/ModificationsButton" to="." method="_on_modifications_button_pressed"]
+[connection signal="object_added" from="CriteriasDialog/Criterias" to="." method="_on_criterias_object_added"]
+[connection signal="object_removed" from="CriteriasDialog/Criterias" to="." method="_on_criterias_object_removed"]
+[connection signal="object_added" from="ModificationsDialog/Modifications" to="." method="_on_modifications_object_added"]
+[connection signal="object_removed" from="ModificationsDialog/Modifications" to="." method="_on_modifications_object_removed"]

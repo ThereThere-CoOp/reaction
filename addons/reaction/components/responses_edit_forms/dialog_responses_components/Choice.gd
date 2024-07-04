@@ -10,6 +10,9 @@ extends ListObjectFormItem
 @onready var criterias_dialog: AcceptDialog = %CriteriasDialog
 @onready var modifications_dialog: AcceptDialog = %ModificationsDialog
 
+@onready var criterias_button: Button = %CriteriasButton
+@onready var modifications_button: Button = %ModificationsButton
+
 @onready var criterias_list: ListObjectForm = %Criterias
 @onready var modifications_list: ListObjectForm = %Modifications
 
@@ -31,7 +34,19 @@ func _ready():
 	criterias_list.setup_objects(item_object)
 	modifications_list.current_database = current_database
 	modifications_list.setup_objects(item_object)
+	
+	_update_criterias_button_name()
+	_update_modifications_button_name()
 
+
+func _update_criterias_button_name() -> void:
+	criterias_button.text = "Criterias (%d)" % item_object.criterias.size()
+
+	
+func _update_modifications_button_name() -> void:
+	modifications_button.text = "Modifications (%d)" % item_object.modifications.size()
+	
+	
 ### signals
 
 
@@ -56,3 +71,19 @@ func _on_criterias_button_pressed():
 
 func _on_modifications_button_pressed():
 	modifications_dialog.popup_centered()
+
+
+func _on_criterias_object_added(object: Resource) -> void:
+	_update_criterias_button_name()
+	
+
+func _on_modifications_object_added(object: Resource) -> void:
+	_update_criterias_button_name()
+
+
+func _on_criterias_object_removed() -> void:
+	_update_criterias_button_name()
+
+
+func _on_modifications_object_removed() -> void:
+	_update_criterias_button_name()
