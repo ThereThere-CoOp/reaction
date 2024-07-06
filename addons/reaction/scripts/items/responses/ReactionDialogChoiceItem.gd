@@ -9,7 +9,7 @@ extends ReactionBaseItem
 ## ----------------------------------------------------------------------------
 
 ## text of the choice
-@export_multiline var choice_text: String
+@export var choice_text: Dictionary = {}
 
 ## criterias that the choice have to met
 @export var criterias: Array[ReactionCriteriaItem] = []

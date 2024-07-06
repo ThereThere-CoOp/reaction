@@ -1,26 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfvytlbb7m75"]
+[gd_scene load_steps=8 format=3 uid="uid://cfvytlbb7m75"]
 
 [ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/MainResponseEditForm.tscn" id="1_fu32p"]
 [ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ResponseGroupEditForm.gd" id="2_r2gyi"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ListObjectForm.tscn" id="3_3wdyr"]
+[ext_resource type="PackedScene" uid="uid://c4tm8i3lmwl6q" path="res://addons/reaction/components/ReactionIText.tscn" id="3_4odum"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="4_bktjk"]
 [ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.tscn" id="5_3qbpb"]
 
-[sub_resource type="Image" id="Image_yu03n"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id="ImageTexture_25kpr"]
-image = SubResource("Image_yu03n")
-
 [sub_resource type="Resource" id="Resource_oqidi"]
 script = ExtResource("4_bktjk")
-choice_text = ""
+choice_text = {}
 criterias = Array[Resource("res://addons/reaction/scripts/items/ReactionCriteriaItem.gd")]([])
 modifications = Array[Resource("res://addons/reaction/scripts/items/ReactionContextModificationItem.gd")]([])
 triggers = ""
@@ -57,19 +46,14 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "Dialog text"
 
-[node name="SaveTextButton" type="Button" parent="Rows/DialogDataContainer/Dialog/Rows/HeaderMenu" index="1"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Save dialog text"
-disabled = true
-icon = SubResource("ImageTexture_25kpr")
-flat = true
-
-[node name="DialogTextEdit" type="TextEdit" parent="Rows/DialogDataContainer/Dialog/Rows" index="1"]
-unique_name_in_owner = true
+[node name="ScrollContainer" type="ScrollContainer" parent="Rows/DialogDataContainer/Dialog/Rows" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
-placeholder_text = "Insert dialog text here"
+
+[node name="DialogText" parent="Rows/DialogDataContainer/Dialog/Rows/ScrollContainer" index="0" instance=ExtResource("3_4odum")]
+unique_name_in_owner = true
+layout_mode = 2
+text_field_name = "dialog_text"
 
 [node name="Choices" type="MarginContainer" parent="Rows/DialogDataContainer" index="2"]
 visible = false
@@ -95,6 +79,4 @@ parent_object_add_function_name = "add_choice"
 object_resource_class = SubResource("Resource_oqidi")
 object_scene = ExtResource("5_3qbpb")
 
-[connection signal="pressed" from="Rows/DialogDataContainer/Dialog/Rows/HeaderMenu/SaveTextButton" to="." method="_on_save_text_button_pressed"]
-[connection signal="text_changed" from="Rows/DialogDataContainer/Dialog/Rows/DialogTextEdit" to="." method="_on_dialog_text_edit_text_changed"]
 [connection signal="toggled" from="Rows/DialogDataContainer/Choices/Rows/HasChoicesCheckButton" to="." method="_on_has_choices_check_button_toggled"]

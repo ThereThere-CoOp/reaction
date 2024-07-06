@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv2ojmcpwf7qk"]
+
+[ext_resource type="Script" path="res://addons/reaction/components/ReactionITextItem.gd" id="1_l80pu"]
+
+[node name="ReactionITextItem" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_l80pu")
+
+[node name="LanguageLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

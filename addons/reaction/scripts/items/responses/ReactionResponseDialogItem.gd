@@ -9,7 +9,7 @@ extends ReactionResponseItem
 ## ----------------------------------------------------------------------------
 
 ## text line of the dialog
-@export_multiline var dialog_text: String
+@export var dialog_text: Dictionary = {}
 
 ## true if the dialog have choices
 @export var have_choices: bool = false

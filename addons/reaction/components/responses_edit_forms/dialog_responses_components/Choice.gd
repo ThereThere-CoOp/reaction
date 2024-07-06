@@ -6,7 +6,9 @@ extends ListObjectFormItem
 @onready var label_line_edit: LineEdit = %LabelLineEdit
 @onready var choice_text_line_edit: LineEdit = %ChoiceTextLineEdit
 @onready var event_search_menu: SearchMenu = %EventSearchMenu
+@onready var choice_texts: ReactionIText = %ChoiceTexts
 
+@onready var choice_text_dialog: AcceptDialog = %ChoiceTextDialog
 @onready var criterias_dialog: AcceptDialog = %CriteriasDialog
 @onready var modifications_dialog: AcceptDialog = %ModificationsDialog
 
@@ -23,8 +25,8 @@ func _ready():
 	object_name = "choice"
 	
 	label_line_edit.text = item_object.label
-	if item_object.choice_text:
-		choice_text_line_edit.text = item_object.choice_text
+	
+	choice_texts.setup(item_object, current_database)
 	
 	event_search_menu.items_list = current_database.events.values()
 	if item_object.triggers:
@@ -55,11 +57,6 @@ func _on_label_line_edit_text_submitted(new_text):
 	current_database.save_data()
 
 
-func _on_choice_text_line_edit_text_submitted(new_text):
-	item_object.choice_text = new_text
-	current_database.save_data()
-
-
 func _on_event_search_menu_item_selected(item):
 	item_object.triggers = item.uid
 	current_database.save_data()
@@ -87,3 +84,7 @@ func _on_criterias_object_removed() -> void:
 
 func _on_modifications_object_removed() -> void:
 	_update_criterias_button_name()
+
+
+func _on_choice_text_button_pressed() -> void:
+	choice_text_dialog.popup_centered()

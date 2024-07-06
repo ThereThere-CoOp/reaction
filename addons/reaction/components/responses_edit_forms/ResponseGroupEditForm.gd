@@ -3,8 +3,7 @@ class_name ResponseGroupEditForm
 extends MainResponseEditForm
 
 
-@onready var dialog_text_edit: TextEdit = %DialogTextEdit
-@onready var save_text_button: Button = %SaveTextButton
+@onready var dialog_texts: ReactionIText = %DialogText
 
 @onready var choices_container: ListObjectForm = %ChoicesList
 @onready var has_choices_check_button: CheckButton = %HasChoicesCheckButton
@@ -15,8 +14,7 @@ func _ready():
 	
 	call_deferred("apply_theme")
 	
-	if current_response.dialog_text:
-		dialog_text_edit.text = current_response.dialog_text
+	dialog_texts.setup(current_response, current_database)
 	
 	choices_container.current_database = current_database
 	choices_container.setup_objects(current_response)
@@ -26,8 +24,7 @@ func _ready():
 	
 func apply_theme() -> void:
 	# Simple check if onready
-	if is_instance_valid(save_text_button):
-		save_text_button.icon = get_theme_icon("Save", "EditorIcons")
+	pass
 	
 
 ### signals
@@ -35,17 +32,6 @@ func apply_theme() -> void:
 
 func _on_main_view_theme_changed() -> void:
 	apply_theme()
-
-
-func _on_save_text_button_pressed():
-	current_response.dialog_text = dialog_text_edit.text
-	current_database.save_data()
-	save_text_button.disabled = true
-
-
-func _on_dialog_text_edit_text_changed():
-	if dialog_text_edit.text and dialog_text_edit.text != "":
-		save_text_button.disabled = false
 
 
 func _on_has_choices_check_button_toggled(toggled_on):
