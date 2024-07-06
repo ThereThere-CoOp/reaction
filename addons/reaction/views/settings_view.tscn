@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/reaction/views/settings_view.gd" id="1_nnh0u"]
 
-[sub_resource type="Image" id="Image_50vm8"]
+[sub_resource type="Image" id="Image_c42o7"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,8 +11,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_v7w4i"]
-image = SubResource("Image_50vm8")
+[sub_resource type="ImageTexture" id="ImageTexture_4laxc"]
+image = SubResource("Image_c42o7")
 
 [node name="SettingsView" type="VBoxContainer"]
 anchors_preset = 15
@@ -27,6 +27,7 @@ script = ExtResource("1_nnh0u")
 [node name="Columns" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [node name="LeftColumn" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
@@ -50,11 +51,45 @@ editable = false
 [node name="ChangeDatabasesPathButton" type="Button" parent="Columns/LeftColumn/DatanasesPathInputContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-icon = SubResource("ImageTexture_v7w4i")
+icon = SubResource("ImageTexture_4laxc")
 
 [node name="RightColumn" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="LanguagesContainer" type="HBoxContainer" parent="Columns/RightColumn"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Columns/RightColumn/LanguagesContainer"]
+layout_mode = 2
+text = "Languages:"
+
+[node name="LanguagesMenuButton" type="MenuButton" parent="Columns/RightColumn/LanguagesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "English, Spanish, "
+text_overrun_behavior = 3
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Spanish"
+popup/item_1/id = 1
+
+[node name="AddLanguageButton" type="Button" parent="Columns/RightColumn/LanguagesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Add language"
+icon = SubResource("ImageTexture_4laxc")
+flat = true
+
+[node name="RemoveLanguageButton" type="Button" parent="Columns/RightColumn/LanguagesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Remove language"
+icon = SubResource("ImageTexture_4laxc")
+flat = true
 
 [node name="DatabasesFolderDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -63,5 +98,49 @@ size = Vector2i(400, 400)
 ok_button_text = "Seleccionar Carpeta Actual"
 file_mode = 2
 
+[node name="LanguagesEditConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Language data"
+size = Vector2i(250, 123)
+
+[node name="Rows" type="VBoxContainer" parent="LanguagesEditConfirmationDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LanguageNameContainer" type="HBoxContainer" parent="LanguagesEditConfirmationDialog/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LanguagesEditConfirmationDialog/Rows/LanguageNameContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="LanguageNameLineEdit" type="LineEdit" parent="LanguagesEditConfirmationDialog/Rows/LanguageNameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LanguageCodeContainer" type="HBoxContainer" parent="LanguagesEditConfirmationDialog/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LanguagesEditConfirmationDialog/Rows/LanguageCodeContainer"]
+layout_mode = 2
+text = "Code:"
+
+[node name="LanguageCodeLineEdit" type="LineEdit" parent="LanguagesEditConfirmationDialog/Rows/LanguageCodeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WarningAcceptDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="Columns/LeftColumn/DatanasesPathInputContainer/ChangeDatabasesPathButton" to="." method="_on_change_databases_path_button_pressed"]
+[connection signal="pressed" from="Columns/RightColumn/LanguagesContainer/AddLanguageButton" to="." method="_on_add_language_button_pressed"]
+[connection signal="pressed" from="Columns/RightColumn/LanguagesContainer/RemoveLanguageButton" to="." method="_on_remove_language_button_pressed"]
 [connection signal="dir_selected" from="DatabasesFolderDialog" to="." method="_on_databases_folder_dialog_dir_selected"]
+[connection signal="confirmed" from="LanguagesEditConfirmationDialog" to="." method="_on_languages_edit_confirmation_dialog_confirmed"]
