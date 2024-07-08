@@ -110,17 +110,17 @@ func before_all():
 	# init dialog responses
 	var response_your_a_mindundi = ReactionResponseDialogItem.new()
 	response_your_a_mindundi.label = "you_are_a_mindundi"
-	response_your_a_mindundi.dialog_text = "Tu lo que eres un mindundi."
+	response_your_a_mindundi.dialog_text = { "es": "Tu lo que eres un mindundi."}
 
 	var response_not_comunism_low_pop = ReactionResponseDialogItem.new()
 	response_not_comunism_low_pop.label = "live_not_comunism_low_pop"
-	response_not_comunism_low_pop.dialog_text = "Vives en un pais capitalista con poca gente."
+	response_not_comunism_low_pop.dialog_text =  { "es": "Vives en un pais capitalista con poca gente."}
 
 	var response_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseDialogItem.new()
 	)
 	response_mindundi_not_comunism_pop_100_400.label = "mindundi_not_comunism_pop_100_400"
-	response_mindundi_not_comunism_pop_100_400.dialog_text = "Eres un mindundi en un pais capitalista, en el que viven entre 100 y 400 personas."
+	response_mindundi_not_comunism_pop_100_400.dialog_text = { "es": "Eres un mindundi en un pais capitalista, en el que viven entre 100 y 400 personas."}
 
 	_dialog_responses[response_your_a_mindundi.label] = response_your_a_mindundi
 	_dialog_responses[response_not_comunism_low_pop.label] = response_not_comunism_low_pop

@@ -45,12 +45,12 @@ class TestEvents:
 		_global_blackboard.set_fact_value(_facts["population_size"], 50)
 
 		var dialog_returned: String = (
-			_events["main_event"].get_responses(_global_blackboard)[0].dialog_text
+			_events["main_event"].get_responses(_global_blackboard)[0].dialog_text["es"]
 		)
 
 		gut.p("Returned dialog: " + dialog_returned)
 		assert_eq(
-			_dialog_responses["live_not_comunism_low_pop"].dialog_text,
+			_dialog_responses["live_not_comunism_low_pop"].dialog_text["es"],
 			dialog_returned,
 			"Wrong dialog response returned"
 		)
