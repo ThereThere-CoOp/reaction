@@ -192,7 +192,6 @@ func _on_show_fact_references_button_pressed():
 	var text_result = ""
 	var references_count = 0
 	for event: ReactionEventItem in current_database.events.values():
-		print(event.fact_reference_log.size())
 		if current_fact.uid in event.fact_reference_log:
 			for log_item: ReactionReferenceLogItem in event.fact_reference_log[current_fact.uid].values():
 				references_count += 1
