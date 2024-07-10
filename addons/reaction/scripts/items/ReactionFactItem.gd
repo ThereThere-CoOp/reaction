@@ -43,7 +43,10 @@ func have_references(database: ReactionDatabase) -> bool:
 
 
 func get_new_object():
-	return ReactionFactItem.new()
+	var new_fact = ReactionFactItem.new()
+	new_fact.label = "newFact"
+	new_fact.type = TYPE_STRING
+	return new_fact
 	
 	
 func _get_property_list() -> Array:
