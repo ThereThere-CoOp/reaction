@@ -75,7 +75,7 @@ func _on_criterias_object_added(object: Resource) -> void:
 	
 
 func _on_modifications_object_added(object: Resource) -> void:
-	_update_criterias_button_name()
+	_update_modifications_button_name()
 
 
 func _on_criterias_object_removed() -> void:
@@ -83,7 +83,7 @@ func _on_criterias_object_removed() -> void:
 
 
 func _on_modifications_object_removed() -> void:
-	_update_criterias_button_name()
+	_update_modifications_button_name()
 
 
 func _on_choice_text_button_pressed() -> void:
