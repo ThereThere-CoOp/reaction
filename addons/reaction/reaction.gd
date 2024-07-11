@@ -3,7 +3,11 @@ extends EditorPlugin
 
 const MainView = preload("res://addons/reaction/views/main_view.tscn")
 
+const BottomPanelView = preload("res://addons/reaction/views/bottom_panel_view.tscn")
+
 var main_view_instance
+
+var bottom_panel_view_instance
 
 # autoloads vars
 const AUTOLOADS_BASE_FOLDER = "res://addons/reaction/autoloads/"
@@ -25,12 +29,20 @@ func _enter_tree():
 		main_view_instance.events_panel.events_list.undo_redo = get_undo_redo()
 		main_view_instance.rules_panel.rules_list.undo_redo = get_undo_redo()
 		main_view_instance.tags_panel.tags_list.undo_redo = get_undo_redo()
+		
+		bottom_panel_view_instance = BottomPanelView.instantiate()
+		add_control_to_bottom_panel(bottom_panel_view_instance, "Reaction")
+		
 		_make_visible(false)
 
 
 func _exit_tree():
 	remove_autoload_singleton(GLOBALS_SINGLETON_NAME)
 	remove_autoload_singleton(SIGNALS_SINGLETON_NAME)
+	
+	if bottom_panel_view_instance:
+		remove_control_from_bottom_panel(bottom_panel_view_instance)
+		bottom_panel_view_instance.queue_free()
 
 	if main_view_instance:
 		main_view_instance.queue_free()
