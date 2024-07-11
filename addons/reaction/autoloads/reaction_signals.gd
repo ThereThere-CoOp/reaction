@@ -9,3 +9,10 @@ signal database_selected(database: ReactionDatabase)
 
 # ----------------- blackboards facts signals ---------------
 signal blackboard_fact_modified(fact: ReactionBlackboardFact, real_value: Variant)
+
+# ----------------- execution/debug signals ------------------
+signal event_executed(event: ReactionEventItem)
+
+signal rule_executed(rule: ReactionRuleItem)
+
+signal response_executed(response: ReactionResponseItem)

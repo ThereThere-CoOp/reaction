@@ -103,15 +103,24 @@ func remove_rule(rule_uid: String) -> void:
 ## Responses group of the first matching rule  [br]
 ## ----------------------------------------------------------------------------
 func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
+	ReactionSignals.event_executed.emit(self)
 	for rule in rules:
 		if rule.test(context):
 			context.clean_scope("Event")
 			rule.execute_modifications(context)
+			ReactionSignals.rule_executed.emit(rule)
 			return rule.responses.get_responses()
 
 	return []
 	
-	
+
+## ----------------------------------------------------------------------------[br]
+## Add an item on the fact references logs
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* object | ReactionReferenceLogItem:[/b] New log item to add [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------	
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 	var fact_uid: String = object.object.fact.uid
 	if fact_uid in fact_reference_log:
@@ -121,6 +130,14 @@ func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 		fact_reference_log[fact_uid][object.uid] = object
 	
 
+## ----------------------------------------------------------------------------[br]
+## Remove an item on the fact references logs
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* item | Resource:[/b] Item to removed from the log could be an
+## rule, criteria, modification, response or dialog choice [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------	
 func remove_fact_reference_log(item: Resource) -> void:
 	for object_log in fact_reference_log.values():
 		if item is ReactionCriteriaItem or item is ReactionContextModificationItem:
@@ -138,7 +155,11 @@ func remove_fact_reference_log(item: Resource) -> void:
 				if item is ReactionDialogChoiceItem:
 					if log_item.choice.uid == item.uid:
 						object_log.erase(log_item.uid)
+						
+				## add here extra if for custom items
 				
 
 func get_new_object():
-	return ReactionEventItem.new()
+	var new_event = ReactionEventItem.new()
+	new_event.label = "NEW_EVENT"
+	return new_event
