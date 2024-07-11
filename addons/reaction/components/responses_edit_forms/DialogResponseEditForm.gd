@@ -1,4 +1,0 @@
-@tool
-class_name DialogResponseEditForm
-extends MainResponseEditForm
-

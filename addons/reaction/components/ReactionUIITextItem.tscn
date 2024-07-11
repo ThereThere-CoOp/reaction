@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv2ojmcpwf7qk"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionITextItem.gd" id="1_l80pu"]
+[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIITextItem.gd" id="1_yu1o3"]
 
-[node name="ReactionITextItem" type="VBoxContainer"]
+[node name="ReactionUIITextItem" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_l80pu")
+script = ExtResource("1_yu1o3")
 
 [node name="LanguageLabel" type="Label" parent="."]
 unique_name_in_owner = true

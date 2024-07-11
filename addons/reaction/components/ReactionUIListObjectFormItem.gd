@@ -1,5 +1,5 @@
 @tool
-class_name ListObjectFormItem
+class_name ReactionUIListObjectFormItem
 extends PanelContainer
 
 signal object_list_form_removed(object_index: int)

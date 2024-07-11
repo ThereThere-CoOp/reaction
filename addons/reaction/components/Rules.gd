@@ -16,8 +16,8 @@ var undo_redo: EditorUndoRedoManager:
 
 @onready var rules_list: ReactionItemList = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
-@onready var criterias_container: ListObjectForm = %Criterias
-@onready var modifications_container: ListObjectForm = %Modifications
+@onready var criterias_container: ReactionUIListObjectForm = %Criterias
+@onready var modifications_container: ReactionUIListObjectForm = %Modifications
 @onready var responses_container: Responses = %Responses
 
 # rules inputs

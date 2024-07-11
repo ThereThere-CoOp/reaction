@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cfvytlbb7m75"]
 
-[ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/MainResponseEditForm.tscn" id="1_fu32p"]
-[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ResponseGroupEditForm.gd" id="2_r2gyi"]
-[ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ListObjectForm.tscn" id="3_3wdyr"]
-[ext_resource type="PackedScene" uid="uid://c4tm8i3lmwl6q" path="res://addons/reaction/components/ReactionIText.tscn" id="3_4odum"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="4_bktjk"]
-[ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/Choice.tscn" id="5_3qbpb"]
+[ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn" id="1_mnjky"]
+[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.gd" id="2_2jkjf"]
+[ext_resource type="PackedScene" uid="uid://c4tm8i3lmwl6q" path="res://addons/reaction/components/ReactionUIIText.tscn" id="3_fkgd7"]
+[ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="4_dr0lt"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="5_hunnk"]
+[ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
 
 [sub_resource type="Resource" id="Resource_oqidi"]
-script = ExtResource("4_bktjk")
+script = ExtResource("5_hunnk")
 choice_text = {}
 criterias = Array[Resource("res://addons/reaction/scripts/items/ReactionCriteriaItem.gd")]([])
 modifications = Array[Resource("res://addons/reaction/scripts/items/ReactionContextModificationItem.gd")]([])
@@ -20,8 +20,8 @@ description = "Item long description"
 scope = "Global"
 tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
 
-[node name="DialogResponseEditForm" instance=ExtResource("1_fu32p")]
-script = ExtResource("2_r2gyi")
+[node name="ReactionUIDialogResponseEditForm" instance=ExtResource("1_mnjky")]
+script = ExtResource("2_2jkjf")
 
 [node name="DialogDataContainer" type="TabContainer" parent="Rows" index="1"]
 layout_mode = 2
@@ -50,7 +50,7 @@ text = "Dialog text"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DialogText" parent="Rows/DialogDataContainer/Dialog/Rows/ScrollContainer" index="0" instance=ExtResource("3_4odum")]
+[node name="DialogText" parent="Rows/DialogDataContainer/Dialog/Rows/ScrollContainer" index="0" instance=ExtResource("3_fkgd7")]
 unique_name_in_owner = true
 layout_mode = 2
 text_field_name = "dialog_text"
@@ -68,7 +68,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Have choices?"
 
-[node name="ChoicesList" parent="Rows/DialogDataContainer/Choices/Rows" index="1" instance=ExtResource("3_3wdyr")]
+[node name="ChoicesList" parent="Rows/DialogDataContainer/Choices/Rows" index="1" instance=ExtResource("4_dr0lt")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -77,6 +77,6 @@ object_name = "choice"
 objects_list_field_name = "choices"
 parent_object_add_function_name = "add_choice"
 object_resource_class = SubResource("Resource_oqidi")
-object_scene = ExtResource("5_3qbpb")
+object_scene = ExtResource("6_ud6fd")
 
 [connection signal="toggled" from="Rows/DialogDataContainer/Choices/Rows/HasChoicesCheckButton" to="." method="_on_has_choices_check_button_toggled"]

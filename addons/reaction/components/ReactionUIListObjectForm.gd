@@ -1,5 +1,5 @@
 @tool
-class_name ListObjectForm
+class_name ReactionUIListObjectForm
 extends MarginContainer
 
 signal object_added(object: Resource)
@@ -13,7 +13,7 @@ var current_parent_object: Resource
 @export var objects_list_field_name: String = "objects"
 @export var parent_object_add_function_name: String = "addObjects"
 @export var object_resource_class: Resource
-@export var object_scene = preload("res://addons/reaction/components/Criteria.tscn")
+@export var object_scene = preload("res://addons/reaction/components/ReactionUICriteria.tscn")
 
 @onready var add_object_button : Button = %AddObjectButton
 @onready var objects_rows : VBoxContainer = %ObjectsRows
@@ -31,19 +31,20 @@ func _ready():
 
 
 func setup_objects(parent_object: Resource) -> void:
-	current_parent_object = parent_object
-	
-	for object in objects_rows.get_children():
-		object.queue_free()
-	
-	_objects_scroll_to_end = false
-	var index = 0
-	for object in current_parent_object.get(objects_list_field_name):
-		var new_object = object_scene.instantiate()
-		new_object.setup(current_database, current_parent_object, object, index)
-		new_object.object_list_form_removed.connect(_on_object_removed)
-		objects_rows.add_child(new_object)
-		index += 1
+	if parent_object:
+		current_parent_object = parent_object
+		
+		for object in objects_rows.get_children():
+			object.queue_free()
+		
+		_objects_scroll_to_end = false
+		var index = 0
+		for object in current_parent_object.get(objects_list_field_name):
+			var new_object = object_scene.instantiate()
+			new_object.setup(current_database, current_parent_object, object, index)
+			new_object.object_list_form_removed.connect(_on_object_removed)
+			objects_rows.add_child(new_object)
+			index += 1
 
 
 ### signals

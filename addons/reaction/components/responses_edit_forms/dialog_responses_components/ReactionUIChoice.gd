@@ -1,12 +1,12 @@
 @tool
-class_name Choice
-extends ListObjectFormItem
+class_name ReactionUIChoice
+extends ReactionUIListObjectFormItem
 
 
 @onready var label_line_edit: LineEdit = %LabelLineEdit
-@onready var choice_text_line_edit: LineEdit = %ChoiceTextLineEdit
-@onready var event_search_menu: SearchMenu = %EventSearchMenu
-@onready var choice_texts: ReactionIText = %ChoiceTexts
+@onready var choice_texts_button: Button = %ChoiceTextButton
+@onready var event_search_menu: ReactionUISearchMenu = %EventSearchMenu
+@onready var choice_texts: ReactionUIIText = %ChoiceTexts
 
 @onready var choice_text_dialog: AcceptDialog = %ChoiceTextDialog
 @onready var criterias_dialog: AcceptDialog = %CriteriasDialog
@@ -15,30 +15,31 @@ extends ListObjectFormItem
 @onready var criterias_button: Button = %CriteriasButton
 @onready var modifications_button: Button = %ModificationsButton
 
-@onready var criterias_list: ListObjectForm = %Criterias
-@onready var modifications_list: ListObjectForm = %Modifications
+@onready var criterias_list: ReactionUIListObjectForm = %Criterias
+@onready var modifications_list: ReactionUIListObjectForm = %Modifications
 
 
 func _ready():
 	super()
-	remove_object_function_name = "remove_choice_by_index"
-	object_name = "choice"
-	
-	label_line_edit.text = item_object.label
-	
-	choice_texts.setup(item_object, current_database)
-	
-	event_search_menu.items_list = current_database.events.values()
-	if item_object.triggers:
-		event_search_menu.update_search_text_value(current_database.events[item_object.triggers].label)
-	
-	criterias_list.current_database = current_database
-	criterias_list.setup_objects(item_object)
-	modifications_list.current_database = current_database
-	modifications_list.setup_objects(item_object)
-	
-	_update_criterias_button_name()
-	_update_modifications_button_name()
+	if item_object:
+		remove_object_function_name = "remove_choice_by_index"
+		object_name = "choice"
+		
+		label_line_edit.text = item_object.label
+		
+		choice_texts.setup(item_object, current_database)
+		
+		event_search_menu.items_list = current_database.events.values()
+		if item_object.triggers:
+			event_search_menu.update_search_text_value(current_database.events[item_object.triggers].label)
+		
+		criterias_list.current_database = current_database
+		criterias_list.setup_objects(item_object)
+		modifications_list.current_database = current_database
+		modifications_list.setup_objects(item_object)
+		
+		_update_criterias_button_name()
+		_update_modifications_button_name()
 
 
 func _update_criterias_button_name() -> void:

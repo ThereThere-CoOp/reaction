@@ -6,8 +6,8 @@ var current_database: ReactionDatabase
 
 var root_response_group: ReactionResponseGroupItem
 
-@onready var response_group_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ResponseGroupEditForm.tscn")
-@onready var dialog_response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/DialogResponseEditForm.tscn")
+@onready var response_group_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIResponseGroupEditForm.tscn")
+@onready var dialog_response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.tscn")
 
 @onready var add_response_group_button: Button = %AddResponseGroupButton
 @onready var add_response_menu_button: MenuButton = %AddResponseMenuButton
@@ -104,7 +104,7 @@ func _show_edit_dialog() -> void:
 	var selected_response = _get_selected_response()
 	var response_type = ReactionGlobals.get_item_type(selected_response)
 	edit_response_dialog.title = ("Edit %s" % response_type)
-	var form_scene: MainResponseEditForm
+	var form_scene: ReactionUIMainResponseEditForm
 	
 	match response_type:
 		"Response Group":

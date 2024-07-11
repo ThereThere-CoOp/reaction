@@ -1,5 +1,5 @@
 @tool
-class_name SearchMenu
+class_name ReactionUISearchMenu
 extends HBoxContainer
 
 signal item_selected(item: Resource)

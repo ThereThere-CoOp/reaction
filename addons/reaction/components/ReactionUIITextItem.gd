@@ -1,5 +1,5 @@
 @tool
-class_name ReactionITextItem
+class_name ReactionUIITextItem
 extends VBoxContainer
 
 const ReactionSettings = preload("../utilities/settings.gd")
@@ -28,11 +28,12 @@ func _ready() -> void:
 	var settings_language = ReactionSettings.get_setting(
 		ReactionSettings.LANGUAGES_SETTING_NAME,
 		ReactionSettings.LANGUAGES_SETTING_DEFAULT
-	)
+	).duplicate()
 	
-	language_label.text = settings_language[code]["name"]
-	if code in object.get(texts_field_name):
-		text_edit.text = object.get(texts_field_name)[code]
+	if code:
+		language_label.text = settings_language[code]["name"]
+		if code in object.get(texts_field_name):
+			text_edit.text = object.get(texts_field_name)[code]
 
 
 func _on_text_edit_text_changed() -> void:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bujjba3nge54o"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ListObjectForm.gd" id="1_63s57"]
+[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="1_04rig"]
 
-[node name="ListObjectForm" type="MarginContainer"]
-script = ExtResource("1_63s57")
+[node name="ReactionUIListObjectForm" type="MarginContainer"]
+script = ExtResource("1_04rig")
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2

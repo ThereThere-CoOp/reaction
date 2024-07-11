@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://k3csipi6igv0"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/MainResponseEditForm.gd" id="1_u2w4w"]
-[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/SearchMenu.tscn" id="2_bfb3a"]
+[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.gd" id="1_n7dsc"]
+[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="2_sa6ir"]
 
-[node name="MainResponseEditForm" type="PanelContainer"]
+[node name="ReactionUIMainResponseEditForm" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-script = ExtResource("1_u2w4w")
+script = ExtResource("1_n7dsc")
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -48,7 +48,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Triggers:"
 
-[node name="EventsSearchMenu" parent="Rows/Columns/Rows1/TriggersContainer" instance=ExtResource("2_bfb3a")]
+[node name="EventsSearchMenu" parent="Rows/Columns/Rows1/TriggersContainer" instance=ExtResource("2_sa6ir")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

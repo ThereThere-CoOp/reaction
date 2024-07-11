@@ -1,8 +1,8 @@
 @tool
-class_name ReactionIText
+class_name ReactionUIIText
 extends VBoxContainer
 
-const text_item_scene: PackedScene = preload("res://addons/reaction/components/ReactionITextItem.tscn")
+const text_item_scene: PackedScene = preload("res://addons/reaction/components/ReactionUIITextItem.tscn")
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
@@ -25,7 +25,7 @@ func setup(parent: Resource, database: ReactionDatabase) -> void:
 	var object_texts_dicts = parent_object.get(text_field_name)
 	
 	for code in settings_language.keys():
-		var item_node: ReactionITextItem = text_item_scene.instantiate()
+		var item_node: ReactionUIITextItem = text_item_scene.instantiate()
 		
 		item_node.setup(current_database, parent_object, text_field_name, code)
 		
