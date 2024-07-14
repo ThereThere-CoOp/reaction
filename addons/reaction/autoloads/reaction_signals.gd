@@ -16,3 +16,5 @@ signal event_executed(event: ReactionEventItem)
 signal rule_executed(rule: ReactionRuleItem)
 
 signal response_executed(response: ReactionResponseItem)
+
+signal event_execution_log_created(new_event_log: ReactionEventExecutionLogItem)

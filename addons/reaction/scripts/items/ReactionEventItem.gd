@@ -104,10 +104,22 @@ func remove_rule(rule_uid: String) -> void:
 ## ----------------------------------------------------------------------------
 func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
 	ReactionSignals.event_executed.emit(self)
+	
+	var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
+	new_event_log_item.label = self.label
+	new_event_log_item.event_triggered = self
+	new_event_log_item.old_blackboard = context.duplicate()
+	
 	for rule in rules:
 		if rule.test(context):
 			context.clean_scope("Event")
+			
 			rule.execute_modifications(context)
+			
+			new_event_log_item.rule_triggered = rule
+			new_event_log_item.new_blackboard = context.duplicate()
+			ReactionSignals.event_execution_log_created.emit(new_event_log_item)
+			
 			ReactionSignals.rule_executed.emit(rule)
 			return rule.responses.get_responses()
 

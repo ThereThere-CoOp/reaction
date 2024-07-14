@@ -105,42 +105,104 @@ layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
+[node name="TriggerByEventLabel" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+visible = false
+layout_mode = 2
+text = "Trigger By Event:"
+
+[node name="TriggerByEventDataContainer" type="HBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+layout_mode = 2
+text = "Label:"
+
+[node name="TriggerEventLabelLineEdit" type="LineEdit" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="EventUidLabel" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+layout_mode = 2
+text = "Uid:"
+
+[node name="TriggerEventUidLineEdit" type="LineEdit" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="TriggerByRuleLabel" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+visible = false
+layout_mode = 2
+text = "Trigger By Rule:"
+
+[node name="TriggerByRuleDataContainers" type="HBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+layout_mode = 2
+text = "Label:"
+
+[node name="TriggerRuleLabelLineEdit" type="LineEdit" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="RuleUidLabel" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+layout_mode = 2
+text = "Uid:"
+
+[node name="TriggerRuleUidLineEdit" type="LineEdit" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
 [node name="CriteriaModificationColumns" type="HBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CriteriaRow" type="VBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
+[node name="CriteriaColumn" type="VBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaRow"]
+[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
 layout_mode = 2
 text = "Criterias:"
 
-[node name="PanelContainer" type="PanelContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaRow"]
+[node name="PanelContainer" type="PanelContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CriteriasDataLabel" type="RichTextLabel" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaRow/PanelContainer"]
+[node name="CriteriasDataLabel" type="RichTextLabel" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 
-[node name="ModificationRow" type="VBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
+[node name="ModificationColumn" type="VBoxContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationRow"]
+[node name="Label" type="Label" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
 layout_mode = 2
 text = "Modifications:"
 
-[node name="PanelContainer" type="PanelContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationRow"]
+[node name="PanelContainer" type="PanelContainer" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ModificationsDataLabel" type="RichTextLabel" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationRow/PanelContainer"]
+[node name="ModificationsDataLabel" type="RichTextLabel" parent="Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
