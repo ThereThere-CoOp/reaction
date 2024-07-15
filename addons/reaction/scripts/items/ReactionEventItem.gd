@@ -108,7 +108,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 	var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
 	new_event_log_item.label = self.label
 	new_event_log_item.event_triggered = self
-	new_event_log_item.old_blackboard = context.duplicate()
+	new_event_log_item.old_blackboard = context.clone()
 	
 	for rule in rules:
 		if rule.test(context):
@@ -117,7 +117,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			rule.execute_modifications(context)
 			
 			new_event_log_item.rule_triggered = rule
-			new_event_log_item.new_blackboard = context.duplicate()
+			new_event_log_item.new_blackboard = context.clone()
 			ReactionSignals.event_execution_log_created.emit(new_event_log_item)
 			
 			ReactionSignals.rule_executed.emit(rule)

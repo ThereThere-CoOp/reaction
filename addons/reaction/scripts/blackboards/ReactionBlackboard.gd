@@ -21,6 +21,14 @@ var _facts_lookup = {}
 var _facts_scope_lookup = {}
 
 
+func get_facts() -> Array[ReactionBlackboardFact]:
+	return _facts
+	
+	
+func get_facts_lookup() -> Dictionary:
+	return _facts_lookup
+
+
 func get_fact_value(fact_uid: String) -> Variant:
 	if not _facts_lookup.has(fact_uid):
 		return null
@@ -107,6 +115,13 @@ func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false) -> v
 				_facts.append(in_fact)
 				_facts_lookup[in_fact_uid] = len(_facts) - 1
 				_add_facts_scope_lookup(in_fact.fact)
+				
+				
+func clone() -> ReactionBlackboard:
+	var duplicate = ReactionBlackboard.new()
+	duplicate.merge([self], true)
+	return duplicate
+	
 
 ## ----------------------------------------------------------------------------[br]
 ## Clean all the facts that belong to a scope from the blackboard [br]

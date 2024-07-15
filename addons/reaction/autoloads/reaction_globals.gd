@@ -9,12 +9,12 @@ var databases: Dictionary = {}
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
 @onready var global_context: ReactionBlackboard = ReactionBlackboard.new()
-
-
+	
+	
 func _ready():
 	pass
-
-
+	
+	
 func get_item_type(item: Resource) -> String:
 	if item is ReactionEventItem:
 		return "Event"
