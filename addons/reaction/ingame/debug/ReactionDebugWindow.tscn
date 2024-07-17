@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh4pmkwqh73yw"]
+[gd_scene load_steps=5 format=3 uid="uid://bh4pmkwqh73yw"]
 
 [ext_resource type="Script" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
+[ext_resource type="FontFile" uid="uid://rv76uuj0fvrf" path="res://addons/reaction/fonts/CourierPrime-Regular.ttf" id="2_y5fdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw8x0"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_mjxg3"]
+default_font = ExtResource("2_y5fdm")
+default_font_size = 16
 
 [node name="ReactionDebugWindow" type="Window" groups=["reaction_debug_ui"]]
 transparent_bg = true
@@ -26,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource("Theme_mjxg3")
 
 [node name="Columns" type="HBoxContainer" parent="MainPanelContainer"]
 layout_mode = 2
