@@ -1,7 +1,7 @@
 @tool
 extends Window
 
-@export var default_alpha: float = 0.5
+@export var default_alpha: float = 1.0
 
 @onready var main_panel_container: PanelContainer = %MainPanelContainer
 
@@ -27,7 +27,7 @@ extends Window
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	visible = false
+	visible = true
 	main_panel_container.modulate.a = default_alpha
 	ReactionSignals.event_execution_log_created.connect(add_event_log)
 	event_log_data_container.visible = false
