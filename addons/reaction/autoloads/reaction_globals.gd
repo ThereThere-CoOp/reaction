@@ -15,6 +15,12 @@ func _ready():
 	pass
 	
 	
+func _change_reaction_ui_debug_visibility() -> void:
+	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
+	for node in nodes:
+		node.visible = not node.visible
+	
+	
 func get_item_type(item: Resource) -> String:
 	if item is ReactionEventItem:
 		return "Event"
@@ -34,3 +40,9 @@ func get_item_type(item: Resource) -> String:
 		return "Response"
 	else:
 		return "Fact"
+		
+		
+func _unhandled_input(event):
+	if not Engine.is_editor_hint():
+		if event.is_action_pressed("reaction_ui_debug"):
+			_change_reaction_ui_debug_visibility()

@@ -2,17 +2,23 @@
 
 [ext_resource type="Script" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgbm0"]
-bg_color = Color(0.6, 0.6, 0.6, 0.67451)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw8x0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="ReactionDebugWindow" type="Window"]
+[node name="ReactionDebugWindow" type="Window" groups=["reaction_debug_ui"]]
+transparent_bg = true
 title = "Reaction Debug"
+position = Vector2i(0, 36)
 size = Vector2i(600, 300)
-theme_override_styles/embedded_border = SubResource("StyleBoxFlat_dgbm0")
+visible = false
+theme_override_font_sizes/title_font_size = 10
+theme_override_styles/embedded_border = SubResource("StyleBoxFlat_dw8x0")
 script = ExtResource("1_flcq3")
+default_alpha = null
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-modulate = Color(1, 1, 1, 0.47451)
+[node name="MainPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,199 +27,198 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Columns" type="HBoxContainer" parent="PanelContainer"]
+[node name="Columns" type="HBoxContainer" parent="MainPanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="EventLogItemList" type="ItemList" parent="PanelContainer/Columns"]
+[node name="EventLogItemList" type="ItemList" parent="MainPanelContainer/Columns"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="EventLogDataContainer" type="MarginContainer" parent="PanelContainer/Columns"]
+[node name="EventLogDataContainer" type="MarginContainer" parent="MainPanelContainer/Columns"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TabContainer" type="TabContainer" parent="PanelContainer/Columns/EventLogDataContainer"]
+[node name="TabContainer" type="TabContainer" parent="MainPanelContainer/Columns/EventLogDataContainer"]
 layout_mode = 2
 
-[node name="General" type="MarginContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer"]
+[node name="General" type="MarginContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General"]
 layout_mode = 2
 
-[node name="Rows" type="VBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer"]
+[node name="Rows" type="VBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EventLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="EventLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 text = "Event:"
 
-[node name="EventDataContainer" type="HBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="EventDataContainer" type="HBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
 layout_mode = 2
 text = "Label:"
 
-[node name="EventLabelLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
+[node name="EventLabelLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="EventUidLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
+[node name="EventUidLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
 layout_mode = 2
 text = "Uid:"
 
-[node name="EventUidLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
+[node name="EventUidLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/EventDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="RuleLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="RuleLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 text = "Rule:"
 
-[node name="RuleDataContainers" type="HBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="RuleDataContainers" type="HBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
 layout_mode = 2
 text = "Label:"
 
-[node name="RuleLabelLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
+[node name="RuleLabelLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="RuleUidLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
+[node name="RuleUidLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
 layout_mode = 2
 text = "Uid:"
 
-[node name="RuleUidLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
+[node name="RuleUidLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/RuleDataContainers"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="TriggerByEventLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="TriggerByEventLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 visible = false
 layout_mode = 2
 text = "Trigger By Event:"
 
-[node name="TriggerByEventDataContainer" type="HBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="TriggerByEventDataContainer" type="HBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
 layout_mode = 2
 text = "Label:"
 
-[node name="TriggerEventLabelLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+[node name="TriggerEventLabelLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="EventUidLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+[node name="EventUidLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
 layout_mode = 2
 text = "Uid:"
 
-[node name="TriggerEventUidLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
+[node name="TriggerEventUidLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByEventDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="TriggerByRuleLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="TriggerByRuleLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 visible = false
 layout_mode = 2
 text = "Trigger By Rule:"
 
-[node name="TriggerByRuleDataContainers" type="HBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="TriggerByRuleDataContainers" type="HBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
 layout_mode = 2
 text = "Label:"
 
-[node name="TriggerRuleLabelLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+[node name="TriggerRuleLabelLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="RuleUidLabel" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+[node name="RuleUidLabel" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
 layout_mode = 2
 text = "Uid:"
 
-[node name="TriggerRuleUidLineEdit" type="LineEdit" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
+[node name="TriggerRuleUidLineEdit" type="LineEdit" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/TriggerByRuleDataContainers"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="CriteriaModificationColumns" type="HBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
+[node name="CriteriaModificationColumns" type="HBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CriteriaColumn" type="VBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
+[node name="CriteriaColumn" type="VBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
 layout_mode = 2
 text = "Criterias:"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
+[node name="PanelContainer" type="PanelContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CriteriasDataLabel" type="RichTextLabel" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn/PanelContainer"]
+[node name="CriteriasDataLabel" type="RichTextLabel" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/CriteriaColumn/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 
-[node name="ModificationColumn" type="VBoxContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
+[node name="ModificationColumn" type="VBoxContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
+[node name="Label" type="Label" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
 layout_mode = 2
 text = "Modifications:"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
+[node name="PanelContainer" type="PanelContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ModificationsDataLabel" type="RichTextLabel" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn/PanelContainer"]
+[node name="ModificationsDataLabel" type="RichTextLabel" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General/ScrollContainer/Rows/CriteriaModificationColumns/ModificationColumn/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 
-[node name="Blackboard" type="MarginContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer"]
+[node name="Blackboard" type="MarginContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -221,18 +226,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard/ScrollContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BlackboardDataLabel" type="RichTextLabel" parent="PanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard/ScrollContainer/PanelContainer"]
+[node name="BlackboardDataLabel" type="RichTextLabel" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard/ScrollContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="item_selected" from="PanelContainer/Columns/EventLogItemList" to="." method="_on_event_log_item_list_item_selected"]
+[connection signal="item_selected" from="MainPanelContainer/Columns/EventLogItemList" to="." method="_on_event_log_item_list_item_selected"]

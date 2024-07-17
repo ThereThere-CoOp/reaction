@@ -19,3 +19,4 @@ offset_bottom = 23.0
 text = "Test"
 
 [node name="ReactionDebugWindow" parent="." instance=ExtResource("2_lgm08")]
+default_alpha = 0.5

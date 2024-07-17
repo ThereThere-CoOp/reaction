@@ -1,6 +1,9 @@
 @tool
 extends Window
 
+@export var default_alpha: float = 0.5
+
+@onready var main_panel_container: PanelContainer = %MainPanelContainer
 
 @onready var event_log_list: ItemList = %EventLogItemList
 @onready var event_log_data_container: MarginContainer = %EventLogDataContainer
@@ -23,9 +26,30 @@ extends Window
 @onready var blackboard_data_label: RichTextLabel = %BlackboardDataLabel
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void: 
+func _ready() -> void:
+	visible = false
+	main_panel_container.modulate.a = default_alpha
 	ReactionSignals.event_execution_log_created.connect(add_event_log)
 	event_log_data_container.visible = false
+	
+	# add inputs maps
+	var event_show_debug_windows = InputEventKey.new()
+	event_show_debug_windows.physical_keycode = KEY_D
+	event_show_debug_windows.ctrl_pressed = true
+	InputMap.add_action("reaction_ui_debug")
+	InputMap.action_add_event("reaction_ui_debug", event_show_debug_windows)
+	
+	var event_debug_windows_more_alpha = InputEventKey.new()
+	event_debug_windows_more_alpha.physical_keycode = KEY_KP_ADD
+	event_debug_windows_more_alpha.ctrl_pressed = true
+	InputMap.add_action("reaction_ui_debug_alpha_plus")
+	InputMap.action_add_event("reaction_ui_debug_alpha_plus", event_debug_windows_more_alpha)
+	
+	var event_debug_windows_less_alpha = InputEventKey.new()
+	event_debug_windows_less_alpha.physical_keycode = KEY_KP_SUBTRACT
+	event_debug_windows_less_alpha.ctrl_pressed = true
+	InputMap.add_action("reaction_ui_debug_alpha_minus")
+	InputMap.action_add_event("reaction_ui_debug_alpha_minus", event_debug_windows_less_alpha)
 	
 	clear()
 	
@@ -40,11 +64,21 @@ func clear() -> void:
 	event_log_data_container.visible = false
 	
 	
+func _change_panel_alpha(new_alpha) -> void:
+	main_panel_container.modulate.a += new_alpha
+	
+	
+	
 func _update_criterias(criterias: Array[ReactionCriteriaItem]) -> void:
 	if criterias and criterias.size() > 0:
 		var result: String = ""
 		for criteria: ReactionCriteriaItem in criterias:
-			result += "[color=yellow]%s:[/color] Fact: [color=yellow]%s[/color] %s %s \n" % [criteria.label, criteria.fact.label, criteria.operation,  str(criteria.value)]
+			result += "[color=yellow]%s:[/color] Fact: [color=yellow]%s[/color] %s %s" % [criteria.label, criteria.fact.label, criteria.operation,  str(criteria.value_a)]
+			
+			if criteria.operation == "a<=x<=b":
+				result += " ,%s" % [str(criteria.value_b)]
+				
+			result += "\n"
 		criterias_data_label.text = "[code]%s[/code]" % result
 	else:
 		criterias_data_label.text = "[code]No criterias found[/code]"
@@ -114,3 +148,12 @@ func _on_event_log_item_list_item_selected(index):
 
 func _on_close_requested() -> void:
 	visible = false
+	
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("reaction_ui_debug"):
+		visible = false
+	if event.is_action_pressed("reaction_ui_debug_alpha_plus"):
+		_change_panel_alpha(0.1)
+	if event.is_action_pressed("reaction_ui_debug_alpha_minus"):
+		_change_panel_alpha(-0.1)
