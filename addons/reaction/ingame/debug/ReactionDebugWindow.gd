@@ -5,8 +5,15 @@ extends Window
 
 @onready var main_panel_container: PanelContainer = %MainPanelContainer
 
+@onready var event_general_data_container: VBoxContainer = %EventGeneralDataRows
+
+@onready var choice_general_data_container: VBoxContainer =%ChoiceGeneralDataRows
+
 @onready var event_log_list: ItemList = %EventLogItemList
 @onready var event_log_data_container: MarginContainer = %EventLogDataContainer
+
+@onready var choice_label_edit: LineEdit = %ChoiceLabelLineEdit
+@onready var choice_uid_edit: LineEdit = %ChoiceUidLineEdit
 
 @onready var event_label_edit: LineEdit = %EventLabelLineEdit
 @onready var event_uid_edit: LineEdit = %EventUidLineEdit
@@ -128,14 +135,26 @@ func _update_blackboard_data(old_blackboard: ReactionBlackboard, new_blackboard:
 
 
 func set_event_log_item(event_log: ReactionEventExecutionLogItem) -> void:
-	event_label_edit.text = event_log.event_triggered.label
-	event_uid_edit.text = event_log.event_triggered.uid
-	
-	rule_label_edit.text =  event_log.rule_triggered.label
-	rule_uid_edit.text =  event_log.rule_triggered.uid
-	
-	_update_criterias(event_log.rule_triggered.criterias)
-	_update_modifications(event_log.rule_triggered.modifications)
+	if event_log.event_triggered:
+		event_label_edit.text = event_log.event_triggered.label
+		event_uid_edit.text = event_log.event_triggered.uid
+		
+		rule_label_edit.text =  event_log.rule_triggered.label
+		rule_uid_edit.text =  event_log.rule_triggered.uid
+		
+		_update_criterias(event_log.rule_triggered.criterias)
+		_update_modifications(event_log.rule_triggered.modifications)
+		event_general_data_container.visible = true
+		choice_general_data_container.visible = false
+	else:
+		choice_label_edit.text = event_log.choice_triggered.label
+		choice_uid_edit.text = event_log.choice_triggered.uid
+		
+		_update_criterias(event_log.choice_triggered.criterias)
+		_update_modifications(event_log.choice_triggered.modifications)
+		
+		event_general_data_container.visible = false
+		choice_general_data_container.visible = true
 	
 	_update_blackboard_data(event_log.old_blackboard, event_log.new_blackboard)
 	event_log_data_container.visible = true

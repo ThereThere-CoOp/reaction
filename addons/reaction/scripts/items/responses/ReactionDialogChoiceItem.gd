@@ -29,9 +29,16 @@ extends ReactionBaseItem
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func execute_modifications(context: ReactionBlackboard) -> void:
+	var new_event_log: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
+	new_event_log.label = label
+	new_event_log.choice_triggered = self
+	new_event_log.old_blackboard = context.clone()
+	
 	for modification in modifications:
 		modification.execute(context)
 		
+		new_event_log.new_blackboard = context.clone()
+		ReactionSignals.event_execution_log_created.emit(new_event_log)
 		
 ## ----------------------------------------------------------------------------[br]
 ## Return true if the choice criterias match with the blackboard context

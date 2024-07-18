@@ -7,6 +7,8 @@ var label: String = "LOG_LABEL"
 
 var uid: String = Uuid.v4()
 
+var choice_triggered: ReactionDialogChoiceItem
+
 var event_triggered: ReactionEventItem
 var rule_triggered: ReactionRuleItem
 

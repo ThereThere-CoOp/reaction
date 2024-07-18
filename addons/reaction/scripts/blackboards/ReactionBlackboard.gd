@@ -107,14 +107,19 @@ func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false) -> v
 		for in_fact_uid in blackboard._facts_lookup:
 			var in_fact_index = blackboard._facts_lookup[in_fact_uid]
 			var in_fact = blackboard._facts[in_fact_index]
+			
+			var new_blackboard_fact: ReactionBlackboardFact = ReactionBlackboardFact.new()
+			new_blackboard_fact.fact = in_fact.fact
+			new_blackboard_fact.real_value = in_fact.real_value
+			
 			if _facts_lookup.has(in_fact_uid):
 				if overwrite:
-					_facts[_facts_lookup.get(in_fact_uid)] = in_fact
+					_facts[_facts_lookup.get(in_fact_uid)] = new_blackboard_fact
 
 			else:
-				_facts.append(in_fact)
+				_facts.append(new_blackboard_fact)
 				_facts_lookup[in_fact_uid] = len(_facts) - 1
-				_add_facts_scope_lookup(in_fact.fact)
+				_add_facts_scope_lookup(new_blackboard_fact.fact)
 				
 				
 func clone() -> ReactionBlackboard:
