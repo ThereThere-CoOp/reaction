@@ -17,6 +17,8 @@ var value_b_text_edit: LineEdit
 var boolean_value_check: CheckBox
 var negate_check: CheckButton
 
+@onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
+
 
 func _ready():
 	super()
@@ -72,7 +74,15 @@ func _get_value_a() -> Variant:
 				return "Select value"
 			_:
 				return 0
-	
+				
+				
+func _check_input_range_values(min_value, max_value) -> bool:
+	if item_object.operation == "a<=x<=b":
+		if min_value != null and max_value != null:
+			return int(min_value) <= int(max_value)
+		return true
+	return true
+			
 				
 func _get_value_b() -> Variant:
 	if item_object.value_b:
@@ -167,6 +177,11 @@ func _set_criteria_property(property_name: StringName, value: Variant) -> void:
 	current_database.save_data()
 
 
+func _show_warning_dialog(text: String):
+	warning_dialog.dialog_text = text
+	warning_dialog.popup_centered()
+	
+	
 ### Signals
 
 
@@ -197,13 +212,21 @@ func _on_label_line_edit_text_submitted(new_text):
 	
 	
 func _on_value_a_numeric_text_submitted(new_text: String) -> void:
-	_set_criteria_property("value_a", int(new_text))
-	value_a_numeric_text_edit.release_focus()
+	if _check_input_range_values(int(new_text), item_object.value_b):
+		_set_criteria_property("value_a", int(new_text))
+		value_a_numeric_text_edit.release_focus()
+	else:
+		_show_warning_dialog("Value a must less and equal than value b")
+		value_a_numeric_text_edit.release_focus()
 	
 	
 func _on_value_b_text_submitted(new_text: String) -> void:
-	_set_criteria_property("value_b", int(new_text))
-	value_b_text_edit.release_focus()
+	if _check_input_range_values(item_object.value_a, int(new_text)):
+		_set_criteria_property("value_b", int(new_text))
+		value_b_text_edit.release_focus()
+	else:
+		_show_warning_dialog("Value a must less and equal than value b")
+		value_b_text_edit.release_focus()
 	
 	
 func _on_operation_menu_index_pressed(index: int) -> void:
