@@ -40,23 +40,26 @@ func _ready() -> void:
 	event_log_data_container.visible = false
 	
 	# add inputs maps
-	var event_show_debug_windows = InputEventKey.new()
-	event_show_debug_windows.physical_keycode = KEY_D
-	event_show_debug_windows.ctrl_pressed = true
-	InputMap.add_action("reaction_ui_debug")
-	InputMap.action_add_event("reaction_ui_debug", event_show_debug_windows)
+	if not InputMap.has_action("reaction_ui_debug"):
+		var event_show_debug_windows = InputEventKey.new()
+		event_show_debug_windows.physical_keycode = KEY_D
+		event_show_debug_windows.ctrl_pressed = true
+		InputMap.add_action("reaction_ui_debug")
+		InputMap.action_add_event("reaction_ui_debug", event_show_debug_windows)
 	
-	var event_debug_windows_more_alpha = InputEventKey.new()
-	event_debug_windows_more_alpha.physical_keycode = KEY_KP_ADD
-	event_debug_windows_more_alpha.ctrl_pressed = true
-	InputMap.add_action("reaction_ui_debug_alpha_plus")
-	InputMap.action_add_event("reaction_ui_debug_alpha_plus", event_debug_windows_more_alpha)
+	if not InputMap.has_action("reaction_ui_debug_alpha_plus"):
+		var event_debug_windows_more_alpha = InputEventKey.new()
+		event_debug_windows_more_alpha.physical_keycode = KEY_KP_ADD
+		event_debug_windows_more_alpha.ctrl_pressed = true
+		InputMap.add_action("reaction_ui_debug_alpha_plus")
+		InputMap.action_add_event("reaction_ui_debug_alpha_plus", event_debug_windows_more_alpha)
 	
-	var event_debug_windows_less_alpha = InputEventKey.new()
-	event_debug_windows_less_alpha.physical_keycode = KEY_KP_SUBTRACT
-	event_debug_windows_less_alpha.ctrl_pressed = true
-	InputMap.add_action("reaction_ui_debug_alpha_minus")
-	InputMap.action_add_event("reaction_ui_debug_alpha_minus", event_debug_windows_less_alpha)
+	if not InputMap.has_action("reaction_ui_debug_alpha_minus"):
+		var event_debug_windows_less_alpha = InputEventKey.new()
+		event_debug_windows_less_alpha.physical_keycode = KEY_KP_SUBTRACT
+		event_debug_windows_less_alpha.ctrl_pressed = true
+		InputMap.add_action("reaction_ui_debug_alpha_minus")
+		InputMap.action_add_event("reaction_ui_debug_alpha_minus", event_debug_windows_less_alpha)
 	
 	clear()
 	
