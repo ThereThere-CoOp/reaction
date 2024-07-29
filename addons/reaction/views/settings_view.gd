@@ -26,9 +26,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 var _current_selected_language_index = -1
 
 
-func _ready() -> void:
-	call_deferred("apply_theme")
-	
+func setup_settings() -> void:
 	# initializing settings control
 	databases_path_lineedit.text = ReactionSettings.get_setting(
 		ReactionSettings.DATABASES_PATH_SETTING_NAME,
@@ -58,8 +56,14 @@ func _ready() -> void:
 		index += 1
 	
 	_update_languages_menu_text()
-	languages_popup_menu.index_pressed.connect(_on_languages_menu_popup_menu_index_pressed)
+	if not languages_popup_menu.index_pressed.is_connected(_on_languages_menu_popup_menu_index_pressed):
+		languages_popup_menu.index_pressed.connect(_on_languages_menu_popup_menu_index_pressed)
 
+
+func _ready() -> void:
+	call_deferred("apply_theme")
+	setup_settings()
+	
 
 func apply_theme() -> void:
 	# Simple check if onready

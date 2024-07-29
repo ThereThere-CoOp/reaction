@@ -195,6 +195,7 @@ func _on_remove_database_confirmation_dialog_confirmed():
 
 
 func _on_settings_button_pressed():
+	settings_dialog.get_child(0).setup_settings()
 	settings_dialog.popup_centered()
 
 

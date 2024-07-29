@@ -38,7 +38,7 @@ languages_dict={
 "name": "Spanish"
 }
 }
-default_database_path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres"
+default_database_path="res://examples/databases/other_database_a896f929-1350-4249-82c6-e66d531c5914.tres"
 
 [rendering]
 
