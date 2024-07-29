@@ -37,6 +37,13 @@ var fact_scope_menu_text_options: Dictionary = {
 @onready var fact_type_menu: MenuButton = %FactTypeMenuButton
 @onready var fact_scope_menu: MenuButton = %FactScopeMenuButton
 @onready var fact_tags_multiselect: ReactionUIMultiselect = %TabsMultiselect
+@onready var fact_have_default_value_check_box: CheckButton = %FactHaveDefaultValueCheckButton
+@onready var fact_have_default_value_container: HBoxContainer = %FactDefaultValueContainer
+@onready var fact_default_value_edit: LineEdit = %FactDefaultValueStringLineEdit
+@onready var fact_default_value_number: SpinBox = %FactDefaultValueNumberSpinBox
+@onready var fact_default_value_enum: MenuButton = %FactDefaultValueEnumMenuButton
+@onready var fact_default_value_bool: CheckBox = %FactDefaultValueBooleanCheckBox
+
 
 func _ready() -> void:
 	var type_menu: PopupMenu = fact_type_menu.get_popup()
@@ -56,11 +63,55 @@ func _ready() -> void:
 	for i in range(fact_scope_menu_text_options_values.size()):
 		scope_menu.add_item(fact_scope_menu_text_options_values[i], i)
 	
+	var fact_default_value_number_edit: LineEdit = fact_default_value_number.get_line_edit()
+	fact_default_value_number_edit.text_submitted.connect(_on_fact_default_value_number_edit_submitted)
+	
+	var default_value_popup: Popup = fact_default_value_enum.get_popup()
+	default_value_popup.index_pressed.connect(_on_fact_default_value_enum_index_pressed)
+	
 	fact_data_container.visible = false
 	
 	ReactionSignals.database_selected.connect(setup_facts)
 
 
+func _update_fact_default_value_input():
+	fact_default_value_edit.visible = false
+	fact_default_value_number.visible = false
+	fact_default_value_enum.visible = false
+	fact_default_value_bool.visible = false
+	
+	if current_fact:
+		if current_fact.type == TYPE_STRING and not current_fact.is_enum:
+			fact_default_value_edit.visible = true
+			if current_fact.default_value:
+				fact_default_value_edit.text = str(current_fact.default_value)
+			
+		if current_fact.type == TYPE_STRING and current_fact.is_enum:
+			fact_default_value_enum.visible = true
+			fact_default_value_enum.text = "Select value"
+			if current_fact.default_value:
+				fact_default_value_enum.text = str(current_fact.default_value)
+				
+			var fact_default_value_popup: PopupMenu = fact_default_value_enum.get_popup() 
+			fact_default_value_popup.clear()
+			for enum_value in current_fact.enum_names:
+				fact_default_value_popup.add_item(enum_value)
+		
+		if current_fact.type == TYPE_INT:
+			fact_default_value_number.visible = true
+			var fact_default_value_number_edit: LineEdit = fact_default_value_number.get_line_edit()
+			fact_default_value_number_edit.text = "0"
+			if current_fact.default_value:
+				fact_default_value_number_edit.text = str(current_fact.default_value)
+			
+		if current_fact.type == TYPE_BOOL:
+			fact_default_value_bool.visible = true
+			fact_default_value_bool.set_pressed_no_signal(bool(current_fact.default_value))
+			
+		fact_have_default_value_container.visible = current_fact.have_default_value
+		fact_have_default_value_check_box.set_pressed_no_signal(current_fact.have_default_value)
+	
+	
 func setup_facts(database: ReactionDatabase) -> void:
 	current_database = database
 	facts_list.setup_items(current_database)
@@ -98,6 +149,7 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 	fact_data_container.visible = true
 	
 	fact_tags_multiselect.setup(current_fact, current_database.tags.values())
+	_update_fact_default_value_input()
 
 
 func _set_fact_property(property_name: StringName, value: Variant) -> void:
@@ -117,6 +169,7 @@ func _set_fact_type_value(is_visible_enum: bool, value: Variant, menu_text: Stri
 	_set_fact_property("type", value)
 	_set_visibility_enum_hint(is_visible_enum)
 	fact_type_menu.text = menu_text
+	_update_fact_default_value_input()
 
 
 ### signals
@@ -144,7 +197,9 @@ func _on_fact_is_enum_check_button_toogled(toggled_on: bool):
 	)
 	if toggled_on:
 		_set_fact_property("hint_string", fact_hint_string_edit.text)
+		
 	fact_hint_string_container.visible = toggled_on
+	_update_fact_default_value_input()
 	
 	
 func _on_fact_hint_string_line_edit_text_submitted(new_text):
@@ -213,3 +268,27 @@ func _on_show_fact_references_button_pressed():
 		
 	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
 	fact_references_dialog.popup_centered()			
+
+
+func _on_fact_default_value_string_line_edit_text_submitted(new_text):
+	_set_fact_property("default_value", new_text)
+
+
+func _on_fact_default_value_boolean_check_box_toggled(toggled_on):
+	_set_fact_property("default_value", toggled_on)
+	
+	
+func _on_fact_default_value_number_edit_submitted(new_text):
+	_set_fact_property("default_value", new_text)
+	
+	
+func _on_fact_default_value_enum_index_pressed(index: int) -> void:
+	var popup = fact_default_value_enum.get_popup()
+	var label = popup.get_item_text(index)
+	_set_fact_property("default_value", label)
+	fact_default_value_enum.text = label
+
+
+func _on_fact_have_default_value_check_button_toggled(toggled_on):
+	_set_fact_property("have_default_value", toggled_on)
+	_update_fact_default_value_input()

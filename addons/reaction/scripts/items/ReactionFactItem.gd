@@ -32,6 +32,11 @@ var hint_string: String:
 
 var enum_names: PackedStringArray = []
 
+## True if the fact have default value
+var have_default_value: bool = false
+
+## default value of the fact
+var default_value: Variant
 
 func have_references(database: ReactionDatabase) -> bool:
 	for event in database.events.values():
