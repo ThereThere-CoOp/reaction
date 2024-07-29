@@ -53,8 +53,9 @@ func load_databases_from_filesystem() -> void:
 				continue
 			else:
 				var resource_path_to_load = "%s/%s" % [databases_path, file_name]
-				var database: ReactionDatabase = ResourceLoader.load(resource_path_to_load) as ReactionDatabase
-				databases[database.uid] = database
+				var database = ResourceLoader.load(resource_path_to_load) as ReactionDatabase
+				if database is ReactionDatabase:
+					databases[database.uid] = database
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access databases path.")
