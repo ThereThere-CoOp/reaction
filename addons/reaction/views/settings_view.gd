@@ -7,6 +7,8 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 @onready var change_database_path_button: Button = %ChangeDatabasesPathButton
 @onready var databases_path_lineedit: LineEdit = %DatabasesPathLineEdit
+@onready var change_default_database_path_button: Button = %ChangeDefaultDatabasePathButton 
+@onready var default_database_path_lineedit: LineEdit = %DefaultDatabasePathLineEdit
 
 # languages settings edit
 @onready var languages_menu: MenuButton = %LanguagesMenuButton
@@ -17,6 +19,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 # dialogs
 @onready var databases_path_dialog: FileDialog = %DatabasesFolderDialog
+@onready var default_database_path_dialog: FileDialog = %DefaultDatabaseFileDialog
 @onready var languages_edit_dialog: ConfirmationDialog = %LanguagesEditConfirmationDialog
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
 
@@ -31,6 +34,14 @@ func _ready() -> void:
 		ReactionSettings.DATABASES_PATH_SETTING_NAME,
 		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
 	)
+	
+	var default_database_path = ReactionSettings.get_setting(
+		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME,
+		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_DEFAULT
+	)
+	default_database_path_lineedit.text = "No default database selected"
+	if FileAccess.file_exists(default_database_path):
+		default_database_path_lineedit.text = default_database_path
 	
 	var languages_popup_menu: PopupMenu = languages_menu.get_popup()
 	
@@ -54,6 +65,7 @@ func apply_theme() -> void:
 	# Simple check if onready
 	if is_instance_valid(change_database_path_button):
 		change_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
+		change_default_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		add_language_button.icon = get_theme_icon("New", "EditorIcons")
 		remove_language_button.icon = get_theme_icon("Remove", "EditorIcons")
 		
@@ -142,3 +154,23 @@ func _on_remove_language_button_pressed() -> void:
 		warning_dialog.dialog_text = "Cannot delete this language."
 		warning_dialog.popup_centered()
 		return
+
+
+func _on_change_default_database_path_button_pressed():
+	var databases_folder: String = ReactionSettings.get_setting(
+		ReactionSettings.DATABASES_PATH_SETTING_NAME,
+		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+	)
+	
+	default_database_path_dialog.root_subfolder = databases_folder
+	default_database_path_dialog.popup_centered()
+
+
+func _on_default_database_file_dialog_file_selected(path):
+	var database := ResourceLoader.load(path)
+	if database is ReactionDatabase:
+		default_database_path_lineedit.text = path
+		ReactionSettings.set_setting(ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, path)
+	else:
+		warning_dialog.dialog_text = "File is not a reaction database."
+		warning_dialog.popup_centered()
