@@ -14,6 +14,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 @export var database: ReactionDatabase
 
+## uuid of the fact referenced
 @export var fact_uuid: String :
 	set(value):
 		if value in database.global_facts:
@@ -21,9 +22,13 @@ const ReactionSettings = preload("../utilities/settings.gd")
 			fact_label = _fact_object.label
 			
 		fact_uuid = value
+		if Engine.is_editor_hint():
+			notify_property_list_changed()
 
+## label of the fact referenced
 @export var fact_label: String
 
+# fact object referenced
 var _fact_object: ReactionFactItem
 
 
@@ -38,7 +43,16 @@ func _get_database() -> void:
 	
 		database = ReactionDatabase.new()
 		
-		
+
+## ----------------------------------------------------------------------------[br]
+## Get the value of the referenced fact. If not context passed use global 
+## blackboard [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* context | [ReactionBlackboard]:[/b] Context to get fact value
+## [br]
+## [b]Returns: Variant[/b] [br]
+## Value of the fact  [br]
+## ----------------------------------------------------------------------------	
 func get_fact_value(context: ReactionBlackboard = null) -> Variant:
 	if _fact_object:
 		if context:
@@ -49,7 +63,15 @@ func get_fact_value(context: ReactionBlackboard = null) -> Variant:
 	print("No fact object with uuid %s" % fact_uuid)
 	return null
 	
-	
+
+## ----------------------------------------------------------------------------[br]
+## Set the value of the referenced fact. If not context passed use global 
+## blackboard [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* context | [ReactionBlackboard]:[/b] Context to set fact value
+## test with the criteria [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------	
 func set_fact_value(value: Variant, context: ReactionBlackboard = null) -> void:
 	if _fact_object:
 		if context:
