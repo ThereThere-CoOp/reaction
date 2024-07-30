@@ -6,13 +6,20 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 var databases: Dictionary = {}
 
+@export var default_database: ReactionDatabase
+
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
 @onready var global_context: ReactionBlackboard = ReactionBlackboard.new()
 	
 	
 func _ready():
-	pass
+	var default_database_path = ReactionSettings.get_setting(
+		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, 
+		"")
+		
+	if FileAccess.file_exists(default_database_path):
+		default_database = ResourceLoader.load(default_database_path)
 	
 	
 func _change_reaction_ui_debug_visibility() -> void:
