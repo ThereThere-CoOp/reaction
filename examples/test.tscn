@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvia7eenu6s0s"]
+[gd_scene load_steps=7 format=3 uid="uid://bvia7eenu6s0s"]
 
 [ext_resource type="Script" path="res://examples/test.gd" id="1_4d5mw"]
 [ext_resource type="PackedScene" uid="uid://bh4pmkwqh73yw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.tscn" id="2_lgm08"]
+[ext_resource type="Script" path="res://examples/ReactionComponent.gd" id="3_fpsli"]
+[ext_resource type="Resource" uid="uid://mqr6gettjbh8" path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres" id="4_hj2aw"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/ReactionComponetVariableFact.gd" id="5_h5tdd"]
+
+[sub_resource type="Resource" id="Resource_2alxt"]
+script = ExtResource("5_h5tdd")
+database = ExtResource("4_hj2aw")
+object_index = 2
 
 [node name="Test" type="Control"]
 layout_mode = 3
@@ -24,5 +32,9 @@ default_alpha = 0.5
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="ReactionComponent" type="Node" parent="."]
+script = ExtResource("3_fpsli")
+reaction_fact = SubResource("Resource_2alxt")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

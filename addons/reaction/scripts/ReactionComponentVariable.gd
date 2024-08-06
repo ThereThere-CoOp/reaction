@@ -1,6 +1,6 @@
 @tool
 class_name ReactionComponentVariable
-extends Object
+extends Resource
 ## ----------------------------------------------------------------------------[br]
 ## Referenced to a reaction item on a component 
 ##
@@ -15,8 +15,6 @@ const ReactionSettings = preload("../utilities/settings.gd")
 @export var database: ReactionDatabase :
 	set(value):
 		database = value
-		object_uid = ""
-		object_label = ""
 		
 		_update_objects_array()
 		
@@ -25,19 +23,13 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 
 ## uuid of the object referenced
-@export var object_uid: String
+var object_uid: String
 
-## label of the object referenced
-@export var object_label: String
-
-## index of the object referenced
-@export var object_index: int :
+var object_index: int:
 	set(value):
-		if value:
-			var current_object = _objects_array[value]
-			_selected_object = current_object
-			object_uid = current_object.uid
-			object_label = current_object.label
+		var current_object = _objects_array[value]
+		_selected_object = current_object
+		object_uid = current_object.uid
 			
 		object_index = value
 
@@ -45,33 +37,56 @@ const ReactionSettings = preload("../utilities/settings.gd")
 var _selected_object: Resource
 
 # array of objects to select
-var _objects_array: Array[Resource] = []
+var _objects_array: Array = []
 
 
-func _ready():
+func _init():
 	_get_database()
+	
+	
+func _ready():
+	pass
 
 
 func _get_database() -> void:
 	if not database:
-		if ReactionGlobals.default_database:
-			database = ReactionGlobals.default_database
-	
 		database = ReactionDatabase.new()
+		var default_database = ReactionGlobals.get_default_database()
+		if default_database:
+			set("database", default_database)
 		
 		
 func _update_objects_array() -> void:
 	pass
 		
+
+func _update_fields() -> void:
+	if database and _objects_array.size() > 0:
+		
+		if object_uid:
+			for i in _objects_array.size():
+				if _objects_array[i].uid == object_uid:
+					object_index = i
+					break
+					
+		var current_object = _objects_array[object_index]
+		_selected_object = current_object
+		set("object_uid",current_object.uid)
+	else:
+		_selected_object = null
+		set("object_uid", "")
+	
 		
 func _get_property_list() -> Array:
 	var properties: Array = []
 	
 	if database:
 		var object_label_hint_string: String = ""
-
+		
 		for object in _objects_array:
 			object_label_hint_string += "%s," % object.label 
+			
+		object_label_hint_string = object_label_hint_string.trim_suffix(",")
 			
 		properties.append_array(
 			[
@@ -84,21 +99,7 @@ func _get_property_list() -> Array:
 				}
 			]
 		)
-		
-	properties.append_array(
-			[
-				{
-					"name": "object_uid",
-					"type": TYPE_STRING,
-					"usage": PROPERTY_USAGE_READ_ONLY,
-				},
-				{
-					"name": "object_label",
-					"type": TYPE_STRING,
-					"usage": PROPERTY_USAGE_READ_ONLY,
-				},
-			]
-		)
 
 	return properties
+		
 

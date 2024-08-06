@@ -11,7 +11,7 @@ extends ReactionComponentVariable
 ## ----------------------------------------------------------------------------
 		
 		
-func _ready():
+func _init():
 	super()
 	
 	_update_objects_array()
@@ -21,5 +21,8 @@ func _ready():
 		
 		
 func _update_objects_array() -> void:
-	_objects_array = database.events.values()
+	if database:
+		_objects_array = database.events.values()
+		
+	_update_fields()
 

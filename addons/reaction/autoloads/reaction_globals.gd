@@ -14,18 +14,24 @@ var databases: Dictionary = {}
 	
 	
 func _ready():
-	var default_database_path = ReactionSettings.get_setting(
-		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, 
-		"")
-		
-	if FileAccess.file_exists(default_database_path):
-		default_database = ResourceLoader.load(default_database_path)
+	default_database = get_default_database()
 	
 	
 func _change_reaction_ui_debug_visibility() -> void:
 	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
 	for node in nodes:
 		node.visible = not node.visible
+		
+		
+func get_default_database() -> ReactionDatabase:
+	var default_database_path = ReactionSettings.get_setting(
+		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, 
+		"")
+		
+	if FileAccess.file_exists(default_database_path):
+		return ResourceLoader.load(default_database_path)
+		
+	return null
 	
 	
 func get_item_type(item: Resource) -> String:
