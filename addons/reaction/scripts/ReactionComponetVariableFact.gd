@@ -2,7 +2,7 @@
 class_name ReactionComponentVariableFact
 extends ReactionComponentVariable
 ## ----------------------------------------------------------------------------[br]
-## Referenced to a fact 
+## Reference to a reaction fact 
 ##
 ##
 ## Represents a variable that reference a fact on the blackboard. Allow get the
