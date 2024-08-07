@@ -23,7 +23,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 
 ## uuid of the object referenced
-var object_uid: String
+@export var object_uid: String
 
 var object_index: int:
 	set(value):
@@ -53,7 +53,7 @@ func _get_database() -> void:
 		database = ReactionDatabase.new()
 		var default_database = ReactionGlobals.get_default_database()
 		if default_database:
-			set("database", default_database)
+			database = default_database
 		
 		
 func _update_objects_array() -> void:
@@ -71,10 +71,10 @@ func _update_fields() -> void:
 					
 		var current_object = _objects_array[object_index]
 		_selected_object = current_object
-		set("object_uid",current_object.uid)
+		object_uid = current_object.uid
 	else:
 		_selected_object = null
-		set("object_uid", "")
+		object_uid = ""
 	
 		
 func _get_property_list() -> Array:
