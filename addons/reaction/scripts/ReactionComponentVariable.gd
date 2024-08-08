@@ -28,13 +28,13 @@ const ReactionSettings = preload("../utilities/settings.gd")
 var object_index: int:
 	set(value):
 		var current_object = _objects_array[value]
-		_selected_object = current_object
+		selected_object = current_object
 		object_uid = current_object.uid
 			
 		object_index = value
 
-# object referenced
-var _selected_object: Resource
+## reaction object referenced
+var selected_object: Resource
 
 # array of objects to select
 var _objects_array: Array = []
@@ -70,10 +70,10 @@ func _update_fields() -> void:
 					break
 					
 		var current_object = _objects_array[object_index]
-		_selected_object = current_object
+		selected_object = current_object
 		object_uid = current_object.uid
 	else:
-		_selected_object = null
+		selected_object = null
 		object_uid = ""
 	
 		

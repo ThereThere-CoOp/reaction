@@ -45,11 +45,11 @@ func _update_objects_array() -> void:
 ## Value of the fact  [br]
 ## ----------------------------------------------------------------------------	
 func get_fact_value(context: ReactionBlackboard = null) -> Variant:
-	if _selected_object:
+	if selected_object:
 		if context:
-			return context.get_fact_value(_selected_object.uid)
+			return context.get_fact_value(selected_object.uid)
 		
-		return ReactionGlobals.global_context.get_fact_value(_selected_object.uid)
+		return ReactionGlobals.global_context.get_fact_value(selected_object.uid)
 	
 	print("No fact object with uuid %s" % object_uid)
 	return null
@@ -66,11 +66,11 @@ func get_fact_value(context: ReactionBlackboard = null) -> Variant:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------	
 func set_fact_value(value: Variant, context: ReactionBlackboard = null) -> void:
-	if _selected_object:
+	if selected_object:
 		if context:
-			context.set_fact_value(_selected_object, value)
+			context.set_fact_value(selected_object, value)
 		
-		ReactionGlobals.global_context.set_fact_value(_selected_object, value)
+		ReactionGlobals.global_context.set_fact_value(selected_object, value)
 	else:
 		print("No fact object with uuid %s" % object_uid)
 

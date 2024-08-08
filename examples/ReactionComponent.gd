@@ -6,6 +6,6 @@ extends Node
 
 
 func _ready():
-	print(reaction_fact._selected_object.label)
-	print(reaction_event._selected_object.label)
+	print(reaction_fact.selected_object.label)
+	print(reaction_event.selected_object.label)
 	
