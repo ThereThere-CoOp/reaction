@@ -10,13 +10,20 @@ var databases: Dictionary = {}
 
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
-@onready var global_context: ReactionBlackboard = ReactionBlackboard.new()
+@onready var global_context: ReactionBlackboard = _get_init_global_blackboard()
 	
 	
 func _ready():
 	default_database = get_default_database()
 	
 	
+func _get_init_global_blackboard() -> ReactionBlackboard:
+	var new_global_context = ReactionBlackboard.new()
+	new_global_context.label = "global_context"
+	return new_global_context
+	
+	
+		
 func _change_reaction_ui_debug_visibility() -> void:
 	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
 	for node in nodes:

@@ -10,7 +10,7 @@ class TestBlackboards:
 		assert_eq(
 			(
 				_global_blackboard
-				. _facts[_global_blackboard._facts_lookup[_facts["population_size"].uid]]
+				. facts[_global_blackboard.facts_lookup[_facts["population_size"].uid]]
 				. value
 			),
 			300,
@@ -23,7 +23,7 @@ class TestBlackboards:
 		assert_eq(
 			(
 				_global_blackboard
-				. _facts[_global_blackboard._facts_lookup[_facts["population_size"].uid]]
+				. facts[_global_blackboard.facts_lookup[_facts["population_size"].uid]]
 				. value
 			),
 			200,
@@ -35,7 +35,7 @@ class TestBlackboards:
 		assert_eq(
 			(
 				_global_blackboard
-				. _facts[_global_blackboard._facts_lookup[_facts["mind_type"].uid]]
+				. facts[_global_blackboard.facts_lookup[_facts["mind_type"].uid]]
 				. value
 			),
 			2,
@@ -78,7 +78,7 @@ class TestBlackboards:
 		assert_eq(
 			(
 				_global_blackboard
-				. _facts[_global_blackboard._facts_lookup[_facts["mind_type"].uid]]
+				. facts[_global_blackboard.facts_lookup[_facts["mind_type"].uid]]
 				. value
 			),
 			2,
@@ -105,7 +105,7 @@ class TestBlackboards:
 		assert_eq(
 			(
 				_global_blackboard
-				. _facts[_global_blackboard._facts_lookup[_facts["mind_type"].uid]]
+				. facts[_global_blackboard.facts_lookup[_facts["mind_type"].uid]]
 				. value
 			),
 			2,

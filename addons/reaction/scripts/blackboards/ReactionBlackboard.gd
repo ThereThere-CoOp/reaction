@@ -9,38 +9,41 @@ extends Resource
 ## blackboard [br]
 ## ----------------------------------------------------------------------------
 
+## black board label
+@export var label: String = "context_blackboard"
+
 ## list of facts
-var _facts: Array[ReactionBlackboardFact] = []
+@export var facts: Array[ReactionBlackboardFact] = []
 
 ## dict wich each key is a fact id and the values are the current index on
 ## the _fact list, used for easy get the fact in the list
-var _facts_lookup = {}
+@export var facts_lookup = {}
 
 ## dict wich each key is a fact scope and each value
 ## with the facts id that belong to a given scope
-var _facts_scope_lookup = {}
+@export var facts_scope_lookup = {}
 
 
 func get_facts() -> Array[ReactionBlackboardFact]:
-	return _facts
+	return facts
 	
 	
 func get_facts_lookup() -> Dictionary:
-	return _facts_lookup
+	return facts_lookup
 
 
 func get_fact_value(fact_uid: String) -> Variant:
-	if not _facts_lookup.has(fact_uid):
+	if not facts_lookup.has(fact_uid):
 		return null
 
-	return _facts[_facts_lookup.get(fact_uid)].value
+	return facts[facts_lookup.get(fact_uid)].value
 
 
 func get_blackboard_fact(fact_uid: String) -> ReactionBlackboardFact:
-	if not _facts_lookup.has(fact_uid):
+	if not facts_lookup.has(fact_uid):
 		return null
 
-	return _facts[_facts_lookup.get(fact_uid)]
+	return facts[facts_lookup.get(fact_uid)]
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -51,16 +54,16 @@ func get_blackboard_fact(fact_uid: String) -> ReactionBlackboardFact:
 func set_fact_value(fact: ReactionFactItem, value: Variant) -> bool:
 	var result = false
 	var bfact = null
-	if not _facts_lookup.has(fact.uid):
+	if not facts_lookup.has(fact.uid):
 		result = true
 		bfact = ReactionBlackboardFact.new()
 		# new_fact.value = int(value)
 		bfact.fact = fact
 		bfact.real_value = value
-		_facts.append(bfact)
-		_facts_lookup[fact.uid] = len(_facts) - 1
+		facts.append(bfact)
+		facts_lookup[fact.uid] = len(facts) - 1
 	else:
-		bfact = _facts[_facts_lookup.get(fact.uid)]
+		bfact = facts[facts_lookup.get(fact.uid)]
 		# bfact.value = int(value)
 		bfact.real_value = value
 
@@ -82,13 +85,13 @@ func set_fact_value(fact: ReactionFactItem, value: Variant) -> bool:
 ## succesfully  [br]
 ## ----------------------------------------------------------------------------
 func erase_fact(fact_uid: String) -> bool:
-	if not _facts_lookup.has(fact_uid):
+	if not facts_lookup.has(fact_uid):
 		return false
 
-	var fact_index = _facts_lookup[fact_uid]
-	var fact_item = _facts[fact_index].fact
-	_facts.remove_at(fact_index)
-	_facts_lookup.erase(fact_uid)
+	var fact_index = facts_lookup[fact_uid]
+	var fact_item = facts[fact_index].fact
+	facts.remove_at(fact_index)
+	facts_lookup.erase(fact_uid)
 	_erase_facts_scope_lookup(fact_item)
 	return true
 
@@ -103,22 +106,22 @@ func erase_fact(fact_uid: String) -> bool:
 ## [b]Returns: void[/b][br]
 ## ----------------------------------------------------------------------------
 func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false) -> void:
-	for blackboard in blackboards:
-		for in_fact_uid in blackboard._facts_lookup:
-			var in_fact_index = blackboard._facts_lookup[in_fact_uid]
-			var in_fact = blackboard._facts[in_fact_index]
+	for blackboard: ReactionBlackboard in blackboards:
+		for in_fact_uid in blackboard.facts_lookup:
+			var in_fact_index = blackboard.facts_lookup[in_fact_uid]
+			var in_fact = blackboard.facts[in_fact_index]
 			
 			var new_blackboard_fact: ReactionBlackboardFact = ReactionBlackboardFact.new()
 			new_blackboard_fact.fact = in_fact.fact
 			new_blackboard_fact.real_value = in_fact.real_value
 			
-			if _facts_lookup.has(in_fact_uid):
+			if facts_lookup.has(in_fact_uid):
 				if overwrite:
-					_facts[_facts_lookup.get(in_fact_uid)] = new_blackboard_fact
+					facts[facts_lookup.get(in_fact_uid)] = new_blackboard_fact
 
 			else:
-				_facts.append(new_blackboard_fact)
-				_facts_lookup[in_fact_uid] = len(_facts) - 1
+				facts.append(new_blackboard_fact)
+				facts_lookup[in_fact_uid] = len(facts) - 1
 				_add_facts_scope_lookup(new_blackboard_fact.fact)
 				
 				
@@ -135,27 +138,27 @@ func clone() -> ReactionBlackboard:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func clean_scope(scope: String) -> void:
-	if _facts_scope_lookup.has(scope):
-		var facts_uids = _facts_scope_lookup[scope].duplicate()
+	if facts_scope_lookup.has(scope):
+		var facts_uids = facts_scope_lookup[scope].duplicate()
 		for uid in facts_uids:
 			erase_fact(uid)
 
 
 func _to_string() -> String:
 	var result = ""
-	for fact in _facts:
+	for fact in facts:
 		result += fact.get_string() + "\n"
 
 	return result
 
 
 func _erase_facts_scope_lookup(fact: ReactionFactItem) -> void:
-	if _facts_scope_lookup.has(fact.scope):
-		_facts_scope_lookup[fact.scope].erase(fact.uid)
+	if facts_scope_lookup.has(fact.scope):
+		facts_scope_lookup[fact.scope].erase(fact.uid)
 
 
 func _add_facts_scope_lookup(fact: ReactionFactItem) -> void:
-	if _facts_scope_lookup.has(fact.scope):
-		_facts_scope_lookup[fact.scope].append(fact.uid)
+	if facts_scope_lookup.has(fact.scope):
+		facts_scope_lookup[fact.scope].append(fact.uid)
 	else:
-		_facts_scope_lookup[fact.scope] = [fact.uid]
+		facts_scope_lookup[fact.scope] = [fact.uid]
