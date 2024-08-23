@@ -126,7 +126,13 @@ func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false) -> v
 				facts_lookup[in_fact_uid] = len(facts) - 1
 				_add_facts_scope_lookup(new_blackboard_fact.fact)
 				
-				
+
+## ----------------------------------------------------------------------------[br]
+## Returns a clone or duplicate of the blackboard contex [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* None[/b] [br]
+## [b]Returns: ReactionBlackboard[/b] Blackboard duplicate[br]
+## ----------------------------------------------------------------------------		
 func clone() -> ReactionBlackboard:
 	var duplicate = ReactionBlackboard.new()
 	duplicate.merge([self], true)
@@ -145,7 +151,13 @@ func clean_scope(scope: String) -> void:
 		for uid in facts_uids:
 			erase_fact(uid)
 			
-			
+
+## ----------------------------------------------------------------------------[br]
+## Save the blackboard data on the user files [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* None[/b] [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------	
 func save_data() -> void:
 	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
 	var save_path = save_path_dir + "/%s.tres" % label 
@@ -154,6 +166,12 @@ func save_data() -> void:
 		print("An error happened while saving blackbord %s data: " % label, error)
 
 
+## ----------------------------------------------------------------------------[br]
+## Load the blackboard data saved on the user files [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* None[/b] [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------	
 func load_data() -> void:
 	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
 	var save_path = save_path_dir + "/%s.tres" % label 
