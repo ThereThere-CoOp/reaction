@@ -9,6 +9,8 @@ extends Resource
 ## blackboard [br]
 ## ----------------------------------------------------------------------------
 
+const ReactionSettings = preload("../../utilities/settings.gd")
+
 ## black board label
 @export var label: String = "context_blackboard"
 
@@ -142,6 +144,25 @@ func clean_scope(scope: String) -> void:
 		var facts_uids = facts_scope_lookup[scope].duplicate()
 		for uid in facts_uids:
 			erase_fact(uid)
+			
+			
+func save_data() -> void:
+	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
+	var save_path = save_path_dir + "/%s.tres" % label 
+	var error = ResourceSaver.save(self, save_path)
+	if error:
+		print("An error happened while saving blackbord %s data: " % label, error)
+
+
+func load_data() -> void:
+	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
+	var save_path = save_path_dir + "/%s.tres" % label 
+	
+	var save_context: ReactionBlackboard = load(save_path)
+	label = save_context.name
+	facts = save_context.facts
+	facts_lookup = save_context.facts_lookup
+	facts_scope_lookup = save_context.facts_scope_lookup
 
 
 func _to_string() -> String:
