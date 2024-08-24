@@ -160,8 +160,13 @@ func clean_scope(scope: String) -> void:
 ## ----------------------------------------------------------------------------	
 func save_data() -> void:
 	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
+	
+	if not DirAccess.dir_exists_absolute(save_path_dir):
+		DirAccess.make_dir_absolute(save_path_dir)
+		
 	var save_path = save_path_dir + "/%s.tres" % label 
-	var error = ResourceSaver.save(self, save_path)
+	var error := ResourceSaver.save(self, save_path)
+
 	if error:
 		print("An error happened while saving blackbord %s data: " % label, error)
 
@@ -176,11 +181,13 @@ func load_data() -> void:
 	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
 	var save_path = save_path_dir + "/%s.tres" % label 
 	
-	var save_context: ReactionBlackboard = load(save_path)
-	label = save_context.name
-	facts = save_context.facts
-	facts_lookup = save_context.facts_lookup
-	facts_scope_lookup = save_context.facts_scope_lookup
+	var saved_context: ReactionBlackboard = load(save_path)
+	
+	if saved_context:
+		label = saved_context.label
+		facts = saved_context.facts
+		facts_lookup = saved_context.facts_lookup
+		facts_scope_lookup = saved_context.facts_scope_lookup
 
 
 func _to_string() -> String:
