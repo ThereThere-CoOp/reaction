@@ -14,6 +14,7 @@ var _events: Dictionary = {}
 func before_all():
 	# declaring fact of type enum
 	var fact_mind_type = ReactionFactItem.new()
+	fact_mind_type.type = TYPE_STRING
 	fact_mind_type.label = "mind_type"
 	fact_mind_type.is_enum = true
 	fact_mind_type.hint_string = "volao,socotroco,mindundi"

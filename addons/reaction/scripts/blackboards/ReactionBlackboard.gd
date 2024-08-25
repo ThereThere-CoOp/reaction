@@ -107,15 +107,18 @@ func erase_fact(fact_uid: String) -> bool:
 ## will be overwrote by the values passed on the parameter blackboards [br]
 ## [b]Returns: void[/b][br]
 ## ----------------------------------------------------------------------------
-func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false) -> void:
+func merge(blackboards: Array[ReactionBlackboard], overwrite: bool = false, duplicate_facts: bool = true ) -> void:
 	for blackboard: ReactionBlackboard in blackboards:
 		for in_fact_uid in blackboard.facts_lookup:
 			var in_fact_index = blackboard.facts_lookup[in_fact_uid]
 			var in_fact = blackboard.facts[in_fact_index]
 			
-			var new_blackboard_fact: ReactionBlackboardFact = ReactionBlackboardFact.new()
-			new_blackboard_fact.fact = in_fact.fact
-			new_blackboard_fact.real_value = in_fact.real_value
+			
+			var new_blackboard_fact: ReactionBlackboardFact = in_fact
+			if duplicate_facts:
+				new_blackboard_fact = ReactionBlackboardFact.new()
+				new_blackboard_fact.fact = in_fact.fact
+				new_blackboard_fact.real_value = in_fact.real_value
 			
 			if facts_lookup.has(in_fact_uid):
 				if overwrite:
