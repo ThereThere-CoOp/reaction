@@ -21,32 +21,6 @@ func _get_init_global_blackboard() -> ReactionBlackboard:
 	new_global_context.label = "global_context"
 	return new_global_context
 	
-@onready var consumables_inventory_context: ReactionBlackboard = _get_init_consumables_inventory_blackboard()
-
-
-func _get_init_consumables_inventory_blackboard() -> ReactionBlackboard:
-	var new_global_context = ReactionBlackboard.new()
-	new_global_context.label = "consumables_inventory_context"
-	return new_global_context
-	
-	
-@onready var equipments_inventory_context: ReactionBlackboard = _get_init_equipments_inventory_blackboard()
-
-
-func _get_init_equipments_inventory_blackboard() -> ReactionBlackboard:
-	var new_global_context = ReactionBlackboard.new()
-	new_global_context.label = "equipments_inventory_context"
-	return new_global_context
-
-
-@onready var goods_inventory_context: ReactionBlackboard = _get_init_goods_inventory_blackboard()
-
-
-func _get_init_goods_inventory_blackboard() -> ReactionBlackboard:
-	var new_global_context = ReactionBlackboard.new()
-	new_global_context.label = "goods_inventory_context"
-	return new_global_context
-	
 ## ---------------------------------------------------------------------------------
 
 func _ready():
