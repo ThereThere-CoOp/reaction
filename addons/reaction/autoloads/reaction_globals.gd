@@ -30,9 +30,6 @@ func _ready():
 func save_all_contexts_data():
 	global_context.save_data()
 	## add below extra custom added context to save their data too
-	consumables_inventory_context.save_data()
-	equipments_inventory_context.save_data()
-	goods_inventory_context.save_data()
 		
 		
 func get_default_database() -> ReactionDatabase:
