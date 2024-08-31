@@ -26,11 +26,10 @@ func _get_init_global_blackboard() -> ReactionBlackboard:
 func _ready():
 	default_database = get_default_database()
 	
-		
-func _change_reaction_ui_debug_visibility() -> void:
-	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
-	for node in nodes:
-		node.visible = not node.visible
+	
+func save_all_contexts_data():
+	global_context.save_data()
+	## add below extra custom added context to save their data too
 		
 		
 func get_default_database() -> ReactionDatabase:
@@ -63,6 +62,12 @@ func get_item_type(item: Resource) -> String:
 		return "Response"
 	else:
 		return "Fact"
+		
+		
+func _change_reaction_ui_debug_visibility() -> void:
+	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
+	for node in nodes:
+		node.visible = not node.visible
 		
 		
 func _unhandled_input(event):
