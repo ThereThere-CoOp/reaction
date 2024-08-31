@@ -10,18 +10,21 @@ var databases: Dictionary = {}
 
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
+## ------------------globals contexts ----------------------------------------------
+## add here your global context variables
+
 @onready var global_context: ReactionBlackboard = _get_init_global_blackboard()
-	
-	
-func _ready():
-	default_database = get_default_database()
-	
-	
+
+
 func _get_init_global_blackboard() -> ReactionBlackboard:
 	var new_global_context = ReactionBlackboard.new()
 	new_global_context.label = "global_context"
 	return new_global_context
 	
+## ---------------------------------------------------------------------------------
+
+func _ready():
+	default_database = get_default_database()
 	
 		
 func _change_reaction_ui_debug_visibility() -> void:
