@@ -23,3 +23,7 @@ func get_new_object() -> ReactionTag:
 	var new_tag = ReactionTag.new()
 	new_tag.label = "newTag"
 	return new_tag
+	
+	
+func update_parents(parent_object: Resource) -> void:
+	pass
