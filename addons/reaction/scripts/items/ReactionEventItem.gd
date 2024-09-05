@@ -127,6 +127,40 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 	
 
 ## ----------------------------------------------------------------------------[br]
+## Get responses for this event based on the rules and current world's game
+## contexts [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* contexts | Array[ReactionBlackboard]:[/b] Currents world's game state 
+## contexts [br]
+## [b]Returns:  Array[[ReactionResponseBaseItem]][/b] [br]
+## Responses group of the first matching rule  [br]
+## ----------------------------------------------------------------------------
+func get_responses_from_contexts(contexts: Array[ReactionBlackboard]) -> Array[ReactionResponseBaseItem]:
+	ReactionSignals.event_executed.emit(self)
+	
+	for context:ReactionBlackboard in contexts:
+		var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
+		new_event_log_item.label = self.label
+		new_event_log_item.event_triggered = self
+		new_event_log_item.old_blackboard = context.clone()
+		
+		for rule in rules:
+			if rule.test(context):
+				context.clean_scope("Event")
+				
+				rule.execute_modifications(context)
+				
+				new_event_log_item.rule_triggered = rule
+				new_event_log_item.new_blackboard = context.clone()
+				ReactionSignals.event_execution_log_created.emit(new_event_log_item)
+				
+				ReactionSignals.rule_executed.emit(rule)
+				return rule.responses.get_responses()
+
+	return []
+	
+
+## ----------------------------------------------------------------------------[br]
 ## Add an item on the fact references logs
 ## [br]
 ## [b]Parameter(s):[/b] [br]
