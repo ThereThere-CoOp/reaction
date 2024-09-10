@@ -146,11 +146,19 @@ func get_value_b() -> Variant:
 ## [b]Returns: bool[/b] [br]
 ## Returns true if criteria match with fact value  [br]
 ## ----------------------------------------------------------------------------
-func test(blackboard_fact: ReactionBlackboardFact) -> bool:
+func test(context: ReactionBlackboard) -> bool:
+	var b_fact: ReactionBlackboardFact = context.get_blackboard_fact(fact.uid)
+	
+	# if criteria fact do not exists on blackboard
+	# rule do not match
+	if b_fact == null:
+			return false
+			
 	var criteria_test_result = (
-		blackboard_fact.value >= _internal_value_a
-		and blackboard_fact.value <= _internal_value_b
+		b_fact.value >= _internal_value_a
+		and b_fact.value <= _internal_value_b
 	)
+	
 	return criteria_test_result if not is_reverse else not criteria_test_result
 	
 	

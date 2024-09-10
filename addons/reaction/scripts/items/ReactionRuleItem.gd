@@ -43,14 +43,8 @@ func get_criterias_count() -> int:
 ## ----------------------------------------------------------------------------
 func test(context: ReactionBlackboard) -> bool:
 	for criteria in criterias:
-		var current_bfact = context.get_blackboard_fact(criteria.fact.uid)
 
-		# if criteria fact do not exists on blackboard
-		# rule do not match
-		if current_bfact == null:
-			return false
-
-		if not criteria.test(current_bfact):
+		if not criteria.test(context):
 			return false
 
 	return true

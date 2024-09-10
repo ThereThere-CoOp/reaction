@@ -14,7 +14,7 @@ class TestRules:
 		# testing numeric less than criteria
 		_global_blackboard.set_fact_value(_facts["mind_type"], "volao")
 		current_result = _rules_criterias["mindtype_is_mindundi"].test(
-			_global_blackboard.get_blackboard_fact(_facts["mind_type"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result, 'Rule criteria "mindtype_is_mindundi" must test false for "volao"'
@@ -22,7 +22,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["mind_type"], "mindundi")
 		current_result = _rules_criterias["mindtype_is_mindundi"].test(
-			_global_blackboard.get_blackboard_fact(_facts["mind_type"].uid)
+			_global_blackboard
 		)
 		assert_true(
 			current_result, 'Rule criteria "mindtype_is_mindundi" must test true for "mindundi"'
@@ -33,7 +33,7 @@ class TestRules:
 		# testing numeric less than criteria
 		_global_blackboard.set_fact_value(_facts["population_size"], 400)
 		current_result = _rules_criterias["population_less_than_300"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result, 'Rule criteria "population_less_than_300" must test false for value 400'
@@ -41,7 +41,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 200)
 		current_result = _rules_criterias["population_less_than_300"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 
 		assert_true(
@@ -54,13 +54,13 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["is_comunism"], true)
 		current_result = _rules_criterias["not_comunism"].test(
-			_global_blackboard.get_blackboard_fact(_facts["is_comunism"].uid)
+			_global_blackboard
 		)
 		assert_false(current_result, 'Rule criteria "not_comunism" must test false for value true')
 
 		_global_blackboard.set_fact_value(_facts["is_comunism"], false)
 		current_result = _rules_criterias["not_comunism"].test(
-			_global_blackboard.get_blackboard_fact(_facts["is_comunism"].uid)
+			_global_blackboard
 		)
 		assert_true(current_result, 'Rule criteria "not_comunism" must test true for value false')
 
@@ -70,7 +70,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 500)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result,
@@ -79,7 +79,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 20)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result,
@@ -88,7 +88,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 245)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_true(
 			current_result,
