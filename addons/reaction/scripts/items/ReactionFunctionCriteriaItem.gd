@@ -25,6 +25,26 @@ func _calculate_with_function(total: int, value: int) -> int:
 			return total + value
 
 
+func get_function_result(context: ReactionBlackboard) -> int:
+	var total_value: int = 0
+	if facts.size() > 0:
+		var first_b_fact = context.get_blackboard_fact(facts[0].uid)
+		
+		if first_b_fact:
+			total_value = first_b_fact.value
+		
+		for index: int in range(1, facts.size()):
+			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(facts[index].uid)
+			
+			var current_value: int = 0
+			if temp_b_fact:
+				current_value = temp_b_fact.value
+				
+			total_value = _calculate_with_function(total_value, current_value)
+		
+	return total_value
+	
+	
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]
 ## [b]Parameter(s):[/b] [br]
@@ -35,15 +55,7 @@ func _calculate_with_function(total: int, value: int) -> int:
 ## ----------------------------------------------------------------------------
 func test(context: ReactionBlackboard) -> bool:
 	
-	var total_value: int
-	for current_fact: ReactionFactItem in facts:
-		var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(current_fact.uid)
-		
-		var current_value: int = 0
-		if temp_b_fact:
-			current_value = temp_b_fact.value
-			
-		total_value = _calculate_with_function(total_value, current_value)
+	var total_value: int = get_function_result(context)
 	
 	var criteria_test_result = (
 		total_value >= _internal_value_a
