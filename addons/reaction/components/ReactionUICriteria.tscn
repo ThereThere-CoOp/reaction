@@ -1,21 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbfw7b8fntg6q"]
+[gd_scene load_steps=6 format=3 uid="uid://cbfw7b8fntg6q"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ReactionUIListObjectFormItem.tscn" id="1_1kf0c"]
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUICriteria.gd" id="2_hpqvs"]
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="3_vba1f"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_0si3a"]
-
-[sub_resource type="Resource" id="Resource_yx76e"]
-script = ExtResource("4_0si3a")
-type = 0
-is_enum = false
-trigger_signal_on_modified = false
-parents = Array[String]([])
-uid = "8e6cb780-7853-42a6-abf6-c5505909c56d"
-label = "item_label"
-description = "Item long description"
-scope = "Global"
-tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
 
 [sub_resource type="Image" id="Image_ryo4o"]
 data = {
@@ -54,21 +41,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Facts Function"
 
-[node name="FactsContainer" type="VBoxContainer" parent="Columns" index="3"]
-layout_mode = 2
-
-[node name="FactsLabel" type="Label" parent="Columns/FactsContainer" index="0"]
-layout_mode = 2
-text = "Factas"
-
-[node name="ReactionUIListObjectForm" type="MarginContainer" parent="Columns/FactsContainer" index="1"]
-layout_mode = 2
-script = ExtResource("3_vba1f")
-object_name = "fact"
-objects_list_field_name = "facts"
-object_resource_class = SubResource("Resource_yx76e")
-
-[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="4"]
+[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="3"]
 layout_mode = 2
 
 [node name="OperationLabel" type="Label" parent="Columns/OperationContainer" index="0"]
@@ -93,7 +66,7 @@ popup/item_2/id = 2
 popup/item_3/text = "a<=x<=b"
 popup/item_3/id = 3
 
-[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="5"]
+[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="4"]
 layout_mode = 2
 
 [node name="ValueLabel" type="Label" parent="Columns/ValueContainer" index="0"]
@@ -124,7 +97,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="6"]
+[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="5"]
 layout_mode = 2
 
 [node name="ValueBLabel" type="Label" parent="Columns/ValueBContainer" index="0"]
@@ -138,12 +111,12 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="7"]
+[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="6"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Negate"
 
-[node name="RemoveObjectButton" parent="Columns" index="8"]
+[node name="RemoveObjectButton" parent="Columns" index="7"]
 tooltip_text = "Remove criteria"
 icon = SubResource("ImageTexture_ns5dv")
 
