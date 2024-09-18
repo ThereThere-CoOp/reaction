@@ -3,6 +3,7 @@ class_name ReactionUICriteria
 extends ReactionUIListObjectFormItem
 
 var label_input: LineEdit
+var facts_function_button: Button
 var fact_search_menu: HBoxContainer
 var operation_label: Label
 var operation_menu: MenuButton
@@ -18,6 +19,7 @@ var boolean_value_check: CheckBox
 var negate_check: CheckButton
 
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
+@onready var facts_functions_dialog: AcceptDialog = %FactsFunctionAcceptDialog
 
 
 func _ready():
@@ -255,3 +257,7 @@ func _on_boolean_value_check_box_toggled(toggled_on):
 
 func _on_negate_check_button_toggled(toggled_on):
 	_set_criteria_property("is_reverse", toggled_on)
+
+
+func _on_facts_function_button_pressed():
+	facts_functions_dialog.popup_centered()

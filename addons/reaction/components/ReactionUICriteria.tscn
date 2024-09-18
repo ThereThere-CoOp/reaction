@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbfw7b8fntg6q"]
+[gd_scene load_steps=8 format=3 uid="uid://cbfw7b8fntg6q"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ReactionUIListObjectFormItem.tscn" id="1_1kf0c"]
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUICriteria.gd" id="2_hpqvs"]
-[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="3_s03w0"]
+[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="3_vba1f"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_0si3a"]
 
-[sub_resource type="Image" id="Image_lmask"]
+[sub_resource type="Resource" id="Resource_yx76e"]
+script = ExtResource("4_0si3a")
+type = 0
+is_enum = false
+trigger_signal_on_modified = false
+parents = Array[String]([])
+uid = "8e6cb780-7853-42a6-abf6-c5505909c56d"
+label = "item_label"
+description = "Item long description"
+scope = "Global"
+tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
+
+[sub_resource type="Image" id="Image_ryo4o"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -13,8 +26,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_6d44j"]
-image = SubResource("Image_lmask")
+[sub_resource type="ImageTexture" id="ImageTexture_ns5dv"]
+image = SubResource("Image_ryo4o")
 
 [node name="ReactionUICriteria" instance=ExtResource("1_1kf0c")]
 script = ExtResource("2_hpqvs")
@@ -34,19 +47,28 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="FactContainer" type="VBoxContainer" parent="Columns" index="2"]
-layout_mode = 2
-
-[node name="FactLabel" type="Label" parent="Columns/FactContainer" index="0"]
-layout_mode = 2
-text = "Fact:"
-
-[node name="FactsSearchMenu" parent="Columns/FactContainer" index="1" instance=ExtResource("3_s03w0")]
+[node name="FactsFunctionButton" type="Button" parent="Columns" index="2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Facts Function"
+
+[node name="FactsContainer" type="VBoxContainer" parent="Columns" index="3"]
 layout_mode = 2
 
-[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="3"]
+[node name="FactsLabel" type="Label" parent="Columns/FactsContainer" index="0"]
+layout_mode = 2
+text = "Factas"
+
+[node name="ReactionUIListObjectForm" type="MarginContainer" parent="Columns/FactsContainer" index="1"]
+layout_mode = 2
+script = ExtResource("3_vba1f")
+object_name = "fact"
+objects_list_field_name = "facts"
+object_resource_class = SubResource("Resource_yx76e")
+
+[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="4"]
 layout_mode = 2
 
 [node name="OperationLabel" type="Label" parent="Columns/OperationContainer" index="0"]
@@ -71,7 +93,7 @@ popup/item_2/id = 2
 popup/item_3/text = "a<=x<=b"
 popup/item_3/id = 3
 
-[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="4"]
+[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="5"]
 layout_mode = 2
 
 [node name="ValueLabel" type="Label" parent="Columns/ValueContainer" index="0"]
@@ -102,7 +124,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="5"]
+[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="6"]
 layout_mode = 2
 
 [node name="ValueBLabel" type="Label" parent="Columns/ValueBContainer" index="0"]
@@ -116,20 +138,70 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="6"]
+[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="7"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Negate"
 
-[node name="RemoveObjectButton" parent="Columns" index="7"]
+[node name="RemoveObjectButton" parent="Columns" index="8"]
 tooltip_text = "Remove criteria"
-icon = SubResource("ImageTexture_6d44j")
+icon = SubResource("ImageTexture_ns5dv")
 
 [node name="WarningAcceptDialog" type="AcceptDialog" parent="." index="1"]
 unique_name_in_owner = true
 
+[node name="FactsFunctionAcceptDialog" type="AcceptDialog" parent="." index="2"]
+unique_name_in_owner = true
+title = "Facts Functions"
+size = Vector2i(300, 500)
+
+[node name="MarginContainer" type="MarginContainer" parent="FactsFunctionAcceptDialog" index="3"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 251.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColumnsContainer" type="HBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="FunctionOperationContainer" type="VBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer" index="0"]
+layout_mode = 2
+
+[node name="FunctionOperationLabel" type="Label" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="0"]
+layout_mode = 2
+text = "Operation:"
+
+[node name="FactsFunctionOperationMenuButton" type="MenuButton" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+item_count = 3
+popup/item_0/text = "+"
+popup/item_0/id = 0
+popup/item_1/text = "-"
+popup/item_1/id = 1
+popup/item_2/text = "*"
+popup/item_2/id = 2
+
+[node name="FunctionFactsContainer" type="VBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer" index="1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="0"]
+layout_mode = 2
+text = "Facts:
+"
+
+[node name="ReactionUIListObjectForm" type="MarginContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1"]
+layout_mode = 2
+script = ExtResource("3_vba1f")
+object_name = "fact"
+
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
-[connection signal="item_selected" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
+[connection signal="pressed" from="Columns/FactsFunctionButton" to="." method="_on_facts_function_button_pressed"]
 [connection signal="text_submitted" from="Columns/ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]
 [connection signal="toggled" from="Columns/ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]
 [connection signal="toggled" from="Columns/NegateCheckButton" to="." method="_on_negate_check_button_toggled"]
