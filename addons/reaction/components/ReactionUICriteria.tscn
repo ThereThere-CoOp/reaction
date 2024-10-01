@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUICriteria.gd" id="2_hpqvs"]
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="3_vba1f"]
 
-[sub_resource type="Image" id="Image_ryo4o"]
+[sub_resource type="Image" id="Image_xipkm"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -13,8 +13,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_ns5dv"]
-image = SubResource("Image_ryo4o")
+[sub_resource type="ImageTexture" id="ImageTexture_4he5t"]
+image = SubResource("Image_xipkm")
 
 [node name="ReactionUICriteria" instance=ExtResource("1_1kf0c")]
 script = ExtResource("2_hpqvs")
@@ -118,17 +118,17 @@ text = "Negate"
 
 [node name="RemoveObjectButton" parent="Columns" index="7"]
 tooltip_text = "Remove criteria"
-icon = SubResource("ImageTexture_ns5dv")
+icon = SubResource("ImageTexture_4he5t")
 
 [node name="WarningAcceptDialog" type="AcceptDialog" parent="." index="1"]
 unique_name_in_owner = true
 
-[node name="FactsFunctionAcceptDialog" type="AcceptDialog" parent="." index="2"]
+[node name="FactsFunctionConfirmationDialog" type="ConfirmationDialog" parent="." index="2"]
 unique_name_in_owner = true
 title = "Facts Functions"
 size = Vector2i(300, 500)
 
-[node name="MarginContainer" type="MarginContainer" parent="FactsFunctionAcceptDialog" index="3"]
+[node name="MarginContainer" type="MarginContainer" parent="FactsFunctionConfirmationDialog" index="3"]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 292.0
@@ -136,18 +136,18 @@ offset_bottom = 251.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColumnsContainer" type="HBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer" index="0"]
+[node name="ColumnsContainer" type="HBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer" index="0"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="FunctionOperationContainer" type="VBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer" index="0"]
+[node name="FunctionOperationContainer" type="VBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer" index="0"]
 layout_mode = 2
 
-[node name="FunctionOperationLabel" type="Label" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="0"]
+[node name="FunctionOperationLabel" type="Label" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="0"]
 layout_mode = 2
 text = "Operation:"
 
-[node name="FactsFunctionOperationMenuButton" type="MenuButton" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="1"]
+[node name="FactsFunctionOperationMenuButton" type="MenuButton" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionOperationContainer" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -160,15 +160,15 @@ popup/item_1/id = 1
 popup/item_2/text = "*"
 popup/item_2/id = 2
 
-[node name="FunctionFactsContainer" type="VBoxContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer" index="1"]
+[node name="FunctionFactsContainer" type="VBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer" index="1"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="0"]
+[node name="Label" type="Label" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="0"]
 layout_mode = 2
 text = "Facts:
 "
 
-[node name="ReactionUIListObjectForm" type="MarginContainer" parent="FactsFunctionAcceptDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1"]
+[node name="ReactionUIListObjectForm" type="MarginContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1"]
 layout_mode = 2
 script = ExtResource("3_vba1f")
 object_name = "fact"

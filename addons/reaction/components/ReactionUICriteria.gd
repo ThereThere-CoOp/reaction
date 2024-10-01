@@ -19,7 +19,7 @@ var boolean_value_check: CheckBox
 var negate_check: CheckButton
 
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
-@onready var facts_functions_dialog: AcceptDialog = %FactsFunctionAcceptDialog
+@onready var facts_functions_dialog: AcceptDialog = %FactsFunctionConfirmationDialog
 
 
 func _ready():

@@ -8,7 +8,7 @@ extends ReactionCriteriaItem
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
 
-@export var facts: Array[ReactionFactItem] = []
+@export var facts: Array[ReactionCriteriaFunctionFactItem] = []
 
 @export_enum("+", "-", "*") var function: String
 
@@ -28,13 +28,13 @@ func _calculate_with_function(total: int, value: int) -> int:
 func get_function_result(context: ReactionBlackboard) -> int:
 	var total_value: int = 0
 	if facts.size() > 0:
-		var first_b_fact = context.get_blackboard_fact(facts[0].uid)
+		var first_b_fact = context.get_blackboard_fact(facts[0].fact.uid)
 		
 		if first_b_fact:
 			total_value = first_b_fact.value
 		
 		for index: int in range(1, facts.size()):
-			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(facts[index].uid)
+			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(facts[index].fact.uid)
 			
 			var current_value: int = 0
 			if temp_b_fact:
