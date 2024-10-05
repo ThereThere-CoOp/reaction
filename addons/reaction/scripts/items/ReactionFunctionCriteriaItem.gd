@@ -23,6 +23,10 @@ func _calculate_with_function(total: int, value: int) -> int:
 			return total * value
 		_:
 			return total + value
+			
+			
+func add_fact(function_fact: ReactionCriteriaFunctionFactItem) -> void:
+	facts.append(function_fact)
 
 
 func get_function_result(context: ReactionBlackboard) -> int:

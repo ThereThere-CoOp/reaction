@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbfw7b8fntg6q"]
+[gd_scene load_steps=10 format=3 uid="uid://cbfw7b8fntg6q"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ReactionUIListObjectFormItem.tscn" id="1_1kf0c"]
 [ext_resource type="Script" path="res://addons/reaction/components/ReactionUICriteria.gd" id="2_hpqvs"]
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="3_vba1f"]
+[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="3_bn02u"]
+[ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="4_abllb"]
+[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionFactItem.gd" id="5_envos"]
+[ext_resource type="PackedScene" uid="uid://dhyo0o7realmv" path="res://addons/reaction/components/ReactionUICriteriaFunctionFact.tscn" id="6_flluw"]
 
-[sub_resource type="Image" id="Image_xipkm"]
+[sub_resource type="Image" id="Image_harbd"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -13,8 +16,17 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_4he5t"]
-image = SubResource("Image_xipkm")
+[sub_resource type="ImageTexture" id="ImageTexture_pdpwv"]
+image = SubResource("Image_harbd")
+
+[sub_resource type="Resource" id="Resource_4erab"]
+script = ExtResource("5_envos")
+parents = Array[String]([])
+uid = "c6be46f6-3437-401d-881f-c97759547f2c"
+label = "item_label"
+description = "Item long description"
+scope = "Global"
+tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
 
 [node name="ReactionUICriteria" instance=ExtResource("1_1kf0c")]
 script = ExtResource("2_hpqvs")
@@ -34,14 +46,26 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="FactsFunctionButton" type="Button" parent="Columns" index="2"]
+[node name="FactContainer" type="VBoxContainer" parent="Columns" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FactLabel" type="Label" parent="Columns/FactContainer" index="0"]
+layout_mode = 2
+text = "Fact:"
+
+[node name="FactsSearchMenu" parent="Columns/FactContainer" index="1" instance=ExtResource("3_bn02u")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FactsFunctionButton" type="Button" parent="Columns" index="3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Facts Function"
 
-[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="3"]
+[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="4"]
 layout_mode = 2
 
 [node name="OperationLabel" type="Label" parent="Columns/OperationContainer" index="0"]
@@ -66,7 +90,7 @@ popup/item_2/id = 2
 popup/item_3/text = "a<=x<=b"
 popup/item_3/id = 3
 
-[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="4"]
+[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="5"]
 layout_mode = 2
 
 [node name="ValueLabel" type="Label" parent="Columns/ValueContainer" index="0"]
@@ -97,7 +121,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="5"]
+[node name="ValueBContainer" type="VBoxContainer" parent="Columns" index="6"]
 layout_mode = 2
 
 [node name="ValueBLabel" type="Label" parent="Columns/ValueBContainer" index="0"]
@@ -111,14 +135,14 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="6"]
+[node name="NegateCheckButton" type="CheckButton" parent="Columns" index="7"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Negate"
 
-[node name="RemoveObjectButton" parent="Columns" index="7"]
+[node name="RemoveObjectButton" parent="Columns" index="8"]
 tooltip_text = "Remove criteria"
-icon = SubResource("ImageTexture_4he5t")
+icon = SubResource("ImageTexture_pdpwv")
 
 [node name="WarningAcceptDialog" type="AcceptDialog" parent="." index="1"]
 unique_name_in_owner = true
@@ -168,12 +192,17 @@ layout_mode = 2
 text = "Facts:
 "
 
-[node name="ReactionUIListObjectForm" type="MarginContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1"]
+[node name="FactFunctionObjectFormList" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1" instance=ExtResource("4_abllb")]
+unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("3_vba1f")
 object_name = "fact"
+objects_list_field_name = "facts"
+parent_object_add_function_name = "add_fact"
+object_resource_class = SubResource("Resource_4erab")
+object_scene = ExtResource("6_flluw")
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
+[connection signal="item_selected" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
 [connection signal="pressed" from="Columns/FactsFunctionButton" to="." method="_on_facts_function_button_pressed"]
 [connection signal="text_submitted" from="Columns/ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]
 [connection signal="toggled" from="Columns/ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]

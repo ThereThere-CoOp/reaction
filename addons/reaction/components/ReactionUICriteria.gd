@@ -4,7 +4,9 @@ extends ReactionUIListObjectFormItem
 
 var label_input: LineEdit
 var facts_function_button: Button
-var fact_search_menu: HBoxContainer
+var fact_container: VBoxContainer
+var fact_search_menu: ReactionUISearchMenu
+var fact_functions_form_list: ReactionUIListObjectForm
 var operation_label: Label
 var operation_menu: MenuButton
 var value_a_label: Label
@@ -136,7 +138,10 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	super(database, parent_object, object, index, is_new_object)
 	
 	label_input = %LabelLineEdit
+	fact_container = %FactContainer
 	fact_search_menu = %FactsSearchMenu
+	facts_function_button = %FactsFunctionButton
+	fact_functions_form_list = %FactFunctionObjectFormList
 	operation_label = %OperationLabel
 	operation_menu = %OperationMenuButton
 	value_a_label = %ValueLabel
@@ -172,6 +177,17 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	
 	if is_new_object:
 		operation_menu.text = "Select operation"
+	
+	fact_functions_form_list.setup_objects(item_object)
+	
+	fact_container.visible = true
+	facts_function_button.visible = false
+	
+	if item_object is ReactionFunctionCriteriaItem:
+		fact_container.visible = false
+		facts_function_button.visible = true
+	
+	 
 
 
 func _set_criteria_property(property_name: StringName, value: Variant) -> void:
