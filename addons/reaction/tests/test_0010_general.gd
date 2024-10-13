@@ -23,6 +23,16 @@ func before_all():
 	var fact_population_size = ReactionFactItem.new()
 	fact_population_size.label = "population_size"
 	fact_population_size.type = TYPE_INT
+	
+	# declaring fact of type integer
+	var fact_extra_population_size = ReactionFactItem.new()
+	fact_extra_population_size.label = "extra_population_size"
+	fact_extra_population_size.type = TYPE_INT
+	
+	# declaring fact of type integer
+	var fact_extra_small_population_size = ReactionFactItem.new()
+	fact_extra_small_population_size.label = "extra_small_population_size"
+	fact_extra_small_population_size.type = TYPE_INT
 
 	# declaring fact of type boolean
 	var fact_is_comunism = ReactionFactItem.new()
@@ -33,6 +43,8 @@ func before_all():
 	_facts[fact_mind_type.label] = fact_mind_type
 	_facts[fact_population_size.label] = fact_population_size
 	_facts[fact_is_comunism.label] = fact_is_comunism
+	_facts[fact_extra_population_size.label] = fact_extra_population_size
+	_facts[fact_extra_small_population_size.label] = fact_extra_small_population_size
 
 	# init rules criterias
 	var criteria_is_mindundi = ReactionCriteriaItem.new()
@@ -71,12 +83,55 @@ func before_all():
 
 	criteria_is_volao.value_a = 0
 	criteria_is_volao.operation = "="
-
+	
+	# function criteria item init 
+	var pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	pop_size_criteria_fact_item.label = "population_size"
+	pop_size_criteria_fact_item.fact = fact_population_size
+	
+	var extra_pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	extra_pop_size_criteria_fact_item.label = "extra_population_size"
+	extra_pop_size_criteria_fact_item.fact = fact_extra_population_size
+	
+	var extra_small_pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	extra_small_pop_size_criteria_fact_item.label = "extra_small_population_size"
+	extra_small_pop_size_criteria_fact_item.fact = fact_extra_small_population_size
+	
+	var function_criteria_facts_array: Array[ReactionCriteriaFunctionFactItem] = []
+	function_criteria_facts_array.append(pop_size_criteria_fact_item)
+	function_criteria_facts_array.append(extra_pop_size_criteria_fact_item)
+	function_criteria_facts_array.append(extra_small_pop_size_criteria_fact_item)
+	
+	var function_criteria_population_sum_less_500 = ReactionFunctionCriteriaItem.new()
+	function_criteria_population_sum_less_500.label = "pop_sum_less_500"
+	function_criteria_population_sum_less_500.value_a = 500
+	function_criteria_population_sum_less_500.operation = "<"
+	function_criteria_population_sum_less_500.facts = function_criteria_facts_array
+	function_criteria_population_sum_less_500.function = "+"
+	
+	var function_criteria_population_sus_greater_500 = ReactionFunctionCriteriaItem.new()
+	function_criteria_population_sus_greater_500.label = "pop_sus_more_500"
+	function_criteria_population_sus_greater_500.value_a = 500
+	function_criteria_population_sus_greater_500.operation = ">"
+	function_criteria_population_sus_greater_500.facts = function_criteria_facts_array
+	function_criteria_population_sus_greater_500.function = "-"
+	
+	var function_criteria_population_mult_greater_500 = ReactionFunctionCriteriaItem.new()
+	function_criteria_population_mult_greater_500.label = "pop_mult_more_500"
+	function_criteria_population_mult_greater_500.value_a = 500
+	function_criteria_population_mult_greater_500.operation = ">"
+	function_criteria_population_mult_greater_500.facts = function_criteria_facts_array
+	function_criteria_population_mult_greater_500.function = "*"
+	
+	# adding criteria to global dict
 	_rules_criterias[criteria_is_mindundi.label] = criteria_is_mindundi
 	_rules_criterias[criteria_population_lt_300.label] = criteria_population_lt_300
 	_rules_criterias[criteria_not_comunism.label] = criteria_not_comunism
 	_rules_criterias[criteria_population_b_100_400.label] = criteria_population_b_100_400
 	_rules_criterias[criteria_is_volao.label] = criteria_is_volao
+	_rules_criterias[function_criteria_population_sum_less_500.label] = function_criteria_population_sum_less_500
+	_rules_criterias[function_criteria_population_sus_greater_500.label] = function_criteria_population_sus_greater_500
+	_rules_criterias[function_criteria_population_mult_greater_500.label] = function_criteria_population_mult_greater_500
 
 	# init modifications
 	var modification_declare_comunism = ReactionContextModificationItem.new()
