@@ -29,19 +29,30 @@ func add_fact(function_fact: ReactionCriteriaFunctionFactItem) -> void:
 	facts.append(function_fact)
 
 
+## ----------------------------------------------------------------------------[br]
+## Calcule the result of the function in dependency of the select facts and 
+## function [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* context | ReactionBlackboard:[/b] Current blackboard fact values 
+## [br]
+## [b]Returns: int[/b] [br]
+## The result of the execution of the function  [br]
+## ----------------------------------------------------------------------------
 func get_function_result(context: ReactionBlackboard) -> int:
 	var total_value: int = 0
 	if facts.size() > 0:
 		var first_b_fact = context.get_blackboard_fact(facts[0].fact.uid)
 		
-		if first_b_fact:
+		# if fact value is null or not int the value is ZERO
+		if first_b_fact and facts[0].fact.type == TYPE_INT:
 			total_value = first_b_fact.value
 		
 		for index: int in range(1, facts.size()):
 			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(facts[index].fact.uid)
 			
 			var current_value: int = 0
-			if temp_b_fact:
+			# if fact value is null or not int the value is ZERO
+			if temp_b_fact and facts[index].fact.type == TYPE_INT:
 				current_value = temp_b_fact.value
 				
 			total_value = _calculate_with_function(total_value, current_value)

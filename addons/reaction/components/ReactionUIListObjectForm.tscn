@@ -4,7 +4,6 @@
 
 [node name="ReactionUIListObjectForm" type="MarginContainer"]
 script = ExtResource("1_04rig")
-objects_to_add_data_array = null
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -15,7 +14,8 @@ layout_mode = 2
 [node name="AddObjectsMenuButton" type="MenuButton" parent="Rows/AddButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Select to object to add..."
+text = "Select object to add..."
+flat = false
 
 [node name="ObjectsScrollContainer" type="ScrollContainer" parent="Rows"]
 unique_name_in_owner = true
