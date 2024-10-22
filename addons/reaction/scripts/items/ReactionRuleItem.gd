@@ -108,5 +108,6 @@ func get_new_object():
 	return ReactionRuleItem.new()
 	
 	
-func _to_string():
-	return label
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.RULE
+

@@ -12,3 +12,7 @@ extends ReactionResponseBaseItem
 
 ## Uuid of the event that this response triggers
 @export var triggers: String
+
+
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.RESPONSE

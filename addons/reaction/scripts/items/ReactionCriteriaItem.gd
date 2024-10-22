@@ -164,3 +164,7 @@ func test(context: ReactionBlackboard) -> bool:
 	
 func get_new_object() -> ReactionCriteriaItem:
 	return ReactionCriteriaItem.new()
+	
+
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.CRITERIA

@@ -101,3 +101,7 @@ func execute(context: ReactionBlackboard) -> void:
 				
 func get_new_object() -> ReactionContextModificationItem:
 	return ReactionContextModificationItem.new()
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.MODIFICATION

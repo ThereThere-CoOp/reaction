@@ -52,7 +52,7 @@ func get_new_object():
 	new_fact.label = "newFact"
 	new_fact.type = TYPE_STRING
 	return new_fact
-	
+
 	
 func _get_property_list() -> Array:
 	var properties: Array = []
@@ -64,3 +64,7 @@ func _get_property_list() -> Array:
 	)
 
 	return properties
+
+
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.FACT

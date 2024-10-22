@@ -48,3 +48,7 @@ static func get_new_object() -> ReactionResponseGroupItem:
 	var new_response_group = ReactionResponseGroupItem.new()
 	new_response_group.label = "newResponseGroup"
 	return new_response_group
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP

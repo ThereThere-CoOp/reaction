@@ -10,6 +10,21 @@ var databases: Dictionary = {}
 
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
+enum ItemsTypesEnum {
+	BASE,
+	FACT, 
+	EVENT, 
+	RULE, 
+	CRITERIA,
+	MODIFICATION,
+	FUNC_CRITERIA, 
+	FUNC_CRIT_FACT, 
+	RESPONSE_GROUP, 
+	RESPONSE,
+	DIALOG,
+	CHOICE
+}
+
 ## ------------------globals contexts ----------------------------------------------
 ## add here your global context variables
 

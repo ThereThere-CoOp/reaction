@@ -202,6 +202,10 @@ func remove_fact_reference_log(item: Resource) -> void:
 					if log_item.choice.uid == item.uid:
 						object_log.erase(log_item.uid)
 						
+				if item is ReactionCriteriaFunctionFactItem:
+					if log_item.choice.uid == item.uid:
+						object_log.erase(log_item.uid)
+						
 				## add here extra if for custom items
 				
 
@@ -209,3 +213,7 @@ func get_new_object():
 	var new_event = ReactionEventItem.new()
 	new_event.label = "NEW_EVENT"
 	return new_event
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.EVENT

@@ -6,7 +6,7 @@ extends Resource
 ##
 ## A base class for reaction items like facts, rules, concepts and responses.
 ## Contains common fields and functions for reaction items. [br]
-## ----------------------------------------------------------------------------
+## --------------------------------------------------------------------------------
 
 @export var parents: Array[String] = []
 
@@ -41,9 +41,9 @@ func remove_tag(tag_uid: String) -> void:
 func update_parents(parent_object: Resource) -> void:
 	if parent_object and parent_object is ReactionBaseItem:
 		var new_parents = parent_object.parents.duplicate()
-		new_parents.append(parent_object.uid)
+		new_parents.append("%d:%s" % [get_type_string(), parent_object.uid])
 		parents = new_parents
-	
+
 	
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 	pass
@@ -51,3 +51,11 @@ func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 
 func remove_fact_reference_log(item: Resource) -> void:
 	pass
+	
+	
+func _to_string():
+	return label
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.BASE

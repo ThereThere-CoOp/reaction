@@ -110,3 +110,7 @@ func get_new_object() -> ReactionDialogChoiceItem:
 	var new_dialog_choice = ReactionDialogChoiceItem.new()
 	new_dialog_choice.label = "newDialogChoice"
 	return new_dialog_choice
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.CHOICE

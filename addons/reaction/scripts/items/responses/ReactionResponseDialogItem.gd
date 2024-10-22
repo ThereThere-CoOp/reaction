@@ -74,6 +74,10 @@ func add_choice(choice: ReactionDialogChoiceItem) -> void:
 ## ----------------------------------------------------------------------------
 func remove_choice_by_index(index: int) -> void:
 	choices.remove_at(index)
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.DIALOG
 
 
 
