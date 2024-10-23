@@ -69,6 +69,7 @@ func _sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem
 ## ----------------------------------------------------------------------------
 func add_rule(rule: ReactionRuleItem) -> void:
 	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
+	rule.update_parents(self)
 	new_rules.append(rule)
 	
 	## reordering occurs cause set method

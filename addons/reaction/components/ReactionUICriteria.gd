@@ -178,8 +178,11 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if is_new_object:
 		operation_menu.text = "Select operation"
 	
-	fact_functions_form_list.setup_objects(item_object)
-	
+	if item_object is ReactionFunctionCriteriaItem:
+		fact_functions_form_list.setup_objects(item_object)
+	else:
+		fact_functions_form_list.setup_objects(null)
+		
 	fact_container.visible = true
 	facts_function_button.visible = false
 	

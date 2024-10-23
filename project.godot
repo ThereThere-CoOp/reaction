@@ -27,7 +27,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/
 [reaction]
 
 databases_path="res://examples/databases"
-current_database_id="7cf1ce19-8baf-4e6e-918f-4856e6cf2150"
+current_database_id="d5ebf773-0429-47e6-b437-ec4baff0203b"
 languages_dict={
 "en": {
 "code": "en",

@@ -145,13 +145,15 @@ func remove_rule_from_event(event_uid: String, rule_uid: String) -> void:
 		
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 	if object.object.parents and object.object.parents.size() > 0:
-		var event_uid = object.object.parents[0]
+		var splited_parent: PackedStringArray = object.object.parents[0].split(":")
+		var event_uid = splited_parent[1]
 		events[event_uid].add_fact_reference_log(object)
 	
 
 func remove_fact_reference_log(item: Resource) -> void:
 	if item.parents and item.parents.size() > 0:
-		var event_uid = item.parents[0]
+		var splited_parent: PackedStringArray = item.parents[0].split(":")
+		var event_uid = splited_parent[1]
 		events[event_uid].remove_fact_reference_log(item)
 
 

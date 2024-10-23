@@ -19,5 +19,13 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 ### signals
 
 func _on_fact_input_item_selected(item: Resource) -> void:
+	
+	if item_object.fact:
+		current_database.remove_fact_reference_log(item_object)
+	
 	item_object.fact = item
+	
+	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
+	new_item_log.update_log_objects(item_object, current_database)
+	current_database.add_fact_reference_log(new_item_log)
 	current_database.save_data()

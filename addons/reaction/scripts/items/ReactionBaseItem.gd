@@ -41,7 +41,7 @@ func remove_tag(tag_uid: String) -> void:
 func update_parents(parent_object: Resource) -> void:
 	if parent_object and parent_object is ReactionBaseItem:
 		var new_parents = parent_object.parents.duplicate()
-		new_parents.append("%d:%s" % [get_type_string(), parent_object.uid])
+		new_parents.append("%d:%s" % [parent_object.get_type_string(), parent_object.uid])
 		parents = new_parents
 
 	

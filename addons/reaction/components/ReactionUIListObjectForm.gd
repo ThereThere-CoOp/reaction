@@ -20,7 +20,7 @@ var current_parent_object: Resource
 
 # @onready var add_object_button : Button = %AddObjectButton
 @onready var add_objects_menu_button: MenuButton = %AddObjectsMenuButton
-@onready var objects_rows : VBoxContainer = %ObjectsRows
+@onready var objects_rows : VBoxContainer
 @onready var objects_scroll_container : ScrollContainer = %ObjectsScrollContainer
 @onready var _objects_scrollbar: VScrollBar = objects_scroll_container.get_v_scroll_bar()
 
@@ -41,6 +41,8 @@ func _ready():
 
 
 func setup_objects(parent_object: Resource) -> void:
+	objects_rows = %ObjectsRows
+	
 	if parent_object:
 		current_parent_object = parent_object
 		
@@ -49,6 +51,7 @@ func setup_objects(parent_object: Resource) -> void:
 		
 		_objects_scroll_to_end = false
 		var index = 0
+
 		for object in current_parent_object.get(objects_list_field_name):
 			var new_object = object_scene.instantiate()
 			new_object.setup(current_database, current_parent_object, object, index)

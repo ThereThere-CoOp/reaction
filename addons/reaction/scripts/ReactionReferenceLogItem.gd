@@ -39,40 +39,42 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 	uid = object.uid
 	# var  current_parents = new_object.parents
 	
+	var parent_event: ReactionEventItem = null
+	var parent_rule: ReactionRuleItem = null
+	var parent_response: ReactionResponseItem = null
+	var parent_choice: ReactionDialogChoiceItem = null
+		
 	for parent: String in object.parents:
-		var splited_parent: Array[String] = parent.split(":")
+		var splited_parent: PackedStringArray = parent.split(":")
 		
-		var parent_event: ReactionEventItem = null
-		var parent_rule: ReactionRuleItem = null
-		var parent_response: ReactionResponseItem = null
-		var parent_choice: ReactionDialogChoiceItem = null
-		
-		match int(splited_parent[0]):
-			ReactionGlobals.ItemsTypesEnum.EVENT:
-				parent_event = current_database.events[splited_parent[1]]
-				event = parent_event
+		print(splited_parent[0])
+		if  int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.EVENT:
+			parent_event = current_database.events[splited_parent[1]]
+			event = parent_event
 				
-			ReactionGlobals.ItemsTypesEnum.RULE:
-				for rul in parent_event.rules:
-					if rul.uid == splited_parent[1]:
-						parent_rule = rul
-				rule = parent_rule
+		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.RULE:
+			for rul in parent_event.rules:
+				if rul.uid == splited_parent[1]:
+					parent_rule = rul
+			rule = parent_rule
 				
-			ReactionGlobals.ItemsTypesEnum.CRITERIA, ReactionGlobals.ItemsTypesEnum.FUNC_CRITERIA:
-				var parent_criteria: ReactionCriteriaItem = null
-				for crit in parent_rule.criterias:
-					if crit.uid == splited_parent[1]:
-						parent_criteria = crit
-				criteria = parent_criteria
+				
+		elif int(splited_parent[0]) ==	ReactionGlobals.ItemsTypesEnum.CRITERIA or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.FUNC_CRITERIA:
+			var parent_criteria: ReactionCriteriaItem = null
+			for crit in parent_rule.criterias:
+				if crit.uid == splited_parent[1]:
+					parent_criteria = crit
+			criteria = parent_criteria
+				
+				
+		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP or int(splited_parent[0]) ==  ReactionGlobals.ItemsTypesEnum.RESPONSE or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
+			parent_response = _get_response(splited_parent[1], parent_rule.responses)
 			
-			ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP, ReactionGlobals.ItemsTypesEnum.RESPONSE, ReactionGlobals.ItemsTypesEnum.DIALOG:
-				parent_response = _get_response(splited_parent[1], parent_rule.responses)
+			if parent_response:
+				response = parent_response
 				
-				if parent_response:
-					response = parent_response
-					
-					if int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
-						for cho in response.choices:
-							if cho.uid == object.parents[-1]:
-								parent_choice = cho
-						choice = parent_choice
+				if int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
+					for cho in response.choices:
+						if cho.uid == object.parents[-1]:
+							parent_choice = cho
+					choice = parent_choice
