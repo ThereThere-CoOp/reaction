@@ -27,6 +27,17 @@ func _calculate_with_function(total: int, value: int) -> int:
 			
 func add_fact(function_fact: ReactionCriteriaFunctionFactItem) -> void:
 	facts.append(function_fact)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a fact from the criteria using the index [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* index | int:[/b] Index of the fact to remove [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func remove_fact_by_index(index: int) -> void:
+	facts[index].remove_fact_reference_log(facts[index])
+	facts.remove_at(index)
 
 
 ## ----------------------------------------------------------------------------[br]

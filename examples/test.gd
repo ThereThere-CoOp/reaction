@@ -1,6 +1,6 @@
 extends Control
 
-var database: ReactionDatabase = preload("res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres")
+var database: ReactionDatabase = preload("res://examples/databases/test_database_3043f628-c225-4be1-a72f-972825de7386.tres")
 
 var context = ReactionBlackboard.new()
 

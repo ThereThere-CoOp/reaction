@@ -178,6 +178,7 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if is_new_object:
 		operation_menu.text = "Select operation"
 	
+	fact_functions_form_list.current_database = current_database
 	if item_object is ReactionFunctionCriteriaItem:
 		fact_functions_form_list.setup_objects(item_object)
 	else:
