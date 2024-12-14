@@ -15,6 +15,8 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
+		
+	fact_search_menu.item_selected.connect(_on_fact_input_item_selected)
 	
 	
 ### signals
