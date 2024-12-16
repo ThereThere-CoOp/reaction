@@ -7,6 +7,7 @@ var facts_function_button: Button
 var fact_container: VBoxContainer
 var fact_search_menu: ReactionUISearchMenu
 var fact_functions_form_list: ReactionUIListObjectForm
+var function_menu: MenuButton
 var operation_label: Label
 var operation_menu: MenuButton
 var value_a_label: Label
@@ -49,7 +50,10 @@ func update_operation_menu_items() -> void:
 	var operation_menu_labels : Array[String]
 	var menu: PopupMenu = operation_menu.get_popup()
 	
-	if not item_object.fact:
+	if item_object is ReactionFunctionCriteriaItem:
+		operation_menu_labels = ["=", "<", ">", "a<=x<=b"]
+		_set_operation_input_visibility(true)
+	elif not item_object.fact:
 		operation_menu_labels = []
 		_set_operation_input_visibility(false)
 	elif item_object.fact.type == TYPE_INT:
@@ -73,11 +77,15 @@ func _get_value_a() -> Variant:
 	if item_object.value_a:
 		return item_object.value_a
 	else:
-		match item_object.fact.type:
-			TYPE_STRING:
-				return "Select value"
-			_:
-				return 0
+		if not item_object is ReactionFunctionCriteriaItem:
+			match item_object.fact.type:
+				TYPE_STRING:
+					return "Select value"
+				_:
+					return 0
+		else:
+			return 0
+		
 				
 				
 func _check_input_range_values(min_value, max_value) -> bool:
@@ -98,7 +106,14 @@ func _get_value_b() -> Variant:
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
-	if item_object.fact:
+	if item_object is ReactionFunctionCriteriaItem:
+		value_a_label.visible = true
+		
+		var current_value_a = _get_value_a()
+		value_a_numeric_input.visible = true
+		value_a_numeric_input.set_value_no_signal(int(current_value_a))
+		
+	elif item_object.fact:
 		value_a_label.visible = true
 		
 		var current_value_a = _get_value_a()
@@ -142,6 +157,7 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	fact_search_menu = %FactsSearchMenu
 	facts_function_button = %FactsFunctionButton
 	fact_functions_form_list = %FactFunctionObjectFormList
+	function_menu = %FactsFunctionOperationMenuButton
 	operation_label = %OperationLabel
 	operation_menu = %OperationMenuButton
 	value_a_label = %ValueLabel
@@ -156,9 +172,11 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	negate_check = %NegateCheckButton
 	
 	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
+	var function_popup_menu: PopupMenu = function_menu.get_popup()
 	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
 	
 	operation_popup_menu.index_pressed.connect(_on_operation_menu_index_pressed)
+	function_popup_menu.index_pressed.connect(_on_function_menu_index_pressed)
 	values_popup_menu.index_pressed.connect(_on_values_menu_index_pressed)
 	value_a_numeric_text_edit.text_submitted.connect(_on_value_a_numeric_text_submitted)
 	value_b_text_edit.text_submitted.connect(_on_value_b_text_submitted)
@@ -171,6 +189,12 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	fact_search_menu.items_list = current_database.global_facts.values()
 	
 	negate_check.button_pressed = item_object.is_reverse
+	
+	if item_object is ReactionFunctionCriteriaItem:
+		if item_object.function:
+			function_menu.text = item_object.function
+		else:
+			function_menu.text = "Select function"
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -257,6 +281,13 @@ func _on_operation_menu_index_pressed(index: int) -> void:
 	_set_criteria_property("operation", label)
 	operation_menu.text = label
 	update_values_input()
+	
+	
+func _on_function_menu_index_pressed(index: int) -> void:
+	var popup = function_menu.get_popup()
+	var label = popup.get_item_text(index)
+	_set_criteria_property("function", label)
+	function_menu.text = label
 
 
 func _on_value_a_line_edit_text_submitted(new_text):

@@ -3,26 +3,26 @@
 [ext_resource type="Script" path="res://examples/test.gd" id="1_4d5mw"]
 [ext_resource type="PackedScene" uid="uid://bh4pmkwqh73yw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.tscn" id="2_lgm08"]
 [ext_resource type="Script" path="res://examples/ReactionComponent.gd" id="3_fpsli"]
-[ext_resource type="Resource" uid="uid://mqr6gettjbh8" path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres" id="4_hj2aw"]
+[ext_resource type="Resource" uid="uid://dyvrubfyguaml" path="res://examples/databases/test_database_3043f628-c225-4be1-a72f-972825de7386.tres" id="4_hj2aw"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/ReactionComponetVariableFact.gd" id="5_h5tdd"]
 [ext_resource type="Script" path="res://addons/reaction/scripts/ReactionComponetVariableEvent.gd" id="6_allq4"]
 
 [sub_resource type="Resource" id="Resource_y0omc"]
 script = ExtResource("6_allq4")
 database = ExtResource("4_hj2aw")
-object_uid = "e37048d4-978a-4893-a02a-d3fb984f49da"
+object_uid = "391db66d-92b8-496d-a087-abeecd81adbe"
 object_index = 0
 
-[sub_resource type="Resource" id="Resource_2alxt"]
+[sub_resource type="Resource" id="Resource_lwf1y"]
 script = ExtResource("5_h5tdd")
 database = ExtResource("4_hj2aw")
-object_uid = "bfe2a115-4833-406d-9395-d173313c8ffa"
-object_index = 1
+object_uid = "062b9e0c-0ad1-4210-89d0-fa7e85e2019b"
+object_index = 0
 
-[sub_resource type="Resource" id="Resource_2edqw"]
+[sub_resource type="Resource" id="Resource_52om5"]
 script = ExtResource("6_allq4")
 database = ExtResource("4_hj2aw")
-object_uid = "e37048d4-978a-4893-a02a-d3fb984f49da"
+object_uid = "391db66d-92b8-496d-a087-abeecd81adbe"
 object_index = 0
 
 [node name="Test" type="Control"]
@@ -48,9 +48,10 @@ default_alpha = 0.5
 wait_time = 5.0
 autostart = true
 
-[node name="ReactionComponent" type="Node" parent="."]
+[node name="ReactionComponentTest" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_fpsli")
-reaction_fact = SubResource("Resource_2alxt")
-reaction_event = SubResource("Resource_2edqw")
+reaction_fact = SubResource("Resource_lwf1y")
+reaction_event = SubResource("Resource_52om5")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
