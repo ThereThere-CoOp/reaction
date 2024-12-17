@@ -44,6 +44,14 @@ var value_a: Variant:  ## real criteria value manually introduced
 var value_b: Variant:  ## real b value manually introduced and used when operation is type a<=x<=b
 	set = set_value_b,
 	get = get_value_b
+	
+@export var value_a_int: int
+@export var value_a_bool: bool
+@export var value_a_string: String
+
+@export var value_b_int: int
+@export var value_b_bool: bool
+@export var value_b_string: String
 
 # internal values for a and b to be used on criteria
 var _internal_value_a: int
@@ -86,9 +94,22 @@ func _get_property_list() -> Array:
 					"type": fact.type,
 					"usage": value_a_usage,
 					"hint": value_a_hint,
-					"hint_string": value_a_hint_string
+					"hint_string": ""
 				},
 				{"name": "value_b", "type": fact.type, "usage": value_b_usage}
+			]
+		)
+	else:
+		properties.append_array(
+			[
+				{
+					"name": "value_a",
+					"type": TYPE_STRING,
+					"usage": PROPERTY_USAGE_DEFAULT,
+					"hint": "",
+					"hint_string": ""
+				},
+				{"name": "value_b", "type": TYPE_STRING, "usage": PROPERTY_USAGE_DEFAULT}
 			]
 		)
 
@@ -101,6 +122,7 @@ func _get_property_list() -> Array:
 func _update_internal_values() -> void:
 	var current_value_a = value_a if value_a != null else INT64_MIN
 	var current_value_b = value_b if value_b != null else INT64_MAX
+	print("current a value ", current_value_a)
 	match operation:
 		"<":
 			_internal_value_a = INT64_MIN
@@ -121,21 +143,85 @@ func _update_internal_values() -> void:
 
 func set_value_a(value: Variant) -> void:
 	value_a = value
+	
+	if fact:
+		match fact.type:
+			TYPE_STRING:
+				value_a_string = str(value)
+			TYPE_BOOL:
+				value_a_bool = value
+			TYPE_INT:
+				value_a_int = value
+			_:
+				value_a_int = value
+	else:
+		if self is ReactionFunctionCriteriaItem:
+			value_a_int = value
+				
 	_update_internal_values()
 
 
 func get_value_a() -> Variant:
-	return value_a
+	if value_a:
+		return value_a
+	else:
+		if fact:
+			match fact.type:
+				TYPE_STRING:
+					return value_a_string
+				TYPE_BOOL:
+					return value_a_bool
+				TYPE_INT:
+					return value_a_int
+				_:
+					return value_a_int
+		else:
+			if self is ReactionFunctionCriteriaItem:
+				return value_a_int
+				
+	return null
+		
 
 
 func set_value_b(value: Variant) -> void:
 	value_b = value
+	
+	if fact:
+		match fact.type:
+			TYPE_STRING:
+				value_b_string = value
+			TYPE_BOOL:
+				value_b_bool = value
+			TYPE_INT:
+				value_b_int = value
+			_:
+				value_b_int = value
+	else:
+		if self is ReactionFunctionCriteriaItem:
+			value_b_int = value
 
 	_update_internal_values()
 
 
 func get_value_b() -> Variant:
-	return value_b
+	if value_b:
+		return value_b
+	else:
+		if fact:
+			match fact.type:
+				TYPE_STRING:
+					return value_b_string
+				TYPE_BOOL:
+					return value_b_bool
+				TYPE_INT:
+					return value_b_int
+				_:
+					return value_b_int
+		else:
+			if self is ReactionFunctionCriteriaItem:
+				return value_b_int
+				
+	return null
 
 
 ## ----------------------------------------------------------------------------[br]

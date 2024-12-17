@@ -110,8 +110,14 @@ func update_values_input() -> void:
 		value_a_label.visible = true
 		
 		var current_value_a = _get_value_a()
+		var current_value_b = _get_value_b()
 		value_a_numeric_input.visible = true
 		value_a_numeric_input.set_value_no_signal(int(current_value_a))
+		
+		if item_object.operation == "a<=x<=b":
+			value_b_label.visible = true
+			value_b_input.visible = true
+			value_b_input.set_value_no_signal(int(current_value_b))
 		
 	elif item_object.fact:
 		value_a_label.visible = true

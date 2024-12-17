@@ -7,7 +7,7 @@ extends ReactionCriteriaItem
 ## A rule criteria checks if a given fact value meets a condition. Is used
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
-
+	
 @export var facts: Array[ReactionCriteriaFunctionFactItem] = []
 
 @export_enum("+", "-", "*") var function: String
