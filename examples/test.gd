@@ -15,7 +15,7 @@ func _ready():
 	context.label = "test_context"
 	context.load_data()
 	test_event.selected_object.get_responses(context)
-	print(reaction_test_component.reaction_fact.get_fact_value(context))
+	# print(reaction_test_component.reaction_fact.get_fact_value(context))
 	context.save_data()
 
 
