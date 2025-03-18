@@ -122,7 +122,7 @@ func _get_property_list() -> Array:
 func _update_internal_values() -> void:
 	var current_value_a = value_a if value_a != null else INT64_MIN
 	var current_value_b = value_b if value_b != null else INT64_MAX
-	print("current a value ", current_value_a)
+	
 	match operation:
 		"<":
 			_internal_value_a = INT64_MIN

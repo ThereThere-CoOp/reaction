@@ -1,25 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfvytlbb7m75"]
+[gd_scene load_steps=13 format=3 uid="uid://cfvytlbb7m75"]
 
 [ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn" id="1_mnjky"]
-[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.gd" id="2_2jkjf"]
+[ext_resource type="Script" uid="uid://7ka007fbnhx5" path="res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.gd" id="2_2jkjf"]
 [ext_resource type="PackedScene" uid="uid://c4tm8i3lmwl6q" path="res://addons/reaction/components/ReactionUIIText.tscn" id="3_fkgd7"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="4_dr0lt"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="5_hunnk"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="6_sbatt"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="5_hunnk"]
+[ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="6_pqy0t"]
+[ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="6_sbatt"]
 [ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
+[ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_smt5a"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="9_ywels"]
 
 [sub_resource type="Resource" id="Resource_ooud6"]
 script = ExtResource("5_hunnk")
 choice_text = {}
-criterias = Array[Resource("res://addons/reaction/scripts/items/ReactionCriteriaItem.gd")]([])
-modifications = Array[Resource("res://addons/reaction/scripts/items/ReactionContextModificationItem.gd")]([])
+criterias = Array[ExtResource("6_pqy0t")]([])
+modifications = Array[ExtResource("7_smt5a")]([])
 triggers = ""
 parents = Array[String]([])
 uid = "f76201f0-d330-4799-a022-59eaf20beb1d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[Resource("res://addons/reaction/scripts/ReactionTag.gd")]([])
+tags = Array[ExtResource("9_ywels")]([])
 
 [sub_resource type="Resource" id="Resource_rameg"]
 script = ExtResource("6_sbatt")

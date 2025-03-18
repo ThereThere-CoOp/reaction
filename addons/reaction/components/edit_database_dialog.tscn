@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jc4ei7i0bj2v"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/edit_database_dialog.gd" id="1_sn47t"]
+[ext_resource type="Script" uid="uid://l466vcpijmmf" path="res://addons/reaction/components/edit_database_dialog.gd" id="1_sn47t"]
 
 [node name="EditDatabaseDialog" type="ConfirmationDialog"]
 size = Vector2i(200, 115)

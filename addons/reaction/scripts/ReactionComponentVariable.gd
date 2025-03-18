@@ -102,4 +102,3 @@ func _get_property_list() -> Array:
 
 	return properties
 		
-

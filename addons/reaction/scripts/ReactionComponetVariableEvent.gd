@@ -25,4 +25,3 @@ func _update_objects_array() -> void:
 		_objects_array = database.events.values()
 		
 	_update_fields()
-

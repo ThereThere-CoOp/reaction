@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bvia7eenu6s0s"]
 
-[ext_resource type="Script" path="res://examples/test.gd" id="1_4d5mw"]
+[ext_resource type="Script" uid="uid://dotu6in6u56cf" path="res://examples/test.gd" id="1_4d5mw"]
 [ext_resource type="PackedScene" uid="uid://bh4pmkwqh73yw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.tscn" id="2_lgm08"]
-[ext_resource type="Script" path="res://examples/ReactionComponent.gd" id="3_fpsli"]
+[ext_resource type="Script" uid="uid://884m7rwn6tlt" path="res://examples/ReactionComponent.gd" id="3_fpsli"]
 [ext_resource type="Resource" uid="uid://dyvrubfyguaml" path="res://examples/databases/test_database_3043f628-c225-4be1-a72f-972825de7386.tres" id="4_hj2aw"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/ReactionComponetVariableFact.gd" id="5_h5tdd"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/ReactionComponetVariableEvent.gd" id="6_allq4"]
+[ext_resource type="Script" uid="uid://bd1jq6mundhyb" path="res://addons/reaction/scripts/ReactionComponetVariableFact.gd" id="5_h5tdd"]
+[ext_resource type="Script" uid="uid://8ddh6hl64vce" path="res://addons/reaction/scripts/ReactionComponetVariableEvent.gd" id="6_allq4"]
 
 [sub_resource type="Resource" id="Resource_y0omc"]
 script = ExtResource("6_allq4")

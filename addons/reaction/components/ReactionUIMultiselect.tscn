@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://caa0vtulg73kt"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIMultiselect.gd" id="1_jkra5"]
+[ext_resource type="Script" uid="uid://ciaexhdkpkvne" path="res://addons/reaction/components/ReactionUIMultiselect.gd" id="1_jkra5"]
 
 [node name="ReactionMultiselectUI" type="MarginContainer"]
 anchors_preset = 15

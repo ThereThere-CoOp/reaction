@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://doabmy6rit131"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUISearchMenu.gd" id="1_bcoiq"]
+[ext_resource type="Script" uid="uid://co5nuex8mfnmt" path="res://addons/reaction/components/ReactionUISearchMenu.gd" id="1_bcoiq"]
 
 [node name="ReactionUISearchMenu" type="HBoxContainer"]
 offset_right = 40.0

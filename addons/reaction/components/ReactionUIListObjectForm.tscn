@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bujjba3nge54o"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="1_04rig"]
+[ext_resource type="Script" uid="uid://dckfeuuvcybx5" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="1_04rig"]
 
 [node name="ReactionUIListObjectForm" type="MarginContainer"]
 script = ExtResource("1_04rig")

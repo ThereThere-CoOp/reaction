@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://k3csipi6igv0"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.gd" id="1_n7dsc"]
+[ext_resource type="Script" uid="uid://cfkg1illel7x0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.gd" id="1_n7dsc"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="2_sa6ir"]
 
 [node name="ReactionUIMainResponseEditForm" type="PanelContainer"]

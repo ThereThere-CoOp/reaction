@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh4pmkwqh73yw"]
 
-[ext_resource type="Script" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
+[ext_resource type="Script" uid="uid://brxyhec4v1ohw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
 [ext_resource type="FontFile" uid="uid://rv76uuj0fvrf" path="res://addons/reaction/fonts/CourierPrime-Regular.ttf" id="2_y5fdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw8x0"]

@@ -1,0 +1,278 @@
+[gd_resource type="Resource" script_class="ReactionDatabase" load_steps=35 format=3 uid="uid://dyvrubfyguaml"]
+
+[ext_resource type="Script" uid="uid://b8ulhw0akd60c" path="res://addons/reaction/scripts/ReactionDatabase.gd" id="1_6ytg8"]
+[ext_resource type="Script" uid="uid://ciy3ia7p5ytkg" path="res://addons/reaction/scripts/items/ReactionResponseGroupItem.gd" id="1_desqg"]
+[ext_resource type="Script" uid="uid://csvfnuf04lqwa" path="res://addons/reaction/scripts/items/ReactionEventItem.gd" id="1_rhybp"]
+[ext_resource type="Script" uid="uid://17qnylmuqehb" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="1_tvjqk"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="2_tf63u"]
+[ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="3_l5j4l"]
+[ext_resource type="Script" uid="uid://csfhtwj4v1b8" path="res://addons/reaction/scripts/ReactionReferenceLogItem.gd" id="5_64un2"]
+[ext_resource type="Script" uid="uid://dmky1i8wo1xnp" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="5_wctai"]
+[ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionFactItem.gd" id="7_p3thg"]
+[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="7_u0spb"]
+[ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="8_5pulk"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="10_ryyrk"]
+[ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="11_fp676"]
+
+[sub_resource type="Resource" id="Resource_v8h1b"]
+script = ExtResource("5_wctai")
+type = 2
+is_enum = false
+trigger_signal_on_modified = false
+parents = Array[String]([])
+uid = "062b9e0c-0ad1-4210-89d0-fa7e85e2019b"
+label = "SANITY"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_rok6u"]
+script = ExtResource("3_l5j4l")
+fact = SubResource("Resource_v8h1b")
+modification_value = 1
+operation = "+"
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
+uid = "bd1ccf13-8887-4cf2-be12-99ed9622980c"
+label = "new_modification"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_nk4dn"]
+script = ExtResource("5_wctai")
+type = 2
+is_enum = false
+trigger_signal_on_modified = false
+parents = Array[String]([])
+uid = "47b491c1-e3d1-4187-9e02-326e0d936345"
+label = "VITALITY"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_4p6f5"]
+script = ExtResource("8_5pulk")
+operation = "<"
+is_reverse = false
+fact = SubResource("Resource_nk4dn")
+value_a_int = 10
+value_a_bool = false
+value_a_string = ""
+value_b_int = 0
+value_b_bool = false
+value_b_string = ""
+value_a = 10
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
+uid = "99a5adcf-10e1-455e-bbe0-23f87d18371d"
+label = "new_criteria"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_baxon"]
+script = ExtResource("3_l5j4l")
+fact = SubResource("Resource_nk4dn")
+modification_value = 1
+operation = "+"
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
+uid = "cf7de369-adbd-406f-b12e-33b68045815c"
+label = "new_modification"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_os665"]
+script = ExtResource("1_desqg")
+responses = {}
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
+uid = "8609c5c3-d84a-45d5-982d-6b905796c1ec"
+label = "rootResponseGroup"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_3dh0x"]
+script = ExtResource("1_tvjqk")
+criterias = Array[ExtResource("8_5pulk")]([SubResource("Resource_4p6f5")])
+modifications = Array[ExtResource("3_l5j4l")]([SubResource("Resource_baxon"), SubResource("Resource_rok6u")])
+match_once = false
+priority = 0
+responses = SubResource("Resource_os665")
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe"])
+uid = "aa2ba902-bdc6-4190-bbe2-b43c013c78ea"
+label = "defaultRule"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_j1ea7"]
+script = ExtResource("5_64un2")
+uid = "bd1ccf13-8887-4cf2-be12-99ed9622980c"
+rule = SubResource("Resource_3dh0x")
+object = SubResource("Resource_rok6u")
+
+[sub_resource type="Resource" id="Resource_fht6w"]
+script = ExtResource("7_p3thg")
+fact = SubResource("Resource_nk4dn")
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "6:c9adbc01-be42-4428-be4c-4d64278af464"])
+uid = "4b5d6065-4e83-4ae8-8100-c861241b85ef"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_1t0oq"]
+script = ExtResource("7_p3thg")
+fact = SubResource("Resource_v8h1b")
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "6:c9adbc01-be42-4428-be4c-4d64278af464"])
+uid = "d809a8c3-06c9-4960-8d3c-519cae4b7c0a"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_omewn"]
+script = ExtResource("7_u0spb")
+facts = Array[ExtResource("7_p3thg")]([SubResource("Resource_fht6w"), SubResource("Resource_1t0oq")])
+function = "+"
+operation = ">"
+is_reverse = false
+value_a_int = 20
+value_a_bool = false
+value_a_string = ""
+value_b_int = 0
+value_b_bool = false
+value_b_string = ""
+value_a = 20
+value_b = 0
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121"])
+uid = "c9adbc01-be42-4428-be4c-4d64278af464"
+label = "functionCriteriaTest"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_m8a3e"]
+script = ExtResource("11_fp676")
+dialog_text = {}
+have_choices = false
+choices = Array[ExtResource("10_ryyrk")]([])
+triggers = ""
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "8:1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662", "8:fc34c447-3cf7-481b-93f6-31f1bcec4e7c"])
+uid = "48c4edd2-fe4e-43e2-bf2c-0717138bab6f"
+label = "newDialogResponse"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_tf63u"]
+script = ExtResource("1_desqg")
+responses = {
+"48c4edd2-fe4e-43e2-bf2c-0717138bab6f": SubResource("Resource_m8a3e")
+}
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "8:1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662"])
+uid = "fc34c447-3cf7-481b-93f6-31f1bcec4e7c"
+label = "newResponseGroup"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_b2ee4"]
+script = ExtResource("1_desqg")
+responses = {
+"fc34c447-3cf7-481b-93f6-31f1bcec4e7c": SubResource("Resource_tf63u")
+}
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121"])
+uid = "1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662"
+label = "rootResponseGroup"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_w8ggb"]
+script = ExtResource("1_tvjqk")
+criterias = Array[ExtResource("8_5pulk")]([SubResource("Resource_omewn")])
+modifications = Array[ExtResource("3_l5j4l")]([])
+match_once = false
+priority = 1
+responses = SubResource("Resource_b2ee4")
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe"])
+uid = "8febfb91-d679-4581-8dcd-475623df6121"
+label = "functionRule"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_64afw"]
+script = ExtResource("5_64un2")
+uid = "d809a8c3-06c9-4960-8d3c-519cae4b7c0a"
+rule = SubResource("Resource_w8ggb")
+criteria = SubResource("Resource_omewn")
+object = SubResource("Resource_1t0oq")
+
+[sub_resource type="Resource" id="Resource_nensg"]
+script = ExtResource("5_64un2")
+uid = "4b5d6065-4e83-4ae8-8100-c861241b85ef"
+rule = SubResource("Resource_w8ggb")
+criteria = SubResource("Resource_omewn")
+object = SubResource("Resource_fht6w")
+
+[sub_resource type="Resource" id="Resource_gkcwe"]
+script = ExtResource("5_64un2")
+uid = "99a5adcf-10e1-455e-bbe0-23f87d18371d"
+rule = SubResource("Resource_3dh0x")
+object = SubResource("Resource_4p6f5")
+
+[sub_resource type="Resource" id="Resource_ejy60"]
+script = ExtResource("5_64un2")
+uid = "cf7de369-adbd-406f-b12e-33b68045815c"
+rule = SubResource("Resource_3dh0x")
+object = SubResource("Resource_baxon")
+
+[sub_resource type="Resource" id="Resource_xrqur"]
+script = ExtResource("1_rhybp")
+fact_reference_log = {
+"062b9e0c-0ad1-4210-89d0-fa7e85e2019b": {
+"bd1ccf13-8887-4cf2-be12-99ed9622980c": SubResource("Resource_j1ea7"),
+"d809a8c3-06c9-4960-8d3c-519cae4b7c0a": SubResource("Resource_64afw")
+},
+"47b491c1-e3d1-4187-9e02-326e0d936345": {
+"4b5d6065-4e83-4ae8-8100-c861241b85ef": SubResource("Resource_nensg"),
+"99a5adcf-10e1-455e-bbe0-23f87d18371d": SubResource("Resource_gkcwe"),
+"cf7de369-adbd-406f-b12e-33b68045815c": SubResource("Resource_ejy60")
+},
+"65efba8a-43ba-40ba-b27b-ea3f321ba32a": {}
+}
+rules = Array[ExtResource("1_tvjqk")]([SubResource("Resource_w8ggb"), SubResource("Resource_3dh0x")])
+parents = Array[String]([])
+uid = "391db66d-92b8-496d-a087-abeecd81adbe"
+label = "TEST_EVENT"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_7dbxn"]
+script = ExtResource("5_wctai")
+type = 2
+is_enum = false
+trigger_signal_on_modified = false
+parents = Array[String]([])
+uid = "65efba8a-43ba-40ba-b27b-ea3f321ba32a"
+label = "numberFact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[resource]
+script = ExtResource("1_6ytg8")
+label = "test_database"
+uid = "3043f628-c225-4be1-a72f-972825de7386"
+events = {
+"391db66d-92b8-496d-a087-abeecd81adbe": SubResource("Resource_xrqur")
+}
+global_facts = {
+"062b9e0c-0ad1-4210-89d0-fa7e85e2019b": SubResource("Resource_v8h1b"),
+"47b491c1-e3d1-4187-9e02-326e0d936345": SubResource("Resource_nk4dn"),
+"65efba8a-43ba-40ba-b27b-ea3f321ba32a": SubResource("Resource_7dbxn")
+}
+tags = {}
