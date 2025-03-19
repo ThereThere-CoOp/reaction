@@ -85,43 +85,42 @@ func before_all():
 	criteria_is_volao.operation = "="
 	
 	# function criteria item init 
-	var pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	var pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
 	pop_size_criteria_fact_item.label = "population_size"
 	pop_size_criteria_fact_item.fact = fact_population_size
 	
-	var extra_pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	var extra_pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
 	extra_pop_size_criteria_fact_item.label = "extra_population_size"
 	extra_pop_size_criteria_fact_item.fact = fact_extra_population_size
+	extra_pop_size_criteria_fact_item.operation = "+"
 	
-	var extra_small_pop_size_criteria_fact_item: ReactionCriteriaFunctionFactItem = ReactionCriteriaFunctionFactItem.new()
+	var extra_small_pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
 	extra_small_pop_size_criteria_fact_item.label = "extra_small_population_size"
 	extra_small_pop_size_criteria_fact_item.fact = fact_extra_small_population_size
+	extra_small_pop_size_criteria_fact_item.operation = "-"
 	
-	var function_criteria_facts_array: Array[ReactionCriteriaFunctionFactItem] = []
-	function_criteria_facts_array.append(pop_size_criteria_fact_item)
-	function_criteria_facts_array.append(extra_pop_size_criteria_fact_item)
-	function_criteria_facts_array.append(extra_small_pop_size_criteria_fact_item)
+	var function_criteria_operations_array: Array[ReactionCriteriaFunctionOperationItem] = []
+	function_criteria_operations_array.append(pop_size_criteria_fact_item)
+	function_criteria_operations_array.append(extra_pop_size_criteria_fact_item)
+	function_criteria_operations_array.append(extra_small_pop_size_criteria_fact_item)
 	
 	var function_criteria_population_sum_less_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_sum_less_500.label = "pop_sum_less_500"
 	function_criteria_population_sum_less_500.value_a = 500
 	function_criteria_population_sum_less_500.operation = "<"
-	function_criteria_population_sum_less_500.facts = function_criteria_facts_array
-	function_criteria_population_sum_less_500.function = "+"
+	function_criteria_population_sum_less_500.operations = function_criteria_operations_array
 	
 	var function_criteria_population_sus_greater_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_sus_greater_500.label = "pop_sus_more_500"
 	function_criteria_population_sus_greater_500.value_a = 500
 	function_criteria_population_sus_greater_500.operation = ">"
-	function_criteria_population_sus_greater_500.facts = function_criteria_facts_array
-	function_criteria_population_sus_greater_500.function = "-"
+	function_criteria_population_sus_greater_500.operations = function_criteria_operations_array
 	
 	var function_criteria_population_mult_greater_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_mult_greater_500.label = "pop_mult_more_500"
 	function_criteria_population_mult_greater_500.value_a = 500
 	function_criteria_population_mult_greater_500.operation = ">"
-	function_criteria_population_mult_greater_500.facts = function_criteria_facts_array
-	function_criteria_population_mult_greater_500.function = "*"
+	function_criteria_population_mult_greater_500.operations = function_criteria_operations_array
 	
 	# adding criteria to global dict
 	_rules_criterias[criteria_is_mindundi.label] = criteria_is_mindundi

@@ -203,7 +203,7 @@ func remove_fact_reference_log(item: Resource) -> void:
 					if log_item.choice.uid == item.uid:
 						object_log.erase(log_item.uid)
 						
-				if item is ReactionCriteriaFunctionFactItem:
+				if item is ReactionCriteriaFunctionOperationItem:
 					if log_item.choice.uid == item.uid:
 						object_log.erase(log_item.uid)
 						

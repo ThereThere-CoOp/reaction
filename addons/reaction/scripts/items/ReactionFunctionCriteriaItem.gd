@@ -8,25 +8,27 @@ extends ReactionCriteriaItem
 ## to test if a rule match for a context data in a given time. [br]
 ## ----------------------------------------------------------------------------
 	
-@export var facts: Array[ReactionCriteriaFunctionFactItem] = []
+@export var operations: Array[ReactionCriteriaFunctionOperationItem] = []
 
-@export_enum("+", "-", "*") var function: String
+# @export_enum("+", "-", "*") var function: String
 
 
-func _calculate_with_function(total: int, value: int) -> int:
-	match function:
+func _calculate_with_operation(total: int, value: int, operation: String) -> int:
+	match operation:
 		"+":
 			return total + value
 		"-":
 			return total - value
 		"*":
 			return total * value
+		"/":
+			return total / value
 		_:
 			return total + value
 			
 			
-func add_fact(function_fact: ReactionCriteriaFunctionFactItem) -> void:
-	facts.append(function_fact)
+func add_fact(function_operation: ReactionCriteriaFunctionOperationItem) -> void:
+	operations.append(function_operation)
 	
 	
 ## ----------------------------------------------------------------------------[br]
@@ -36,8 +38,8 @@ func add_fact(function_fact: ReactionCriteriaFunctionFactItem) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_fact_by_index(index: int) -> void:
-	facts[index].remove_fact_reference_log(facts[index])
-	facts.remove_at(index)
+	operations[index].remove_fact_reference_log(operations[index])
+	operations.remove_at(index)
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -51,22 +53,25 @@ func remove_fact_by_index(index: int) -> void:
 ## ----------------------------------------------------------------------------
 func get_function_result(context: ReactionBlackboard) -> int:
 	var total_value: int = 0
-	if facts.size() > 0:
-		var first_b_fact = context.get_blackboard_fact(facts[0].fact.uid)
+	if operations.size() > 0:
+		var first_operation_fact: ReactionFactItem = operations[0].fact
+		var first_b_fact = context.get_blackboard_fact(first_operation_fact.uid)
 		
 		# if fact value is null or not int the value is ZERO
-		if first_b_fact and facts[0].fact.type == TYPE_INT:
+		if first_b_fact and first_operation_fact.type == TYPE_INT:
 			total_value = first_b_fact.value
 		
-		for index: int in range(1, facts.size()):
-			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(facts[index].fact.uid)
+		for index: int in range(1, operations.size()):
+			var b_operation_fact: ReactionFactItem = operations[index].fact
+			var current_operation: String = operations[index].operation
+			var temp_b_fact: ReactionBlackboardFact = context.get_blackboard_fact(b_operation_fact.uid)
 			
 			var current_value: int = 0
 			# if fact value is null or not int the value is ZERO
-			if temp_b_fact and facts[index].fact.type == TYPE_INT:
+			if temp_b_fact and b_operation_fact.type == TYPE_INT:
 				current_value = temp_b_fact.value
 				
-			total_value = _calculate_with_function(total_value, current_value)
+			total_value = _calculate_with_operation(total_value, current_value, current_operation)
 		
 	return total_value
 	
