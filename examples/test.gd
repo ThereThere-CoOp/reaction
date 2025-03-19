@@ -23,4 +23,5 @@ func _on_timer_timeout() -> void:
 	var context_union: ReactionBlackboard = ReactionBlackboard.new()
 	context_union.merge([context, second_context], false, false)
 	test_event.selected_object.get_responses(context_union)
+	
 	context.save_data()

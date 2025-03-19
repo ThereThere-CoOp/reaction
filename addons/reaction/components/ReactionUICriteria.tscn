@@ -189,7 +189,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_ynvac")]([SubResource("Resource_vhjfj")])
-objects_list_field_name = "facts"
+objects_list_field_name = "operations"
 object_scene = ExtResource("6_flluw")
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]

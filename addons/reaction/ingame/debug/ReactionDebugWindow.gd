@@ -88,11 +88,19 @@ func _update_criterias(criterias: Array[ReactionCriteriaItem]) -> void:
 			else:
 				var function_text: String = ""
 				
-				for function_fact in criteria.facts:
-					if function_fact.fact:
-						function_text += "[color=yellow]%s[/color] " % [function_fact.fact.label]
+				var first_operation_flag: bool = true
+				
+				for function_operation in criteria.operations:
+					if function_operation.fact:
+						var operation_text: String = function_operation.operation
 						
-				result += "[color=yellow]%s:[/color] Function (%s): %s %s %s" % [criteria.label, criteria.function, function_text, criteria.operation,  str(criteria.value_a)]
+						if first_operation_flag:
+							operation_text = ""
+							first_operation_flag = false
+							
+						function_text += "[color=green]%s[/color] [color=yellow]%s[/color] " % [operation_text, function_operation.fact.label]
+						
+				result += "[color=yellow]%s:[/color] Function (%s) %s %s" % [criteria.label, function_text, criteria.operation,  str(criteria.value_a)]
 			
 			if criteria.operation == "a<=x<=b":
 				result += " ,%s" % [str(criteria.value_b)]
