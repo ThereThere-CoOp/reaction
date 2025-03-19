@@ -109,6 +109,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 	var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
 	new_event_log_item.label = self.label
 	new_event_log_item.event_triggered = self
+	
 	new_event_log_item.old_blackboard = context.clone()
 	
 	for rule in rules:
@@ -143,6 +144,7 @@ func get_responses_from_contexts(contexts: Array[ReactionBlackboard]) -> Array[R
 		var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
 		new_event_log_item.label = self.label
 		new_event_log_item.event_triggered = self
+		
 		new_event_log_item.old_blackboard = context.clone()
 		
 		for rule in rules:

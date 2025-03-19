@@ -129,6 +129,7 @@ func _update_blackboard_data(old_blackboard: ReactionBlackboard, new_blackboard:
 	
 	for old_value: ReactionBlackboardFact in old_blackboard.get_facts():
 		result_dict[old_value.fact.uid] = "[color=yellow]%s:[/color] %s -> " % [old_value.fact.label, str(old_value.real_value)]
+		
 		if old_value.fact.uid not in new_blackboard_facts_dict:
 			# old value do not exists on new blackboard
 			result_dict[old_value.fact.uid] += "[color=red][s]null[/s][/color]\n"

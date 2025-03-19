@@ -47,7 +47,7 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 	for parent: String in object.parents:
 		var splited_parent: PackedStringArray = parent.split(":")
 		
-		print(splited_parent[0])
+		# print(splited_parent[0])
 		if  int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.EVENT:
 			parent_event = current_database.events[splited_parent[1]]
 			event = parent_event
