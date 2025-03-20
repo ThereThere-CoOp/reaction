@@ -5,7 +5,21 @@ extends ReactionUIListObjectFormItem
 
 var fact_search_menu: ReactionUISearchMenu
 
-var operation_menu_button: MenuButton
+var operation_menu_button: MenuButton 
+
+var operation_container: VBoxContainer 
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		update_operation_container_visibility()
+		
+
+func update_operation_container_visibility():
+	if operation_container:
+		if self.object_index == 0:
+			operation_container.visible = false
+		else:
+			operation_container.visible = true
 
 
 func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
@@ -13,6 +27,7 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	
 	fact_search_menu = %FactSearchMenu
 	operation_menu_button = %OperationMenuButton
+	operation_container = %OperationContainer
 	
 	var operation_popup_menu: PopupMenu = operation_menu_button.get_popup()
 	
