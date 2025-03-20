@@ -27,7 +27,7 @@ tags = Array[ExtResource("9_ywels")]([])
 [sub_resource type="Resource" id="Resource_rameg"]
 script = ExtResource("6_sbatt")
 object_name = "choice"
-parent_object_add_function_name = "choices"
+parent_object_add_function_name = "add_choice"
 object_resource_class = SubResource("Resource_ooud6")
 
 [node name="ReactionUIDialogResponseEditForm" instance=ExtResource("1_mnjky")]
@@ -36,6 +36,7 @@ script = ExtResource("2_2jkjf")
 [node name="DialogDataContainer" type="TabContainer" parent="Rows" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 
 [node name="Dialog" type="MarginContainer" parent="Rows/DialogDataContainer" index="1"]
 layout_mode = 2
@@ -43,6 +44,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
 
 [node name="Rows" type="VBoxContainer" parent="Rows/DialogDataContainer/Dialog" index="0"]
 layout_mode = 2
@@ -68,6 +70,7 @@ text_field_name = "dialog_text"
 [node name="Choices" type="MarginContainer" parent="Rows/DialogDataContainer" index="2"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Rows" type="VBoxContainer" parent="Rows/DialogDataContainer/Choices" index="0"]
 layout_mode = 2

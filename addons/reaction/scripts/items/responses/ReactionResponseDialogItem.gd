@@ -78,7 +78,3 @@ func remove_choice_by_index(index: int) -> void:
 	
 func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.DIALOG
-
-
-
-
