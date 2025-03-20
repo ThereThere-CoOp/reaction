@@ -180,7 +180,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="0"]
 layout_mode = 2
-text = "Facts:
+text = "Operations:
 "
 
 [node name="FactFunctionObjectFormList" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1" instance=ExtResource("4_abllb")]

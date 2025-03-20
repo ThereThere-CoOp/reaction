@@ -60,5 +60,5 @@ popup/item_3/text = "/"
 popup/item_3/id = 3
 
 [node name="RemoveObjectButton" parent="Columns" index="3"]
-tooltip_text = "Remove fact"
+tooltip_text = "Remove operation"
 icon = SubResource("ImageTexture_6obqe")

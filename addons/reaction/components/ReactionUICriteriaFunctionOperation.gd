@@ -38,10 +38,10 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
 		
-		if item_object.operation:
-			operation_menu_button.text = item_object.operation
-		else:
-			operation_menu_button.text = "Select operation"
+	if item_object.operation:
+		operation_menu_button.text = item_object.operation
+	else:
+		operation_menu_button.text = "Select operation"
 		
 	fact_search_menu.item_selected.connect(_on_fact_input_item_selected)
 	
