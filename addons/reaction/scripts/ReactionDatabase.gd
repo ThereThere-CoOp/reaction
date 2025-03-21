@@ -28,6 +28,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 var fact_log: Dictionary = {}
 
 
+
 ## ----------------------------------------------------------------------------[br]
 ## Create a clean fact and add it to the database 
 ## numbers [br]
@@ -59,6 +60,12 @@ func add_fact(fact: ReactionFactItem) -> void:
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
 func remove_fact(fact_uid: String) -> void:
+	
+	var fact: ReactionFactItem = global_facts.get(fact_uid, null)
+	
+	if fact:
+		fact.update_tags()
+		
 	global_facts.erase(fact_uid)
 	save_data()
 

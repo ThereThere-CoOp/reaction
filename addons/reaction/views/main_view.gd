@@ -237,12 +237,13 @@ func _on_setting_database_path_updated() -> void:
 
 
 func _on_database_data_managment_tab_selected(tab):
-	match tab:
-		0:
-			global_facts_panel.setup_facts(databases[current_database_id])
-		1:
-			events_panel.setup_events(databases[current_database_id])
-		2:
-			tags_panel.setup_tags(databases[current_database_id])
-		_:
-			global_facts_panel.setup_facts(databases[current_database_id])
+	if tab:
+		match tab:
+			0:
+				global_facts_panel.setup_facts(databases.get(current_database_id, {}))
+			1:
+				events_panel.setup_events(databases.get(current_database_id, {}))
+			2:
+				tags_panel.setup_tags(databases.get(current_database_id, {}))
+			_:
+				global_facts_panel.setup_facts(databases.get(current_database_id, {}))

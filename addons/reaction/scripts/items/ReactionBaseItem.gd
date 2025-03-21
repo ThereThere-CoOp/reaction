@@ -18,7 +18,17 @@ extends Resource
 
 @export_enum("Global", "Event") var scope: String = "Global"
 
-@export var tags: Array[ReactionTag]
+@export var tags: Array[ReactionTag]: 
+	set(value):
+		if self is ReactionFactItem:
+			if tags:
+				for tag in tags:
+					tag.facts.erase(self.uid)
+					
+			for tag in value:
+				tag.facts[self.uid] = true
+				
+		tags = value
 
 @export_group("")
 

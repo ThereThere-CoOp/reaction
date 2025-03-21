@@ -52,8 +52,13 @@ func get_new_object():
 	new_fact.label = "newFact"
 	new_fact.type = TYPE_STRING
 	return new_fact
-
 	
+	
+func update_tags():
+	for tag in self.tags:
+		tag.facts.erase(self.uid)
+		
+
 func _get_property_list() -> Array:
 	var properties: Array = []
 
