@@ -14,9 +14,11 @@
 [sub_resource type="Resource" id="Resource_ooud6"]
 script = ExtResource("5_hunnk")
 choice_text = {}
+triggers = ""
 criterias = Array[ExtResource("6_pqy0t")]([])
 modifications = Array[ExtResource("7_smt5a")]([])
-triggers = ""
+match_once = false
+priority = 0
 parents = Array[String]([])
 uid = "f76201f0-d330-4799-a022-59eaf20beb1d"
 label = "item_label"

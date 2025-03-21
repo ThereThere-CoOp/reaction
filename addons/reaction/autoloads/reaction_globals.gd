@@ -22,6 +22,7 @@ enum ItemsTypesEnum {
 	RESPONSE_GROUP, 
 	RESPONSE,
 	DIALOG,
+	DIALOG_TEXT,
 	CHOICE
 }
 

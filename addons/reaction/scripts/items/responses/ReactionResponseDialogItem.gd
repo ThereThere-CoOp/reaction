@@ -9,7 +9,7 @@ extends ReactionResponseItem
 ## ----------------------------------------------------------------------------
 
 ## text line of the dialog
-@export var dialog_text: Dictionary = {}
+@export var texts: Array[ReactionDialogTextItem]
 
 ## true if the dialog have choices
 @export var have_choices: bool = false
@@ -69,11 +69,68 @@ func add_choice(choice: ReactionDialogChoiceItem) -> void:
 ## [br]
 ## [b]Parameter(s):[/b] [br]
 ## [b]* index | int:[/b] Index of the choice to remove
-## match with facts data [br]
+## [br]
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func remove_choice_by_index(index: int) -> void:
 	choices.remove_at(index)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Return the first text that met their criterias by the current context
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* context | [ReactionBlackboard]:[/b] Blackboard context to check if choice
+## match with facts data [br]
+## [b]Returns: ReactionDialogTextItem[/b] [br]
+## Returns the first text that met their criterias by the current context  [br]
+## ----------------------------------------------------------------------------
+func get_text(context: ReactionBlackboard) -> ReactionDialogTextItem:
+	var result_choices = []
+	for text in texts:
+		if text.test(context):
+			return text
+			
+	return null
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a new text to the dialog response
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* None[/b] [br]
+## [b]Returns: ReactionDialogTextItem[/b] [br]
+## The new added dialog text  [br]
+## ----------------------------------------------------------------------------
+func add_new_text() -> ReactionDialogTextItem:
+	var new_dialog_text = ReactionDialogTextItem.new()
+	new_dialog_text.label = "newDialogText"
+	texts.append(new_dialog_text)
+			
+	return new_dialog_text
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Add a text to the dialog response
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* text | ReactionDialogTextItem:[/b] Choice to be added
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func add_text(text: ReactionDialogTextItem) -> void:
+	texts.append(text)
+	
+	
+## ----------------------------------------------------------------------------[br]
+## Remove a text from the response given an index of the choices array
+## [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* index | int:[/b] Index of the choice to remove
+## [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func remove_text_by_index(index: int) -> void:
+	texts.remove_at(index)
 	
 	
 func get_type_string() -> int:
