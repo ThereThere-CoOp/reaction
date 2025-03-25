@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ReactionDatabase" load_steps=35 format=3 uid="uid://dyvrubfyguaml"]
+[gd_resource type="Resource" script_class="ReactionDatabase" load_steps=38 format=3 uid="uid://dyvrubfyguaml"]
 
 [ext_resource type="Script" uid="uid://b8ulhw0akd60c" path="res://addons/reaction/scripts/ReactionDatabase.gd" id="1_6ytg8"]
 [ext_resource type="Script" uid="uid://ciy3ia7p5ytkg" path="res://addons/reaction/scripts/items/ReactionResponseGroupItem.gd" id="1_desqg"]
@@ -8,35 +8,12 @@
 [ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="3_l5j4l"]
 [ext_resource type="Script" uid="uid://csfhtwj4v1b8" path="res://addons/reaction/scripts/ReactionReferenceLogItem.gd" id="5_64un2"]
 [ext_resource type="Script" uid="uid://dmky1i8wo1xnp" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="5_wctai"]
-[ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionFactItem.gd" id="7_p3thg"]
-[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="7_u0spb"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="7_ryyrk"]
 [ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="8_5pulk"]
-[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="10_ryyrk"]
-[ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="11_fp676"]
-
-[sub_resource type="Resource" id="Resource_v8h1b"]
-script = ExtResource("5_wctai")
-type = 2
-is_enum = false
-trigger_signal_on_modified = false
-parents = Array[String]([])
-uid = "062b9e0c-0ad1-4210-89d0-fa7e85e2019b"
-label = "SANITY"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_rok6u"]
-script = ExtResource("3_l5j4l")
-fact = SubResource("Resource_v8h1b")
-modification_value = 1
-operation = "+"
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
-uid = "bd1ccf13-8887-4cf2-be12-99ed9622980c"
-label = "new_modification"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
+[ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="8_fp676"]
+[ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionoOperationItem.gd" id="8_tf63u"]
+[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="9_fp676"]
+[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="9_k3xfm"]
 
 [sub_resource type="Resource" id="Resource_nk4dn"]
 script = ExtResource("5_wctai")
@@ -50,21 +27,178 @@ description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("2_tf63u")]([])
 
-[sub_resource type="Resource" id="Resource_4p6f5"]
-script = ExtResource("8_5pulk")
-operation = "<"
-is_reverse = false
+[sub_resource type="Resource" id="Resource_tf63u"]
+script = ExtResource("8_tf63u")
 fact = SubResource("Resource_nk4dn")
-value_a_int = 10
+operation = "+"
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "6:d2ceddc1-1fcb-48b5-bf97-8f1c8edc0214"])
+uid = "04dc9e3a-b44a-4441-b2cd-9eae69558f7d"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_yw6sm"]
+script = ExtResource("2_tf63u")
+label = "newTag"
+uid = "e3352bda-d486-411a-8d16-3f46385e7181"
+description = ""
+facts = {
+"062b9e0c-0ad1-4210-89d0-fa7e85e2019b": true
+}
+
+[sub_resource type="Resource" id="Resource_v8h1b"]
+script = ExtResource("5_wctai")
+type = 2
+is_enum = false
+trigger_signal_on_modified = false
+parents = Array[String]([])
+uid = "062b9e0c-0ad1-4210-89d0-fa7e85e2019b"
+label = "SANITY"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([SubResource("Resource_yw6sm")])
+
+[sub_resource type="Resource" id="Resource_fp676"]
+script = ExtResource("8_tf63u")
+fact = SubResource("Resource_v8h1b")
+operation = "+"
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "6:d2ceddc1-1fcb-48b5-bf97-8f1c8edc0214"])
+uid = "2443000d-0ee5-4421-9f13-8e04d7f35b53"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_ryyrk"]
+script = ExtResource("9_k3xfm")
+operations = Array[ExtResource("8_tf63u")]([SubResource("Resource_tf63u"), SubResource("Resource_fp676")])
+operation = ">"
+is_reverse = false
+value_a_int = 5
 value_a_bool = false
 value_a_string = ""
 value_b_int = 0
 value_b_bool = false
 value_b_string = ""
-value_a = 10
+value_a = 5
+value_b = 0
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42"])
+uid = "d2ceddc1-1fcb-48b5-bf97-8f1c8edc0214"
+label = "new_function criteria"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_urp1g"]
+script = ExtResource("8_tf63u")
+operation = ""
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "6:81fe1dab-6114-4b5b-b56e-b353942f542a"])
+uid = "64dd4a11-1338-4240-840d-82a450687802"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_mc6nt"]
+script = ExtResource("8_tf63u")
+operation = "/"
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "6:81fe1dab-6114-4b5b-b56e-b353942f542a"])
+uid = "91498b44-53e8-4d50-bb20-b9f26537c4e9"
+label = "new_fact"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_djcav"]
+script = ExtResource("9_k3xfm")
+operations = Array[ExtResource("8_tf63u")]([SubResource("Resource_urp1g"), SubResource("Resource_mc6nt")])
+operation = "="
+is_reverse = false
+value_a_int = 0
+value_a_bool = false
+value_a_string = ""
+value_b_int = 0
+value_b_bool = false
+value_b_string = ""
+value_a = 0
+value_b = 0
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42"])
+uid = "81fe1dab-6114-4b5b-b56e-b353942f542a"
+label = "new_function criteria"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_5n3wy"]
+script = ExtResource("7_ryyrk")
+choice_text = {}
+triggers = ""
+criterias = Array[ExtResource("8_5pulk")]([])
+modifications = Array[ExtResource("3_l5j4l")]([])
+match_once = false
+priority = 0
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "8:b5052bbe-46bf-4528-91ed-65ab57cdda9d", "10:7d5155ef-aeda-4839-be88-dc79c2f6bc4e"])
+uid = "92c1977a-930f-456f-b09b-845713cfba46"
+label = "new_choice"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_4g1b8"]
+script = ExtResource("8_fp676")
+texts = Array[ExtResource("9_fp676")]([])
+have_choices = true
+choices = Array[ExtResource("7_ryyrk")]([SubResource("Resource_5n3wy")])
+triggers = ""
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42", "8:b5052bbe-46bf-4528-91ed-65ab57cdda9d"])
+uid = "7d5155ef-aeda-4839-be88-dc79c2f6bc4e"
+label = "newDialogResponse"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_5x6q5"]
+script = ExtResource("1_desqg")
+responses = {
+"7d5155ef-aeda-4839-be88-dc79c2f6bc4e": SubResource("Resource_4g1b8")
+}
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:7e3ad133-81e3-4810-9397-afdd90f25d42"])
+uid = "b5052bbe-46bf-4528-91ed-65ab57cdda9d"
+label = "rootResponseGroup"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_k5uak"]
+script = ExtResource("1_tvjqk")
+criterias = Array[ExtResource("8_5pulk")]([SubResource("Resource_ryyrk"), SubResource("Resource_djcav")])
+modifications = Array[ExtResource("3_l5j4l")]([])
+match_once = false
+priority = 1
+responses = SubResource("Resource_5x6q5")
+parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe"])
+uid = "7e3ad133-81e3-4810-9397-afdd90f25d42"
+label = "functionRule"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("2_tf63u")]([])
+
+[sub_resource type="Resource" id="Resource_m8a3e"]
+script = ExtResource("5_64un2")
+uid = "2443000d-0ee5-4421-9f13-8e04d7f35b53"
+rule = SubResource("Resource_k5uak")
+criteria = SubResource("Resource_ryyrk")
+object = SubResource("Resource_fp676")
+
+[sub_resource type="Resource" id="Resource_rok6u"]
+script = ExtResource("3_l5j4l")
+fact = SubResource("Resource_v8h1b")
+modification_value = 1
+operation = "+"
 parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:aa2ba902-bdc6-4190-bbe2-b43c013c78ea"])
-uid = "99a5adcf-10e1-455e-bbe0-23f87d18371d"
-label = "new_criteria"
+uid = "bd1ccf13-8887-4cf2-be12-99ed9622980c"
+label = "new_modification"
 description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("2_tf63u")]([])
@@ -93,7 +227,7 @@ tags = Array[ExtResource("2_tf63u")]([])
 
 [sub_resource type="Resource" id="Resource_3dh0x"]
 script = ExtResource("1_tvjqk")
-criterias = Array[ExtResource("8_5pulk")]([SubResource("Resource_4p6f5")])
+criterias = Array[ExtResource("8_5pulk")]([])
 modifications = Array[ExtResource("3_l5j4l")]([SubResource("Resource_baxon"), SubResource("Resource_rok6u")])
 match_once = false
 priority = 0
@@ -111,117 +245,12 @@ uid = "bd1ccf13-8887-4cf2-be12-99ed9622980c"
 rule = SubResource("Resource_3dh0x")
 object = SubResource("Resource_rok6u")
 
-[sub_resource type="Resource" id="Resource_fht6w"]
-script = ExtResource("7_p3thg")
-fact = SubResource("Resource_nk4dn")
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "6:c9adbc01-be42-4428-be4c-4d64278af464"])
-uid = "4b5d6065-4e83-4ae8-8100-c861241b85ef"
-label = "new_fact"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_1t0oq"]
-script = ExtResource("7_p3thg")
-fact = SubResource("Resource_v8h1b")
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "6:c9adbc01-be42-4428-be4c-4d64278af464"])
-uid = "d809a8c3-06c9-4960-8d3c-519cae4b7c0a"
-label = "new_fact"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_omewn"]
-script = ExtResource("7_u0spb")
-facts = Array[ExtResource("7_p3thg")]([SubResource("Resource_fht6w"), SubResource("Resource_1t0oq")])
-function = "+"
-operation = ">"
-is_reverse = false
-value_a_int = 20
-value_a_bool = false
-value_a_string = ""
-value_b_int = 0
-value_b_bool = false
-value_b_string = ""
-value_a = 20
-value_b = 0
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121"])
-uid = "c9adbc01-be42-4428-be4c-4d64278af464"
-label = "functionCriteriaTest"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_m8a3e"]
-script = ExtResource("11_fp676")
-dialog_text = {}
-have_choices = false
-choices = Array[ExtResource("10_ryyrk")]([])
-triggers = ""
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "8:1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662", "8:fc34c447-3cf7-481b-93f6-31f1bcec4e7c"])
-uid = "48c4edd2-fe4e-43e2-bf2c-0717138bab6f"
-label = "newDialogResponse"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_tf63u"]
-script = ExtResource("1_desqg")
-responses = {
-"48c4edd2-fe4e-43e2-bf2c-0717138bab6f": SubResource("Resource_m8a3e")
-}
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121", "8:1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662"])
-uid = "fc34c447-3cf7-481b-93f6-31f1bcec4e7c"
-label = "newResponseGroup"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_b2ee4"]
-script = ExtResource("1_desqg")
-responses = {
-"fc34c447-3cf7-481b-93f6-31f1bcec4e7c": SubResource("Resource_tf63u")
-}
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe", "3:8febfb91-d679-4581-8dcd-475623df6121"])
-uid = "1bb0a9a7-2c15-49bc-ae72-ca8bee8fa662"
-label = "rootResponseGroup"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_w8ggb"]
-script = ExtResource("1_tvjqk")
-criterias = Array[ExtResource("8_5pulk")]([SubResource("Resource_omewn")])
-modifications = Array[ExtResource("3_l5j4l")]([])
-match_once = false
-priority = 1
-responses = SubResource("Resource_b2ee4")
-parents = Array[String](["2:391db66d-92b8-496d-a087-abeecd81adbe"])
-uid = "8febfb91-d679-4581-8dcd-475623df6121"
-label = "functionRule"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("2_tf63u")]([])
-
-[sub_resource type="Resource" id="Resource_64afw"]
+[sub_resource type="Resource" id="Resource_k3xfm"]
 script = ExtResource("5_64un2")
-uid = "d809a8c3-06c9-4960-8d3c-519cae4b7c0a"
-rule = SubResource("Resource_w8ggb")
-criteria = SubResource("Resource_omewn")
-object = SubResource("Resource_1t0oq")
-
-[sub_resource type="Resource" id="Resource_nensg"]
-script = ExtResource("5_64un2")
-uid = "4b5d6065-4e83-4ae8-8100-c861241b85ef"
-rule = SubResource("Resource_w8ggb")
-criteria = SubResource("Resource_omewn")
-object = SubResource("Resource_fht6w")
-
-[sub_resource type="Resource" id="Resource_gkcwe"]
-script = ExtResource("5_64un2")
-uid = "99a5adcf-10e1-455e-bbe0-23f87d18371d"
-rule = SubResource("Resource_3dh0x")
-object = SubResource("Resource_4p6f5")
+uid = "04dc9e3a-b44a-4441-b2cd-9eae69558f7d"
+rule = SubResource("Resource_k5uak")
+criteria = SubResource("Resource_ryyrk")
+object = SubResource("Resource_tf63u")
 
 [sub_resource type="Resource" id="Resource_ejy60"]
 script = ExtResource("5_64un2")
@@ -233,17 +262,16 @@ object = SubResource("Resource_baxon")
 script = ExtResource("1_rhybp")
 fact_reference_log = {
 "062b9e0c-0ad1-4210-89d0-fa7e85e2019b": {
-"bd1ccf13-8887-4cf2-be12-99ed9622980c": SubResource("Resource_j1ea7"),
-"d809a8c3-06c9-4960-8d3c-519cae4b7c0a": SubResource("Resource_64afw")
+"2443000d-0ee5-4421-9f13-8e04d7f35b53": SubResource("Resource_m8a3e"),
+"bd1ccf13-8887-4cf2-be12-99ed9622980c": SubResource("Resource_j1ea7")
 },
 "47b491c1-e3d1-4187-9e02-326e0d936345": {
-"4b5d6065-4e83-4ae8-8100-c861241b85ef": SubResource("Resource_nensg"),
-"99a5adcf-10e1-455e-bbe0-23f87d18371d": SubResource("Resource_gkcwe"),
+"04dc9e3a-b44a-4441-b2cd-9eae69558f7d": SubResource("Resource_k3xfm"),
 "cf7de369-adbd-406f-b12e-33b68045815c": SubResource("Resource_ejy60")
 },
 "65efba8a-43ba-40ba-b27b-ea3f321ba32a": {}
 }
-rules = Array[ExtResource("1_tvjqk")]([SubResource("Resource_w8ggb"), SubResource("Resource_3dh0x")])
+rules = Array[ExtResource("1_tvjqk")]([SubResource("Resource_k5uak"), SubResource("Resource_3dh0x")])
 parents = Array[String]([])
 uid = "391db66d-92b8-496d-a087-abeecd81adbe"
 label = "TEST_EVENT"
@@ -251,14 +279,14 @@ description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("2_tf63u")]([])
 
-[sub_resource type="Resource" id="Resource_7dbxn"]
+[sub_resource type="Resource" id="Resource_k8i0f"]
 script = ExtResource("5_wctai")
-type = 2
+type = 4
 is_enum = false
 trigger_signal_on_modified = false
 parents = Array[String]([])
-uid = "65efba8a-43ba-40ba-b27b-ea3f321ba32a"
-label = "numberFact"
+uid = "9bf7b56c-4b6b-4c97-a82c-59e715946c82"
+label = "newFact"
 description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("2_tf63u")]([])
@@ -273,6 +301,8 @@ events = {
 global_facts = {
 "062b9e0c-0ad1-4210-89d0-fa7e85e2019b": SubResource("Resource_v8h1b"),
 "47b491c1-e3d1-4187-9e02-326e0d936345": SubResource("Resource_nk4dn"),
-"65efba8a-43ba-40ba-b27b-ea3f321ba32a": SubResource("Resource_7dbxn")
+"9bf7b56c-4b6b-4c97-a82c-59e715946c82": SubResource("Resource_k8i0f")
 }
-tags = {}
+tags = {
+"e3352bda-d486-411a-8d16-3f46385e7181": SubResource("Resource_yw6sm")
+}

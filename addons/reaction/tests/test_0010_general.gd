@@ -5,6 +5,7 @@ var _global_blackboard: ReactionBlackboard = null
 var _facts: Dictionary = {}
 var _responses_groups: Dictionary = {}
 var _dialog_responses: Dictionary = {}
+var _dialog_texts: Dictionary = {}
 var _rules: Dictionary = {}
 var _rules_criterias: Dictionary = {}
 var _context_modifications: Dictionary = {}
@@ -164,22 +165,42 @@ func before_all():
 	# init responses
 	# init dialog responses
 	var response_your_a_mindundi = ReactionResponseDialogItem.new()
+	
+	var response_your_a_mindundi_text = ReactionDialogTextItem.new()
+	response_your_a_mindundi_text.label = "response_your_a_mindundi_text"
+	response_your_a_mindundi_text.text = { "es": "Tu lo que eres un mindundi."}
+	
 	response_your_a_mindundi.label = "you_are_a_mindundi"
-	response_your_a_mindundi.dialog_text = { "es": "Tu lo que eres un mindundi."}
+	response_your_a_mindundi.texts = [response_your_a_mindundi_text] as Array[ReactionDialogTextItem]
 
 	var response_not_comunism_low_pop = ReactionResponseDialogItem.new()
+	
+	var response_not_comunism_low_pop_text = ReactionDialogTextItem.new()
+	response_not_comunism_low_pop_text.label = "response_not_comunism_low_pop_text"
+	response_not_comunism_low_pop_text.text = { "es": "Vives en un pais capitalista con poca gente."}
+	
 	response_not_comunism_low_pop.label = "live_not_comunism_low_pop"
-	response_not_comunism_low_pop.dialog_text =  { "es": "Vives en un pais capitalista con poca gente."}
+	response_not_comunism_low_pop.texts =  [response_not_comunism_low_pop_text] as Array[ReactionDialogTextItem]
 
 	var response_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseDialogItem.new()
 	)
+	
+	var response_mindundi_not_comunism_pop_100_400_text = ReactionDialogTextItem.new()
+	response_mindundi_not_comunism_pop_100_400_text.label = "response_mindundi_not_comunism_pop_100_400_text"
+	response_mindundi_not_comunism_pop_100_400_text.text = { "es": "Eres un mindundi en un pais capitalista, en el que viven entre 100 y 400 personas."}
+	
 	response_mindundi_not_comunism_pop_100_400.label = "mindundi_not_comunism_pop_100_400"
-	response_mindundi_not_comunism_pop_100_400.dialog_text = { "es": "Eres un mindundi en un pais capitalista, en el que viven entre 100 y 400 personas."}
+	response_mindundi_not_comunism_pop_100_400.texts = [response_mindundi_not_comunism_pop_100_400_text] as Array[ReactionDialogTextItem]
+
 
 	_dialog_responses[response_your_a_mindundi.label] = response_your_a_mindundi
 	_dialog_responses[response_not_comunism_low_pop.label] = response_not_comunism_low_pop
 	_dialog_responses[response_mindundi_not_comunism_pop_100_400.label] = response_mindundi_not_comunism_pop_100_400
+	
+	_dialog_texts[response_your_a_mindundi_text.label] = response_your_a_mindundi_text
+	_dialog_texts[response_not_comunism_low_pop_text.label] = response_not_comunism_low_pop_text
+	_dialog_texts[response_mindundi_not_comunism_pop_100_400_text] = response_mindundi_not_comunism_pop_100_400_text
 
 	# init responses groups
 	var response_group_your_a_mindundi = ReactionResponseGroupItem.new()
