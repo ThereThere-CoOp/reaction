@@ -9,7 +9,17 @@ extends ReactionResponseItem
 ## ----------------------------------------------------------------------------
 
 ## text line of the dialog
-@export var texts: Array[ReactionDialogTextItem]
+@export var texts: Array[ReactionDialogTextItem] :
+	set(value):
+		var rules: Array[ReactionRuleItem]
+		rules.assign(value)
+		
+		var order_result: Array[ReactionDialogTextItem]
+		order_result.assign(ReactionGlobals.sort_rules(rules))
+		texts = order_result
+		
+		if Engine.is_editor_hint():
+			notify_property_list_changed()
 
 ## true if the dialog have choices
 @export var have_choices: bool = false
