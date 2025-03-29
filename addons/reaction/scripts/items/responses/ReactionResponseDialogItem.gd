@@ -38,7 +38,7 @@ extends ReactionResponseItem
 ## Returns array of choices that met their criterias by the current context  [br]
 ## ----------------------------------------------------------------------------
 func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoiceItem]:
-	var result_choices = []
+	var result_choices: Array[ReactionDialogChoiceItem] = []
 	if have_choices:
 		for choice in choices:
 			if choice.test(context):

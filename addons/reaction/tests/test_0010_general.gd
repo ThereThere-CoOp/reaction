@@ -6,6 +6,7 @@ var _facts: Dictionary = {}
 var _responses_groups: Dictionary = {}
 var _dialog_responses: Dictionary = {}
 var _dialog_texts: Dictionary = {}
+var _dialog_choices: Dictionary = {}
 var _rules: Dictionary = {}
 var _rules_criterias: Dictionary = {}
 var _context_modifications: Dictionary = {}
@@ -192,15 +193,54 @@ func before_all():
 	
 	response_mindundi_not_comunism_pop_100_400.label = "mindundi_not_comunism_pop_100_400"
 	response_mindundi_not_comunism_pop_100_400.texts = [response_mindundi_not_comunism_pop_100_400_text] as Array[ReactionDialogTextItem]
-
-
+	
+	# response to text criteria 
+	var response_conditional_texts_choices = ReactionResponseDialogItem.new()
+	
+	var text_response_conditional_texts_choices_1 = ReactionDialogTextItem.new()
+	text_response_conditional_texts_choices_1.label = "text_response_conditional_texts_choices_1"
+	text_response_conditional_texts_choices_1.text = { "es": "Texto variante 1."}
+	text_response_conditional_texts_choices_1.criterias = [criteria_is_mindundi]  as Array[ReactionCriteriaItem]
+	
+	var text_response_conditional_texts_choices_2 = ReactionDialogTextItem.new()
+	text_response_conditional_texts_choices_2.label = "text_response_conditional_texts_choices_2"
+	text_response_conditional_texts_choices_2.text = { "es": "Texto variante 2."}
+	text_response_conditional_texts_choices_2.criterias = [criteria_population_lt_300, criteria_is_mindundi] as Array[ReactionCriteriaItem]
+	
+	var choice_response_conditional_texts_choices_1: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
+	choice_response_conditional_texts_choices_1.label = "choice_response_conditional_texts_choices_1"
+	choice_response_conditional_texts_choices_1.choice_text =  { "es": "Choice 1."}
+	choice_response_conditional_texts_choices_1.criterias = [criteria_is_mindundi] as Array[ReactionCriteriaItem]
+	
+	var choice_response_conditional_texts_choices_2: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
+	choice_response_conditional_texts_choices_2.label = "choice_response_conditional_texts_choices_2"
+	choice_response_conditional_texts_choices_2.choice_text =  { "es": "Choice 2."}
+	choice_response_conditional_texts_choices_2.criterias = [criteria_is_volao] as Array[ReactionCriteriaItem]
+	
+	var choice_response_conditional_texts_choices_3: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
+	choice_response_conditional_texts_choices_3.label = "choice_response_conditional_texts_choices_3"
+	choice_response_conditional_texts_choices_3.choice_text =  { "es": "Choice 3."}
+	choice_response_conditional_texts_choices_3.criterias = [criteria_is_mindundi, criteria_population_lt_300] as Array[ReactionCriteriaItem]
+	
+	response_conditional_texts_choices.label = "response_conditional_texts_choices"
+	response_conditional_texts_choices.texts = [text_response_conditional_texts_choices_1, text_response_conditional_texts_choices_2] as Array[ReactionDialogTextItem]
+	response_conditional_texts_choices.choices = [choice_response_conditional_texts_choices_1, choice_response_conditional_texts_choices_2, choice_response_conditional_texts_choices_3] as Array[ReactionDialogChoiceItem]
+	response_conditional_texts_choices.have_choices = true
+	
 	_dialog_responses[response_your_a_mindundi.label] = response_your_a_mindundi
 	_dialog_responses[response_not_comunism_low_pop.label] = response_not_comunism_low_pop
 	_dialog_responses[response_mindundi_not_comunism_pop_100_400.label] = response_mindundi_not_comunism_pop_100_400
+	_dialog_responses[response_conditional_texts_choices.label] = response_conditional_texts_choices
 	
 	_dialog_texts[response_your_a_mindundi_text.label] = response_your_a_mindundi_text
 	_dialog_texts[response_not_comunism_low_pop_text.label] = response_not_comunism_low_pop_text
-	_dialog_texts[response_mindundi_not_comunism_pop_100_400_text] = response_mindundi_not_comunism_pop_100_400_text
+	_dialog_texts[response_mindundi_not_comunism_pop_100_400_text.label] = response_mindundi_not_comunism_pop_100_400_text
+	_dialog_texts[text_response_conditional_texts_choices_1.label] = text_response_conditional_texts_choices_1
+	_dialog_texts[text_response_conditional_texts_choices_2.label] = text_response_conditional_texts_choices_2
+	
+	_dialog_choices[choice_response_conditional_texts_choices_1.label] = choice_response_conditional_texts_choices_1
+	_dialog_choices[choice_response_conditional_texts_choices_2.label] = choice_response_conditional_texts_choices_2
+	_dialog_choices[choice_response_conditional_texts_choices_3.label] = choice_response_conditional_texts_choices_3
 
 	# init responses groups
 	var response_group_your_a_mindundi = ReactionResponseGroupItem.new()

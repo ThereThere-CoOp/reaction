@@ -54,3 +54,29 @@ class TestEvents:
 			dialog_returned,
 			"Wrong dialog response returned"
 		)
+		
+	func test_conditional_response_dialog_texts_choices():
+		_global_blackboard.set_fact_value(_facts["mind_type"], "mindundi")
+		_global_blackboard.set_fact_value(_facts["is_comunism"], false)
+		_global_blackboard.set_fact_value(_facts["population_size"], 50)
+
+		var dialog_returned: String = (
+			_dialog_responses["response_conditional_texts_choices"].get_text(_global_blackboard).text["es"]
+		)
+
+		gut.p("Returned dialog: " + dialog_returned)
+		assert_eq(
+			_dialog_texts["text_response_conditional_texts_choices_2"].text["es"],
+			dialog_returned,
+			"Wrong dialog response returned"
+		)
+		
+		var choices_returned: Array[ReactionDialogChoiceItem] = _dialog_responses["response_conditional_texts_choices"].get_choices(_global_blackboard)
+		
+			
+		assert_eq(
+			len(choices_returned),
+			2,
+			"Wrong dialog quantity of dialog choices returned"
+		)
+		
