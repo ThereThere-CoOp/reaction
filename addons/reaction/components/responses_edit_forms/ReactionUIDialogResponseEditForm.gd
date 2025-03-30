@@ -3,7 +3,7 @@ class_name ReactionUIDialogResponseEditForm
 extends ReactionUIMainResponseEditForm
 
 
-@onready var dialog_texts: ReactionUIIText = %DialogText
+@onready var dialog_texts_list: ReactionUIListObjectForm = %DialogTextsList
 
 @onready var choices_container: ReactionUIListObjectForm = %ChoicesList
 @onready var has_choices_check_button: CheckButton = %HasChoicesCheckButton
@@ -15,7 +15,9 @@ func _ready():
 	call_deferred("apply_theme")
 	
 	if current_response:
-		dialog_texts.setup(current_response, current_database)
+		
+		dialog_texts_list.current_database = current_database
+		dialog_texts_list.setup_objects(current_response)
 		
 		choices_container.current_database = current_database
 		choices_container.setup_objects(current_response)

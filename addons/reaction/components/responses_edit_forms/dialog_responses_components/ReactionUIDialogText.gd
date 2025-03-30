@@ -1,14 +1,19 @@
 @tool
-class_name ReactionUIChoice
+class_name ReactionUIDialogText
 extends ReactionUIListObjectFormItem
 
 
-@onready var label_line_edit: LineEdit = %LabelLineEdit
-@onready var choice_texts_button: Button = %ChoiceTextButton
-@onready var event_search_menu: ReactionUISearchMenu = %EventSearchMenu
-@onready var choice_texts: ReactionUIIText = %ChoiceTexts
+@export var show_event: bool = true
+@export var show_criterias: bool = true
+@export var show_modifications: bool = true
 
-@onready var choice_text_dialog: AcceptDialog = %ChoiceTextDialog
+@onready var label_line_edit: LineEdit = %LabelLineEdit
+@onready var texts_button: Button = %TextButton
+@onready var event_container: VBoxContainer = %EventContainer
+@onready var event_search_menu: ReactionUISearchMenu = %EventSearchMenu
+@onready var texts: ReactionUIIText = %Texts
+
+@onready var text_dialog: AcceptDialog = %TextDialog
 @onready var criterias_dialog: AcceptDialog = %CriteriasDialog
 @onready var modifications_dialog: AcceptDialog = %ModificationsDialog
 
@@ -22,12 +27,16 @@ extends ReactionUIListObjectFormItem
 func _ready():
 	super()
 	if item_object:
-		remove_object_function_name = "remove_choice_by_index"
-		object_name = "choice"
+		# remove_object_function_name = "remove_choice_by_index"
+		# object_name = "choice"
 		
 		label_line_edit.text = item_object.label
 		
-		choice_texts.setup(item_object, current_database)
+		criterias_button.visible = show_criterias
+		modifications_button.visible = show_modifications
+		event_container.visible = show_event
+		
+		texts.setup(item_object, current_database)
 		
 		event_search_menu.items_list = current_database.events.values()
 		if item_object.triggers:
@@ -88,4 +97,4 @@ func _on_modifications_object_removed() -> void:
 
 
 func _on_choice_text_button_pressed() -> void:
-	choice_text_dialog.popup_centered()
+	text_dialog.popup_centered()

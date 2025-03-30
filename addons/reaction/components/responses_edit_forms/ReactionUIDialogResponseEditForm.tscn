@@ -2,35 +2,35 @@
 
 [ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn" id="1_mnjky"]
 [ext_resource type="Script" uid="uid://7ka007fbnhx5" path="res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.gd" id="2_2jkjf"]
-[ext_resource type="PackedScene" uid="uid://c4tm8i3lmwl6q" path="res://addons/reaction/components/ReactionUIIText.tscn" id="3_fkgd7"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="4_dr0lt"]
-[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="5_hunnk"]
+[ext_resource type="PackedScene" uid="uid://ck7eeodpgv1bj" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIText.tscn" id="6_a485m"]
 [ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="6_pqy0t"]
 [ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="6_sbatt"]
-[ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
+[ext_resource type="PackedScene" uid="uid://ckjrv3ohhjj74" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
 [ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_smt5a"]
+[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="8_a485m"]
 [ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="9_ywels"]
 
-[sub_resource type="Resource" id="Resource_ooud6"]
-script = ExtResource("5_hunnk")
-choice_text = {}
-triggers = ""
+[sub_resource type="Resource" id="Resource_pqy0t"]
+script = ExtResource("8_a485m")
+text = {}
 criterias = Array[ExtResource("6_pqy0t")]([])
 modifications = Array[ExtResource("7_smt5a")]([])
 match_once = false
 priority = 0
 parents = Array[String]([])
-uid = "f76201f0-d330-4799-a022-59eaf20beb1d"
+uid = "8b88f63c-e827-4175-8f8d-a135c15f785f"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
 tags = Array[ExtResource("9_ywels")]([])
+metadata/_custom_type_script = "uid://8g4d38ylvlvv"
 
 [sub_resource type="Resource" id="Resource_rameg"]
 script = ExtResource("6_sbatt")
-object_name = "choice"
-parent_object_add_function_name = "add_choice"
-object_resource_class = SubResource("Resource_ooud6")
+object_name = "text"
+parent_object_add_function_name = "add_text"
+object_resource_class = SubResource("Resource_pqy0t")
 
 [node name="ReactionUIDialogResponseEditForm" instance=ExtResource("1_mnjky")]
 script = ExtResource("2_2jkjf")
@@ -60,14 +60,13 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "Dialog text"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Rows/DialogDataContainer/Dialog/Rows" index="1"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DialogText" parent="Rows/DialogDataContainer/Dialog/Rows/ScrollContainer" index="0" instance=ExtResource("3_fkgd7")]
+[node name="DialogTextsList" parent="Rows/DialogDataContainer/Dialog/Rows" index="1" instance=ExtResource("4_dr0lt")]
 unique_name_in_owner = true
 layout_mode = 2
-text_field_name = "dialog_text"
+size_flags_vertical = 3
+objects_to_add_data_array = Array[ExtResource("6_sbatt")]([SubResource("Resource_rameg")])
+objects_list_field_name = "texts"
+object_scene = ExtResource("6_a485m")
 
 [node name="Choices" type="MarginContainer" parent="Rows/DialogDataContainer" index="2"]
 visible = false

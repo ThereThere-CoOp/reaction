@@ -40,4 +40,3 @@ func _on_text_languaged_changed(text: String, code: String) -> void:
 	texts_dict[code] = text
 	parent_object.set(text_field_name, texts_dict)
 	current_database.save_data()
-
