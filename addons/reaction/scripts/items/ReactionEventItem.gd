@@ -115,7 +115,7 @@ func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 ## ----------------------------------------------------------------------------	
 func remove_fact_reference_log(item: Resource) -> void:
 	for object_log in fact_reference_log.values():
-		if item is ReactionCriteriaItem or item is ReactionContextModificationItem:
+		if item is ReactionCriteriaItem or item is ReactionContextModificationItem or item is ReactionCriteriaFunctionOperationItem:
 			object_log.erase(item.uid)
 		else:
 			for log_item in object_log.values():
@@ -131,8 +131,8 @@ func remove_fact_reference_log(item: Resource) -> void:
 					if log_item.choice.uid == item.uid:
 						object_log.erase(log_item.uid)
 						
-				if item is ReactionCriteriaFunctionOperationItem:
-					if log_item.choice.uid == item.uid:
+				if item is ReactionDialogTextItem:
+					if log_item.dialog_text.uid == item.uid:
 						object_log.erase(log_item.uid)
 						
 				## add here extra if for custom items

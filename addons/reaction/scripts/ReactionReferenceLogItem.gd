@@ -15,6 +15,8 @@ extends Resource
 
 @export var choice: ReactionDialogChoiceItem
 
+@export var dialog_text: ReactionDialogTextItem
+
 @export var object: Resource
 
 
@@ -43,6 +45,7 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 	var parent_rule: ReactionRuleItem = null
 	var parent_response: ReactionResponseItem = null
 	var parent_choice: ReactionDialogChoiceItem = null
+	var parent_dialog_text: ReactionDialogTextItem = null
 		
 	for parent: String in object.parents:
 		var splited_parent: PackedStringArray = parent.split(":")
@@ -77,4 +80,11 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 					for cho in response.choices:
 						if cho.uid == object.parents[-1]:
 							parent_choice = cho
+							
 					choice = parent_choice
+					
+					for text in response.texts:
+						if text.uid == object.parents[-1]:
+							parent_dialog_text = text
+							
+					dialog_text = parent_dialog_text

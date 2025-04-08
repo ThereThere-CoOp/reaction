@@ -39,7 +39,8 @@ func _ready():
 		texts.setup(item_object, current_database)
 		
 		event_search_menu.items_list = current_database.events.values()
-		if item_object.triggers:
+		
+		if show_event and item_object.triggers:
 			event_search_menu.update_search_text_value(current_database.events[item_object.triggers].label)
 		
 		criterias_list.current_database = current_database
