@@ -9,6 +9,8 @@ extends Resource
 
 @export var rule: ReactionRuleItem
 
+@export var modification: ReactionContextModificationItem
+
 @export var criteria: ReactionCriteriaItem
 
 @export var response: ReactionResponseItem
@@ -31,6 +33,14 @@ func _get_response(response_uid: String, responses_group: ReactionResponseGroupI
 			if response.uid == response_uid:
 				return response
 		
+			
+	return null
+	
+	
+func _get_field_by_field_uid(field_name: String, uid: String, parent_object: Resource) -> Resource:
+	for item in parent_object.get(field_name):
+		if item.uid == uid:
+			return item
 			
 	return null
 	
@@ -64,10 +74,28 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 				
 		elif int(splited_parent[0]) ==	ReactionGlobals.ItemsTypesEnum.CRITERIA or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.FUNC_CRITERIA:
 			var parent_criteria: ReactionCriteriaItem = null
-			for crit in parent_rule.criterias:
-				if crit.uid == splited_parent[1]:
-					parent_criteria = crit
+			
+			if parent_dialog_text:
+				parent_criteria = _get_field_by_field_uid("criterias", splited_parent[1], parent_dialog_text)
+			elif choice:
+				parent_criteria = _get_field_by_field_uid("criterias", splited_parent[1], choice)
+			else:
+				parent_criteria = _get_field_by_field_uid("criterias", splited_parent[1], parent_rule)
+				
 			criteria = parent_criteria
+			
+			
+		elif int(splited_parent[0]) ==	ReactionGlobals.ItemsTypesEnum.MODIFICATION:
+			var parent_modification: ReactionContextModificationItem = null
+			
+			if parent_dialog_text:
+				parent_modification = _get_field_by_field_uid("modifications", splited_parent[1], parent_dialog_text)
+			elif choice:
+				parent_modification = _get_field_by_field_uid("modifications", splited_parent[1], choice)
+			else:
+				parent_modification = _get_field_by_field_uid("modifications", splited_parent[1], parent_rule)
+				
+			modification = parent_modification
 				
 				
 		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP or int(splited_parent[0]) ==  ReactionGlobals.ItemsTypesEnum.RESPONSE or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
@@ -76,15 +104,11 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 			if parent_response:
 				response = parent_response
 				
-				if int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
-					for cho in response.choices:
-						if cho.uid == object.parents[-1]:
-							parent_choice = cho
-							
-					choice = parent_choice
-					
-					for text in response.texts:
-						if text.uid == object.parents[-1]:
-							parent_dialog_text = text
-							
-					dialog_text = parent_dialog_text
+		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.CHOICE:
+				parent_choice = parent_response.get_choice_by_uid(splited_parent[1])
+				choice = parent_choice
+				
+		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG_TEXT:
+				parent_dialog_text = parent_response.get_text_by_uid(splited_parent[1])
+				dialog_text = parent_dialog_text
+				

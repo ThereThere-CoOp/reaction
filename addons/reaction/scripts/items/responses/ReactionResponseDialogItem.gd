@@ -46,6 +46,14 @@ func get_choices(context: ReactionBlackboard) -> Array[ReactionDialogChoiceItem]
 			
 	return result_choices
 	
+
+func get_choice_by_uid(uid: String) -> ReactionDialogChoiceItem:
+	for choice in self.choices:
+		if choice.uid == uid:
+			return choice
+			
+	return null
+	
 	
 ## ----------------------------------------------------------------------------[br]
 ## Add a new choice to the dialog response
@@ -71,6 +79,7 @@ func add_new_choice() -> ReactionDialogChoiceItem:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_choice(choice: ReactionDialogChoiceItem) -> void:
+	choice.update_parents(self)
 	choices.append(choice)
 	
 	
@@ -104,6 +113,14 @@ func get_text(context: ReactionBlackboard) -> ReactionDialogTextItem:
 	return null
 	
 	
+func get_text_by_uid(uid: String) -> ReactionDialogTextItem:
+	for text in self.texts:
+		if text.uid == uid:
+			return text
+			
+	return null
+	
+	
 ## ----------------------------------------------------------------------------[br]
 ## Add a new text to the dialog response
 ## [br]
@@ -128,6 +145,7 @@ func add_new_text() -> ReactionDialogTextItem:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_text(text: ReactionDialogTextItem) -> void:
+	text.update_parents(self)
 	texts.append(text)
 	
 	

@@ -69,6 +69,7 @@ func execute_modifications(context: ReactionBlackboard) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_criteria(criteria: ReactionCriteriaItem) -> void:
+	criteria.update_parents(self)
 	criterias.append(criteria)
 
 
@@ -81,6 +82,14 @@ func add_criteria(criteria: ReactionCriteriaItem) -> void:
 func remove_criteria_by_index(index: int) -> void:
 	criterias[index].remove_fact_reference_log(criterias[index])
 	criterias.remove_at(index)
+	
+	
+func get_criteria_by_uid(uid: String):
+	for criteria in self.criterias:
+		if criteria.uid == uid:
+			return criteria
+			
+	return null
 		
 		
 ## ----------------------------------------------------------------------------[br]
@@ -90,6 +99,7 @@ func remove_criteria_by_index(index: int) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_modification(modification: ReactionContextModificationItem) -> void:
+	modification.update_parents(self)
 	modifications.append(modification)
 	
 	
@@ -102,6 +112,14 @@ func add_modification(modification: ReactionContextModificationItem) -> void:
 func remove_modification_by_index(index: int) -> void:
 	modifications[index].remove_fact_reference_log(modifications[index])
 	modifications.remove_at(index)
+	
+	
+func get_modification_by_uid(uid: String):
+	for modification in self.modifications:
+		if modification.uid == uid:
+			return modification
+			
+	return null
 
 
 func get_new_object():
