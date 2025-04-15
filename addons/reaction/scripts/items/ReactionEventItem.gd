@@ -123,7 +123,7 @@ func remove_fact_reference_log(item: Resource) -> void:
 					if log_item.rule.uid == item.uid:
 						object_log.erase(log_item.uid)
 						
-				if item is ReactionResponseItem:
+				if item is ReactionResponseItem or item is ReactionResponseDialogItem:
 					if log_item.response.uid == item.uid:
 						object_log.erase(log_item.uid)
 						

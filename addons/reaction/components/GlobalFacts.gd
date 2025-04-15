@@ -258,6 +258,9 @@ func _on_show_fact_references_button_pressed():
 				if log_item.response:
 					text_result += " ->  [b]Response:[/b] %s" % log_item.response.label
 					
+				if log_item.dialog_text:
+					text_result += " ->  [b]Dialog text:[/b] %s" % log_item.dialog_text.label
+					
 				if log_item.choice:
 					text_result += " ->  [b]Choice:[/b] %s" % log_item.choice.label
 					

@@ -174,13 +174,13 @@ func _on_remove_response_button_pressed():
 	if responses_tree.get_selected():
 		var selected_item : TreeItem = _get_selected_tree_item()
 		var response: ReactionResponseBaseItem = _get_selected_response()
-		current_database.save_data()
 		
 		var parent: TreeItem = selected_item.get_parent()
 		var parent_response: ReactionResponseGroupItem = parent.get_metadata(0)
 		parent_response.remove_response(response.uid)
 		_deselect_item()
 		parent.remove_child(selected_item)
+		current_database.save_data()
 
 
 func _on_edit_response_button_pressed():
