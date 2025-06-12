@@ -35,6 +35,7 @@ func add_new_response_group() -> ReactionResponseGroupItem:
 	
 	
 func remove_response(response_uid: String) -> void:
+	responses[response_uid].remove_fact_reference_log(responses[response_uid])
 	responses.erase(response_uid)
 	
 	
