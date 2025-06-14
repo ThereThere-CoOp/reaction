@@ -6,6 +6,8 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 var databases: Dictionary = {}
 
+var current_sqlite_database: SQLite
+
 @export var default_database: ReactionDatabase
 
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }

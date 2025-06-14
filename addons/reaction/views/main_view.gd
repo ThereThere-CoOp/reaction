@@ -7,6 +7,9 @@ var databases: Dictionary = {}
 
 var current_database_id: String = ""
 
+var current_sqlite_database: SQLite
+
+
 var undo_redo: EditorUndoRedoManager:
 	set(next_undo_redo):
 		undo_redo = next_undo_redo
@@ -52,10 +55,19 @@ func load_databases_from_filesystem() -> void:
 			if dir.current_is_dir():
 				continue
 			else:
-				var resource_path_to_load = "%s/%s" % [databases_path, file_name]
-				var database = ResourceLoader.load(resource_path_to_load) as ReactionDatabase
-				if database is ReactionDatabase:
-					databases[database.uid] = database
+				var path_to_load = "%s/%s" % [databases_path, file_name]
+				var database: SQLite = SQLite.new()
+				database.set_meta("name", file_name.get_basename())
+				database.path = path_to_load
+				
+				database.open_db()
+				var result = database.select_rows("database_uuid", "", ["*"])
+				if len(result) > 0:
+					result = result[0]
+				database.close_db()
+				databases[result["uuid"]] = database
+				database.set_meta("uuid", result["uuid"])
+				
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access databases path.")
@@ -85,12 +97,16 @@ func apply_theme() -> void:
 func go_to_database(id: String) -> void:
 	if current_database_id != id:
 		# save_board()
-
+		if current_database_id != "":
+			current_sqlite_database.close_db()
+		
 		current_database_id = id
 		ReactionSettings.set_setting(ReactionSettings.CURRENT_DATABASE_ID_SETTING_NAME, id)
-
+		
 		if databases.has(current_database_id):
-			var database_data = databases.get(current_database_id)
+			ReactionGlobals.current_sqlite_database = databases.get(current_database_id)
+			current_sqlite_database = ReactionGlobals.current_sqlite_database
+			current_sqlite_database.open_db()
 			# board.from_serialized(board_data)
 
 	if current_database_id == "" or not databases.has(current_database_id):
@@ -103,7 +119,7 @@ func go_to_database(id: String) -> void:
 		remove_database_button.disabled = false
 		
 		# emit database selected signal to setup database panel data
-		ReactionSignals.database_selected.emit(databases[current_database_id])
+		ReactionSignals.database_selected.emit()
 		# global_facts_panel.setup_facts(databases[current_database_id])
 		# events_panel.setup_events(databases[current_database_id])
 
@@ -129,14 +145,14 @@ func build_databases_menu() -> void:
 
 		# Add databases labels to the menu in alphabetical order
 		var labels := []
-		for database in databases.values():
-			labels.append(database.label)
+		for database: SQLite in databases.values():
+			labels.append(database.get_meta("name", ""))
 		labels.sort()
 		for label in labels:
 			menu.add_icon_item(get_theme_icon("Script", "EditorIcons"), label)
 
 		if databases.has(current_database_id):
-			database_menu_button.text = (databases.get(current_database_id).label)
+			database_menu_button.text = (databases.get(current_database_id).get_meta("name", ""))
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
@@ -178,7 +194,7 @@ func _unremove_board(data: ReactionDatabase) -> void:
 
 
 func _on_add_database_button_pressed() -> void:
-	edit_database_dialog.edit_database(ReactionDatabase.new())
+	edit_database_dialog.edit_database(null)
 
 
 func _on_edit_database_button_pressed() -> void:
@@ -224,10 +240,10 @@ func _on_database_menu_about_to_popup() -> void:
 func _on_databases_menu_index_pressed(index):
 	var popup = database_menu_button.get_popup()
 	var label = popup.get_item_text(index)
-	for database in databases.values():
-		if database.label == label:
+	for database: SQLite in databases.values():
+		if database.get_meta("name", "") == label:
 			undo_redo.create_action("Change database")
-			undo_redo.add_do_method(self, "go_to_database", database.uid)
+			undo_redo.add_do_method(self, "go_to_database", database.get_meta("uuid", ""))
 			undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 			undo_redo.commit_action()
 

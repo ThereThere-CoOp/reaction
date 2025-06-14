@@ -22,12 +22,12 @@ ReactionSignals="*res://addons/reaction/autoloads/reaction_signals.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
 
 [reaction]
 
-databases_path="res://examples/databases"
-current_database_id="3043f628-c225-4be1-a72f-972825de7386"
+databases_path="res://examples/sqlite_databases"
+current_database_id="222222"
 languages_dict={
 "en": {
 "code": "en",
