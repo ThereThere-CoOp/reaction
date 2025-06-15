@@ -1,6 +1,6 @@
 @tool
 class_name ReactionTag
-extends Resource
+extends ReactionBaseItem
 ## ----------------------------------------------------------------------------[br]
 ## Resource use to label or group reaction item
 ##
@@ -8,23 +8,16 @@ extends Resource
 ## [br]
 ## ----------------------------------------------------------------------------
 
-
-## label of the tag
-@export var label: String = "tagLabel"
-
-## Uid of the tag
-@export var uid: String = Uuid.v4()
-
-## description of the tag
-@export_multiline var description: String
-
 @export var facts: Dictionary = {}
+
+
+func _init() -> void:
+	super()
+	label = "newTag"
+
 
 func get_new_object() -> ReactionTag:
 	var new_tag = ReactionTag.new()
-	new_tag.label = "newTag"
 	return new_tag
 	
 	
-func update_parents(parent_object: Resource) -> void:
-	pass

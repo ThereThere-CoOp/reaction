@@ -39,7 +39,7 @@ script = ExtResource("4_jdoy6")
 type = 0
 is_enum = false
 trigger_signal_on_modified = false
-parents = Array[String]([])
+have_default_value = false
 uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
@@ -50,7 +50,6 @@ tags = Array[ExtResource("14_2dj17")]([])
 script = ExtResource("7_0knvx")
 fact_reference_log = {}
 rules = Array[ExtResource("7_jvxl4")]([])
-parents = Array[String]([])
 uid = "7825e03c-4c9f-42e6-8813-19d34c215b16"
 label = "item_label"
 description = "Item long description"
@@ -63,7 +62,6 @@ criterias = Array[ExtResource("11_vsk32")]([])
 modifications = Array[ExtResource("12_5a862")]([])
 match_once = false
 priority = 0
-parents = Array[String]([])
 uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
@@ -82,7 +80,6 @@ value_b_bool = false
 value_b_string = ""
 value_a = null
 value_b = null
-parents = Array[String]([])
 uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
 label = "item_label"
 description = "Item long description"
@@ -108,7 +105,6 @@ value_b_bool = false
 value_b_string = ""
 value_a = 0
 value_b = 0
-parents = Array[String]([])
 uid = "6bdc2b43-76ff-411b-b171-76aeeb9c06b9"
 label = "item_label"
 description = "Item long description"
@@ -123,7 +119,6 @@ object_resource_class = SubResource("Resource_evq3s")
 
 [sub_resource type="Resource" id="Resource_k8rsl"]
 script = ExtResource("12_5a862")
-parents = Array[String]([])
 uid = "eee22ef2-804c-42bc-8db5-1e3ed25907ae"
 label = "item_label"
 description = "Item long description"
@@ -138,10 +133,12 @@ object_resource_class = SubResource("Resource_k8rsl")
 
 [sub_resource type="Resource" id="Resource_vsy2h"]
 script = ExtResource("14_2dj17")
-label = "tagLabel"
-uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
-description = ""
 facts = {}
+uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
+label = "tagLabel"
+description = ""
+scope = "Global"
+tags = Array[ExtResource("14_2dj17")]([])
 
 [node name="MainView" type="Control"]
 clip_contents = true
@@ -186,15 +183,12 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "other"
+text = "new_database"
 icon = SubResource("ImageTexture_0hcmb")
-item_count = 2
+item_count = 1
 popup/item_0/text = "new_database"
 popup/item_0/icon = SubResource("ImageTexture_0hcmb")
 popup/item_0/id = 0
-popup/item_1/text = "other"
-popup/item_1/icon = SubResource("ImageTexture_0hcmb")
-popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
@@ -464,9 +458,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "event"
-item_list_field_name = "events"
-add_function_name = "add_event"
-remove_function_name = "remove_event"
 reaction_resource = SubResource("Resource_57f2n")
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
@@ -537,9 +528,6 @@ custom_minimum_size = Vector2(300, 250)
 layout_mode = 2
 size_flags_vertical = 3
 item_name = "rule"
-item_list_field_name = "rules"
-add_function_name = "add_rule"
-remove_function_name = "remove_rule"
 reaction_resource = SubResource("Resource_ep52h")
 
 [node name="RuleDataContainer" type="TabContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules"]
@@ -656,9 +644,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "tag"
-item_list_field_name = "tags"
-add_function_name = "add_tag"
-remove_function_name = "remove_tag"
 reaction_resource = SubResource("Resource_vsy2h")
 
 [node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]

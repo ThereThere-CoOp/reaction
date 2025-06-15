@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func setup_tags(database: ReactionDatabase) -> void:
 	current_database = database
-	tags_list.setup_items(current_database)
+	# tags_list.setup_items(current_database)
 
 
 func _set_tag(tag_data: ReactionTag) -> void:
@@ -61,8 +61,9 @@ func _on_tags_list_item_added(index, item_data):
 
 
 func _on_tags_list_item_removed(index, item_data):
-	if current_database.tags.size() > 0:
-		_set_tag(tags_list.current_item)
+	if false: #current_database.tags.size() > 0:
+		# _set_tag(tags_list.current_item)
+		pass
 	else:
 		tag_data_container.visible = false
 

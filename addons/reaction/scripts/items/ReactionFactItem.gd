@@ -33,24 +33,20 @@ var hint_string: String:
 var enum_names: PackedStringArray = []
 
 ## True if the fact have default value
-var have_default_value: bool = false
+@export var have_default_value: bool = false
 
 ## default value of the fact
 var default_value: Variant
 
-func have_references(database: ReactionDatabase) -> bool:
-	for event in database.events.values():
-		if uid in event.fact_reference_log:
-			if event.fact_reference_log[uid].size() > 0:
-				return true
-		
-	return false
-
-
+func _init() -> void:
+	super()
+	label = "newFact"
+	type = TYPE_STRING
+	sqlite_table_name = "fact"
+	
+	
 func get_new_object():
 	var new_fact = ReactionFactItem.new()
-	new_fact.label = "newFact"
-	new_fact.type = TYPE_STRING
 	return new_fact
 	
 	
@@ -69,6 +65,10 @@ func _get_property_list() -> Array:
 	)
 
 	return properties
+	
+	
+func update_from_sqlite():
+	super()
 
 
 func get_type_string() -> int:

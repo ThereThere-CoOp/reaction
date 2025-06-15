@@ -1,8 +1,6 @@
 @tool
 extends MarginContainer
 
-var current_database: ReactionDatabase
-
 var current_fact: ReactionFactItem = null
 
 var undo_redo: EditorUndoRedoManager:
@@ -19,7 +17,7 @@ var fact_scope_menu_text_options: Dictionary = {
 	"global": "Global", "event": "Event"
 }
 
-@onready var facts_list: VBoxContainer = %FactsList
+@onready var facts_list: ReactionItemList = %FactsList
 @onready var fact_data_container: VBoxContainer = %FactDataContainer
 
 @onready var fact_references_dialog: AcceptDialog = %FactReferenceAcceptDialog
@@ -110,11 +108,11 @@ func _update_fact_default_value_input():
 			
 		fact_have_default_value_container.visible = current_fact.have_default_value
 		fact_have_default_value_check_box.set_pressed_no_signal(current_fact.have_default_value)
-	
-	
-func setup_facts(database: ReactionDatabase) -> void:
-	current_database = database
-	facts_list.setup_items(current_database)
+
+
+func setup_facts() -> void:
+	pass
+	facts_list.setup_items()
 
 
 func _set_fact_type_menu_text(value: Variant.Type) -> String:
@@ -148,13 +146,12 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 		
 	fact_data_container.visible = true
 	
-	fact_tags_multiselect.setup(current_fact, current_database.tags.values())
+	# fact_tags_multiselect.setup(current_fact, current_database.tags.values())
 	_update_fact_default_value_input()
 
 
 func _set_fact_property(property_name: StringName, value: Variant) -> void:
 	current_fact.set(property_name, value)
-	current_database.save_data()
 
 
 func _set_visibility_enum_hint(value: bool) -> void:
@@ -207,7 +204,7 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 
 
 func _on_fact_type_menu_index_pressed(index):
-	if not current_fact.have_references(current_database):
+	if not current_fact.have_references():
 		var popup = fact_type_menu.get_popup()
 		var label = popup.get_item_text(index)
 		if fact_type_menu_text_options["string"] == label:
@@ -233,8 +230,9 @@ func _on_facts_list_item_added(index, item_data):
 
 
 func _on_facts_list_item_removed(index, item_data):
-	if current_database.global_facts.size() > 0:
-		_set_fact(facts_list.current_item)
+	if false: #current_database.global_facts.size() > 0:
+		# _set_fact(facts_list.current_item)
+		pass
 	else:
 		fact_data_container.visible = false
 
@@ -246,31 +244,12 @@ func _on_facts_list_item_list_updated():
 func _on_show_fact_references_button_pressed():
 	var text_result = ""
 	var references_count = 0
-	for event: ReactionEventItem in current_database.events.values():
-		if current_fact.uid in event.fact_reference_log:
-			for log_item: ReactionReferenceLogItem in event.fact_reference_log[current_fact.uid].values():
-				references_count += 1
-				text_result += "[b]*[/b] %s %s: " % [ReactionGlobals.get_item_type(log_item.object), log_item.object.label]
-				
-				text_result += "[b]Event:[/b] %s" % event.label
-				if log_item.rule:
-					text_result += " -> [b]Rule:[/b] %s" % log_item.rule.label
-				if log_item.response:
-					text_result += " ->  [b]Response:[/b] %s" % log_item.response.label
-					
-				if log_item.dialog_text:
-					text_result += " ->  [b]Dialog text:[/b] %s" % log_item.dialog_text.label
-					
-				if log_item.choice:
-					text_result += " ->  [b]Choice:[/b] %s" % log_item.choice.label
-					
-				text_result += "\n"
 	
 	if references_count == 0:
 		text_result = "No references found"
 		
 	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
-	fact_references_dialog.popup_centered()			
+	fact_references_dialog.popup_centered()
 
 
 func _on_fact_default_value_string_line_edit_text_submitted(new_text):

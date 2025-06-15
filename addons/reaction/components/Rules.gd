@@ -38,7 +38,8 @@ func _ready() -> void:
 
 
 func setup_rules(current_event: ReactionEventItem) -> void:
-	rules_list.setup_items(current_event)
+	# rules_list.setup_items(current_event)
+	pass
 
 
 func _update_criterias_container_name() -> void:
@@ -103,7 +104,7 @@ func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	
 func _sort_rules_item_list() -> void:
 	current_event.set("rules", current_event.rules.duplicate())
-	rules_list.setup_items(current_event)
+	# rules_list.setup_items(current_event)
 
 
 ## signals
@@ -127,8 +128,9 @@ func _on_rules_list_item_added(index: int, item_data: ReactionRuleItem):
 
 
 func _on_rules_list_item_removed(index: int, item_data: ReactionRuleItem):
-	if current_event.rules.size() > 0:
-		_set_rule(rules_list.current_item)
+	if false: #current_event.rules.size() > 0:
+		#_set_rule(rules_list.current_item)
+		pass
 	else:
 		rule_data_container.visible = false
 
