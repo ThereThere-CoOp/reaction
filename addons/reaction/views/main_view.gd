@@ -38,6 +38,7 @@ func _ready() -> void:
 		call_deferred("apply_theme")
 
 		load_databases_update_view()
+		edit_database_dialog.database_updated.connect(_on_edit_database_dialog_database_updated)
 
 
 func load_databases_from_filesystem() -> void:
@@ -55,7 +56,7 @@ func load_databases_from_filesystem() -> void:
 			if dir.current_is_dir():
 				continue
 			else:
-				var path_to_load = "%s/%s" % [databases_path, file_name]
+				var path_to_load = databases_path.path_join(file_name)
 				var database: SQLite = SQLite.new()
 				database.set_meta("name", file_name.get_basename())
 				database.path = path_to_load
@@ -156,21 +157,20 @@ func build_databases_menu() -> void:
 		menu.index_pressed.connect(_on_databases_menu_index_pressed)
 
 
-func set_database_data(data: ReactionDatabase) -> void:
-	databases[data.uid] = data
-	data.save_data()
+func set_database_data(data: SQLite) -> void:
+	databases[data.get_meta("uuid", "")] = data
 	build_databases_menu()
 
 
 func _remove_database(uid: String) -> void:
-	databases[uid].remove_savedata()
+	ReactionGlobals.remove_sqlite_database(databases[uid])
 	databases.erase(uid)
 	go_to_database(databases.keys().front() if databases.size() > 0 else "")
 	build_databases_menu()
 
 
-func _remove_database_savefile(data: ReactionDatabase) -> void:
-	data.remove_savedata()
+func _remove_database_savefile(data: SQLite) -> void:
+	ReactionGlobals.remove_sqlite_database(data)
 
 
 func remove_database() -> void:
@@ -179,22 +179,22 @@ func remove_database() -> void:
 
 	undo_redo.create_action("Delete database")
 	undo_redo.add_do_method(self, "_remove_database", current_database_id)
-	undo_redo.add_undo_method(self, "_unremove_board", database_data)
+	undo_redo.add_undo_method(self, "_unremove_database", database_data)
 	undo_redo.commit_action()
 
 
-func _unremove_board(data: ReactionDatabase) -> void:
-	databases[data.uid] = data
+func _unremove_database(data: SQLite) -> void:
+	var uuid = data.get_meta("uuid", "")
+	databases[uuid] = data
 	build_databases_menu()
-	go_to_database(data.uid)
-	data.save_data()
+	go_to_database(uuid)
 
 
 ### signals
 
 
 func _on_add_database_button_pressed() -> void:
-	edit_database_dialog.edit_database(null)
+	edit_database_dialog.edit_database(SQLite.new())
 
 
 func _on_edit_database_button_pressed() -> void:
@@ -202,7 +202,7 @@ func _on_edit_database_button_pressed() -> void:
 
 
 func _on_remove_database_button_pressed():
-	remove_database_dialog.dialog_text = ("Remove '%s'?" % databases.get(current_database_id).label)
+	remove_database_dialog.dialog_text = ("Remove '%s'?" % databases.get(current_database_id).get_meta("name", ""))
 	remove_database_dialog.popup_centered()
 
 
@@ -215,9 +215,10 @@ func _on_settings_button_pressed():
 	settings_dialog.popup_centered()
 
 
-func _on_edit_database_dialog_database_updated(data: ReactionDatabase):
-	if databases.has(data.uid):
-		var current_data = databases.get(data.uid)
+func _on_edit_database_dialog_database_updated(data: SQLite):
+	var data_uuid = data.get_meta("uuid", "")
+	if databases.has(data_uuid):
+		var current_data = databases.get(data_uuid)
 		undo_redo.create_action("Set database data")
 		undo_redo.add_do_method(self, "_remove_database_savefile", current_data)
 		undo_redo.add_do_method(self, "set_database_data", data)
@@ -227,8 +228,8 @@ func _on_edit_database_dialog_database_updated(data: ReactionDatabase):
 	else:
 		undo_redo.create_action("Set database data")
 		undo_redo.add_do_method(self, "set_database_data", data)
-		undo_redo.add_undo_method(self, "_remove_database", data.uid)
-		undo_redo.add_do_method(self, "go_to_database", data.uid)
+		undo_redo.add_undo_method(self, "_remove_database", data_uuid)
+		undo_redo.add_do_method(self, "go_to_database", data_uuid)
 		undo_redo.add_undo_method(self, "go_to_database", current_database_id)
 		undo_redo.commit_action()
 

@@ -126,6 +126,14 @@ func sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem]
 
 	return new_rules
 	
+
+func remove_sqlite_database(database: SQLite) -> void:
+	var file_path = database.path
+	database.close_db()
+
+	if FileAccess.file_exists(file_path):
+		DirAccess.remove_absolute(file_path)
+	
 	
 func _unhandled_input(event):
 	if not Engine.is_editor_hint():
