@@ -1,8 +1,6 @@
 @tool
 extends VBoxContainer
 
-var current_database: ReactionDatabase
-
 var current_event: ReactionEventItem
 
 var current_rule: ReactionRuleItem = null
@@ -13,6 +11,7 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
+var _sqlite_database: SQLite
 
 @onready var rules_list: ReactionItemList = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
@@ -85,9 +84,7 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
 		responses.label = "rootResponseGroup"
-		responses.update_parents(current_rule)
 		current_rule.responses = responses
-		current_database.save_data()
 	
 	responses_container.setup(responses)
 	
@@ -99,7 +96,6 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 
 func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	current_rule.set(property_name, value)
-	current_database.save_data()
 	
 	
 func _sort_rules_item_list() -> void:
@@ -110,8 +106,8 @@ func _sort_rules_item_list() -> void:
 ## signals
 
 
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 
 
 func _on_rules_list_item_selected(item_data: ReactionRuleItem) -> void:

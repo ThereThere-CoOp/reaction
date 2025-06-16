@@ -46,12 +46,17 @@ uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_57f2n"]
 script = ExtResource("7_0knvx")
 fact_reference_log = {}
 rules = Array[ExtResource("7_jvxl4")]([])
+uid = "6fcec7d0-452a-4865-af58-08758b5fde36"
+label = "NEW_EVENT"
+description = "Item long description"
+scope = "Global"
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
@@ -63,7 +68,7 @@ uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
@@ -81,7 +86,7 @@ uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_x0si4"]
 script = ExtResource("12_cc7b5")
@@ -106,7 +111,7 @@ uid = "6bdc2b43-76ff-411b-b171-76aeeb9c06b9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_yguga"]
 script = ExtResource("12_cc7b5")
@@ -120,7 +125,7 @@ uid = "eee22ef2-804c-42bc-8db5-1e3ed25907ae"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_rp5i7"]
 script = ExtResource("12_cc7b5")
@@ -135,7 +140,7 @@ uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
 label = "tagLabel"
 description = ""
 scope = "Global"
-tags = null
+tags = Array[ExtResource("14_2dj17")]([])
 
 [node name="MainView" type="Control"]
 clip_contents = true

@@ -6,7 +6,6 @@ signal object_added(object: Resource)
 
 signal object_removed()
 
-var current_database: ReactionDatabase
 var current_parent_object: Resource
 
 @export var objects_to_add_data_array: Array[ListObjectFormObjectToAdd] = []
@@ -25,6 +24,8 @@ var current_parent_object: Resource
 @onready var _objects_scrollbar: VScrollBar = objects_scroll_container.get_v_scroll_bar()
 
 var _objects_scroll_to_end = false
+
+var _sqlite_database: SQLite
 
 func _ready():
 	# add_object_button.text = "Add %s" % object_name
@@ -54,7 +55,7 @@ func setup_objects(parent_object: Resource) -> void:
 
 		for object in current_parent_object.get(objects_list_field_name):
 			var new_object = object_scene.instantiate()
-			new_object.setup(current_database, current_parent_object, object, index)
+			# new_object.setup(current_database, current_parent_object, object, index)
 			new_object.object_list_form_removed.connect(_on_object_removed)
 			objects_rows.add_child(new_object)
 			index += 1
@@ -63,8 +64,8 @@ func setup_objects(parent_object: Resource) -> void:
 ### signals
 
 
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 
 
 func _on_add_object_popup_index_pressed(index: int):
@@ -74,10 +75,9 @@ func _on_add_object_popup_index_pressed(index: int):
 	new_object.label = "new_%s" % object_data.object_name
 	var add_function_callable = Callable(current_parent_object, object_data.parent_object_add_function_name)
 	add_function_callable.call(new_object)
-	current_database.save_data()
 	var list_index = current_parent_object.get(objects_list_field_name).size() - 1
 	var item_ui = object_scene.instantiate()
-	item_ui.setup(current_database, current_parent_object, new_object, list_index, true)
+	# item_ui.setup(current_database, current_parent_object, new_object, list_index, true)
 	_objects_scroll_to_end = true
 	item_ui.object_list_form_removed.connect(_on_object_removed)
 	objects_rows.add_child(item_ui)

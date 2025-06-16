@@ -2,9 +2,6 @@
 class_name ReactionUIMultiselect
 extends MarginContainer
 
-
-var current_database: ReactionDatabase
-
 var objects_list: Array
 
 var related_object: Resource
@@ -23,6 +20,7 @@ var related_object: Resource
 @onready var list_dialog: AcceptDialog = %ListAcceptDialog
 @onready var item_list: ItemList = %ItemList
 
+var _sqlite_database: SQLite
 
 func _ready() -> void:
 	list_dialog.title = "Select %s(s)" % object_name
@@ -54,14 +52,12 @@ func _update_selected_button_text() -> void:
 func _add_object_to_related_field(object: Resource) -> void:
 	var add_function_callable = Callable(related_object, add_related_function_name)
 	add_function_callable.call(object)
-	current_database.save_data()
 	_update_selected_button_text()
 	
 	
 func _remove_object_from_related_field(object: Resource) -> void:
 	var remove_function_callable = Callable(related_object, remove_related_function_name)
 	remove_function_callable.call(object.uid)
-	current_database.save_data()
 	_update_selected_button_text()
 	
 	
@@ -88,8 +84,8 @@ func setup(object: Resource, list: Array) -> void:
 ### signals
 
 
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 	
 
 func _on_selected_button_pressed():
@@ -106,5 +102,4 @@ func _on_list_accept_dialog_confirmed():
 	
 	typed_result.assign(result)
 	related_object.set(related_object_relationship_field_name, typed_result)
-	current_database.save_data()
 	_update_selected_button_text()

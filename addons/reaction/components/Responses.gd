@@ -2,8 +2,6 @@
 class_name Responses
 extends MarginContainer
 
-var current_database: ReactionDatabase
-
 var root_response_group: ReactionResponseGroupItem
 
 @onready var response_group_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIResponseGroupEditForm.tscn")
@@ -19,6 +17,7 @@ var root_response_group: ReactionResponseGroupItem
 
 var _dictionary_responses_data = {}
 
+var _sqlite_database: SQLite
 
 func _ready():
 	call_deferred("apply_theme")
@@ -117,7 +116,7 @@ func _show_edit_dialog() -> void:
 	for child in edit_response_dialog.get_children():
 		child.queue_free()
 	
-	form_scene.setup(current_database, selected_response, _get_selected_tree_item())
+	# form_scene.setup(current_database, selected_response, _get_selected_tree_item())
 	edit_response_dialog.add_child(form_scene)
 	edit_response_dialog.popup_centered()
 		
@@ -129,8 +128,8 @@ func _on_main_view_theme_changed() -> void:
 	apply_theme()
 
 
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 
 
 func _on_responses_tree_item_selected():
@@ -150,8 +149,6 @@ func _on_add_response_group_button_pressed():
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
 	var new_response_group: ReactionResponseGroupItem = response.add_new_response_group()
-	new_response_group.update_parents(response)
-	current_database.save_data()
 	
 	_create_response_tree_item(selected_item, new_response_group)
 	
@@ -164,8 +161,6 @@ func _on_add_response_menu_index_pressed(index):
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
 	var new_response: ReactionResponseItem = response.add_new_response(label)
-	new_response.update_parents(response)
-	current_database.save_data()
 	
 	_create_response_tree_item(selected_item, new_response)
 
@@ -180,7 +175,6 @@ func _on_remove_response_button_pressed():
 		parent_response.remove_response(response.uid)
 		_deselect_item()
 		parent.remove_child(selected_item)
-		current_database.save_data()
 
 
 func _on_edit_response_button_pressed():
