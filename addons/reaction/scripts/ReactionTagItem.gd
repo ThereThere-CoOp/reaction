@@ -1,5 +1,5 @@
 @tool
-class_name ReactionTag
+class_name ReactionTagItem
 extends ReactionBaseItem
 ## ----------------------------------------------------------------------------[br]
 ## Resource use to label or group reaction item
@@ -14,10 +14,14 @@ extends ReactionBaseItem
 func _init() -> void:
 	super()
 	label = "newTag"
+	_ignore_fields.merge(
+		{ "facts": true }
+	)
+	sqlite_table_name = "tag"
 
 
-func get_new_object() -> ReactionTag:
-	var new_tag = ReactionTag.new()
+func get_new_object() -> ReactionTagItem:
+	var new_tag = ReactionTagItem.new()
 	return new_tag
 	
 	

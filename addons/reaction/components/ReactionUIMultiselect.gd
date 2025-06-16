@@ -100,7 +100,7 @@ func _on_selected_button_pressed():
 func _on_list_accept_dialog_confirmed():
 	var selected_indexes = item_list.get_selected_items()
 	var result: Array = []
-	var typed_result: Array[ReactionTag] = []
+	var typed_result: Array[ReactionTagItem] = []
 	for ind in selected_indexes:
 		result.append(item_list.get_item_metadata(ind))
 	

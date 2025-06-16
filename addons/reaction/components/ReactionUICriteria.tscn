@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionoOperationItem.gd" id="5_envos"]
 [ext_resource type="PackedScene" uid="uid://dhyo0o7realmv" path="res://addons/reaction/components/ReactionUICriteriaFunctionOperation.tscn" id="6_flluw"]
 [ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="6_ynvac"]
-[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="7_ubfp3"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="7_ubfp3"]
 
 [sub_resource type="Image" id="Image_ubfp3"]
 data = {

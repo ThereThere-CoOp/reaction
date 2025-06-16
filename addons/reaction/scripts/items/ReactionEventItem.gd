@@ -12,6 +12,7 @@ extends ReactionBaseItem
 
 @export var fact_reference_log = {}
 
+
 ## array of ordered rules to be checked for this concept,
 ## rules are ordered for their criteria count in descending order
 @export var rules: Array[ReactionRuleItem]:
@@ -19,6 +20,13 @@ extends ReactionBaseItem
 		rules = ReactionGlobals.sort_rules(value)
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
+			
+			
+func _init() -> void:
+	super()
+	_ignore_fields.merge({"fact_reference_log": true})
+	label = "NEW_EVENT"
+	sqlite_table_name = "event"
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -30,7 +38,6 @@ extends ReactionBaseItem
 ## ----------------------------------------------------------------------------
 func add_rule(rule: ReactionRuleItem) -> void:
 	var new_rules: Array[ReactionRuleItem] = rules.duplicate()
-	rule.update_parents(self)
 	new_rules.append(rule)
 	
 	## reordering occurs cause set method
@@ -48,7 +55,6 @@ func remove_rule(rule_uid: String) -> void:
 	var index = 0
 	for rule in rules:
 		if rule.uid == rule_uid:
-			rule.remove_fact_reference_log(rule)
 			break
 			
 		index += 1
@@ -88,63 +94,10 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 
 	return []
 	
-	
-## ----------------------------------------------------------------------------[br]
-## Add an item on the fact references logs
-## [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* object | ReactionReferenceLogItem:[/b] New log item to add [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------	
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	var fact_uid: String = object.object.fact.uid
-	if fact_uid in fact_reference_log:
-		fact_reference_log[fact_uid][object.uid] = object
-	else:
-		fact_reference_log[fact_uid] = {}
-		fact_reference_log[fact_uid][object.uid] = object
-	
-
-## ----------------------------------------------------------------------------[br]
-## Remove an item on the fact references logs
-## [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* item | Resource:[/b] Item to removed from the log could be an
-## rule, criteria, modification, response or dialog choice [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------	
-func remove_fact_reference_log(item: Resource) -> void:
-	for object_log in fact_reference_log.values():
-		if (item is ReactionCriteriaItem and not item is ReactionFunctionCriteriaItem) or item is ReactionContextModificationItem:
-			object_log.erase(item.uid)
-		else:
-			for log_item in object_log.values():
-				if item is ReactionRuleItem:
-					if log_item.rule.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionResponseItem or item is ReactionResponseDialogItem:
-					if log_item.response.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionDialogChoiceItem:
-					if log_item.choice.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionDialogTextItem:
-					if log_item.dialog_text.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionFunctionCriteriaItem:
-					if log_item.criteria.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				## add here extra if for custom items
 				
 
 func get_new_object():
 	var new_event = ReactionEventItem.new()
-	new_event.label = "NEW_EVENT"
 	return new_event
 	
 	

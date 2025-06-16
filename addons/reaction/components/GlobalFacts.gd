@@ -111,7 +111,6 @@ func _update_fact_default_value_input():
 
 
 func setup_facts() -> void:
-	pass
 	facts_list.setup_items()
 
 
@@ -231,9 +230,8 @@ func _on_facts_list_item_added(index, item_data):
 
 
 func _on_facts_list_item_removed(index, item_data):
-	if false: #current_database.global_facts.size() > 0:
-		# _set_fact(facts_list.current_item)
-		pass
+	if facts_list.items_list.item_count > 0:
+		_set_fact(facts_list.current_item)
 	else:
 		fact_data_container.visible = false
 

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ckjrv3ohhjj74" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
 [ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_smt5a"]
 [ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="8_a485m"]
-[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="9_ywels"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="9_ywels"]
 [ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="10_smt5a"]
 
 [sub_resource type="Resource" id="Resource_smt5a"]

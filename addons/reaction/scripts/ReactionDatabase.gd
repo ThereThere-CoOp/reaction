@@ -98,10 +98,10 @@ func remove_event(event_uid: String) -> void:
 ## Add a given tag to the database
 ## [br]
 ## [b]Parameter(s):[/b] [br]
-## [b]* event | ReactionTag:[/b] New tag to add [br]
+## [b]* event | ReactionTagItem:[/b] New tag to add [br]
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
-func add_tag(tag: ReactionTag) -> void:
+func add_tag(tag: ReactionTagItem) -> void:
 	tags[tag.uid] = tag
 	save_data()
 

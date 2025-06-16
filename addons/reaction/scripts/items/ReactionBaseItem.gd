@@ -16,7 +16,7 @@ extends Resource
 
 @export_enum("Global", "Event") var scope: String = "Global"
 
-@export var tags: Array[ReactionTag]: 
+@export var tags: Array[ReactionTagItem]: 
 	set(value):
 		if self is ReactionFactItem:
 			if tags:
@@ -49,7 +49,7 @@ func _init() -> void:
 func _get_where():
 	return "id = %s" % [sqlite_id]
 
-func add_tag(tag: ReactionTag) -> void:
+func add_tag(tag: ReactionTagItem) -> void:
 	tags.append(tag)
 	
 	
@@ -66,11 +66,12 @@ func remove_tag(tag_uid: String) -> void:
 	
 func add_to_sqlite():
 	var data = get_sqlite_dict_from_field_values()
+	print(data)
 	_sqlite_database.insert_row(sqlite_table_name, data)
 	sqlite_id = _sqlite_database.last_insert_rowid
-	update_from_sqlite()
+	# update_from_sqlite()
 	
-	return get_sqlite_dict_from_field_values()
+	return data
 	
 	
 func remove_from_sqlite() -> bool:
@@ -149,7 +150,7 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 					TYPE_BOOL:
 						result[name] = 0 if not get(name) else 1
 					TYPE_DICTIONARY:
-						result[name] = JSON.stringify(name)
+						result[name] = JSON.stringify(get(name))
 					_:
 						continue
 			

@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/ReactionUIModification.tscn" id="12_m2k4m"]
 [ext_resource type="PackedScene" uid="uid://dp6pp31ltd4g4" path="res://addons/reaction/components/responses.tscn" id="13_giylq"]
 [ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="13_ww7bv"]
-[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="14_2dj17"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="14_2dj17"]
 [ext_resource type="Script" uid="uid://cg4cl4b37p8ga" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
 [ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionoOperationItem.gd" id="15_irtov"]
 
@@ -46,17 +46,12 @@ uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [sub_resource type="Resource" id="Resource_57f2n"]
 script = ExtResource("7_0knvx")
 fact_reference_log = {}
 rules = Array[ExtResource("7_jvxl4")]([])
-uid = "7825e03c-4c9f-42e6-8813-19d34c215b16"
-label = "item_label"
-description = "Item long description"
-scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
@@ -68,7 +63,7 @@ uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
@@ -86,7 +81,7 @@ uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [sub_resource type="Resource" id="Resource_x0si4"]
 script = ExtResource("12_cc7b5")
@@ -111,7 +106,7 @@ uid = "6bdc2b43-76ff-411b-b171-76aeeb9c06b9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [sub_resource type="Resource" id="Resource_yguga"]
 script = ExtResource("12_cc7b5")
@@ -125,7 +120,7 @@ uid = "eee22ef2-804c-42bc-8db5-1e3ed25907ae"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [sub_resource type="Resource" id="Resource_rp5i7"]
 script = ExtResource("12_cc7b5")
@@ -140,7 +135,7 @@ uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
 label = "tagLabel"
 description = ""
 scope = "Global"
-tags = Array[ExtResource("14_2dj17")]([])
+tags = null
 
 [node name="MainView" type="Control"]
 clip_contents = true
@@ -185,7 +180,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "other"
+text = "new"
 icon = SubResource("ImageTexture_0hcmb")
 item_count = 2
 popup/item_0/text = "new"
@@ -463,6 +458,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "event"
+sqlite_table_name = "event"
 reaction_resource = SubResource("Resource_57f2n")
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
@@ -649,6 +645,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "tag"
+sqlite_table_name = "tag"
 reaction_resource = SubResource("Resource_vsy2h")
 
 [node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]

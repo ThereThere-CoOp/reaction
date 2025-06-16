@@ -2,9 +2,7 @@
 class_name Tags
 extends MarginContainer
 
-var current_database: ReactionDatabase
-
-var current_tag: ReactionTag
+var current_tag: ReactionTagItem
 
 @onready var tags_list: ReactionItemList = %TagList
 
@@ -20,12 +18,11 @@ func _ready() -> void:
 	ReactionSignals.database_selected.connect(setup_tags)
 
 
-func setup_tags(database: ReactionDatabase) -> void:
-	current_database = database
-	# tags_list.setup_items(current_database)
+func setup_tags() -> void:
+	tags_list.setup_items()
 
 
-func _set_tag(tag_data: ReactionTag) -> void:
+func _set_tag(tag_data: ReactionTagItem) -> void:
 	current_tag = tag_data
 	# set input default values
 	tag_uid_line_edit.text = current_tag.uid
@@ -37,8 +34,7 @@ func _set_tag(tag_data: ReactionTag) -> void:
 
 func _set_tag_property(property_name: StringName, value: Variant) -> void:
 	current_tag.set(property_name, value)
-	current_database.save_data()
-
+	current_tag.update_sqlite()
 
 ### signals
 
@@ -61,9 +57,8 @@ func _on_tags_list_item_added(index, item_data):
 
 
 func _on_tags_list_item_removed(index, item_data):
-	if false: #current_database.tags.size() > 0:
-		# _set_tag(tags_list.current_item)
-		pass
+	if tags_list.items_list.item_count > 0:
+		_set_tag(tags_list.current_item)
 	else:
 		tag_data_container.visible = false
 

@@ -257,10 +257,10 @@ func _on_database_data_managment_tab_selected(tab):
 	if tab:
 		match tab:
 			0:
-				global_facts_panel.setup_facts(databases.get(current_database_id, {}))
+				global_facts_panel.setup_facts()
 			1:
-				events_panel.setup_events(databases.get(current_database_id, {}))
+				events_panel.setup_events()
 			2:
-				tags_panel.setup_tags(databases.get(current_database_id, {}))
+				tags_panel.setup_tags()
 			_:
-				global_facts_panel.setup_facts(databases.get(current_database_id, {}))
+				global_facts_panel.setup_facts()

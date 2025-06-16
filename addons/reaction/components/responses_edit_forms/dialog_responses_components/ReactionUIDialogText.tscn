@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="4_bflyh"]
 [ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="5_7kthi"]
 [ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="6_gf73t"]
-[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTag.gd" id="7_qwl8y"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="7_qwl8y"]
 [ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="8_mjrdm"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/ReactionUIModification.tscn" id="9_wt7lo"]
 [ext_resource type="Script" uid="uid://dpv4cx7d6r06a" path="res://addons/reaction/components/ReactionUIIText.gd" id="10_k12o2"]
