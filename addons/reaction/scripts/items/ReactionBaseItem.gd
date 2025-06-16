@@ -62,13 +62,20 @@ func remove_tag(tag_uid: String) -> void:
 	
 	
 func add_to_sqlite():
-	print(get_sqlite_dict_from_field_values())
 	var data = get_sqlite_dict_from_field_values()
 	_sqlite_database.insert_row(sqlite_table_name, data)
 	sqlite_id = _sqlite_database.last_insert_rowid
 	update_from_sqlite()
 	
 	return get_sqlite_dict_from_field_values()
+	
+	
+func remove_from_sqlite() -> bool:
+	var where = "id = %s" % [sqlite_id]
+	var success = _sqlite_database.delete_rows(sqlite_table_name, where)
+	sqlite_id = _sqlite_database.last_insert_rowid
+	
+	return success
 	
 	
 func update_sqlite():
@@ -78,19 +85,34 @@ func update_sqlite():
 	update_from_sqlite()
 	
 
-func _set_field_values_from_sqlite_dict(data: Dictionary) -> void:
-	label = data.get("label", "")
-	uid = data.get("uid", "")
-	description = data.get("description", "")
-	scope = data.get("scope", "Global")
+func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
+	sqlite_id = data.get("id", null)
 	
+	for prop in self.get_property_list():
+		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
+			var name = prop.name
+			var type = prop.type
+			if not _ignore_fields.has(name):
+				if data.has(name):
+					match type:
+						TYPE_NIL:
+							set(name, str(get(name)))
+						TYPE_INT:
+							set(name, int(get(name)))
+						TYPE_STRING:
+							set(name, str(get(name)))
+						TYPE_BOOL:
+							set(name, bool(get(name)))
+						_:
+							continue
+				
 func update_from_sqlite():
 	var where = "id = %s" % [sqlite_id]
 	var result = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
 	
 	if len(result) > 0:
 		result = result[0]
-		_set_field_values_from_sqlite_dict(result)
+		set_field_values_from_sqlite_dict(result)
 	
 	
 func _to_string():
@@ -103,6 +125,10 @@ func get_type_string() -> int:
 	
 func get_sqlite_dict_from_field_values() -> Dictionary:
 	var result = {}
+	
+	if sqlite_id:
+		result["id"] = sqlite_id
+		
 	for prop in self.get_property_list():
 		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
 			var name = prop.name

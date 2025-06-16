@@ -183,10 +183,10 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "new_database"
+text = "new"
 icon = SubResource("ImageTexture_0hcmb")
 item_count = 1
-popup/item_0/text = "new_database"
+popup/item_0/text = "new"
 popup/item_0/icon = SubResource("ImageTexture_0hcmb")
 popup/item_0/id = 0
 

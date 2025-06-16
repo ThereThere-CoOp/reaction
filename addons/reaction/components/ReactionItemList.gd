@@ -4,11 +4,11 @@ extends VBoxContainer
 
 signal item_list_updated()
 
-signal item_added(index: int, item_data: Dictionary)
+signal item_added(index: int, item: Resource)
 
-signal item_removed(index: int, item_data: Dictionary)
+signal item_removed(index: int, item: Resource)
 
-signal item_selected(item_data: Dictionary)
+signal item_selected(item: Resource)
 
 var undo_redo: EditorUndoRedoManager:
 	set(next_undo_redo):
@@ -16,7 +16,7 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
-var current_item: Dictionary
+var current_item: Resource
 
 var current_item_index: int = -1
 
@@ -90,7 +90,14 @@ func setup_items() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
 	remove_item_button.disabled = true
 	
-	_all_item_list = _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+	_all_item_list.clear()
+	
+	var query_list_result = _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+	
+	for result in query_list_result:
+		var resource: Resource = reaction_resource.get_new_object()
+		resource.set_field_values_from_sqlite_dict(result)
+		_all_item_list.append(resource)
 	
 	
 	_current_item_list = _all_item_list
@@ -117,38 +124,35 @@ func _select_item(index: int, is_emit_signal: bool = true) -> void:
 
 
 func _add_item(item: Resource, index_to_add: int = -1) -> void:
-	var item_data = item.add_to_sqlite()
+	item.add_to_sqlite()
 	var index = items_list.add_item(item.get(item_name_field))
-	items_list.set_item_metadata(index, item_data)
+	items_list.set_item_metadata(index, item)
 	
-	_current_item_list.append(item_data)
-	_all_item_list.append(item_data)
+	_current_item_list.append(item)
+	_all_item_list.append(item)
 
 	if index_to_add != -1:
 		items_list.move_item(index, index_to_add)
 		index = index_to_add
 
 	_select_item(index, false)
-	item_added.emit(index, item_data)
+	item_added.emit(index, item)
 
 
-func _remove_item(index: int) -> void:
+func _remove_item(item: Resource, index: int) -> void:
 	if false: #current_item.has_method("have_references"):
 		if false: # current_item.have_references(database_object):
 			warning_dialog.dialog_text = "The item have references. You cannot delete it."
 			warning_dialog.popup_centered()
 			return
 	
-	var sqlite_id = current_item.get("id")
-	var where = "id = %s" % [sqlite_id]
-	_sqlite_database.delete_rows(sqlite_table_name, where)
+	item.remove_from_sqlite()
 	
 	items_list.remove_item(index)
 	
 	_current_item_list.erase(current_item)
 	_all_item_list.erase(current_item)
 	
-	var removed_item = current_item
 	if _current_item_list.size() == 0:
 		current_item_index = -1
 		remove_item_button.disabled = true
@@ -164,7 +168,7 @@ func _remove_item(index: int) -> void:
 
 		_select_item(current_item_index, false)
 
-	item_removed.emit(index, removed_item)
+	item_removed.emit(index, item)
 	
 	
 func _update_filter_label_text(new_text: String) -> void:
@@ -200,14 +204,14 @@ func _on_add_item_button_pressed():
 	
 	undo_redo.create_action("Add %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_add_item", new_item)
-	undo_redo.add_undo_method(self, "_remove_item", _all_item_list.size() - 1)
+	undo_redo.add_undo_method(self, "_remove_item", new_item, _all_item_list.size() - 1)
 	undo_redo.commit_action()
 
 
 func _on_remove_item_button_pressed():
 	undo_redo.create_action("Remove  %s" % _processed_item_text)
-	undo_redo.add_do_method(self, "_remove_item", current_item_index)
-	# undo_redo.add_undo_method(self, "_add_item", current_item, current_item_index)
+	undo_redo.add_do_method(self, "_remove_item", current_item, current_item_index)
+	undo_redo.add_undo_method(self, "_add_item", current_item, current_item_index)
 	undo_redo.commit_action()
 
 
