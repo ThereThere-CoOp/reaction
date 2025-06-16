@@ -46,6 +46,9 @@ var _ignore_fields = {
 func _init() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
 
+func _get_where():
+	return "id = %s" % [sqlite_id]
+
 func add_tag(tag: ReactionTag) -> void:
 	tags.append(tag)
 	
@@ -71,7 +74,7 @@ func add_to_sqlite():
 	
 	
 func remove_from_sqlite() -> bool:
-	var where = "id = %s" % [sqlite_id]
+	var where = _get_where()
 	var success = _sqlite_database.delete_rows(sqlite_table_name, where)
 	sqlite_id = _sqlite_database.last_insert_rowid
 	
@@ -80,9 +83,9 @@ func remove_from_sqlite() -> bool:
 	
 func update_sqlite():
 	var data = get_sqlite_dict_from_field_values()
-	var where = "id = %s" % [sqlite_id]
+	var where = _get_where()
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
-	update_from_sqlite()
+	# update_from_sqlite()
 	
 
 func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
@@ -96,18 +99,20 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 				if data.has(name):
 					match type:
 						TYPE_NIL:
-							set(name, str(get(name)))
+							set(name, str(data.get(name)))
 						TYPE_INT:
-							set(name, int(get(name)))
+							set(name, int(data.get(name)))
 						TYPE_STRING:
-							set(name, str(get(name)))
+							set(name, str(data.get(name)))
 						TYPE_BOOL:
-							set(name, bool(get(name)))
+							set(name, !!data.get(name))
+						TYPE_DICTIONARY:
+							set(name, JSON.parse_string(data.get(name)))
 						_:
 							continue
 				
 func update_from_sqlite():
-	var where = "id = %s" % [sqlite_id]
+	var where = _get_where()
 	var result = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
 	
 	if len(result) > 0:
@@ -143,6 +148,8 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 						result[name] = str(get(name))
 					TYPE_BOOL:
 						result[name] = 0 if not get(name) else 1
+					TYPE_DICTIONARY:
+						result[name] = JSON.stringify(name)
 					_:
 						continue
 			

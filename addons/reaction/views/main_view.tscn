@@ -39,7 +39,9 @@ script = ExtResource("4_jdoy6")
 type = 0
 is_enum = false
 trigger_signal_on_modified = false
+hint_string = ""
 have_default_value = false
+default_value = null
 uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
@@ -183,12 +185,15 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "new"
+text = "other"
 icon = SubResource("ImageTexture_0hcmb")
-item_count = 1
+item_count = 2
 popup/item_0/text = "new"
 popup/item_0/icon = SubResource("ImageTexture_0hcmb")
 popup/item_0/id = 0
+popup/item_1/text = "other"
+popup/item_1/icon = SubResource("ImageTexture_0hcmb")
+popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true

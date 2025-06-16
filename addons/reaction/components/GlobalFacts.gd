@@ -104,7 +104,7 @@ func _update_fact_default_value_input():
 			
 		if current_fact.type == TYPE_BOOL:
 			fact_default_value_bool.visible = true
-			fact_default_value_bool.set_pressed_no_signal(bool(current_fact.default_value))
+			fact_default_value_bool.set_pressed_no_signal(!!current_fact.default_value)
 			
 		fact_have_default_value_container.visible = current_fact.have_default_value
 		fact_have_default_value_check_box.set_pressed_no_signal(current_fact.have_default_value)
@@ -152,6 +152,7 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 
 func _set_fact_property(property_name: StringName, value: Variant) -> void:
 	current_fact.set(property_name, value)
+	current_fact.update_sqlite()
 
 
 func _set_visibility_enum_hint(value: bool) -> void:
@@ -204,7 +205,7 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 
 
 func _on_fact_type_menu_index_pressed(index):
-	if not current_fact.have_references():
+	if true: #not current_fact.have_references():
 		var popup = fact_type_menu.get_popup()
 		var label = popup.get_item_text(index)
 		if fact_type_menu_text_options["string"] == label:

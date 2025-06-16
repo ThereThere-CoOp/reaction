@@ -25,7 +25,7 @@ extends ReactionBaseItem
 @export var trigger_signal_on_modified: bool = false
 
 ## int string used when is_enum true to specify enum options
-var hint_string: String:
+@export var hint_string: String:
 	set(hs_value):
 		hint_string = hs_value
 		enum_names = hs_value.split(",")
@@ -59,9 +59,11 @@ func _get_property_list() -> Array:
 	var properties: Array = []
 
 	var hint_string_usage = PROPERTY_USAGE_DEFAULT if is_enum else PROPERTY_USAGE_READ_ONLY
-
 	properties.append_array(
-		[{"name": "hint_string", "type": TYPE_STRING, "usage": hint_string_usage}]
+		[
+			{"name": "hint_string", "type": TYPE_STRING, "usage": hint_string_usage},
+			{"name": "default_value", "type": type, "usage": PROPERTY_USAGE_DEFAULT}
+		]
 	)
 
 	return properties
