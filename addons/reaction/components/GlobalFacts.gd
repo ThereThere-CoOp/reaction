@@ -145,7 +145,7 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 		
 	fact_data_container.visible = true
 	
-	# fact_tags_multiselect.setup(current_fact, current_database.tags.values())
+	fact_tags_multiselect.setup(current_fact)
 	_update_fact_default_value_input()
 
 

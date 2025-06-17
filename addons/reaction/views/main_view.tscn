@@ -327,8 +327,6 @@ text = "Tags:"
 [node name="TabsMultiselect" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TabsContainer" instance=ExtResource("5_wmdgq")]
 unique_name_in_owner = true
 layout_mode = 2
-add_related_function_name = "add_tag"
-remove_related_function_name = "remove_tag"
 
 [node name="ShowFactReferencesButton" type="Button" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 unique_name_in_owner = true
@@ -519,8 +517,6 @@ text = "Tags:"
 [node name="EventTabsMultiselect" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/TabsContainer" instance=ExtResource("5_wmdgq")]
 unique_name_in_owner = true
 layout_mode = 2
-add_related_function_name = "add_tag"
-remove_related_function_name = "remove_tag"
 
 [node name="Rules" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer"]
 unique_name_in_owner = true
