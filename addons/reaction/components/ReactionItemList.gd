@@ -232,6 +232,7 @@ func _on_item_searcher_text_submitted(new_text: String):
 		
 
 func _on_clear_filter_button_pressed():
+	_current_item_list.clear()
 	_current_item_list = _all_item_list
 	tag_filter_label.text = "No filter activated"
 	_update_item_list()
