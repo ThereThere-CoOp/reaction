@@ -34,7 +34,7 @@ func _get_related_objects_list() -> Array:
 	
 	var related_relation_query_field_name = "%s.%s" % [relation_table_name, related_field_name]
 	var parent_relation_query_field_name = "%s.%s" % [relation_table_name, parent_field_name]
-	
+		
 	var query = """
 	SELECT * FROM %s 
 	INNER JOIN %s ON %s.id = %s
@@ -67,7 +67,7 @@ func _reselect_items() -> void:
 		var index = -1
 		var current_index = 0
 		for object in objects_list:
-			if object.get("id") == rel_obj.get("id"):
+			if object.get("id") == rel_obj.get(related_field_name):
 				index = current_index
 				break
 			
@@ -75,17 +75,20 @@ func _reselect_items() -> void:
 		
 		if index != -1:
 			item_list.select(index, false)
-
-
-func setup(object: Resource) -> void:
-	parent_object = object
+			
+			
+func _update_objects_list():
 	objects_list = _sqlite_database.select_rows(related_object_table_name, "", ["*"])
 	
 	item_list.clear()
 	for obj in objects_list:
 		var current_index = item_list.add_item(obj.get(list_object_label_field_name))
 		item_list.set_item_metadata(current_index, obj)
+
+func setup(object: Resource) -> void:
+	parent_object = object
 	
+	_update_objects_list()
 	_reselect_items()
 	_update_selected_button_text()
 
@@ -97,6 +100,7 @@ func _on_database_selected() -> void:
 	
 
 func _on_selected_button_pressed():
+	_update_objects_list()
 	_reselect_items()
 	list_dialog.popup_centered()
 	
@@ -123,7 +127,7 @@ func _on_list_accept_dialog_confirmed():
 		selected_ids.append(selected_id)
 		
 	for related_obj in related_objects:
-		var related_id = related_obj.get("id")
+		var related_id = related_obj.get(related_field_name)
 		related_ids.append(related_id)
 		
 		if selected_ids.find(related_id) == -1:
@@ -135,11 +139,7 @@ func _on_list_accept_dialog_confirmed():
 	
 	if ids_to_delete.size() > 0:
 		var where_in_array_str = _get_array_str(ids_to_delete)
-		var delete_where = "%s IN (%s)" % [related_field_name, where_in_array_str]
-	
-		print(ids_to_delete)
-		print(where_in_array_str)
-		print(delete_where)
+		var delete_where = "%s IN (%s) AND %s = %d" % [related_field_name, where_in_array_str, parent_field_name, parent_object.sqlite_id]
 		
 		_sqlite_database.delete_rows(relation_table_name, delete_where)
 	
@@ -151,7 +151,7 @@ func _on_list_accept_dialog_confirmed():
 			current_data[related_field_name] = id
 			current_data[parent_field_name] = parent_object.sqlite_id
 			rows_data_to_add.append(current_data)
-			
+		
 		_sqlite_database.insert_rows(relation_table_name, rows_data_to_add)
 	
 	_update_selected_button_text()
