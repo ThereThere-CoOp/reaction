@@ -240,7 +240,6 @@ theme_override_constants/separation = 10
 [node name="FactsList" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel" instance=ExtResource("3_cpcid")]
 unique_name_in_owner = true
 layout_mode = 2
-item_name = "fact"
 reaction_resource = SubResource("Resource_qew6w")
 
 [node name="FactDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel"]
@@ -517,6 +516,7 @@ text = "Tags:"
 [node name="EventTabsMultiselect" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/TabsContainer" instance=ExtResource("5_wmdgq")]
 unique_name_in_owner = true
 layout_mode = 2
+parent_field_name = "event_id"
 
 [node name="Rules" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer"]
 unique_name_in_owner = true
@@ -530,6 +530,7 @@ custom_minimum_size = Vector2(300, 250)
 layout_mode = 2
 size_flags_vertical = 3
 item_name = "rule"
+sqlite_table_name = "rule"
 reaction_resource = SubResource("Resource_ep52h")
 
 [node name="RuleDataContainer" type="TabContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules"]

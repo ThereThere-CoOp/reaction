@@ -119,7 +119,24 @@ func update_from_sqlite():
 	if len(result) > 0:
 		result = result[0]
 		set_field_values_from_sqlite_dict(result)
+		
+		
+func get_tags():
+	var where = "%s = %d" % [sqlite_table_name + "_id", sqlite_id]
 	
+	var related_relation_query_field_name = "%s.%s" % ["tag_item_rel", "tag_id"]
+	var parent_relation_query_field_name = "%s.%s" % ["tag_item_rel", sqlite_table_name + "_id"]
+		
+	var query = """
+	SELECT tag.id AS id, tag_item_rel.id AS rel_id, tag.label AS label, tag.uid AS uid FROM %s 
+	INNER JOIN %s ON %s.id = %s
+	WHERE %s = %d;
+	""" % ["tag", "tag_item_rel", "tag", related_relation_query_field_name, parent_relation_query_field_name, sqlite_id]
+	
+	_sqlite_database.query(query)
+	var result = _sqlite_database.query_result_by_reference
+	
+	return result
 	
 func _to_string():
 	return label

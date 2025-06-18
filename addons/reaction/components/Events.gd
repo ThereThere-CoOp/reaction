@@ -41,7 +41,7 @@ func _set_event(event_data: ReactionEventItem) -> void:
 	rules_panel.current_event = current_event
 	rules_panel.rule_data_container.visible = false
 	event_data_container.visible = true
-	# event_tags_input.setup(current_event, current_database.tags.values())
+	event_tags_input.setup(current_event)
 
 
 func _set_event_property(property_name: StringName, value: Variant) -> void:

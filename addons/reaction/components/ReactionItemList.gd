@@ -105,9 +105,11 @@ func setup_items() -> void:
 	tag_filter_item_list.clear()
 	tag_filter_item_list.deselect_all()
 	
-	#for tag in database_object.tags.values():
-		#var index = tag_filter_item_list.add_item(tag.get(item_name_field))
-		#tag_filter_item_list.set_item_metadata(index, tag)
+	var tags = _sqlite_database.select_rows(sqlite_tag_table_name, "", ["*"])
+	
+	for tag in tags:
+		var index = tag_filter_item_list.add_item(tag.get(item_name_field))
+		tag_filter_item_list.set_item_metadata(index, tag)
 		
 	_update_item_list()
 	
@@ -233,6 +235,9 @@ func _on_clear_filter_button_pressed():
 	_current_item_list = _all_item_list
 	tag_filter_label.text = "No filter activated"
 	_update_item_list()
+	
+	
+
 
 
 # not a very efficient search function
@@ -243,8 +248,10 @@ func _on_filter_accept_dialog_confirmed():
 	for index in selected_indexes:
 		var tag = tag_filter_item_list.get_item_metadata(index)
 		filter_label_text += " (tag = '%s')" % tag.label
+		
 		for item in _current_item_list:
-			if result.find(item) == -1 and item.tags.find(tag) > -1:
+			var item_tags = item.get_tags()
+			if result.find_custom(func(i): return i.get("uid") == item.uid) == -1 and item_tags.find_custom(func(i): return i.get("id") == tag.id) != -1:
 				result.append(item)
 				
 	_current_item_list = result
