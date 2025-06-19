@@ -4,7 +4,7 @@ extends MarginContainer
 
 var current_tag: ReactionTagItem
 
-@onready var tags_list: ReactionItemList = %TagList
+@onready var tags_list: ReactionUIItemList = %TagList
 
 @onready var tag_data_container : VBoxContainer = %TagDataContainer
 @onready var tag_label_line_edit : LineEdit = %TagLabelLineEdit

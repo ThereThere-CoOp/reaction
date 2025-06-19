@@ -17,7 +17,7 @@ var fact_scope_menu_text_options: Dictionary = {
 	"global": "Global", "event": "Event"
 }
 
-@onready var facts_list: ReactionItemList = %FactsList
+@onready var facts_list: ReactionUIItemList = %FactsList
 @onready var fact_data_container: VBoxContainer = %FactDataContainer
 
 @onready var fact_references_dialog: AcceptDialog = %FactReferenceAcceptDialog

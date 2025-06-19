@@ -1,5 +1,5 @@
 @tool
-class_name ReactionItemList
+class_name ReactionUIItemList
 extends VBoxContainer
 
 signal item_list_updated()
@@ -15,6 +15,8 @@ var undo_redo: EditorUndoRedoManager:
 		undo_redo = next_undo_redo
 	get:
 		return undo_redo
+
+var current_parent_item: Resource
 
 var current_item: Resource
 
@@ -86,13 +88,16 @@ func _update_item_list() -> void:
 		
 	item_list_updated.emit()
 		
-func setup_items() -> void:
+func setup_items(parent_item: Resource = null) -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
 	remove_item_button.disabled = true
 	
 	_all_item_list.clear()
 	
-	var query_list_result = _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+	var tmp_item = reaction_resource.get_new_object()
+	current_parent_item = parent_item
+	tmp_item.parent_item = parent_item
+	var query_list_result = tmp_item.get_sqlite_list()
 	
 	for result in query_list_result:
 		var resource: Resource = reaction_resource.get_new_object()
@@ -126,6 +131,7 @@ func _select_item(index: int, is_emit_signal: bool = true) -> void:
 
 
 func _add_item(item: Resource, index_to_add: int = -1) -> void:
+	item.parent_item = current_parent_item
 	item.add_to_sqlite()
 	var index = items_list.add_item(item.get(item_name_field))
 	items_list.set_item_metadata(index, item)
@@ -196,6 +202,7 @@ func _on_database_selected() -> void:
 func _on_item_list_item_selected(index):
 	undo_redo.create_action("Selected %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_select_item", index)
+	
 	if current_item_index != -1:
 		undo_redo.add_undo_method(self, "_select_item", current_item_index)
 	undo_redo.commit_action()

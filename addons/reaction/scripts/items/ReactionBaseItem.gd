@@ -30,6 +30,8 @@ extends Resource
 
 @export_group("")
 
+var parent_item: ReactionBaseItem
+
 var sqlite_id: int
 
 var sqlite_table_name: String = ""
@@ -66,6 +68,11 @@ func remove_tag(tag_uid: String) -> void:
 	
 func add_to_sqlite():
 	var data = get_sqlite_dict_from_field_values()
+	
+	if parent_item:
+		print("yes")
+		data[parent_item.sqlite_table_name + "_id"] = parent_item.sqlite_id
+	
 	print(data)
 	_sqlite_database.insert_row(sqlite_table_name, data)
 	sqlite_id = _sqlite_database.last_insert_rowid
@@ -88,6 +95,12 @@ func update_sqlite():
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
 	# update_from_sqlite()
 	
+func get_sqlite_list():
+	if not parent_item:
+		return _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+	else:
+		var where = " %s_id = %d" % [parent_item.sqlite_table_name, parent_item.sqlite_id]
+		return _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
 
 func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)

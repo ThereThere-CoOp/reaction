@@ -13,7 +13,7 @@ var undo_redo: EditorUndoRedoManager:
 
 var _sqlite_database: SQLite
 
-@onready var rules_list: ReactionItemList = %RulesList
+@onready var rules_list: ReactionUIItemList = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ReactionUIListObjectForm = %Criterias
 @onready var modifications_container: ReactionUIListObjectForm = %Modifications
@@ -37,8 +37,7 @@ func _ready() -> void:
 
 
 func setup_rules(current_event: ReactionEventItem) -> void:
-	# rules_list.setup_items(current_event)
-	pass
+	rules_list.setup_items(current_event)
 
 
 func _update_criterias_container_name() -> void:

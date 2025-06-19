@@ -12,7 +12,7 @@ var undo_redo: EditorUndoRedoManager:
 		return undo_redo
 
 
-@onready var events_list: ReactionItemList = %EventsList
+@onready var events_list: ReactionUIItemList = %EventsList
 @onready var event_data_container: VBoxContainer = %EventDataContainer
 @onready var rules_panel = %Rules
 

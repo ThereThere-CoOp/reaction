@@ -27,6 +27,11 @@ extends ReactionBaseItem
 @export var responses: ReactionResponseGroupItem
 
 
+func _init() -> void:
+	super()
+	sqlite_table_name = "rule"
+
+
 ## Returns the length of the rule criterias array
 func get_criterias_count() -> int:
 	return len(criterias)
@@ -120,7 +125,24 @@ func get_modification_by_uid(uid: String):
 			return modification
 			
 	return null
+	
+	
+func get_sqlite_list():
+	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count " 
+	var query = """
+	%s
+	FROM %s
+	LEFT JOIN criteria ON %s.id = criteria.rule_id
+	WHERE %s_id = %d
+	GROUP BY %s.id
+	ORDER BY criteria_count DESC
+	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, sqlite_table_name]
+	
+	_sqlite_database.query(query)
+	var result = _sqlite_database.query_result_by_reference
 
+	return result
+	
 
 func get_new_object():
 	return ReactionRuleItem.new()

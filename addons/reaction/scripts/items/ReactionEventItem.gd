@@ -93,8 +93,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			return rule.responses.get_responses()
 
 	return []
-	
-				
+
 
 func get_new_object():
 	var new_event = ReactionEventItem.new()
