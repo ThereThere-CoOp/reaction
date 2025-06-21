@@ -96,7 +96,7 @@ func test(context: ReactionBlackboard) -> bool:
 	return criteria_test_result if not is_reverse else not criteria_test_result
 	
 	
-func get_new_object() -> ReactionFunctionCriteriaItem:
+static func get_new_object():
 	return ReactionFunctionCriteriaItem.new()
 	
 	

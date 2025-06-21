@@ -25,7 +25,8 @@ enum ItemsTypesEnum {
 	RESPONSE,
 	DIALOG,
 	DIALOG_TEXT,
-	CHOICE
+	CHOICE,
+	TAG,
 }
 
 ## ------------------globals contexts ----------------------------------------------

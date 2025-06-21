@@ -16,6 +16,8 @@ extends Resource
 
 @export_enum("Global", "Event") var scope: String = "Global"
 
+@export var reaction_item_type: int
+
 @export var tags: Array[ReactionTagItem]: 
 	set(value):
 		if self is ReactionFactItem:
@@ -41,6 +43,7 @@ var _sqlite_database: SQLite
 var _ignore_fields = {
 	"resource_local_to_scene": true,
 	"resource_name": true,
+	"script": true,
 }
 
 # var _current_sqlite_data: Dictionary = {}
@@ -70,10 +73,8 @@ func add_to_sqlite():
 	var data = get_sqlite_dict_from_field_values()
 	
 	if parent_item:
-		print("yes")
 		data[parent_item.sqlite_table_name + "_id"] = parent_item.sqlite_id
 	
-	print(data)
 	_sqlite_database.insert_row(sqlite_table_name, data)
 	sqlite_id = _sqlite_database.last_insert_rowid
 	# update_from_sqlite()
@@ -95,12 +96,24 @@ func update_sqlite():
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
 	# update_from_sqlite()
 	
-func get_sqlite_list():
+func get_sqlite_list(get_resources=false):
+	var results
 	if not parent_item:
-		return _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+		results = _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
 	else:
 		var where = " %s_id = %d" % [parent_item.sqlite_table_name, parent_item.sqlite_id]
-		return _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
+		results = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
+		
+	if get_resources:
+		var resource_result = []
+		for result in results:
+			var current_resource = get_new_object()
+			current_resource.set_field_values_from_sqlite_dict(result)
+			resource_result.append(current_resource)
+			
+		return resource_result
+	
+	return results
 
 func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)
@@ -122,6 +135,13 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 							set(name, !!data.get(name))
 						TYPE_DICTIONARY:
 							set(name, JSON.parse_string(data.get(name)))
+						TYPE_OBJECT:
+							var object = get(name)
+							var resource = object.get_script()
+							var resource_new = resource.new().get_new_object()
+							resource_new.sqlite_id = data.get(name + "_id")
+							resource_new.remove_from_sqlite()
+							set(name, resource_new)
 						_:
 							continue
 				
@@ -181,7 +201,13 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 						result[name] = 0 if not get(name) else 1
 					TYPE_DICTIONARY:
 						result[name] = JSON.stringify(get(name))
+					TYPE_OBJECT:
+							var object = get(name)
+							result[name + "_id"] = object.sqlite_id
 					_:
 						continue
 			
 	return result
+	
+static func get_new_object():
+	pass

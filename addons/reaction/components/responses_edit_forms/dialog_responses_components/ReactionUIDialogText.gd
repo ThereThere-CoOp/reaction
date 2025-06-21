@@ -36,7 +36,7 @@ func _ready():
 		modifications_button.visible = show_modifications
 		event_container.visible = show_event
 		
-		texts.setup(item_object, current_database)
+		texts.setup(item_object)
 		
 		event_search_menu.items_list = current_database.events.values()
 		

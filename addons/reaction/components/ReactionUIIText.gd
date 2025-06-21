@@ -6,16 +6,16 @@ const text_item_scene: PackedScene = preload("res://addons/reaction/components/R
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
-var current_database: ReactionDatabase
+var current_database: SQLite
 
 var parent_object: Resource
 
 @export var text_field_name: String
 
 
-func setup(parent: Resource, database: ReactionDatabase) -> void:
+func setup(parent: Resource) -> void:
 	parent_object = parent
-	current_database = database
+	current_database = ReactionGlobals.current_sqlite_database
 	
 	var settings_language = ReactionSettings.get_setting(
 		ReactionSettings.LANGUAGES_SETTING_NAME,
@@ -27,7 +27,7 @@ func setup(parent: Resource, database: ReactionDatabase) -> void:
 	for code in settings_language.keys():
 		var item_node: ReactionUIITextItem = text_item_scene.instantiate()
 		
-		item_node.setup(current_database, parent_object, text_field_name, code)
+		item_node.setup(parent_object, text_field_name, code)
 		
 		add_child(item_node)
 		
@@ -39,4 +39,4 @@ func _on_text_languaged_changed(text: String, code: String) -> void:
 	var texts_dict = parent_object.get(text_field_name).duplicate()
 	texts_dict[code] = text
 	parent_object.set(text_field_name, texts_dict)
-	current_database.save_data()
+	parent_object.update_sqlite()

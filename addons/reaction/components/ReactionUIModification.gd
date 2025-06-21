@@ -101,7 +101,7 @@ func update_values_input() -> void:
 			enum_values_menu.text = str(current_value_a)
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
 	index_label = %IndexLabel
 	label_input = %LabelLineEdit
 	fact_search_menu = %FactsSearchMenu
@@ -122,7 +122,6 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	value_numeric_text_edit.text_submitted.connect(_on_value_numeric_text_submitted)
 	
 	
-	current_database = database
 	current_parent_object = parent_object
 	object_index = index
 	item_object = object
@@ -157,11 +156,6 @@ func _on_facts_search_menu_item_selected(item):
 		current_database.remove_fact_reference_log(item_object)
 	
 	_set_modification_property("fact", fact_search_menu.current_item)
-	
-	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
-	new_item_log.update_log_objects(item_object, current_database)
-	current_database.add_fact_reference_log(new_item_log)
-	current_database.save_data()
 	
 	update_operation_menu_items()
 	update_values_input()

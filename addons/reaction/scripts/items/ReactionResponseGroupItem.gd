@@ -45,7 +45,7 @@ func get_responses() -> Array[ReactionResponseBaseItem]:
 	return result
 	
 	
-static func get_new_object() -> ReactionResponseGroupItem:
+static func get_new_object():
 	var new_response_group = ReactionResponseGroupItem.new()
 	new_response_group.label = "newResponseGroup"
 	return new_response_group

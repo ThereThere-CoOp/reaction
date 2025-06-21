@@ -41,11 +41,12 @@ var default_value: Variant
 func _init() -> void:
 	super()
 	label = "newFact"
+	reaction_item_type = ReactionGlobals.ItemsTypesEnum.FACT
 	type = TYPE_STRING
 	sqlite_table_name = "fact"
 	
 	
-func get_new_object():
+static func get_new_object():
 	var new_fact = ReactionFactItem.new()
 	return new_fact
 	

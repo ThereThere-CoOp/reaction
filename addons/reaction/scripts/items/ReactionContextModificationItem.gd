@@ -99,7 +99,7 @@ func execute(context: ReactionBlackboard) -> void:
 				context.set_fact_value(fact, new_value)
 
 				
-func get_new_object() -> ReactionContextModificationItem:
+static func get_new_object():
 	return ReactionContextModificationItem.new()
 	
 	

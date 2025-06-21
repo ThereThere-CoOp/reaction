@@ -18,9 +18,10 @@ func _init() -> void:
 		{ "facts": true }
 	)
 	sqlite_table_name = "tag"
+	reaction_item_type = ReactionGlobals.ItemsTypesEnum.TAG
 
 
-func get_new_object() -> ReactionTagItem:
+static func get_new_object() -> ReactionTagItem:
 	var new_tag = ReactionTagItem.new()
 	return new_tag
 	

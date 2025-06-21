@@ -10,4 +10,4 @@ extends Resource
 
 @export var parent_object_add_function_name: String
 
-@export var object_resource_class: Resource
+@export var object_resource_class: ReactionBaseItem

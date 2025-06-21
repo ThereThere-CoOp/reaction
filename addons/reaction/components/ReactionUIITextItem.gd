@@ -4,7 +4,7 @@ extends VBoxContainer
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
-var current_database: ReactionDatabase
+var current_database: SQLite
 
 var object: Resource
 
@@ -17,8 +17,8 @@ var code: String
 @onready var text_edit: TextEdit = %TextEdit
 
 
-func setup(database: ReactionDatabase, parent: Resource, field_name: String, current_code: String):
-	current_database = database
+func setup(parent: Resource, field_name: String, current_code: String):
+	current_database = ReactionGlobals.current_sqlite_database
 	object = parent
 	texts_field_name = field_name
 	code = current_code
@@ -40,4 +40,4 @@ func _on_text_edit_text_changed() -> void:
 	var texts_dict: Dictionary = object.get(texts_field_name).duplicate()
 	texts_dict[code] = text_edit.text
 	object.set(texts_field_name, texts_dict)
-	current_database.save_data()
+	object.update_sqlite()

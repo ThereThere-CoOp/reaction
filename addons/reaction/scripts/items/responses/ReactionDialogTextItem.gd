@@ -12,7 +12,7 @@ extends ReactionRuleItem
 @export var text: Dictionary = {}
 
 	
-func get_new_object() -> ReactionDialogTextItem:
+static func get_new_object():
 	var new_dialog_text = ReactionDialogTextItem.new()
 	new_dialog_text.label = "newDialogText"
 	return new_dialog_text

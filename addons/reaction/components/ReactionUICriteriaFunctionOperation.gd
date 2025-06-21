@@ -22,8 +22,8 @@ func update_operation_container_visibility():
 			operation_container.visible = true
 
 
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
-	super(database, parent_object, object, index, is_new_object)
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
+	super(parent_object, object, index, is_new_object)
 	
 	fact_search_menu = %FactSearchMenu
 	operation_menu_button = %OperationMenuButton
@@ -33,7 +33,9 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	
 	operation_popup_menu.index_pressed.connect(_on_operation_menu_index_pressed)
 	
-	fact_search_menu.items_list = database.global_facts.values()
+	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
+	var facts_list = fact_resource.get_sqlite_list(true)
+	fact_search_menu.items_list = facts_list
 	
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
@@ -54,11 +56,6 @@ func _on_fact_input_item_selected(item: Resource) -> void:
 		current_database.remove_fact_reference_log(item_object)
 	
 	item_object.fact = item
-	
-	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
-	new_item_log.update_log_objects(item_object, current_database)
-	current_database.add_fact_reference_log(new_item_log)
-	current_database.save_data()
 	
 	
 func _on_operation_menu_index_pressed(index: int) -> void:

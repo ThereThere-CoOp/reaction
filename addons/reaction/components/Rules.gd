@@ -95,11 +95,12 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 
 func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	current_rule.set(property_name, value)
+	current_rule.update_sqlite()
 	
 	
 func _sort_rules_item_list() -> void:
 	current_event.set("rules", current_event.rules.duplicate())
-	# rules_list.setup_items(current_event)
+	rules_list.setup_items(current_event)
 
 
 ## signals

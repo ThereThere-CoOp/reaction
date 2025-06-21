@@ -15,7 +15,7 @@ extends ReactionRuleItem
 @export var triggers: String
 
 	
-func get_new_object() -> ReactionDialogChoiceItem:
+static func get_new_object():
 	var new_dialog_choice = ReactionDialogChoiceItem.new()
 	new_dialog_choice.label = "newDialogChoice"
 	return new_dialog_choice

@@ -154,8 +154,8 @@ func update_values_input() -> void:
 			value_b_input.set_value_no_signal(int(current_value_b))
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
-	super(database, parent_object, object, index, is_new_object)
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
+	super(parent_object, object, index, is_new_object)
 	
 	label_input = %LabelLineEdit
 	fact_container = %FactContainer
@@ -188,7 +188,9 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
-	fact_search_menu.items_list = current_database.global_facts.values()
+	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
+	var facts_list = fact_resource.get_sqlite_list(true)
+	fact_search_menu.items_list = facts_list
 	
 	negate_check.button_pressed = item_object.is_reverse
 		
@@ -198,11 +200,11 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if is_new_object:
 		operation_menu.text = "Select operation"
 	
-	fact_functions_form_list.current_database = current_database
-	if item_object is ReactionFunctionCriteriaItem:
-		fact_functions_form_list.setup_objects(item_object)
-	else:
-		fact_functions_form_list.setup_objects(null)
+	#fact_functions_form_list.current_database = current_database
+	#if item_object is ReactionFunctionCriteriaItem:
+		#fact_functions_form_list.setup_objects(item_object)
+	#else:
+		#fact_functions_form_list.setup_objects(null)
 		
 	fact_container.visible = true
 	facts_function_button.visible = false
@@ -216,7 +218,7 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 
 func _set_criteria_property(property_name: StringName, value: Variant) -> void:
 	item_object.set(property_name, value)
-	current_database.save_data()
+	item_object.update_sqlite()
 
 
 func _show_warning_dialog(text: String):
@@ -235,15 +237,7 @@ func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
 	
-	if item_object.fact:
-		current_database.remove_fact_reference_log(item_object)
-	
 	_set_criteria_property("fact", fact_search_menu.current_item)
-	
-	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
-	new_item_log.update_log_objects(item_object, current_database)
-	current_database.add_fact_reference_log(new_item_log)
-	current_database.save_data()
 	
 	update_operation_menu_items()
 	update_values_input()

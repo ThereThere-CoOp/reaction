@@ -24,11 +24,11 @@ image = SubResource("Image_ubfp3")
 [sub_resource type="Resource" id="Resource_g1x5f"]
 script = ExtResource("5_envos")
 operation = ""
-parents = Array[String]([])
 uid = "f32a7461-dab5-44ae-afc8-d5f42cf52f2e"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 0
 tags = Array[ExtResource("7_ubfp3")]([])
 
 [sub_resource type="Resource" id="Resource_vhjfj"]
@@ -189,7 +189,6 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_ynvac")]([SubResource("Resource_vhjfj")])
-objects_list_field_name = "operations"
 object_scene = ExtResource("6_flluw")
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]

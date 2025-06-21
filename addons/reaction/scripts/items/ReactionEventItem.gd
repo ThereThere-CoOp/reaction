@@ -26,6 +26,7 @@ func _init() -> void:
 	super()
 	_ignore_fields.merge({"fact_reference_log": true})
 	label = "NEW_EVENT"
+	reaction_item_type = ReactionGlobals.ItemsTypesEnum.EVENT
 	sqlite_table_name = "event"
 
 
@@ -95,7 +96,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 	return []
 
 
-func get_new_object():
+static func get_new_object():
 	var new_event = ReactionEventItem.new()
 	return new_event
 	

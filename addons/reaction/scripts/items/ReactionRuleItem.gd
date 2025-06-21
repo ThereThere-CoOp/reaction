@@ -29,6 +29,8 @@ extends ReactionBaseItem
 
 func _init() -> void:
 	super()
+	label = "new_rule"
+	reaction_item_type = ReactionGlobals.ItemsTypesEnum.RULE
 	sqlite_table_name = "rule"
 
 
@@ -127,7 +129,7 @@ func get_modification_by_uid(uid: String):
 	return null
 	
 	
-func get_sqlite_list():
+func get_sqlite_list(get_resources=false):
 	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count " 
 	var query = """
 	%s
@@ -139,12 +141,21 @@ func get_sqlite_list():
 	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, sqlite_table_name]
 	
 	_sqlite_database.query(query)
-	var result = _sqlite_database.query_result_by_reference
+	var results = _sqlite_database.query_result_by_reference
+	
+	if get_resources:
+		var resource_result = []
+		for result in results:
+			var current_resource = get_new_object()
+			current_resource.set_field_values_from_sqlite_dict(result)
+			resource_result.append(current_resource)
+			
+		return resource_result
 
-	return result
+	return results
 	
 
-func get_new_object():
+static func get_new_object():
 	return ReactionRuleItem.new()
 	
 	

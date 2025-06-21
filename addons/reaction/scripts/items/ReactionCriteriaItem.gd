@@ -38,24 +38,23 @@ const INT64_MAX = (1 << 63) - 1  # 9223372036854775807
 			notify_property_list_changed()
 
 @export_group("Criteria value(s)")
-var value_a: Variant:  ## real criteria value manually introduced
+@export var value_a: String:  ## real criteria value manually introduced
 	set = set_value_a,
 	get = get_value_a
-var value_b: Variant:  ## real b value manually introduced and used when operation is type a<=x<=b
+@export var value_b: String:  ## real b value manually introduced and used when operation is type a<=x<=b
 	set = set_value_b,
 	get = get_value_b
-	
-@export var value_a_int: int
-@export var value_a_bool: bool
-@export var value_a_string: String
-
-@export var value_b_int: int
-@export var value_b_bool: bool
-@export var value_b_string: String
 
 # internal values for a and b to be used on criteria
 var _internal_value_a: int
 var _internal_value_b: int
+
+
+func _init() -> void:
+	super()
+	label = "new_criteria"
+	sqlite_table_name = "criteria"
+	reaction_item_type = ReactionGlobals.ItemsTypesEnum.CRITERIA
 
 
 func _get_property_list() -> Array:
@@ -141,85 +140,52 @@ func _update_internal_values() -> void:
 			_internal_value_b = int(current_value_a)
 
 
-func set_value_a(value: Variant) -> void:
+func set_value_a(value: String) -> void:
 	value_a = value
-	
-	if fact:
-		match fact.type:
-			TYPE_STRING:
-				value_a_string = str(value)
-			TYPE_BOOL:
-				value_a_bool = value
-			TYPE_INT:
-				value_a_int = value
-			_:
-				value_a_int = value
-	else:
-		if self is ReactionFunctionCriteriaItem:
-			value_a_int = value
 				
 	_update_internal_values()
 
 
 func get_value_a() -> Variant:
-	if value_a:
-		return value_a
+	
+	if fact:
+		match fact.type:
+			TYPE_STRING:
+				return 
+			TYPE_BOOL:
+				return !!value_a
+			TYPE_INT:
+				return int(value_a)
+			_:
+				return int(value_a)
 	else:
-		if fact:
-			match fact.type:
-				TYPE_STRING:
-					return value_a_string
-				TYPE_BOOL:
-					return value_a_bool
-				TYPE_INT:
-					return value_a_int
-				_:
-					return value_a_int
-		else:
-			if self is ReactionFunctionCriteriaItem:
-				return value_a_int
+		if self is ReactionFunctionCriteriaItem:
+			return int(value_a)
 				
 	return null
 		
 
 
-func set_value_b(value: Variant) -> void:
+func set_value_b(value: String) -> void:
 	value_b = value
-	
-	if fact:
-		match fact.type:
-			TYPE_STRING:
-				value_b_string = value
-			TYPE_BOOL:
-				value_b_bool = value
-			TYPE_INT:
-				value_b_int = value
-			_:
-				value_b_int = value
-	else:
-		if self is ReactionFunctionCriteriaItem:
-			value_b_int = value
 
 	_update_internal_values()
 
 
 func get_value_b() -> Variant:
-	if value_b:
-		return value_b
+	if fact:
+		match fact.type:
+			TYPE_STRING:
+				return value_b
+			TYPE_BOOL:
+				return !!value_b
+			TYPE_INT:
+				return int(value_b)
+			_:
+				return int(value_b)
 	else:
-		if fact:
-			match fact.type:
-				TYPE_STRING:
-					return value_b_string
-				TYPE_BOOL:
-					return value_b_bool
-				TYPE_INT:
-					return value_b_int
-				_:
-					return value_b_int
-		else:
-			if self is ReactionFunctionCriteriaItem:
-				return value_b_int
+		if self is ReactionFunctionCriteriaItem:
+			return int(value_b)
 				
 	return null
 
@@ -248,7 +214,7 @@ func test(context: ReactionBlackboard) -> bool:
 	return criteria_test_result if not is_reverse else not criteria_test_result
 	
 	
-func get_new_object() -> ReactionCriteriaItem:
+static func get_new_object():
 	return ReactionCriteriaItem.new()
 	
 
