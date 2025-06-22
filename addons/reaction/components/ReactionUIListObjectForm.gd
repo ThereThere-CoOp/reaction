@@ -50,7 +50,7 @@ func _get_resource_from_type(type: int) -> ReactionBaseItem:
 	
 
 func _get_current_object_list():
-	var tmp_resource_list: ReactionBaseItem = list_resource_class.get_new_object()
+	var tmp_resource_list = list_resource_class.get_new_object()
 	tmp_resource_list.parent_item = current_parent_object
 	var objects_list = tmp_resource_list.get_sqlite_list()
 	return objects_list
@@ -89,17 +89,16 @@ func _on_database_selected() -> void:
 
 
 func _on_add_object_popup_index_pressed(index: int):
-	var objects_list = _get_current_object_list()
 	
 	var object_data: ListObjectFormObjectToAdd = objects_to_add_data_array[index]
 	var new_object = object_data.object_resource_class.get_new_object()
-	new_object.update_parents(current_parent_object)
-	new_object.label = "new_%s" % object_data.object_name
-	var add_function_callable = Callable(current_parent_object, object_data.parent_object_add_function_name)
-	add_function_callable.call(new_object)
+	new_object.parent_item = current_parent_object
+
+	new_object.add_to_sqlite()
+	var objects_list = _get_current_object_list()
 	var list_index = objects_list.size() - 1
 	var item_ui = object_scene.instantiate()
-	# item_ui.setup(current_database, current_parent_object, new_object, list_index, true)
+	item_ui.setup(current_parent_object, new_object, list_index, true)
 	_objects_scroll_to_end = true
 	item_ui.object_list_form_removed.connect(_on_object_removed)
 	objects_rows.add_child(item_ui)

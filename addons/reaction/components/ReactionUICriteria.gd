@@ -185,7 +185,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	
 	label_input.text = item_object.label
 	
-	if item_object.fact:
+	if item_object.fact and item_object.fact.sqlite_id and item_object.fact.sqlite_id != 0:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
 	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()

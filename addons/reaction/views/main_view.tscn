@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=36 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -46,6 +46,7 @@ uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 1
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_57f2n"]
@@ -56,6 +57,7 @@ uid = "6fcec7d0-452a-4865-af58-08758b5fde36"
 label = "NEW_EVENT"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 2
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_ep52h"]
@@ -68,24 +70,20 @@ uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 3
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
 operation = ""
 is_reverse = false
-value_a_int = 0
-value_a_bool = false
-value_a_string = ""
-value_b_int = 0
-value_b_bool = false
-value_b_string = ""
 value_a = null
 value_b = null
 uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 4
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_x0si4"]
@@ -99,18 +97,13 @@ script = ExtResource("13_ww7bv")
 operations = Array[ExtResource("15_irtov")]([])
 operation = ""
 is_reverse = false
-value_a_int = 0
-value_a_bool = false
-value_a_string = ""
-value_b_int = 0
-value_b_bool = false
-value_b_string = ""
 value_a = 0
 value_b = 0
 uid = "6bdc2b43-76ff-411b-b171-76aeeb9c06b9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 4
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_yguga"]
@@ -119,12 +112,28 @@ object_name = "function criteria"
 parent_object_add_function_name = "add_criteria"
 object_resource_class = SubResource("Resource_evq3s")
 
+[sub_resource type="Resource" id="Resource_irtov"]
+script = ExtResource("11_vsk32")
+operation = ""
+is_reverse = false
+value_a = null
+value_b = null
+uid = "326e1b4b-6932-4646-a661-228804e743cb"
+label = "new_criteria"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 4
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://bv2nf0mygo3er"
+
 [sub_resource type="Resource" id="Resource_k8rsl"]
 script = ExtResource("12_5a862")
+operation = ""
 uid = "eee22ef2-804c-42bc-8db5-1e3ed25907ae"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 0
 tags = Array[ExtResource("14_2dj17")]([])
 
 [sub_resource type="Resource" id="Resource_rp5i7"]
@@ -133,6 +142,17 @@ object_name = "modification"
 parent_object_add_function_name = "add_modification"
 object_resource_class = SubResource("Resource_k8rsl")
 
+[sub_resource type="Resource" id="Resource_bm01k"]
+script = ExtResource("12_5a862")
+operation = ""
+uid = "8a5354aa-6d34-4baf-bec9-72b305d7d756"
+label = "item_label"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 0
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://b02twwj7k3kqc"
+
 [sub_resource type="Resource" id="Resource_vsy2h"]
 script = ExtResource("14_2dj17")
 facts = {}
@@ -140,6 +160,7 @@ uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
 label = "tagLabel"
 description = ""
 scope = "Global"
+reaction_item_type = 13
 tags = Array[ExtResource("14_2dj17")]([])
 
 [node name="MainView" type="Control"]
@@ -607,7 +628,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_x0si4"), SubResource("Resource_yguga")])
-objects_list_field_name = "criterias"
+list_resource_class = SubResource("Resource_irtov")
 metadata/_tab_index = 1
 
 [node name="Modifications" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer" instance=ExtResource("9_4equ7")]
@@ -615,7 +636,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_rp5i7")])
-objects_list_field_name = "modifications"
+list_resource_class = SubResource("Resource_bm01k")
 object_scene = ExtResource("12_m2k4m")
 metadata/_tab_index = 2
 

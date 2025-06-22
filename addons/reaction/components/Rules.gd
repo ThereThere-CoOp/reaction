@@ -78,12 +78,12 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	# responses
 	var responses : ReactionResponseGroupItem = null
-	if current_rule.responses != null:
-		responses = current_rule.responses
+	if current_rule.response_group != null:
+		responses = current_rule.response_group
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
 		responses.label = "rootResponseGroup"
-		current_rule.responses = responses
+		current_rule.response_group = responses
 	
 	responses_container.setup(responses)
 	

@@ -91,7 +91,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			ReactionSignals.event_execution_log_created.emit(new_event_log_item)
 			
 			ReactionSignals.rule_executed.emit(rule)
-			return rule.responses.get_responses()
+			return rule.response_group.get_responses()
 
 	return []
 

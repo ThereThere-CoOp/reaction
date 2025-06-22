@@ -37,6 +37,8 @@ const INT64_MAX = (1 << 63) - 1  # 9223372036854775807
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 
+var fact_script: ReactionFactItem = ReactionFactItem.get_new_object()
+
 @export_group("Criteria value(s)")
 @export var value_a: String:  ## real criteria value manually introduced
 	set = set_value_a,
@@ -57,62 +59,62 @@ func _init() -> void:
 	reaction_item_type = ReactionGlobals.ItemsTypesEnum.CRITERIA
 
 
-func _get_property_list() -> Array:
-	var properties: Array = []
-	
-	if fact:
-		var value_a_usage = (
-			PROPERTY_USAGE_DEFAULT
-			if (
-				(fact != null and fact.type != null and not fact.is_enum)
-				or (
-					fact != null
-					and fact.type != null
-					and fact.is_enum
-					and fact.hint_string
-				)
-			)
-			else PROPERTY_USAGE_READ_ONLY
-		)
-
-		var value_a_hint = (
-			PROPERTY_HINT_NONE if not fact.is_enum else PROPERTY_HINT_ENUM
-		)
-		var value_a_hint_string = "" if not fact.is_enum else fact.hint_string
-
-		var value_b_usage = (
-			PROPERTY_USAGE_DEFAULT
-			if fact != null and fact.type != null and operation == "a<=x<=b"
-			else PROPERTY_USAGE_READ_ONLY
-		)
-
-		properties.append_array(
-			[
-				{
-					"name": "value_a",
-					"type": fact.type,
-					"usage": value_a_usage,
-					"hint": value_a_hint,
-					"hint_string": ""
-				},
-				{"name": "value_b", "type": fact.type, "usage": value_b_usage}
-			]
-		)
-	else:
-		properties.append_array(
-			[
-				{
-					"name": "value_a",
-					"type": TYPE_STRING,
-					"usage": PROPERTY_USAGE_DEFAULT,
-					"hint": "",
-					"hint_string": ""
-				},
-				{"name": "value_b", "type": TYPE_STRING, "usage": PROPERTY_USAGE_DEFAULT}
-			]
-		)
-
-	return properties
+#func _get_property_list() -> Array:
+	#var properties: Array = []
+	#
+	#if fact:
+		#var value_a_usage = (
+			#PROPERTY_USAGE_DEFAULT
+			#if (
+				#(fact != null and fact.type != null and not fact.is_enum)
+				#or (
+					#fact != null
+					#and fact.type != null
+					#and fact.is_enum
+					#and fact.hint_string
+				#)
+			#)
+			#else PROPERTY_USAGE_READ_ONLY
+		#)
+#
+		#var value_a_hint = (
+			#PROPERTY_HINT_NONE if not fact.is_enum else PROPERTY_HINT_ENUM
+		#)
+		#var value_a_hint_string = "" if not fact.is_enum else fact.hint_string
+#
+		#var value_b_usage = (
+			#PROPERTY_USAGE_DEFAULT
+			#if fact != null and fact.type != null and operation == "a<=x<=b"
+			#else PROPERTY_USAGE_READ_ONLY
+		#)
+#
+		#properties.append_array(
+			#[
+				#{
+					#"name": "value_a",
+					#"type": fact.type,
+					#"usage": value_a_usage,
+					#"hint": value_a_hint,
+					#"hint_string": ""
+				#},
+				#{"name": "value_b", "type": fact.type, "usage": value_b_usage}
+			#]
+		#)
+	#else:
+		#properties.append_array(
+			#[
+				#{
+					#"name": "value_a",
+					#"type": TYPE_STRING,
+					#"usage": PROPERTY_USAGE_DEFAULT,
+					#"hint": "",
+					#"hint_string": ""
+				#},
+				#{"name": "value_b", "type": TYPE_STRING, "usage": PROPERTY_USAGE_DEFAULT}
+			#]
+		#)
+#
+	#return properties
 
 
 # -----------------------------------------------------------------------
@@ -125,19 +127,25 @@ func _update_internal_values() -> void:
 	match operation:
 		"<":
 			_internal_value_a = INT64_MIN
-			_internal_value_b = int(current_value_a)
+			if current_value_a:
+				_internal_value_b = current_value_a
 		">":
-			_internal_value_a = int(current_value_a)
+			if current_value_a:
+				_internal_value_a = current_value_a
 			_internal_value_b = INT64_MAX
 		"=":
-			_internal_value_a = int(current_value_a)
-			_internal_value_b = int(current_value_a)
+			if current_value_a:
+				_internal_value_a = current_value_a
+				_internal_value_b = current_value_a
 		"a<=x<=b":
-			_internal_value_a = int(current_value_a)
-			_internal_value_b = int(current_value_b)
+			if current_value_a:
+				_internal_value_a = current_value_a
+			if current_value_b:
+				_internal_value_b = current_value_b
 		_:
-			_internal_value_a = int(current_value_a)
-			_internal_value_b = int(current_value_a)
+			if current_value_a:
+				_internal_value_a = current_value_a
+				_internal_value_b = current_value_a
 
 
 func set_value_a(value: String) -> void:

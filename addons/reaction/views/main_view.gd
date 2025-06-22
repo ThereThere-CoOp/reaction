@@ -62,6 +62,7 @@ func load_databases_from_filesystem() -> void:
 				database.path = path_to_load
 				
 				database.open_db()
+				database.foreign_keys = true
 				var result = database.select_rows("database_uuid", "", ["*"])
 				if len(result) > 0:
 					result = result[0]
@@ -108,6 +109,7 @@ func go_to_database(id: String) -> void:
 			ReactionGlobals.current_sqlite_database = databases.get(current_database_id)
 			current_sqlite_database = ReactionGlobals.current_sqlite_database
 			current_sqlite_database.open_db()
+			current_sqlite_database.foreign_keys = true
 			# board.from_serialized(board_data)
 
 	if current_database_id == "" or not databases.has(current_database_id):

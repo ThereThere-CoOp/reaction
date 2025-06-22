@@ -24,7 +24,9 @@ extends ReactionBaseItem
 @export var priority: int = 0
 
 ## rule group of responses
-@export var responses: ReactionResponseGroupItem
+@export var response_group: ReactionResponseGroupItem
+
+var response_group_script: ReactionResponseGroupItem = ReactionResponseGroupItem.get_new_object()
 
 
 func _init() -> void:

@@ -17,16 +17,25 @@ extends ReactionBaseItem
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 
+var fact_script: ReactionFactItem = ReactionFactItem.get_new_object()
+
 @export_group("Modification value")
 var modification_value: Variant:  ## Value to be used with the operation to modify
 	set(value):
 		modification_value = value
 
-var operation: String:  ## Operation of the modification
+@export var operation: String:  ## Operation of the modification
 	set(value):
 		operation = value
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
+			
+
+func _init() -> void:
+	super()
+	sqlite_table_name = "modification"
+	label = "new_modification"
+	
 
 
 func _get_property_list() -> Array:

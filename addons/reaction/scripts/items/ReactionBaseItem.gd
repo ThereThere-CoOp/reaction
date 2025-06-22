@@ -123,7 +123,7 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 			var name = prop.name
 			var type = prop.type
 			if not _ignore_fields.has(name):
-				if data.has(name):
+				if data.has(name) or type == TYPE_OBJECT:
 					match type:
 						TYPE_NIL:
 							set(name, str(data.get(name)))
@@ -137,11 +137,14 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 							set(name, JSON.parse_string(data.get(name)))
 						TYPE_OBJECT:
 							var object = get(name)
-							var resource = object.get_script()
-							var resource_new = resource.new().get_new_object()
-							resource_new.sqlite_id = data.get(name + "_id")
-							resource_new.remove_from_sqlite()
-							set(name, resource_new)
+							var resource = get(name + "_script")
+							var resource_new = resource.get_new_object()
+							var tmp_id = data.get(name + "_id", null)
+							if tmp_id and tmp_id != 0:
+								print(tmp_id)
+								resource_new.sqlite_id = tmp_id
+								resource_new.update_from_sqlite()
+								set(name, resource_new)
 						_:
 							continue
 				
@@ -194,7 +197,7 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 					TYPE_NIL:
 						result[name] = str(get(name))
 					TYPE_INT:
-						result[name] = int(get(name))
+						result[name] = get(name)
 					TYPE_STRING:
 						result[name] = str(get(name))
 					TYPE_BOOL:
@@ -203,10 +206,11 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 						result[name] = JSON.stringify(get(name))
 					TYPE_OBJECT:
 							var object = get(name)
-							result[name + "_id"] = object.sqlite_id
+							if object:
+								result[name + "_id"] = object.sqlite_id
 					_:
 						continue
-			
+	
 	return result
 	
 static func get_new_object():
