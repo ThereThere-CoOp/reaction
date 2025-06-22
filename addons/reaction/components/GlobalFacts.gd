@@ -204,7 +204,7 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 
 
 func _on_fact_type_menu_index_pressed(index):
-	if true: #not current_fact.have_references():
+	if current_fact.get_references().size() == 0:
 		var popup = fact_type_menu.get_popup()
 		var label = popup.get_item_text(index)
 		if fact_type_menu_text_options["string"] == label:

@@ -125,8 +125,8 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 			if not _ignore_fields.has(name):
 				if data.has(name) or type == TYPE_OBJECT:
 					match type:
-						TYPE_NIL:
-							set(name, str(data.get(name)))
+						#TYPE_NIL:
+							#set(name, str(data.get(name)))
 						TYPE_INT:
 							set(name, int(data.get(name)))
 						TYPE_STRING:
@@ -141,7 +141,6 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 							var resource_new = resource.get_new_object()
 							var tmp_id = data.get(name + "_id", null)
 							if tmp_id and tmp_id != 0:
-								print(tmp_id)
 								resource_new.sqlite_id = tmp_id
 								resource_new.update_from_sqlite()
 								set(name, resource_new)
@@ -194,8 +193,8 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 			var type = prop.type
 			if not _ignore_fields.has(name):
 				match type:
-					TYPE_NIL:
-						result[name] = str(get(name))
+					#TYPE_NIL:
+						#result[name] = str(get(name))
 					TYPE_INT:
 						result[name] = get(name)
 					TYPE_STRING:

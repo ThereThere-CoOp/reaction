@@ -148,8 +148,8 @@ func _add_item(item: Resource, index_to_add: int = -1) -> void:
 
 
 func _remove_item(item: Resource, index: int) -> void:
-	if false: #current_item.has_method("have_references"):
-		if false: # current_item.have_references(database_object):
+	if current_item.has_method("get_references"):
+		if current_item.get_references().size() != 0:
 			warning_dialog.dialog_text = "The item have references. You cannot delete it."
 			warning_dialog.popup_centered()
 			return

@@ -46,9 +46,25 @@ func _init() -> void:
 	sqlite_table_name = "fact"
 	
 	
+func get_references() -> Array:
+	var results = []
+	
+	var criterias = _sqlite_database.select_rows("criteria", "fact_id = %d" % [sqlite_id], ["*"])
+	var modifications = _sqlite_database.select_rows("modification", "fact_id = %d" % [sqlite_id], ["*"])
+	
+	results.append_array(criterias)
+	results.append_array(modifications)
+	
+	return results
+	
+	
 static func get_new_object():
 	var new_fact = ReactionFactItem.new()
 	return new_fact
+	
+
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.FACT
 	
 	
 func update_tags():
@@ -68,11 +84,3 @@ func _get_property_list() -> Array:
 	)
 
 	return properties
-	
-	
-func update_from_sqlite():
-	super()
-
-
-func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.FACT

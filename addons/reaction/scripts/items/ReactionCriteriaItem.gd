@@ -159,16 +159,18 @@ func get_value_a() -> Variant:
 	if fact:
 		match fact.type:
 			TYPE_STRING:
-				return 
+				return value_a
 			TYPE_BOOL:
 				return !!value_a
 			TYPE_INT:
-				return int(value_a)
+				if value_a:
+					return int(value_a)
 			_:
-				return int(value_a)
+				return value_a
 	else:
 		if self is ReactionFunctionCriteriaItem:
-			return int(value_a)
+			if value_a:
+				return int(value_a)
 				
 	return null
 		
@@ -188,12 +190,14 @@ func get_value_b() -> Variant:
 			TYPE_BOOL:
 				return !!value_b
 			TYPE_INT:
-				return int(value_b)
+				if value_b:
+					return int(value_b)
 			_:
-				return int(value_b)
+				return value_b
 	else:
 		if self is ReactionFunctionCriteriaItem:
-			return int(value_b)
+			if value_b:
+				return int(value_b)
 				
 	return null
 

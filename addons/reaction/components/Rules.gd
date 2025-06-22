@@ -41,11 +41,17 @@ func setup_rules(current_event: ReactionEventItem) -> void:
 
 
 func _update_criterias_container_name() -> void:
-	criterias_container.name = "Criterias (%d)" % current_rule.criterias.size()
+	var resource = ReactionCriteriaItem.get_new_object()
+	resource.parent_item = current_rule
+	var results = resource.get_sqlite_list()
+	criterias_container.name = "Criterias (%d)" % results.size()
 
 	
 func _update_modifications_container_name() -> void:
-	modifications_container.name = "Modifications (%d)" % current_rule.modifications.size()
+	var resource = ReactionContextModificationItem.get_new_object()
+	resource.parent_item = current_rule
+	var results = resource.get_sqlite_list()
+	modifications_container.name = "Modifications (%d)" % results.size()
 	
 	
 func _set_rule(rule_data: ReactionRuleItem) -> void:

@@ -217,7 +217,13 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 
 
 func _set_criteria_property(property_name: StringName, value: Variant) -> void:
-	item_object.set(property_name, value)
+	if property_name == "value_a":
+		item_object.set_value_a(str(value))
+	elif property_name == "value_b":
+		item_object.set_value_b(str(value))
+	else:
+		item_object.set(property_name, value)
+		
 	item_object.update_sqlite()
 
 
