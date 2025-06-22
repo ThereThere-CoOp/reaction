@@ -131,7 +131,9 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
-	fact_search_menu.items_list = current_database.global_facts.values()
+	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
+	var facts_list = fact_resource.get_sqlite_list(true)
+	fact_search_menu.items_list = facts_list
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -142,7 +144,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 
 func _set_modification_property(property_name: StringName, value: Variant) -> void:
 	item_object.set(property_name, value)
-	current_database.save_data()
+	item_object.update_sqlite()
 
 
 ### Signals
@@ -151,9 +153,6 @@ func _set_modification_property(property_name: StringName, value: Variant) -> vo
 func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
-	
-	if item_object.fact:
-		current_database.remove_fact_reference_log(item_object)
 	
 	_set_modification_property("fact", fact_search_menu.current_item)
 	
