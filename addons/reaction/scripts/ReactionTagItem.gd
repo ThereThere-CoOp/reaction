@@ -18,11 +18,15 @@ func _init() -> void:
 		{ "facts": true }
 	)
 	sqlite_table_name = "tag"
-	reaction_item_type = ReactionGlobals.ItemsTypesEnum.TAG
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.TAG
 
 
 static func get_new_object() -> ReactionTagItem:
 	var new_tag = ReactionTagItem.new()
 	return new_tag
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.TAG
 	
 	

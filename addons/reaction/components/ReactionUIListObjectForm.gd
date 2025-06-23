@@ -73,7 +73,7 @@ func setup_objects(parent_object: Resource) -> void:
 		for object_data in objects_list:
 			var current_resource = _get_resource_from_type(object_data.get("reaction_item_type"))
 			var reaction_item = current_resource.get_new_object()
-			reaction_item.set_field_values_from_sqlite_dict(object_data)
+			reaction_item.deserialize(object_data)
 			var new_object = object_scene.instantiate()
 			new_object.setup(current_parent_object, reaction_item, index)
 			new_object.object_list_form_removed.connect(_on_object_removed)

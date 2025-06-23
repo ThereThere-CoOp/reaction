@@ -101,7 +101,7 @@ func setup_items(parent_item: Resource = null) -> void:
 	
 	for result in query_list_result:
 		var resource: Resource = reaction_resource.get_new_object()
-		resource.set_field_values_from_sqlite_dict(result)
+		resource.deserialize(result)
 		_all_item_list.append(resource)
 	
 	

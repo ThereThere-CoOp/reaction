@@ -32,7 +32,7 @@ var response_group_script: ReactionResponseGroupItem = ReactionResponseGroupItem
 func _init() -> void:
 	super()
 	label = "new_rule"
-	reaction_item_type = ReactionGlobals.ItemsTypesEnum.RULE
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.RULE
 	sqlite_table_name = "rule"
 
 
@@ -132,24 +132,24 @@ func get_modification_by_uid(uid: String):
 	
 	
 func get_sqlite_list(get_resources=false):
-	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count " 
+	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count " 
 	var query = """
 	%s
 	FROM %s
 	LEFT JOIN criteria ON %s.id = criteria.rule_id
 	WHERE %s_id = %d
 	GROUP BY %s.id
-	ORDER BY criteria_count DESC
+	ORDER BY priority DESC, criteria_count DESC
 	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, sqlite_table_name]
 	
 	_sqlite_database.query(query)
 	var results = _sqlite_database.query_result_by_reference
-	
+		
 	if get_resources:
 		var resource_result = []
 		for result in results:
 			var current_resource = get_new_object()
-			current_resource.set_field_values_from_sqlite_dict(result)
+			current_resource.deserialize(result)
 			resource_result.append(current_resource)
 			
 		return resource_result

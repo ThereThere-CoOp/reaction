@@ -26,7 +26,7 @@ func _init() -> void:
 	super()
 	_ignore_fields.merge({"fact_reference_log": true})
 	label = "NEW_EVENT"
-	reaction_item_type = ReactionGlobals.ItemsTypesEnum.EVENT
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.EVENT
 	sqlite_table_name = "event"
 
 

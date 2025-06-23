@@ -105,7 +105,7 @@ func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	
 	
 func _sort_rules_item_list() -> void:
-	current_event.set("rules", current_event.rules.duplicate())
+	# current_event.set("rules", current_event.rules.duplicate())
 	rules_list.setup_items(current_event)
 
 
@@ -142,7 +142,7 @@ func _on_rule_match_once_check_button_pressed():
 
 
 func _on_rule_priority_spin_box_text_submitted(new_text: String):
-	_set_rule_property("priority", float(new_text))
+	_set_rule_property("priority", int(new_text))
 	rule_priority_text_edit.release_focus()
 	_sort_rules_item_list()
 	

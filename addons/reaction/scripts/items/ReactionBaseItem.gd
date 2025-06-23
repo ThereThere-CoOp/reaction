@@ -50,6 +50,7 @@ var _ignore_fields = {
 
 func _init() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
+	reaction_item_type = get_type_string()
 
 func _get_where():
 	return "id = %s" % [sqlite_id]
@@ -70,7 +71,7 @@ func remove_tag(tag_uid: String) -> void:
 	
 	
 func add_to_sqlite():
-	var data = get_sqlite_dict_from_field_values()
+	var data = serialize()
 	
 	if parent_item:
 		data[parent_item.sqlite_table_name + "_id"] = parent_item.sqlite_id
@@ -91,7 +92,7 @@ func remove_from_sqlite() -> bool:
 	
 	
 func update_sqlite():
-	var data = get_sqlite_dict_from_field_values()
+	var data = serialize()
 	var where = _get_where()
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
 	# update_from_sqlite()
@@ -108,14 +109,14 @@ func get_sqlite_list(get_resources=false):
 		var resource_result = []
 		for result in results:
 			var current_resource = get_new_object()
-			current_resource.set_field_values_from_sqlite_dict(result)
+			current_resource.deserialize(result)
 			resource_result.append(current_resource)
 			
 		return resource_result
 	
 	return results
 
-func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
+func deserialize(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)
 	
 	for prop in self.get_property_list():
@@ -140,7 +141,7 @@ func set_field_values_from_sqlite_dict(data: Dictionary) -> void:
 							var resource = get(name + "_script")
 							var resource_new = resource.get_new_object()
 							var tmp_id = data.get(name + "_id", null)
-							if tmp_id and tmp_id != 0:
+							if tmp_id and tmp_id > 0:
 								resource_new.sqlite_id = tmp_id
 								resource_new.update_from_sqlite()
 								set(name, resource_new)
@@ -153,7 +154,7 @@ func update_from_sqlite():
 	
 	if len(result) > 0:
 		result = result[0]
-		set_field_values_from_sqlite_dict(result)
+		deserialize(result)
 		
 		
 func get_tags():
@@ -181,7 +182,7 @@ func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.BASE
 	
 	
-func get_sqlite_dict_from_field_values() -> Dictionary:
+func serialize() -> Dictionary:
 	var result = {}
 	
 	if sqlite_id:
@@ -205,7 +206,7 @@ func get_sqlite_dict_from_field_values() -> Dictionary:
 						result[name] = JSON.stringify(get(name))
 					TYPE_OBJECT:
 							var object = get(name)
-							if object:
+							if object and object.sqlite_id > 0:
 								result[name + "_id"] = object.sqlite_id
 					_:
 						continue

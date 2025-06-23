@@ -56,7 +56,7 @@ func _init() -> void:
 	super()
 	label = "new_criteria"
 	sqlite_table_name = "criteria"
-	reaction_item_type = ReactionGlobals.ItemsTypesEnum.CRITERIA
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.CRITERIA
 
 
 #func _get_property_list() -> Array:

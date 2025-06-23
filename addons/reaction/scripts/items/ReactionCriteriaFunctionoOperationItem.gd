@@ -14,6 +14,10 @@ extends ReactionBaseItem
 
 @export_enum("+", "-", "*", "/") var operation: String
 
+
+func _init() -> void:
+	super()
+
 static func get_new_object():
 	var new_fact = ReactionCriteriaFunctionOperationItem.new()
 	new_fact.label = "newCriteriaFunctionOperation"
