@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=35 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -17,10 +17,9 @@
 [ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="12_cc7b5"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/ReactionUIModification.tscn" id="12_m2k4m"]
 [ext_resource type="PackedScene" uid="uid://dp6pp31ltd4g4" path="res://addons/reaction/components/responses.tscn" id="13_giylq"]
-[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="13_ww7bv"]
 [ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="14_2dj17"]
 [ext_resource type="Script" uid="uid://cg4cl4b37p8ga" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
-[ext_resource type="Script" uid="uid://dba4mtiwp3bw4" path="res://addons/reaction/scripts/items/ReactionCriteriaFunctionoOperationItem.gd" id="15_irtov"]
+[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="15_ucfj6"]
 
 [sub_resource type="Image" id="Image_irtov"]
 data = {
@@ -89,28 +88,28 @@ tags = Array[ExtResource("14_2dj17")]([])
 [sub_resource type="Resource" id="Resource_x0si4"]
 script = ExtResource("12_cc7b5")
 object_name = "criteria"
-parent_object_add_function_name = "add_criteria"
 object_resource_class = SubResource("Resource_hhbcw")
 
-[sub_resource type="Resource" id="Resource_evq3s"]
-script = ExtResource("13_ww7bv")
-operations = Array[ExtResource("15_irtov")]([])
+[sub_resource type="Resource" id="Resource_6chnr"]
+script = ExtResource("15_ucfj6")
+function = ""
 operation = ""
 is_reverse = false
 value_a = null
 value_b = null
-uid = "6bdc2b43-76ff-411b-b171-76aeeb9c06b9"
-label = "item_label"
+uid = "ec834976-4538-4dd7-99b3-f81c7ab9466f"
+label = "new_criteria"
 description = "Item long description"
 scope = "Global"
-reaction_item_type = 4
+reaction_item_type = 6
 tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://pdmf7t801lbs"
 
-[sub_resource type="Resource" id="Resource_yguga"]
+[sub_resource type="Resource" id="Resource_j5jl6"]
 script = ExtResource("12_cc7b5")
 object_name = "function criteria"
-parent_object_add_function_name = "add_criteria"
-object_resource_class = SubResource("Resource_evq3s")
+object_resource_class = SubResource("Resource_6chnr")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_irtov"]
 script = ExtResource("11_vsk32")
@@ -139,7 +138,6 @@ tags = Array[ExtResource("14_2dj17")]([])
 [sub_resource type="Resource" id="Resource_rp5i7"]
 script = ExtResource("12_cc7b5")
 object_name = "modification"
-parent_object_add_function_name = "add_modification"
 object_resource_class = SubResource("Resource_k8rsl")
 
 [sub_resource type="Resource" id="Resource_bm01k"]
@@ -627,7 +625,7 @@ max_value = 1e+06
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_x0si4"), SubResource("Resource_yguga")])
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_x0si4"), SubResource("Resource_j5jl6")])
 list_resource_class = SubResource("Resource_irtov")
 metadata/_tab_index = 1
 

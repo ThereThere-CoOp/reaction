@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl33asfebw70e"]
+
+[ext_resource type="Script" uid="uid://dro1tbyuqoem7" path="res://addons/reaction/components/ReactionUIFunctionManagment.gd" id="1_utomd"]
+[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="2_x8kv8"]
+
+[node name="ReactionUIFunctionManagment" type="MarginContainer"]
+script = ExtResource("1_utomd")
+
+[node name="Rows" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Operations" type="VBoxContainer" parent="Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Rows/Operations"]
+layout_mode = 2
+text = "Operations:"
+
+[node name="ButtonsContainer" type="GridContainer" parent="Rows/Operations"]
+layout_mode = 2
+columns = 6
+
+[node name="PlusButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[node name="MinusButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="MultButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "*"
+
+[node name="DivisionButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "/"
+
+[node name="LeftParenthesisButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "("
+
+[node name="RightParenthesisButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ")"
+
+[node name="ConstantButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Constant"
+
+[node name="FactButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fact"
+
+[node name="RemoveButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<--"
+
+[node name="Function" type="VBoxContainer" parent="Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Rows/Function"]
+layout_mode = 2
+text = "Function:"
+
+[node name="FunctionText" type="RichTextLabel" parent="Rows/Function"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="WarningLabel" type="RichTextLabel" parent="Rows"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="ConstantConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+
+[node name="ConstantInput" type="SpinBox" parent="ConstantConfirmationDialog"]
+unique_name_in_owner = true
+offset_right = 86.5625
+offset_bottom = 31.0
+allow_greater = true
+allow_lesser = true
+
+[node name="FactConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+
+[node name="FactSearchMenu" parent="FactConfirmationDialog" instance=ExtResource("2_x8kv8")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/PlusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/MultButton" to="." method="_on_mult_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/DivisionButton" to="." method="_on_division_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/LeftParenthesisButton" to="." method="_on_left_parenthesis_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/RightParenthesisButton" to="." method="_on_right_parenthesis_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/ConstantButton" to="." method="_on_constant_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/FactButton" to="." method="_on_fact_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="confirmed" from="ConstantConfirmationDialog" to="." method="_on_constant_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="FactConfirmationDialog" to="." method="_on_fact_confirmation_dialog_confirmed"]

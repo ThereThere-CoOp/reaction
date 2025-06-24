@@ -97,12 +97,19 @@ func update_sqlite():
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
 	# update_from_sqlite()
 	
-func get_sqlite_list(get_resources=false):
+func get_sqlite_list(custom_where=null, get_resources=false):
 	var results
 	if not parent_item:
-		results = _sqlite_database.select_rows(sqlite_table_name, "", ["*"])
+		var where = ""
+		if custom_where:
+			where += str(custom_where)
+		
+		results = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
 	else:
 		var where = " %s_id = %d" % [parent_item.sqlite_table_name, parent_item.sqlite_id]
+		
+		if custom_where:
+			where += " AND %s" % [custom_where]
 		results = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
 		
 	if get_resources:

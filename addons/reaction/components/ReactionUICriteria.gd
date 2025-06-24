@@ -6,7 +6,7 @@ var label_input: LineEdit
 var facts_function_button: Button
 var fact_container: VBoxContainer
 var fact_search_menu: ReactionUISearchMenu
-var fact_functions_form_list: ReactionUIListObjectForm
+var fact_function_managment: ReactionUIFunctionManagment
 var operation_label: Label
 var operation_menu: MenuButton
 var value_a_label: Label
@@ -161,7 +161,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	fact_container = %FactContainer
 	fact_search_menu = %FactsSearchMenu
 	facts_function_button = %FactsFunctionButton
-	fact_functions_form_list = %FactFunctionObjectFormList
+	fact_function_managment = %FunctionManagment
 	operation_label = %OperationLabel
 	operation_menu = %OperationMenuButton
 	value_a_label = %ValueLabel
@@ -200,11 +200,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	if is_new_object:
 		operation_menu.text = "Select operation"
 	
-	#fact_functions_form_list.current_database = current_database
-	#if item_object is ReactionFunctionCriteriaItem:
-		#fact_functions_form_list.setup_objects(item_object)
-	#else:
-		#fact_functions_form_list.setup_objects(null)
+	fact_function_managment.setup(object)
 		
 	fact_container.visible = true
 	facts_function_button.visible = false

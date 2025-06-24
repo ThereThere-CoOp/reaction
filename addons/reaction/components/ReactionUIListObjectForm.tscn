@@ -4,7 +4,6 @@
 
 [node name="ReactionUIListObjectForm" type="MarginContainer"]
 script = ExtResource("1_04rig")
-objects_list_field_name = "objects"
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2

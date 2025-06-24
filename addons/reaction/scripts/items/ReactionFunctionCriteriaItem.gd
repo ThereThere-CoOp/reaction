@@ -9,7 +9,7 @@ extends ReactionCriteriaItem
 ## ----------------------------------------------------------------------------
 
 ## A string of ";" separated operators and facts uid to be calculated on execution time
-@export var function: String	
+@export var function: String = ""
 	
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]

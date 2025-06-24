@@ -113,23 +113,23 @@ func get_function_result(function: String, context: ReactionBlackboard, check_on
 	
 	var function_array = function.split(";")
 	var formated_function = ""
-	formated_function.join(function_array)
-	var facts = {}
 	
 	for operator in function_array:
 		if not CRITERIA_FUNCTION_OPERATOR_OPTIONS.has(operator) and not operator.is_valid_float():
 			if not check_only:
 				var fact_value = context.get_blackboard_fact(operator)
 				if fact_value:
-					facts[operator] = fact_value.value
+					formated_function += str(fact_value.value)
 				else:
-					facts[operator] = 0
+					formated_function += str(0)
 			else:
-				facts[operator] = 1
+				formated_function += str(1)
+		else:
+			formated_function += operator
 	
-	var parse_result = expr.parse(formated_function, facts.keys())
+	var parse_result = expr.parse(formated_function)
 	if parse_result == OK:
-		var result = expr.execute(facts.values().map(func(fact_value): return fact_value))
+		var result = expr.execute()
 		return result
 	else:
 		return null

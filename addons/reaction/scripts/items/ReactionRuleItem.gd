@@ -131,16 +131,21 @@ func get_modification_by_uid(uid: String):
 	return null
 	
 	
-func get_sqlite_list(get_resources=false):
-	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count " 
+func get_sqlite_list(custom_where=null, get_resources=false):
+	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count "
+	
+	var where = ""
+	if custom_where:
+		where = " AND %s" % [custom_where]
+		
 	var query = """
 	%s
 	FROM %s
 	LEFT JOIN criteria ON %s.id = criteria.rule_id
-	WHERE %s_id = %d
+	WHERE %s_id = %d %s
 	GROUP BY %s.id
 	ORDER BY priority DESC, criteria_count DESC
-	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, sqlite_table_name]
+	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, where, sqlite_table_name]
 	
 	_sqlite_database.query(query)
 	var results = _sqlite_database.query_result_by_reference
