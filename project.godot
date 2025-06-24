@@ -27,7 +27,7 @@ enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/
 [reaction]
 
 databases_path="res://examples/sqlite_databases"
-current_database_id="8af831f5-3b69-4a86-8737-82e94dbc8017"
+current_database_id="48c4c6a8-8a05-4506-8ff0-f48c2becc76c"
 languages_dict={
 "en": {
 "code": "en",

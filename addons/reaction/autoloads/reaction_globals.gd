@@ -12,6 +12,15 @@ var current_sqlite_database: SQLite
 
 @export var responses_types: Dictionary = {"Dialog": "Dialog" }
 
+const CRITERIA_FUNCTION_OPERATOR_OPTIONS = {
+	"+": "+",
+	"-": "-",
+	"*": "*",
+	"/": "/",
+	"(": "(",
+	")": ")"
+}
+
 enum ItemsTypesEnum {
 	BASE,
 	FACT, 
@@ -20,7 +29,6 @@ enum ItemsTypesEnum {
 	CRITERIA,
 	MODIFICATION,
 	FUNC_CRITERIA, 
-	FUNC_CRIT_OPERATION, 
 	RESPONSE_GROUP, 
 	RESPONSE,
 	DIALOG,
@@ -87,6 +95,44 @@ func _change_reaction_ui_debug_visibility() -> void:
 	var nodes = get_tree().get_nodes_in_group("reaction_debug_ui")
 	for node in nodes:
 		node.visible = not node.visible
+		
+		
+## ----------------------------------------------------------------------------[br]
+## Calcule the result of the function in dependency of the select facts and 
+## function [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* function | String:[/b] A ";" separated math expression 
+## [b]* context | ReactionBlackboard:[/b] Current blackboard fact values 
+## [b]* check_only | bool:[/b] If true only check the validity of the math expression
+## [br]
+## [b]Returns: int[/b] [br]
+## The result of the execution of the function or null is the function is not valid [br]
+## ----------------------------------------------------------------------------
+func get_function_result(function: String, context: ReactionBlackboard, check_only: bool = false):
+	var expr = Expression.new()
+	
+	var function_array = function.split(";")
+	var formated_function = ""
+	formated_function.join(function_array)
+	var facts = {}
+	
+	for operator in function_array:
+		if not CRITERIA_FUNCTION_OPERATOR_OPTIONS.has(operator) and not operator.is_valid_float():
+			if not check_only:
+				var fact_value = context.get_blackboard_fact(operator)
+				if fact_value:
+					facts[operator] = fact_value.value
+				else:
+					facts[operator] = 0
+			else:
+				facts[operator] = 1
+	
+	var parse_result = expr.parse(formated_function, facts.keys())
+	if parse_result == OK:
+		var result = expr.execute(facts.values().map(func(fact_value): return fact_value))
+		return result
+	else:
+		return null
 		
 
 ## ----------------------------------------------------------------------------[br]
