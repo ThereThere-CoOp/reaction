@@ -173,3 +173,4 @@ layout_mode = 2
 [connection signal="text_submitted" from="Columns/ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]
 [connection signal="toggled" from="Columns/ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]
 [connection signal="toggled" from="Columns/NegateCheckButton" to="." method="_on_negate_check_button_toggled"]
+[connection signal="confirmed" from="FactsFunctionConfirmationDialog" to="." method="_on_facts_function_confirmation_dialog_confirmed"]

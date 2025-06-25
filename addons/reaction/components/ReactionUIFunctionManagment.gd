@@ -47,14 +47,14 @@ func _generate_function_text() -> String:
 	return text_result
 	
 
-func _check_function() -> bool:
+func check_function() -> bool:
 	if current_function_array.size() > 0:
 		var function_string = ";".join(current_function_array)
 		var result = ReactionGlobals.get_function_result(function_string, null, true)
 		if result == null:
 			return false
 	else:
-		return false
+		return true
 			
 	return true
 	
@@ -62,7 +62,7 @@ func _check_function() -> bool:
 	
 func _update_warning_label():
 	warning_label.visible = false
-	if not _check_function():
+	if not check_function():
 		warning_label.visible = true
 		warning_label.text = "[color=\"red\"]Invalid function[/color] "
 		
@@ -105,9 +105,11 @@ func setup(current_object: ReactionBaseItem):
 	if current_object:
 		if object.get(function_field_name) != "":
 			current_function_array = object.get(function_field_name).split(";")
+		else:
+			current_function_array = []
 		
 	function_label.text = _generate_function_text()
-		
+	_update_warning_label()	
 		
 ### signals
 

@@ -296,4 +296,11 @@ func _on_negate_check_button_toggled(toggled_on):
 
 
 func _on_facts_function_button_pressed():
+	fact_function_managment.setup(item_object)
 	facts_functions_dialog.popup_centered()
+
+
+func _on_facts_function_confirmation_dialog_confirmed() -> void:
+	if fact_function_managment.check_function():
+		item_object.function = fact_function_managment.get_function_string()
+		item_object.update_sqlite()
