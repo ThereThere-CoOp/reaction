@@ -30,6 +30,9 @@ var modification_value: Variant:  ## Value to be used with the operation to modi
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 			
+@export var function: String = ""
+
+@export var is_function: bool = false		
 
 func _init() -> void:
 	super()
@@ -73,6 +76,14 @@ func _get_property_list() -> Array:
 		)
 
 	return properties
+	
+	
+func _get_modification_value(context):
+	if is_function:
+		return ReactionGlobals.get_function_result(function, context, false)
+	else:
+		return modification_value
+		
 
 ## ----------------------------------------------------------------------------[br]
 ## Executes the modification changing the fact value on the current context [br]
@@ -86,24 +97,27 @@ func execute(context: ReactionBlackboard) -> void:
 			if fact:
 				context.erase_fact(fact.uid)
 		"=":
-			if fact and modification_value != null:
-				context.set_fact_value(fact, modification_value)
+			var current_mod_value = _get_modification_value(context)
+			if fact and current_mod_value != null:
+				context.set_fact_value(fact, current_mod_value)
 		"-":
-			if fact and modification_value != null:
+			var current_mod_value = _get_modification_value(context)
+			if fact and current_mod_value != null:
 				var current_value = context.get_fact_value(fact.uid)
 				var new_value = (
-					current_value - modification_value
+					current_value - current_mod_value
 					if current_value != null
-					else -(modification_value)
+					else -(current_mod_value)
 				)
 				context.set_fact_value(fact, new_value)
 		"+":
-			if fact and modification_value != null:
+			var current_mod_value = _get_modification_value(context)
+			if fact and current_mod_value != null:
 				var current_value = context.get_fact_value(fact.uid)
 				var new_value = (
-					current_value + modification_value
+					current_value + current_mod_value
 					if current_value != null
-					else modification_value
+					else current_mod_value
 				)
 				context.set_fact_value(fact, new_value)
 
