@@ -13,6 +13,12 @@ extends ReactionResponseBaseItem
 @export var responses = {}
 
 
+func _init() -> void:
+	super()
+	label = "newResponseGroup"
+	sqlite_table_name = "response_group"
+
+
 func add_new_response(response_type: String) -> ReactionResponseItem:
 	var new_response: ReactionResponseItem
 	
@@ -46,10 +52,8 @@ func get_responses() -> Array[ReactionResponseBaseItem]:
 	
 	
 static func get_new_object():
-	var new_response_group = ReactionResponseGroupItem.new()
-	new_response_group.label = "newResponseGroup"
-	return new_response_group
-	
+	return ReactionResponseGroupItem.new()
+		
 	
 func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP

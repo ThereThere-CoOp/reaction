@@ -36,6 +36,8 @@ var current_item_index: int = -1
 
 @export var reaction_resource: Resource
 
+@export var objects_to_add_data_array: Array[ListObjectFormObjectToAdd] = []
+
 @onready var item_label = %ItemLabel
 @onready var items_list = %ItemList
 @onready var add_item_button = %AddItemButton
@@ -97,13 +99,7 @@ func setup_items(parent_item: Resource = null) -> void:
 	var tmp_item = reaction_resource.get_new_object()
 	current_parent_item = parent_item
 	tmp_item.parent_item = parent_item
-	var query_list_result = tmp_item.get_sqlite_list()
-	
-	for result in query_list_result:
-		var resource: Resource = reaction_resource.get_new_object()
-		resource.deserialize(result)
-		_all_item_list.append(resource)
-	
+	_all_item_list = tmp_item.get_sqlite_list(null, true)
 	
 	_current_item_list = _all_item_list
 	

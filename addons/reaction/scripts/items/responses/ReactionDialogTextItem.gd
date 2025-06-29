@@ -11,11 +11,14 @@ extends ReactionRuleItem
 ## text of the choice
 @export var text: Dictionary = {}
 
+
+func _init() -> void:
+	super()
+	label = "newDialogText"
+
 	
 static func get_new_object():
-	var new_dialog_text = ReactionDialogTextItem.new()
-	new_dialog_text.label = "newDialogText"
-	return new_dialog_text
+	return ReactionDialogTextItem.new()
 	
 	
 func get_type_string() -> int:

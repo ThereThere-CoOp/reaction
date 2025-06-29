@@ -14,5 +14,11 @@ extends ReactionResponseBaseItem
 @export var triggers: String
 
 
+func _init() -> void:
+	super()
+	label = "newResponse"
+	sqlite_table_name = "response"
+
+
 func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.RESPONSE

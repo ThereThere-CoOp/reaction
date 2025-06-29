@@ -108,7 +108,6 @@ func get_criteria_by_uid(uid: String):
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_modification(modification: ReactionContextModificationItem) -> void:
-	modification.update_parents(self)
 	modifications.append(modification)
 	
 	

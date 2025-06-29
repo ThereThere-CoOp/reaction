@@ -79,7 +79,6 @@ func add_new_choice() -> ReactionDialogChoiceItem:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_choice(choice: ReactionDialogChoiceItem) -> void:
-	choice.update_parents(self)
 	choices.append(choice)
 	
 	
@@ -145,7 +144,6 @@ func add_new_text() -> ReactionDialogTextItem:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_text(text: ReactionDialogTextItem) -> void:
-	text.update_parents(self)
 	texts.append(text)
 	
 	

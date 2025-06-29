@@ -55,6 +55,7 @@ func _init() -> void:
 func _get_where():
 	return "id = %s" % [sqlite_id]
 
+
 func add_tag(tag: ReactionTagItem) -> void:
 	tags.append(tag)
 	

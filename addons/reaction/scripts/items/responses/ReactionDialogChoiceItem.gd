@@ -9,16 +9,19 @@ extends ReactionRuleItem
 ## ----------------------------------------------------------------------------
 
 ## text of the choice
-@export var choice_text: Dictionary = {}
+@export var text: Dictionary = {}
 
 ## Uuid of the event to trigger when choice is selected
 @export var triggers: String
 
+
+func _init() -> void:
+	super()
+	label = "newDialogChoice"
+
 	
 static func get_new_object():
-	var new_dialog_choice = ReactionDialogChoiceItem.new()
-	new_dialog_choice.label = "newDialogChoice"
-	return new_dialog_choice
+	return ReactionDialogChoiceItem.new()
 	
 	
 func get_type_string() -> int:
