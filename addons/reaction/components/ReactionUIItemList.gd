@@ -29,7 +29,6 @@ var current_item_index: int = -1
 	get:
 		return item_name
 
-@export var sqlite_table_name: String = "fact"
 @export var sqlite_tag_table_name: String = "tag"
 @export var item_name_field: String = "label"
 
@@ -40,7 +39,7 @@ var current_item_index: int = -1
 
 @onready var item_label = %ItemLabel
 @onready var items_list = %ItemList
-@onready var add_item_button = %AddItemButton
+@onready var add_item_menu_button: MenuButton = %AddItemMenuButton
 @onready var remove_item_button = %RemoveItemButton
 
 @onready var item_searcher_edit: LineEdit = %ItemSearcher
@@ -63,14 +62,22 @@ func _ready():
 	call_deferred("apply_theme")
 	
 	item_label.text = "%ss:" % _processed_item_text
-	add_item_button.text = "Add %s" % _processed_item_text
+	add_item_menu_button.text = "Add %s" % _processed_item_text
+	
 	remove_item_button.text = "Remove %s" % _processed_item_text
 	item_searcher_edit.placeholder_text = "Search by %s's name" % _processed_item_text
+	
+	var add_item_menu_button_popup: Popup = add_item_menu_button.get_popup()
+	
+	for object_data: ListObjectFormObjectToAdd in objects_to_add_data_array:
+		add_item_menu_button_popup.add_item("Add %s" % object_data.object_name)
+
 
 	if not items_list.is_anything_selected():
 		remove_item_button.disabled = true
 		
 	ReactionSignals.database_selected.connect(_on_database_selected)
+	add_item_menu_button_popup.index_pressed.connect(_on_add_item_popup_index_pressed)
 	
 	
 func apply_theme() -> void:
@@ -89,6 +96,7 @@ func _update_item_list() -> void:
 		items_list.set_item_metadata(index, item)
 		
 	item_list_updated.emit()
+	
 		
 func setup_items(parent_item: Resource = null) -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
@@ -99,7 +107,13 @@ func setup_items(parent_item: Resource = null) -> void:
 	var tmp_item = reaction_resource.get_new_object()
 	current_parent_item = parent_item
 	tmp_item.parent_item = parent_item
-	_all_item_list = tmp_item.get_sqlite_list(null, true)
+	var objects_list = tmp_item.get_sqlite_list(null, false)
+	
+	for object_data in objects_list:
+			var current_resource = _get_resource_from_type(object_data.get("reaction_item_type"))
+			var reaction_item = current_resource.get_new_object()
+			reaction_item.deserialize(object_data)
+			_all_item_list.append(reaction_item)
 	
 	_current_item_list = _all_item_list
 	
@@ -124,6 +138,14 @@ func _select_item(index: int, is_emit_signal: bool = true) -> void:
 		item_selected.emit(current_item)
 
 	remove_item_button.disabled = false
+	
+	
+func _get_resource_from_type(type: int) -> ReactionBaseItem:
+	for resource in objects_to_add_data_array:
+		if type == resource.object_resource_class.reaction_item_type:
+			return resource.object_resource_class
+			
+	return null
 
 
 func _add_item(item: Resource, index_to_add: int = -1) -> void:
@@ -204,9 +226,10 @@ func _on_item_list_item_selected(index):
 	undo_redo.commit_action()
 
 
-func _on_add_item_button_pressed():
-	var new_item = reaction_resource.get_new_object()
-	
+func _on_add_item_popup_index_pressed(index: int):
+	var object_data: ListObjectFormObjectToAdd = objects_to_add_data_array[index]
+	var new_item = object_data.object_resource_class.get_new_object()
+
 	undo_redo.create_action("Add %s" % _processed_item_text)
 	undo_redo.add_do_method(self, "_add_item", new_item)
 	undo_redo.add_undo_method(self, "_remove_item", new_item, _all_item_list.size() - 1)

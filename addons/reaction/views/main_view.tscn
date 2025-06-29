@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=41 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -48,6 +48,28 @@ scope = "Global"
 reaction_item_type = 1
 tags = Array[ExtResource("14_2dj17")]([])
 
+[sub_resource type="Resource" id="Resource_0hcmb"]
+script = ExtResource("4_jdoy6")
+type = 4
+is_enum = false
+trigger_signal_on_modified = false
+hint_string = ""
+have_default_value = false
+default_value = null
+uid = "99fd2562-99e5-48f0-be0e-a87d33930318"
+label = "newFact"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 1
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://dmky1i8wo1xnp"
+
+[sub_resource type="Resource" id="Resource_dtkum"]
+script = ExtResource("12_cc7b5")
+object_name = "fact"
+object_resource_class = SubResource("Resource_0hcmb")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
 [sub_resource type="Resource" id="Resource_57f2n"]
 script = ExtResource("7_0knvx")
 fact_reference_log = {}
@@ -58,6 +80,24 @@ description = "Item long description"
 scope = "Global"
 reaction_item_type = 2
 tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_c105b"]
+script = ExtResource("7_0knvx")
+fact_reference_log = {}
+rules = Array[ExtResource("7_jvxl4")]([])
+uid = "602937a5-ee17-4df5-869f-82a60f3937b2"
+label = "NEW_EVENT"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 2
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://csvfnuf04lqwa"
+
+[sub_resource type="Resource" id="Resource_angv0"]
+script = ExtResource("12_cc7b5")
+object_name = "event"
+object_resource_class = SubResource("Resource_c105b")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
@@ -71,6 +111,26 @@ description = "Item long description"
 scope = "Global"
 reaction_item_type = 3
 tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_pg2dt"]
+script = ExtResource("7_jvxl4")
+criterias = Array[ExtResource("11_vsk32")]([])
+modifications = Array[ExtResource("12_5a862")]([])
+match_once = false
+priority = 0
+uid = "410d9228-0b01-4652-97b9-0cab5791c0a2"
+label = "new_rule"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 3
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://17qnylmuqehb"
+
+[sub_resource type="Resource" id="Resource_5tspb"]
+script = ExtResource("12_cc7b5")
+object_name = "rule"
+object_resource_class = SubResource("Resource_pg2dt")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
@@ -211,10 +271,13 @@ custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "new"
 icon = SubResource("ImageTexture_irtov")
-item_count = 1
+item_count = 2
 popup/item_0/text = "new"
 popup/item_0/icon = SubResource("ImageTexture_irtov")
 popup/item_0/id = 0
+popup/item_1/text = "other"
+popup/item_1/icon = SubResource("ImageTexture_irtov")
+popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
@@ -262,6 +325,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 reaction_resource = SubResource("Resource_qew6w")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_dtkum")])
 
 [node name="FactDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel"]
 unique_name_in_owner = true
@@ -481,8 +545,8 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "event"
-sqlite_table_name = "event"
 reaction_resource = SubResource("Resource_57f2n")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_angv0")])
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 unique_name_in_owner = true
@@ -551,8 +615,8 @@ custom_minimum_size = Vector2(300, 250)
 layout_mode = 2
 size_flags_vertical = 3
 item_name = "rule"
-sqlite_table_name = "rule"
 reaction_resource = SubResource("Resource_ep52h")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_5tspb")])
 
 [node name="RuleDataContainer" type="TabContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules"]
 unique_name_in_owner = true
@@ -668,7 +732,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "tag"
-sqlite_table_name = "tag"
 reaction_resource = SubResource("Resource_vsy2h")
 
 [node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]

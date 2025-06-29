@@ -131,7 +131,7 @@ func get_modification_by_uid(uid: String):
 	
 	
 func get_sqlite_list(custom_where=null, get_resources=false):
-	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count "
+	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".reaction_item_type, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count "
 	
 	var where = ""
 	if custom_where:

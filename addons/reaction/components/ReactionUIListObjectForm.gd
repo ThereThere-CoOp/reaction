@@ -71,7 +71,6 @@ func setup_objects(parent_object: Resource) -> void:
 		var objects_list = _get_current_object_list()
 		 
 		for object_data in objects_list:
-			print()
 			var current_resource = _get_resource_from_type(object_data.get("reaction_item_type"))
 			var reaction_item = current_resource.get_new_object()
 			reaction_item.deserialize(object_data)
