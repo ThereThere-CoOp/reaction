@@ -189,7 +189,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
 	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
-	var facts_list = fact_resource.get_sqlite_list(true)
+	var facts_list = fact_resource.get_sqlite_list(null, true)
 	fact_search_menu.items_list = facts_list
 	
 	negate_check.button_pressed = item_object.is_reverse
@@ -302,5 +302,14 @@ func _on_facts_function_button_pressed():
 
 func _on_facts_function_confirmation_dialog_confirmed() -> void:
 	if fact_function_managment.check_function():
-		item_object.function = fact_function_managment.get_function_string()
-		item_object.update_sqlite()
+		_set_criteria_property("function", fact_function_managment.get_function_string())
+
+
+func _on_facts_search_menu_item_removed(item: Variant) -> void:
+	operation_menu.text = "Select operation"
+	enum_values_menu.text = "Select value"
+	
+	_set_criteria_property("fact", null)
+	
+	update_operation_menu_items()
+	update_values_input()

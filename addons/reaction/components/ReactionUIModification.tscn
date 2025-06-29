@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://du1las4wvlpxc"]
+[gd_scene load_steps=7 format=3 uid="uid://du1las4wvlpxc"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ReactionUIListObjectFormItem.tscn" id="1_hn5d4"]
 [ext_resource type="Script" uid="uid://da768mrr0bhik" path="res://addons/reaction/components/ReactionUIModification.gd" id="2_l63m0"]
 [ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="3_u4w42"]
+[ext_resource type="PackedScene" uid="uid://cl33asfebw70e" path="res://addons/reaction/components/ReactionUIFunctionManagment.tscn" id="4_m17b8"]
+
+[sub_resource type="Image" id="Image_bpmi5"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_j1x64"]
+image = SubResource("Image_bpmi5")
 
 [node name="ReactionUIModification" instance=ExtResource("1_hn5d4")]
 script = ExtResource("2_l63m0")
@@ -14,8 +27,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Columns/LabelContainer" index="0"]
 layout_mode = 2
-text = "Label:
-"
+text = "Label:"
 
 [node name="LabelLineEdit" type="LineEdit" parent="Columns/LabelContainer" index="1"]
 unique_name_in_owner = true
@@ -34,7 +46,23 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="3"]
+[node name="IsFunctionContainer" type="VBoxContainer" parent="Columns" index="3"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="Columns/IsFunctionContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Is Function?"
+
+[node name="FunctionButton" type="Button" parent="Columns" index="4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Function"
+
+[node name="OperationContainer" type="VBoxContainer" parent="Columns" index="5"]
 layout_mode = 2
 
 [node name="OperationLabel" type="Label" parent="Columns/OperationContainer" index="0"]
@@ -59,7 +87,7 @@ popup/item_2/id = 2
 popup/item_3/text = "erase"
 popup/item_3/id = 3
 
-[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="4"]
+[node name="ValueContainer" type="VBoxContainer" parent="Columns" index="6"]
 layout_mode = 2
 
 [node name="ValueLabel" type="Label" parent="Columns/ValueContainer" index="0"]
@@ -90,10 +118,47 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="RemoveObjectButton" parent="Columns" index="5"]
+[node name="RemoveObjectButton" parent="Columns" index="7"]
 tooltip_text = "Remove modification"
+icon = SubResource("ImageTexture_j1x64")
+
+[node name="FactsFunctionConfirmationDialog" type="ConfirmationDialog" parent="." index="1"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Facts Functions"
+size = Vector2i(500, 500)
+
+[node name="MarginContainer" type="MarginContainer" parent="FactsFunctionConfirmationDialog" index="3"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 315.0
+offset_bottom = 451.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColumnsContainer" type="HBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="FunctionFactsContainer" type="VBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer" index="0"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="0"]
+layout_mode = 2
+text = "Function:
+"
+
+[node name="FunctionManagment" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" index="1" instance=ExtResource("4_m17b8")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
+[connection signal="item_removed" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_removed"]
 [connection signal="item_selected" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
+[connection signal="toggled" from="Columns/IsFunctionContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Columns/FunctionButton" to="." method="_on_function_button_pressed"]
 [connection signal="text_submitted" from="Columns/ValueContainer/ValueLineEdit" to="." method="_on_value_line_edit_text_submitted"]
 [connection signal="toggled" from="Columns/ValueContainer/BooleanValueCheckBox" to="." method="_on_boolean_value_check_box_toggled"]
+[connection signal="confirmed" from="FactsFunctionConfirmationDialog" to="." method="_on_facts_function_confirmation_dialog_confirmed"]

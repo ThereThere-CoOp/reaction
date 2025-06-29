@@ -103,8 +103,9 @@ func setup(current_object: ReactionBaseItem):
 	fact_search_menu.items_list = facts_list
 	
 	if current_object:
-		if object.get(function_field_name) != "":
-			current_function_array = object.get(function_field_name).split(";")
+		var object_function = object.get(function_field_name)
+		if object_function != "" and object_function != null:
+			current_function_array = object_function.split(";")
 		else:
 			current_function_array = []
 		

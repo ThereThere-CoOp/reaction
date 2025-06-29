@@ -14,6 +14,11 @@ var value_numeric_text_edit: LineEdit
 var enum_values_menu: MenuButton
 var boolean_value_check: CheckBox
 
+var fact_function_managment: ReactionUIFunctionManagment
+var is_function_checkbox: CheckButton
+var function_button: Button
+var function_confirmation_dialog: ConfirmationDialog
+
 
 func _ready():
 	super()
@@ -41,6 +46,9 @@ func update_operation_menu_items() -> void:
 	if not item_object.fact:
 		operation_menu_labels = []
 		_set_operation_input_visibility(false)
+	elif item_object.is_function:
+		operation_menu_labels = ["=", "+", "-"]
+		_set_operation_input_visibility(true)
 	elif item_object.fact.type == TYPE_INT:
 		operation_menu_labels = ["=", "+", "-", "erase"]
 		_set_operation_input_visibility(true)
@@ -114,6 +122,12 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	enum_values_menu = %EnumValuesMenuButton
 	boolean_value_check = %BooleanValueCheckBox
 	
+	is_function_checkbox = %CheckButton
+	function_button = %FunctionButton
+	
+	function_confirmation_dialog = %FactsFunctionConfirmationDialog
+	fact_function_managment = %FunctionManagment
+	
 	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
 	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
 	
@@ -132,8 +146,11 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
 	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
-	var facts_list = fact_resource.get_sqlite_list(true)
+	var facts_list = fact_resource.get_sqlite_list(null, true)
 	fact_search_menu.items_list = facts_list
+	
+	function_button.visible = object.is_function
+	is_function_checkbox.set_pressed_no_signal(object.is_function)
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -191,3 +208,30 @@ func _on_values_menu_index_pressed(index: int):
 
 func _on_boolean_value_check_box_toggled(toggled_on):
 	_set_modification_property("modification_value", toggled_on)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	_set_modification_property("is_function", toggled_on)
+	function_button.visible = toggled_on
+	update_operation_menu_items()
+
+
+func _on_facts_function_confirmation_dialog_confirmed() -> void:
+	if fact_function_managment.check_function():
+		_set_modification_property("function", fact_function_managment.get_function_string())
+
+
+func _on_function_button_pressed() -> void:
+	fact_function_managment.setup(item_object)
+	function_confirmation_dialog.popup_centered()
+	
+
+
+func _on_facts_search_menu_item_removed(item: Variant) -> void:
+	operation_menu.text = "Select operation"
+	enum_values_menu.text = "Select value"
+	
+	_set_modification_property("fact", null)
+	
+	update_operation_menu_items()
+	update_values_input()

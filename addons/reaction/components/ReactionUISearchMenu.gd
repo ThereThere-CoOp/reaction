@@ -2,22 +2,25 @@
 class_name ReactionUISearchMenu
 extends HBoxContainer
 
-signal item_selected(item: Resource)
+signal item_selected(item)
+
+signal item_removed(item)
 
 @export var search_input_text: String = ""
 
 @export var popup_wait_time: float = 5.0
 
-@export var items_list : Array = []
+@export var items_list = []
 
 @export var field_search_name: String  = "label"
 
-var current_list : Array[Resource] = []
+var current_list = []
 
-var current_item : Resource = null
+var current_item = null
 
 @onready var search_input: LineEdit = %SearchLineEdit
 @onready var popup_menu: PopupMenu = %PopupMenu
+@onready var clean_button: Button = %CleanButton
 @onready var popup_timer: Timer = %PopupTimer
 
 var _current_search_text: String
@@ -26,14 +29,23 @@ func _ready():
 	popup_timer.wait_time = popup_wait_time
 	search_input.text = search_input_text
 	
+	if Engine.is_editor_hint():
+		call_deferred("apply_theme")
+	
+	
+func apply_theme() -> void:
+	# Simple check if onready
+	clean_button.icon = get_theme_icon("Clear", "EditorIcons")
+		
+	
 	
 func update_search_text_value(value: String) -> void:
 	search_input_text = value
 	search_input.text = search_input_text
 
 
-func _get_new_list(word: String) -> Array[Resource]:
-	var result : Array[Resource] = []
+func _get_new_list(word: String):
+	var result = []
 	for item in items_list:
 		if item.get(field_search_name).contains(word):
 			result.append(item)
@@ -42,6 +54,10 @@ func _get_new_list(word: String) -> Array[Resource]:
 		
 		
 ### signals
+
+
+func _on_main_view_theme_changed() -> void:
+	apply_theme()
 
 
 func _on_search_line_edit_text_changed(new_text):
@@ -63,3 +79,9 @@ func _on_popup_timer_timeout() -> void:
 			popup_menu.add_item(item.get(field_search_name))
 		
 		popup_menu.popup_on_parent(Rect2i(global_position.x, global_position.y + search_input.size.y , size.x, 150))
+
+
+func _on_clean_button_pressed() -> void:
+	item_removed.emit(current_item)
+	current_item = null
+	update_search_text_value("")

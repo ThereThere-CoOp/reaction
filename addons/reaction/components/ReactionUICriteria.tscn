@@ -52,7 +52,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Facts Function"
+text = "Function"
 
 [node name="OperationContainer" type="VBoxContainer" parent="Columns" index="4"]
 layout_mode = 2
@@ -168,6 +168,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
+[connection signal="item_removed" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_removed"]
 [connection signal="item_selected" from="Columns/FactContainer/FactsSearchMenu" to="." method="_on_facts_search_menu_item_selected"]
 [connection signal="pressed" from="Columns/FactsFunctionButton" to="." method="_on_facts_function_button_pressed"]
 [connection signal="text_submitted" from="Columns/ValueContainer/ValueALineEdit" to="." method="_on_value_a_line_edit_text_submitted"]

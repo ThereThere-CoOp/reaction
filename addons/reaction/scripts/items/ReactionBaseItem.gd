@@ -122,6 +122,41 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 		return resource_result
 	
 	return results
+	
+	
+func serialize() -> Dictionary:
+	var result = {}
+	
+	if sqlite_id:
+		result["id"] = sqlite_id
+		
+	for prop in self.get_property_list():
+		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
+			var name = prop.name
+			var type = prop.type
+			if not _ignore_fields.has(name):
+				match type:
+					#TYPE_NIL:
+						#result[name] = str(get(name))
+					TYPE_INT:
+						result[name] = get(name)
+					TYPE_STRING:
+						result[name] = str(get(name))
+					TYPE_BOOL:
+						result[name] = 0 if not get(name) else 1
+					TYPE_DICTIONARY:
+						result[name] = JSON.stringify(get(name))
+					TYPE_OBJECT:
+							var object = get(name)
+							if object and object.sqlite_id > 0:
+								result[name + "_id"] = object.sqlite_id
+							else:
+								result[name + "_id"] = null
+					_:
+						continue
+	
+	return result
+	
 
 func deserialize(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)
@@ -188,37 +223,6 @@ func _to_string():
 func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.BASE
 	
-	
-func serialize() -> Dictionary:
-	var result = {}
-	
-	if sqlite_id:
-		result["id"] = sqlite_id
-		
-	for prop in self.get_property_list():
-		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
-			var name = prop.name
-			var type = prop.type
-			if not _ignore_fields.has(name):
-				match type:
-					#TYPE_NIL:
-						#result[name] = str(get(name))
-					TYPE_INT:
-						result[name] = get(name)
-					TYPE_STRING:
-						result[name] = str(get(name))
-					TYPE_BOOL:
-						result[name] = 0 if not get(name) else 1
-					TYPE_DICTIONARY:
-						result[name] = JSON.stringify(get(name))
-					TYPE_OBJECT:
-							var object = get(name)
-							if object and object.sqlite_id > 0:
-								result[name + "_id"] = object.sqlite_id
-					_:
-						continue
-	
-	return result
 	
 static func get_new_object():
 	pass
