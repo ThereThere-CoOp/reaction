@@ -18,6 +18,10 @@ func _init() -> void:
 	super()
 	label = "newResponse"
 	sqlite_table_name = "response"
+	
+	
+static func get_new_object():
+	return ReactionResponseItem.new()
 
 
 func get_type_string() -> int:

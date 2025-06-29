@@ -27,6 +27,7 @@ var undo_redo: EditorUndoRedoManager:
 @onready var events_panel = %Events
 @onready var rules_panel = %Rules
 @onready var tags_panel = %Tags
+@onready var responses_panel = %"All Responses"
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
@@ -263,6 +264,8 @@ func _on_database_data_managment_tab_selected(tab):
 			1:
 				events_panel.setup_events()
 			2:
+				responses_panel.setup_responses()
+			3:
 				tags_panel.setup_tags()
 			_:
 				global_facts_panel.setup_facts()

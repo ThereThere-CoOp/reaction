@@ -28,6 +28,10 @@ extends ReactionResponseItem
 @export var choices: Array[ReactionDialogChoiceItem]
 
 
+func _init() -> void:
+	super()
+	
+	
 ## ----------------------------------------------------------------------------[br]
 ## Return the array of choices that met their criterias by the current context
 ## [br]
@@ -157,6 +161,10 @@ func add_text(text: ReactionDialogTextItem) -> void:
 ## ----------------------------------------------------------------------------
 func remove_text_by_index(index: int) -> void:
 	texts.remove_at(index)
+	
+	
+static func get_new_object():
+	return ReactionResponseDialogItem.new()
 	
 	
 func get_type_string() -> int:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=49 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -20,8 +20,13 @@
 [ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="14_2dj17"]
 [ext_resource type="Script" uid="uid://cg4cl4b37p8ga" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
 [ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="15_ucfj6"]
+[ext_resource type="Script" uid="uid://cfr5o7fjvdmjr" path="res://addons/reaction/scripts/items/ReactionResponseItem.gd" id="18_irtov"]
+[ext_resource type="Script" uid="uid://0b6puqk6sjfu" path="res://addons/reaction/components/AllResponses.gd" id="18_j5jl6"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="19_6chnr"]
+[ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="20_j5jl6"]
+[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="21_dtkum"]
 
-[sub_resource type="Image" id="Image_ucfj6"]
+[sub_resource type="Image" id="Image_j5jl6"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": "RGBA8",
@@ -30,8 +35,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_irtov"]
-image = SubResource("Image_ucfj6")
+[sub_resource type="ImageTexture" id="ImageTexture_dtkum"]
+image = SubResource("Image_j5jl6")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
@@ -216,6 +221,37 @@ reaction_item_type = 0
 tags = Array[ExtResource("14_2dj17")]([])
 metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 
+[sub_resource type="Resource" id="Resource_jo51q"]
+script = ExtResource("18_irtov")
+triggers = ""
+uid = "d6b969cf-7d5d-4cef-b971-7fc8f8681046"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 8
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
+
+[sub_resource type="Resource" id="Resource_iru7f"]
+script = ExtResource("20_j5jl6")
+texts = Array[ExtResource("21_dtkum")]([])
+have_choices = false
+choices = Array[ExtResource("19_6chnr")]([])
+triggers = ""
+uid = "46a00bc8-475c-4a7f-a2a8-679584e32e50"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 9
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://ct08x83xg4ivu"
+
+[sub_resource type="Resource" id="Resource_dhysa"]
+script = ExtResource("12_cc7b5")
+object_name = "Dialog response"
+object_resource_class = SubResource("Resource_iru7f")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
 [sub_resource type="Resource" id="Resource_vsy2h"]
 script = ExtResource("14_2dj17")
 facts = {}
@@ -259,7 +295,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_irtov")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -270,34 +306,34 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 text = "new"
-icon = SubResource("ImageTexture_irtov")
+icon = SubResource("ImageTexture_dtkum")
 item_count = 2
 popup/item_0/text = "new"
-popup/item_0/icon = SubResource("ImageTexture_irtov")
+popup/item_0/icon = SubResource("ImageTexture_dtkum")
 popup/item_0/id = 0
 popup/item_1/text = "other"
-popup/item_1/icon = SubResource("ImageTexture_irtov")
+popup/item_1/icon = SubResource("ImageTexture_dtkum")
 popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_irtov")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_irtov")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_irtov")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
@@ -709,6 +745,36 @@ unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 3
 
+[node name="All Responses" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+script = ExtResource("18_j5jl6")
+metadata/_tab_index = 2
+
+[node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/All Responses"]
+layout_mode = 2
+
+[node name="ResponsesMainContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/All Responses/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResponsesList" parent="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer" instance=ExtResource("3_cpcid")]
+unique_name_in_owner = true
+layout_mode = 2
+item_name = "response"
+reaction_resource = SubResource("Resource_jo51q")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_dhysa")])
+
+[node name="ResponseDataContainer" type="MarginContainer" parent="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="Tags" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
 visible = false
@@ -718,7 +784,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("14_qvwfu")
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags"]
 layout_mode = 2
