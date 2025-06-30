@@ -101,14 +101,14 @@ func _deselect_item() -> void:
 	
 func _show_edit_dialog() -> void:
 	var selected_response = _get_selected_response()
-	var response_type = ReactionGlobals.get_item_type(selected_response)
+	var response_type = selected_response.reaction_item_type
 	edit_response_dialog.title = ("Edit %s" % response_type)
 	var form_scene: ReactionUIMainResponseEditForm
 	
 	match response_type:
-		"Response Group":
+		ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
 			form_scene = response_group_edit_form_scene.instantiate()
-		"Dialog":
+		ReactionGlobals.ItemsTypesEnum.DIALOG:
 			form_scene = dialog_response_edit_form_scene.instantiate()
 		_:
 			form_scene = response_group_edit_form_scene.instantiate()

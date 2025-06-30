@@ -774,6 +774,7 @@ objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resourc
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Tags" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
@@ -901,6 +902,9 @@ unique_name_in_owner = true
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleNameInputContainer/RuleNameLineEdit" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleMatchOnceCheckButton" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_match_once_check_button_pressed"]
+[connection signal="item_added" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_added"]
+[connection signal="item_removed" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_removed"]
+[connection signal="item_selected" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_response_list_item_selected"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_added"]
 [connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_list_updated"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_removed"]

@@ -19,41 +19,39 @@ criterias = Array[ExtResource("6_pqy0t")]([])
 modifications = Array[ExtResource("7_smt5a")]([])
 match_once = false
 priority = 0
-parents = Array[String]([])
 uid = "8abf9483-6a0b-4618-8b60-318736e08dbd"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 10
 tags = Array[ExtResource("9_ywels")]([])
 metadata/_custom_type_script = "uid://8g4d38ylvlvv"
 
 [sub_resource type="Resource" id="Resource_ywels"]
 script = ExtResource("6_sbatt")
 object_name = "text"
-parent_object_add_function_name = "add_text"
 object_resource_class = SubResource("Resource_smt5a")
 metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_a485m"]
 script = ExtResource("10_smt5a")
-choice_text = {}
+text = {}
 triggers = ""
 criterias = Array[ExtResource("6_pqy0t")]([])
 modifications = Array[ExtResource("7_smt5a")]([])
 match_once = false
 priority = 0
-parents = Array[String]([])
 uid = "723cb563-87d7-4055-b060-393fcbc71f16"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 11
 tags = Array[ExtResource("9_ywels")]([])
 metadata/_custom_type_script = "uid://b4ytdhbhx7htw"
 
 [sub_resource type="Resource" id="Resource_rameg"]
 script = ExtResource("6_sbatt")
 object_name = "choice"
-parent_object_add_function_name = "add_choice"
 object_resource_class = SubResource("Resource_a485m")
 
 [node name="ReactionUIDialogResponseEditForm" instance=ExtResource("1_mnjky")]
@@ -89,7 +87,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_sbatt")]([SubResource("Resource_ywels")])
-objects_list_field_name = "texts"
 object_scene = ExtResource("6_a485m")
 
 [node name="Choices" type="MarginContainer" parent="Rows/DialogDataContainer" index="2"]
@@ -112,7 +109,6 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_sbatt")]([SubResource("Resource_rameg")])
-objects_list_field_name = "choices"
 object_scene = ExtResource("6_ud6fd")
 
 [connection signal="toggled" from="Rows/DialogDataContainer/Choices/Rows/HasChoicesCheckButton" to="." method="_on_has_choices_check_button_toggled"]
