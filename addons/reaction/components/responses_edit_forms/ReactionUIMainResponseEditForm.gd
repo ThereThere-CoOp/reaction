@@ -2,6 +2,8 @@
 class_name ReactionUIMainResponseEditForm
 extends PanelContainer
 
+signal field_updated(field_name: String, value: Variant)
+
 var sqlite_database: SQLite
 
 var current_response: ReactionResponseBaseItem
@@ -47,6 +49,7 @@ func _on_label_input_line_edit_text_submitted(new_text):
 		# use signal to fix this
 		# current_tree_item.set_text(0, new_text)
 		current_response.update_sqlite()
+		field_updated.emit("label", new_text)
 		
 		
 func _on_label_events_search_menu_item_selected(item: Resource):

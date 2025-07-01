@@ -46,12 +46,18 @@ func _set_response(response_data: ReactionResponseItem) -> void:
 		child.queue_free()
 	
 	form_scene.setup(current_response, null)
+	form_scene.field_updated.connect(_on_response_field_updated)
 	response_data_container.add_child(form_scene)
 	
 	response_data_container.visible = true
 	
 	
 ### signals
+
+func _on_response_field_updated(field_name: String, value: Variant):
+	if field_name == "label":
+		responses_list.items_list.set_item_text(responses_list.current_item_index, str(value))
+
 
 func _on_response_list_item_selected(item_data: ReactionResponseItem) -> void:
 	_set_response(item_data)

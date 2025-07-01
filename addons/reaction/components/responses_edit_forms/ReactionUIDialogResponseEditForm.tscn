@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfvytlbb7m75"]
+[gd_scene load_steps=19 format=3 uid="uid://cfvytlbb7m75"]
 
 [ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn" id="1_mnjky"]
 [ext_resource type="Script" uid="uid://7ka007fbnhx5" path="res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.gd" id="2_2jkjf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ckjrv3ohhjj74" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIChoice.tscn" id="6_ud6fd"]
 [ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="7_smt5a"]
 [ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="8_a485m"]
+[ext_resource type="Script" uid="uid://17qnylmuqehb" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="9_a485m"]
 [ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="9_ywels"]
 [ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="10_smt5a"]
 
@@ -33,6 +34,20 @@ object_name = "text"
 object_resource_class = SubResource("Resource_smt5a")
 metadata/_custom_type_script = "uid://wjclotthw7aj"
 
+[sub_resource type="Resource" id="Resource_nfabw"]
+script = ExtResource("9_a485m")
+criterias = Array[ExtResource("6_pqy0t")]([])
+modifications = Array[ExtResource("7_smt5a")]([])
+match_once = false
+priority = 0
+uid = "311aa6ca-8c24-46d2-9831-b9f7289d0fc9"
+label = "new_rule"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 3
+tags = Array[ExtResource("9_ywels")]([])
+metadata/_custom_type_script = "uid://17qnylmuqehb"
+
 [sub_resource type="Resource" id="Resource_a485m"]
 script = ExtResource("10_smt5a")
 text = {}
@@ -53,6 +68,20 @@ metadata/_custom_type_script = "uid://b4ytdhbhx7htw"
 script = ExtResource("6_sbatt")
 object_name = "choice"
 object_resource_class = SubResource("Resource_a485m")
+
+[sub_resource type="Resource" id="Resource_dvkan"]
+script = ExtResource("9_a485m")
+criterias = Array[ExtResource("6_pqy0t")]([])
+modifications = Array[ExtResource("7_smt5a")]([])
+match_once = false
+priority = 0
+uid = "742e6e57-7906-451a-bb98-f46b84fa1c8f"
+label = "new_rule"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 3
+tags = Array[ExtResource("9_ywels")]([])
+metadata/_custom_type_script = "uid://17qnylmuqehb"
 
 [node name="ReactionUIDialogResponseEditForm" instance=ExtResource("1_mnjky")]
 script = ExtResource("2_2jkjf")
@@ -87,6 +116,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_sbatt")]([SubResource("Resource_ywels")])
+list_resource_class = SubResource("Resource_nfabw")
 object_scene = ExtResource("6_a485m")
 
 [node name="Choices" type="MarginContainer" parent="Rows/DialogDataContainer" index="2"]
@@ -109,6 +139,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 objects_to_add_data_array = Array[ExtResource("6_sbatt")]([SubResource("Resource_rameg")])
+list_resource_class = SubResource("Resource_dvkan")
 object_scene = ExtResource("6_ud6fd")
 
 [connection signal="toggled" from="Rows/DialogDataContainer/Choices/Rows/HasChoicesCheckButton" to="." method="_on_has_choices_check_button_toggled"]
