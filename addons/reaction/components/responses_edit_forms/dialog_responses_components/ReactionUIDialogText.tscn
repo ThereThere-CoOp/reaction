@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://02q75f4idhxw"]
+[gd_scene load_steps=19 format=3 uid="uid://02q75f4idhxw"]
 
 [ext_resource type="PackedScene" uid="uid://6i2dxefjcety" path="res://addons/reaction/components/ReactionUIListObjectFormItem.tscn" id="1_gf73t"]
 [ext_resource type="Script" uid="uid://cmermr27mkd8u" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIDialogText.gd" id="2_g42l3"]
@@ -27,45 +27,67 @@ image = SubResource("Image_gf73t")
 script = ExtResource("6_gf73t")
 operation = ""
 is_reverse = false
-value_a_int = 0
-value_a_bool = false
-value_a_string = ""
-value_b_int = 0
-value_b_bool = false
-value_b_string = ""
 value_a = null
 value_b = null
-parents = Array[String]([])
 uid = "ec322545-57b7-4fc3-a214-d22a1d767749"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 4
 tags = Array[ExtResource("7_qwl8y")]([])
 metadata/_custom_type_script = "uid://bv2nf0mygo3er"
 
 [sub_resource type="Resource" id="Resource_7kthi"]
 script = ExtResource("5_7kthi")
 object_name = "Criteria"
-parent_object_add_function_name = "add_criteria"
 object_resource_class = SubResource("Resource_bflyh")
 metadata/_custom_type_script = "uid://wjclotthw7aj"
 
+[sub_resource type="Resource" id="Resource_aox22"]
+script = ExtResource("6_gf73t")
+operation = ""
+is_reverse = false
+value_a = null
+value_b = null
+uid = "1d3f4c8d-8c6b-4d0b-80aa-abf0d370a030"
+label = "new_criteria"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 4
+tags = Array[ExtResource("7_qwl8y")]([])
+metadata/_custom_type_script = "uid://bv2nf0mygo3er"
+
 [sub_resource type="Resource" id="Resource_xridy"]
 script = ExtResource("8_mjrdm")
-parents = Array[String]([])
+operation = ""
+function = ""
+is_function = false
 uid = "6ce7ac99-da7e-4d4d-9376-6a23b9ae1123"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 5
 tags = Array[ExtResource("7_qwl8y")]([])
 metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 
 [sub_resource type="Resource" id="Resource_op51p"]
 script = ExtResource("5_7kthi")
 object_name = "Modification"
-parent_object_add_function_name = "add_modification"
 object_resource_class = SubResource("Resource_xridy")
 metadata/_custom_type_script = "uid://wjclotthw7aj"
+
+[sub_resource type="Resource" id="Resource_gf73t"]
+script = ExtResource("8_mjrdm")
+operation = ""
+function = ""
+is_function = false
+uid = "c18634ac-a433-4404-b018-ad7a71a19951"
+label = "new_modification"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 5
+tags = Array[ExtResource("7_qwl8y")]([])
+metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 
 [node name="ReactionUIDialogText" instance=ExtResource("1_gf73t")]
 script = ExtResource("2_g42l3")
@@ -139,7 +161,7 @@ size = Vector2i(900, 500)
 [node name="Criterias" parent="CriteriasDialog" index="3" instance=ExtResource("4_bflyh")]
 unique_name_in_owner = true
 objects_to_add_data_array = Array[ExtResource("5_7kthi")]([SubResource("Resource_7kthi")])
-objects_list_field_name = "criterias"
+list_resource_class = SubResource("Resource_aox22")
 
 [node name="ModificationsDialog" type="AcceptDialog" parent="." index="2"]
 unique_name_in_owner = true
@@ -149,7 +171,7 @@ size = Vector2i(800, 500)
 [node name="Modifications" parent="ModificationsDialog" index="3" instance=ExtResource("4_bflyh")]
 unique_name_in_owner = true
 objects_to_add_data_array = Array[ExtResource("5_7kthi")]([SubResource("Resource_op51p")])
-objects_list_field_name = "modifications"
+list_resource_class = SubResource("Resource_gf73t")
 object_scene = ExtResource("9_wt7lo")
 
 [node name="TextDialog" type="AcceptDialog" parent="." index="3"]
@@ -169,7 +191,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("10_k12o2")
-text_field_name = "choice_text"
+text_field_name = "text"
 
 [connection signal="text_submitted" from="Columns/LabelContainer/LabelLineEdit" to="." method="_on_label_line_edit_text_submitted"]
 [connection signal="pressed" from="Columns/TextContainer/TextButton" to="." method="_on_choice_text_button_pressed"]

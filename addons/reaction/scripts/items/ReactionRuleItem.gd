@@ -135,7 +135,7 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 	
 	var where = ""
 	if custom_where:
-		where = " AND %s" % [custom_where]
+		where = " AND (%s)" % [custom_where]
 		
 	var query = """
 	%s
@@ -157,8 +157,12 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 			resource_result.append(current_resource)
 			
 		return resource_result
-
-	return results
+	else:
+		var output = []
+		for row in results:
+			output.append(row.duplicate())
+	
+		return output
 	
 
 static func get_new_object():

@@ -15,7 +15,7 @@ extends ReactionRuleItem
 func _init() -> void:
 	super()
 	label = "newDialogText"
-
+	
 	
 static func get_new_object():
 	return ReactionDialogTextItem.new()

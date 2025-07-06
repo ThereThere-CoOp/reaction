@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://02q75f4idhxw" path="res://addons/reaction/components/responses_edit_forms/dialog_responses_components/ReactionUIDialogText.tscn" id="1_ayfht"]
 
 [node name="ReactionUIChoice" instance=ExtResource("1_ayfht")]
-show_event = true
-show_criterias = true
-show_modifications = true

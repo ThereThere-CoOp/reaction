@@ -8,6 +8,8 @@ signal object_removed()
 
 var current_parent_object: Resource
 
+var extra_where_stament
+
 @export var objects_to_add_data_array: Array[ListObjectFormObjectToAdd] = []
  
 # @export var object_name: String = "object"
@@ -45,19 +47,20 @@ func _get_resource_from_type(type: int) -> ReactionBaseItem:
 	for resource in objects_to_add_data_array:
 		if type == resource.object_resource_class.reaction_item_type:
 			return resource.object_resource_class
-			
+	
 	return null
 	
 
 func _get_current_object_list():
 	var tmp_resource_list = list_resource_class.get_new_object()
 	tmp_resource_list.parent_item = current_parent_object
-	var objects_list = tmp_resource_list.get_sqlite_list()
+	var objects_list = tmp_resource_list.get_sqlite_list(extra_where_stament, false)
 	return objects_list
 
 
-func setup_objects(parent_object: Resource) -> void:
+func setup_objects(parent_object: Resource, where_stament=null) -> void:
 	objects_rows = %ObjectsRows
+	extra_where_stament = where_stament
 	
 	if parent_object:
 		current_parent_object = parent_object
@@ -69,17 +72,19 @@ func setup_objects(parent_object: Resource) -> void:
 		var index = 0
 		
 		var objects_list = _get_current_object_list()
-		 
+
 		for object_data in objects_list:
 			var current_resource = _get_resource_from_type(object_data.get("reaction_item_type"))
 			var reaction_item = current_resource.get_new_object()
-			reaction_item.deserialize(object_data)
+			reaction_item.sqlite_id = object_data.get("id")
+			reaction_item.update_from_sqlite()
 			var new_object = object_scene.instantiate()
 			new_object.setup(current_parent_object, reaction_item, index)
 			new_object.object_list_form_removed.connect(_on_object_removed)
 			objects_rows.add_child(new_object)
-			index += 1
 
+			index += 1
+			
 
 ### signals
 

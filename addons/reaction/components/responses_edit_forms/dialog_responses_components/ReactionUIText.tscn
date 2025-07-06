@@ -27,6 +27,3 @@ remove_object_function_name = "remove_text_by_index"
 [node name="RemoveObjectButton" parent="Columns" index="6"]
 tooltip_text = "Remove text"
 icon = SubResource("ImageTexture_7ykwi")
-
-[node name="Texts" parent="TextDialog/ScrollContainer" index="0"]
-text_field_name = "text"

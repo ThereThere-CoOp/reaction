@@ -14,9 +14,9 @@ var current_tree_item: TreeItem
 @onready var uid_line_edit: LineEdit = %UidLineEdit
 @onready var triggers_container: HBoxContainer = %TriggersContainer
 @onready var events_search_menu: ReactionUISearchMenu = %EventsSearchMenu
-
-
-func _ready():
+	
+	
+func _setup_panel():
 	if current_response:
 		sqlite_database = ReactionGlobals.current_sqlite_database
 		label_input_line_edit.text = current_response.label
@@ -31,15 +31,22 @@ func _ready():
 				events_search_menu.update_search_text_value(trigger_event.label)
 			
 			triggers_container.visible = true
-			events_search_menu.item_selected.connect(_on_label_events_search_menu_item_selected)
+			if not events_search_menu.is_connected("item_selected", _on_label_events_search_menu_item_selected):
+				events_search_menu.item_selected.connect(_on_label_events_search_menu_item_selected)
+	
 	
 	
 func setup(response: ReactionResponseBaseItem, tree_item: TreeItem) -> void:
 	current_response = response
 	# use signal to fix this
 	current_tree_item = tree_item
-
-
+	
+	label_input_line_edit = %LabelInputLineEdit
+	uid_line_edit = %UidLineEdit
+	triggers_container = %TriggersContainer
+	events_search_menu = %EventsSearchMenu
+	
+	_setup_panel()
 ###  signals
 
 
