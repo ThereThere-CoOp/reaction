@@ -198,5 +198,3 @@ text_field_name = "text"
 [connection signal="item_selected" from="Columns/EventContainer/EventSearchMenu" to="." method="_on_event_search_menu_item_selected"]
 [connection signal="pressed" from="Columns/CriteriasButton" to="." method="_on_criterias_button_pressed"]
 [connection signal="pressed" from="Columns/ModificationsButton" to="." method="_on_modifications_button_pressed"]
-[connection signal="object_added" from="ModificationsDialog/Modifications" to="." method="_on_modifications_object_added"]
-[connection signal="object_removed" from="ModificationsDialog/Modifications" to="." method="_on_modifications_object_removed"]

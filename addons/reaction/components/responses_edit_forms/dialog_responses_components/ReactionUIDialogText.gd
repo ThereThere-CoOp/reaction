@@ -63,6 +63,12 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	criterias_list.setup_objects(item_object)
 	modifications_list.setup_objects(item_object)
 	
+	criterias_list.object_added.connect(_on_criterias_object_added)
+	modifications_list.object_added.connect(_on_modifications_object_added)
+	
+	criterias_list.object_removed.connect(_on_criterias_object_removed)
+	modifications_list.object_removed.connect(_on_modifications_object_removed)
+	
 	_update_criterias_button_name()
 	_update_modifications_button_name()
 	
