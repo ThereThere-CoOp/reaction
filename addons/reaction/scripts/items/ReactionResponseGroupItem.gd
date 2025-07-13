@@ -17,9 +17,26 @@ func _init() -> void:
 	super()
 	label = "newResponseGroup"
 	sqlite_table_name = "response_group"
+	
+	
+func remove_response(response_uid: String) -> void:
+	responses.erase(response_uid)
+	
+	
+func get_responses() -> Array[ReactionResponseBaseItem]:
+	var result: Array[ReactionResponseBaseItem]
+	result.assign(responses.values())
+	return result
+	
 
-
-func add_new_response(response_type: String) -> ReactionResponseItem:
+func add_sqlite_response_group() -> ReactionResponseGroupItem:
+	var new_response_group = ReactionResponseGroupItem.new()
+	new_response_group.label = "newResponseGroup"
+	responses[new_response_group.uid] = new_response_group
+	return new_response_group
+	
+	
+func add_sqlite_response(response_type: String) -> ReactionResponseItem:
 	var new_response: ReactionResponseItem
 	
 	if response_type == ReactionGlobals.responses_types["Dialog"]:
@@ -31,24 +48,50 @@ func add_new_response(response_type: String) -> ReactionResponseItem:
 	
 	responses[new_response.uid] = new_response
 	return new_response
+	
+	
+func get_sqlite_children_list(custom_where=null, get_resources=false):
+	var where = ""
+	if custom_where:
+		where = " AND (%s)" % [custom_where]
 		
+	var groups_query = """
+	SELECT response_group.id AS id, response_group.label AS label, response_group.uid AS uid, response_group.reaction_item_type AS reaction_item_type
+	FROM response_group
+	INNER JOIN response_parent_group_rel ON response_group.id = response_parent_group_rel.response_group_id
+	WHERE response_parent_group_rel.parent_group_id = %d %s
+	""" % [ sqlite_id, where ]
 		
-func add_new_response_group() -> ReactionResponseGroupItem:
-	var new_response_group = ReactionResponseGroupItem.new()
-	new_response_group.label = "newResponseGroup"
-	responses[new_response_group.uid] = new_response_group
-	return new_response_group
+	var responses_query = """
+	SELECT response.id AS id, response.label AS label, response.uid AS uid, response.reaction_item_type AS reaction_item_type
+	FROM response
+	INNER JOIN response_parent_group_rel ON response.id = response_parent_group_rel.response_id
+	WHERE response_parent_group_rel.parent_group_id = %d %s
+	""" % [ sqlite_id, where ]
 	
+	var query = """
+	%s
+	UNION
+	%s
+	""" % [groups_query, responses_query]
 	
-func remove_response(response_uid: String) -> void:
-	responses[response_uid].remove_fact_reference_log(responses[response_uid])
-	responses.erase(response_uid)
+	_sqlite_database.query(query)
+	var results = _sqlite_database.query_result_by_reference
+		
+	if get_resources:
+		var resource_result = []
+		for result in results:
+			var current_resource = ReactionGlobals.get_response_object_from_reaction_type(result.get("reaction_item_type"))
+			current_resource.deserialize(result)
+			resource_result.append(current_resource)
+			
+		return resource_result
+	else:
+		var output = []
+		for row in results:
+			output.append(row.duplicate())
 	
-	
-func get_responses() -> Array[ReactionResponseBaseItem]:
-	var result: Array[ReactionResponseBaseItem]
-	result.assign(responses.values())
-	return result
+		return output
 	
 	
 static func get_new_object():

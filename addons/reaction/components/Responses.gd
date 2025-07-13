@@ -5,7 +5,8 @@ extends MarginContainer
 var root_response_group: ReactionResponseGroupItem
 
 @onready var response_group_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIResponseGroupEditForm.tscn")
-@onready var dialog_response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.tscn")
+
+@export var responses_to_add_data_array: Array[ListObjectFormObjectToAdd] = []
 
 @onready var add_response_group_button: Button = %AddResponseGroupButton
 @onready var add_response_menu_button: MenuButton = %AddResponseMenuButton
@@ -81,7 +82,7 @@ func _get_selected_tree_item() -> TreeItem:
 	else:
 		return responses_tree.get_root()
 	
-
+	
 func _get_selected_response() -> ReactionResponseBaseItem:
 	var selected_item : TreeItem = responses_tree.get_selected()
 	var response: ReactionResponseBaseItem
@@ -91,12 +92,21 @@ func _get_selected_response() -> ReactionResponseBaseItem:
 	else:
 		return root_response_group
 		
-
+		
 func _deselect_item() -> void:
 	remove_response_button.disabled = true
 	add_response_group_button.disabled = false
 	add_response_menu_button.disabled = false
 	_get_selected_tree_item().deselect(0)
+	
+	
+func _get_response_from_add_data_array(response_type: int) -> ListObjectFormObjectToAdd:
+	for add_response in responses_to_add_data_array:
+		var tmp_object: ReactionResponseItem = add_response.object_resource_class.get_new_object()
+		if tmp_object.reaction_item_type == response_type:
+			return add_response
+			
+	return null
 	
 	
 func _show_edit_dialog() -> void:
@@ -105,13 +115,10 @@ func _show_edit_dialog() -> void:
 	edit_response_dialog.title = ("Edit %s" % response_type)
 	var form_scene: ReactionUIMainResponseEditForm
 	
-	match response_type:
-		ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
-			form_scene = response_group_edit_form_scene.instantiate()
-		ReactionGlobals.ItemsTypesEnum.DIALOG:
-			form_scene = dialog_response_edit_form_scene.instantiate()
-		_:
-			form_scene = response_group_edit_form_scene.instantiate()
+	if response_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+		form_scene = response_group_edit_form_scene.instantiate()
+	else:
+		form_scene = _get_response_from_add_data_array(response_type).form_scene.instantiate()
 	
 	for child in edit_response_dialog.get_children():
 		child.queue_free()

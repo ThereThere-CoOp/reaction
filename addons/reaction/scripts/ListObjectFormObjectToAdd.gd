@@ -9,3 +9,5 @@ extends Resource
 @export var object_name: String
 
 @export var object_resource_class: ReactionBaseItem
+
+@export var form_scene: PackedScene

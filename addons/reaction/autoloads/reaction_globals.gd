@@ -69,6 +69,10 @@ func get_default_database() -> ReactionDatabase:
 		
 	return null
 	
+
+func get_response_object_from_reaction_type(type: int):
+	return ReactionResponseGroupItem.get_new_object() if type == ItemsTypesEnum.RESPONSE_GROUP else ReactionResponseDialogItem.get_new_object() 
+
 	
 func get_item_type(item: Resource) -> String:
 	if item is ReactionEventItem:
