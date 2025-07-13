@@ -72,27 +72,6 @@ func get_default_database() -> ReactionDatabase:
 
 func get_response_object_from_reaction_type(type: int):
 	return ReactionResponseGroupItem.get_new_object() if type == ItemsTypesEnum.RESPONSE_GROUP else ReactionResponseDialogItem.get_new_object() 
-
-	
-func get_item_type(item: Resource) -> String:
-	if item is ReactionEventItem:
-		return "Event"
-	elif item is ReactionFactItem:
-		return "Fact"
-	elif item is ReactionRuleItem:
-		return "Rule"
-	elif item is ReactionCriteriaItem:
-		return "Criteria"
-	elif item is ReactionContextModificationItem:
-		return "Modification"
-	elif item is ReactionResponseGroupItem:
-		return "Response Group"
-	elif item is ReactionResponseDialogItem:
-		return responses_types["Dialog"]
-	elif item is ReactionResponseItem:
-		return "Response"
-	else:
-		return "Fact"
 		
 		
 func _change_reaction_ui_debug_visibility() -> void:

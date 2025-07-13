@@ -29,25 +29,18 @@ func get_responses() -> Array[ReactionResponseBaseItem]:
 	return result
 	
 
-func add_sqlite_response_group() -> ReactionResponseGroupItem:
-	var new_response_group = ReactionResponseGroupItem.new()
-	new_response_group.label = "newResponseGroup"
-	responses[new_response_group.uid] = new_response_group
-	return new_response_group
+func add_sqlite_response_group(response_group: ReactionResponseGroupItem) -> void:
+	_sqlite_database.insert_row("response_parent_group_rel", {
+		"parent_group_id": sqlite_id,
+		"response_group_id": response_group.sqlite_id
+	})
 	
 	
-func add_sqlite_response(response_type: String) -> ReactionResponseItem:
-	var new_response: ReactionResponseItem
-	
-	if response_type == ReactionGlobals.responses_types["Dialog"]:
-		new_response = ReactionResponseDialogItem.new()
-		new_response.label = "newDialogResponse"
-	else:
-		new_response = ReactionResponseDialogItem.new()
-		new_response.label = "newDialogResponse"
-	
-	responses[new_response.uid] = new_response
-	return new_response
+func add_sqlite_response(response: ReactionResponseItem) -> void:
+	_sqlite_database.insert_row("response_parent_group_rel", {
+		"parent_group_id": sqlite_id,
+		"response_id": response.sqlite_id
+	})
 	
 	
 func get_sqlite_children_list(custom_where=null, get_resources=false):

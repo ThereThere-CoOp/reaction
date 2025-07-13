@@ -53,7 +53,7 @@ func apply_theme() -> void:
 		
 		
 func add_child_responses_to_tree(parent_node: TreeItem, response_group: ReactionResponseGroupItem) -> void:
-	for response in response_group.responses.values():
+	for response in response_group.get_sqlite_children_list(null, true):
 		var child = _create_response_tree_item(parent_node, response)
 
 		if response is ReactionResponseGroupItem:
@@ -62,6 +62,11 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 		
 func setup(response_group: ReactionResponseGroupItem) -> void:
 	root_response_group = response_group
+	
+	var responses_menu: PopupMenu = add_response_menu_button.get_popup()
+	
+	for add_response: ListObjectFormObjectToAdd in responses_to_add_data_array:
+		responses_menu.add_item(add_response.object_name)
 	
 	add_response_group_button.disabled = false
 	add_response_menu_button.disabled = false
@@ -155,7 +160,9 @@ func _on_add_response_group_button_pressed():
 	var selected_item : TreeItem = _get_selected_tree_item()
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
-	var new_response_group: ReactionResponseGroupItem = response.add_new_response_group()
+	var new_response_group: ReactionResponseGroupItem = ReactionResponseGroupItem.get_new_object()
+	new_response_group.add_to_sqlite()
+	response.add_sqlite_response_group(new_response_group)
 	
 	_create_response_tree_item(selected_item, new_response_group)
 	
@@ -167,7 +174,9 @@ func _on_add_response_menu_index_pressed(index):
 	var selected_item : TreeItem = _get_selected_tree_item()
 	var response: ReactionResponseBaseItem = _get_selected_response()
 	
-	var new_response: ReactionResponseItem = response.add_new_response(label)
+	var new_response: ReactionResponseItem = responses_to_add_data_array[index].object_resource_class.get_new_object()
+	new_response.add_to_sqlite()
+	response.add_sqlite_response(new_response)
 	
 	_create_response_tree_item(selected_item, new_response)
 
