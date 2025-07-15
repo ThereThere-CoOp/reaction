@@ -15,6 +15,7 @@ var root_response_group: ReactionResponseGroupItem
 
 @onready var responses_tree: Tree = %ResponsesTree
 @onready var edit_response_dialog: AcceptDialog = %EditResponsetDialog
+@onready var delete_response_confirmation_dialog: AcceptDialog = %DeleteResponseConfirmationDialog
 
 var _dictionary_responses_data = {}
 
@@ -30,6 +31,8 @@ func _ready():
 		add_response_menu_popup.add_item(response_type)
 		
 	add_response_menu_popup.index_pressed.connect(_on_add_response_menu_index_pressed)
+	
+	delete_response_confirmation_dialog.add_button("Delete only relation", true, "remove_relation")
 
 
 func _create_response_tree_item(parent_node: TreeItem, response: ReactionResponseBaseItem) -> TreeItem:
@@ -64,18 +67,20 @@ func setup(response_group: ReactionResponseGroupItem) -> void:
 	root_response_group = response_group
 	
 	var responses_menu: PopupMenu = add_response_menu_button.get_popup()
+	responses_menu.clear()
 	
 	for add_response: ListObjectFormObjectToAdd in responses_to_add_data_array:
 		responses_menu.add_item(add_response.object_name)
 	
-	add_response_group_button.disabled = false
-	add_response_menu_button.disabled = false
+	add_response_group_button.disabled = true
+	add_response_menu_button.disabled = true
 	remove_response_button.disabled = true
 	
 	responses_tree.clear()
 	var root = responses_tree.create_item()
 	root.set_metadata(0, root_response_group)
-	responses_tree.hide_root = true
+	root.set_text(0, root_response_group.label)
+	root.set_icon(0, get_theme_icon("Grid", "EditorIcons"))
 	add_child_responses_to_tree(root, root_response_group)
 	
 	
@@ -100,8 +105,8 @@ func _get_selected_response() -> ReactionResponseBaseItem:
 		
 func _deselect_item() -> void:
 	remove_response_button.disabled = true
-	add_response_group_button.disabled = false
-	add_response_menu_button.disabled = false
+	add_response_group_button.disabled = true
+	add_response_menu_button.disabled = true
 	_get_selected_tree_item().deselect(0)
 	
 	
@@ -128,9 +133,26 @@ func _show_edit_dialog() -> void:
 	for child in edit_response_dialog.get_children():
 		child.queue_free()
 	
-	# form_scene.setup(current_database, selected_response, _get_selected_tree_item())
+	form_scene.setup(selected_response, _get_selected_tree_item())
 	edit_response_dialog.add_child(form_scene)
 	edit_response_dialog.popup_centered()
+		
+		
+func _remove_response_response_group_relation():
+	if responses_tree.get_selected():
+		var selected_item : TreeItem = _get_selected_tree_item()
+		var response: ReactionResponseBaseItem = _get_selected_response()
+		
+		var parent: TreeItem = selected_item.get_parent()
+		var parent_response: ReactionResponseGroupItem = parent.get_metadata(0)
+		
+		var where = "parent_group_id = %d AND response_id = %d" % [parent_response.sqlite_id, response.sqlite_id]
+		_sqlite_database.delete_rows("response_parent_group_rel", where)
+		
+		_deselect_item()
+		parent.remove_child(selected_item)
+		
+	delete_response_confirmation_dialog.hide()
 		
 		
 ### signals
@@ -146,8 +168,13 @@ func _on_database_selected() -> void:
 
 func _on_responses_tree_item_selected():
 	var response : ReactionResponseBaseItem = _get_selected_response()
+	var item_selected = _get_selected_tree_item()
 	
-	remove_response_button.disabled = false
+	if item_selected.get_parent() != null:
+		remove_response_button.disabled = false
+	else:
+		remove_response_button.disabled = true
+		
 	add_response_group_button.disabled = bool(not response is ReactionResponseGroupItem)
 	add_response_menu_button.disabled = bool(not response is ReactionResponseGroupItem)
 		
@@ -186,11 +213,13 @@ func _on_remove_response_button_pressed():
 		var selected_item : TreeItem = _get_selected_tree_item()
 		var response: ReactionResponseBaseItem = _get_selected_response()
 		
-		var parent: TreeItem = selected_item.get_parent()
-		var parent_response: ReactionResponseGroupItem = parent.get_metadata(0)
-		parent_response.remove_response(response.uid)
-		_deselect_item()
-		parent.remove_child(selected_item)
+		if response.reaction_item_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+			response.remove_from_sqlite()
+			var parent: TreeItem = selected_item.get_parent()
+			_deselect_item()
+			parent.remove_child(selected_item)
+		else:
+			delete_response_confirmation_dialog.popup_centered()
 
 
 func _on_edit_response_button_pressed():
@@ -199,3 +228,21 @@ func _on_edit_response_button_pressed():
 
 func _on_responses_tree_item_activated():
 	_show_edit_dialog()
+
+
+func _on_delete_response_confirmation_dialog_confirmed() -> void:
+	if responses_tree.get_selected():
+		var selected_item : TreeItem = _get_selected_tree_item()
+		var response: ReactionResponseBaseItem = _get_selected_response()
+		
+		response.remove_from_sqlite()
+		var parent: TreeItem = selected_item.get_parent()
+		_deselect_item()
+		parent.remove_child(selected_item)
+
+
+func _on_delete_response_confirmation_dialog_custom_action(action: StringName) -> void:
+	match action:
+		"remove_relation":
+			_remove_response_response_group_relation()
+		

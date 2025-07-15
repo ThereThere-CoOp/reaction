@@ -55,6 +55,7 @@ func _update_modifications_container_name() -> void:
 	
 	
 func _set_rule(rule_data: ReactionRuleItem) -> void:
+	rule_data.update_from_sqlite()
 	current_rule = rule_data
 	# set input default values
 	# general
@@ -89,8 +90,10 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
 		responses.label = "rootResponseGroup"
+		responses.add_to_sqlite()
 		current_rule.response_group = responses
-	
+		current_rule.update_sqlite()
+		
 	responses_container.setup(responses)
 	
 	

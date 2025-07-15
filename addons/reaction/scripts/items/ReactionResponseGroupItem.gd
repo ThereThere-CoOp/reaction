@@ -17,6 +17,9 @@ func _init() -> void:
 	super()
 	label = "newResponseGroup"
 	sqlite_table_name = "response_group"
+	_ignore_fields.merge(
+		{ "responses": true }
+	)
 	
 	
 func remove_response(response_uid: String) -> void:
