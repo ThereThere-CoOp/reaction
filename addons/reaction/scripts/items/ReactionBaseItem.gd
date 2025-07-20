@@ -216,7 +216,7 @@ func get_tags():
 	""" % ["tag", "tag_item_rel", "tag", related_relation_query_field_name, parent_relation_query_field_name, sqlite_id]
 	
 	_sqlite_database.query(query)
-	var result = _sqlite_database.query_result_by_reference
+	var result = _sqlite_database.query_result
 	
 	return result
 	

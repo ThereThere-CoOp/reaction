@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp6pp31ltd4g4"]
+[gd_scene load_steps=13 format=3 uid="uid://dp6pp31ltd4g4"]
 
 [ext_resource type="Script" uid="uid://lh0ktddgxg3" path="res://addons/reaction/components/Responses.gd" id="1_m1ukv"]
 [ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="2_vd0hg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="5_i2fx7"]
 [ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="6_dtnlu"]
 [ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="7_4v3m6"]
+[ext_resource type="PackedScene" uid="uid://doabmy6rit131" path="res://addons/reaction/components/ReactionUISearchMenu.tscn" id="8_8fabk"]
 
 [sub_resource type="Resource" id="Resource_5r55d"]
 script = ExtResource("5_i2fx7")
@@ -29,7 +30,7 @@ object_resource_class = SubResource("Resource_5r55d")
 form_scene = ExtResource("3_8fabk")
 metadata/_custom_type_script = "uid://wjclotthw7aj"
 
-[sub_resource type="Image" id="Image_vd0hg"]
+[sub_resource type="Image" id="Image_8fabk"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": "RGBA8",
@@ -38,8 +39,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_8fabk"]
-image = SubResource("Image_vd0hg")
+[sub_resource type="ImageTexture" id="ImageTexture_adtlr"]
+image = SubResource("Image_8fabk")
 
 [node name="Responses" type="MarginContainer"]
 visible = false
@@ -61,6 +62,11 @@ item_count = 1
 popup/item_0/text = "Dialog"
 popup/item_0/id = 0
 
+[node name="AddExistingResponseButton" type="Button" parent="Rows/ButtonsContainers"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add existing response"
+
 [node name="AddResponseGroupButton" type="Button" parent="Rows/ButtonsContainers"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -70,14 +76,14 @@ text = "Add response group"
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit response"
-icon = SubResource("ImageTexture_8fabk")
+icon = SubResource("ImageTexture_adtlr")
 
 [node name="RemoveResponseButton" type="Button" parent="Rows/ButtonsContainers"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove response"
 disabled = true
-icon = SubResource("ImageTexture_8fabk")
+icon = SubResource("ImageTexture_adtlr")
 
 [node name="ResponsesTree" type="Tree" parent="Rows"]
 unique_name_in_owner = true
@@ -93,6 +99,13 @@ unique_name_in_owner = true
 title = "Please Confirm Delete Response..."
 ok_button_text = "Delete Response"
 
+[node name="AddExistingResponseConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+
+[node name="ResponsesSearchMenu" parent="AddExistingResponseConfirmationDialog" instance=ExtResource("8_8fabk")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Rows/ButtonsContainers/AddExistingResponseButton" to="." method="_on_add_existing_response_button_pressed"]
 [connection signal="pressed" from="Rows/ButtonsContainers/AddResponseGroupButton" to="." method="_on_add_response_group_button_pressed"]
 [connection signal="pressed" from="Rows/ButtonsContainers/EditResponseButton" to="." method="_on_edit_response_button_pressed"]
 [connection signal="pressed" from="Rows/ButtonsContainers/RemoveResponseButton" to="." method="_on_remove_response_button_pressed"]
@@ -101,3 +114,5 @@ ok_button_text = "Delete Response"
 [connection signal="nothing_selected" from="Rows/ResponsesTree" to="." method="_on_responses_tree_nothing_selected"]
 [connection signal="confirmed" from="DeleteResponseConfirmationDialog" to="." method="_on_delete_response_confirmation_dialog_confirmed"]
 [connection signal="custom_action" from="DeleteResponseConfirmationDialog" to="." method="_on_delete_response_confirmation_dialog_custom_action"]
+[connection signal="canceled" from="AddExistingResponseConfirmationDialog" to="." method="_on_add_existing_response_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="AddExistingResponseConfirmationDialog" to="." method="_on_add_existing_response_confirmation_dialog_confirmed"]

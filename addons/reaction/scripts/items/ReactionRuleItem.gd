@@ -147,22 +147,19 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, where, sqlite_table_name]
 	
 	_sqlite_database.query(query)
-	var results = _sqlite_database.query_result_by_reference
+	var results = _sqlite_database.query_result
 		
 	if get_resources:
 		var resource_result = []
 		for result in results:
 			var current_resource = get_new_object()
-			current_resource.deserialize(result)
+			current_resource.sqlite_id = result.get("id")
+			current_resource.update_from_sqlite()
 			resource_result.append(current_resource)
 			
 		return resource_result
 	else:
-		var output = []
-		for row in results:
-			output.append(row.duplicate())
-	
-		return output
+		return results
 	
 
 static func get_new_object():

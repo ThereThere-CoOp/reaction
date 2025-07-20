@@ -9,13 +9,16 @@ var root_response_group: ReactionResponseGroupItem
 @export var responses_to_add_data_array: Array[ListObjectFormObjectToAdd] = []
 
 @onready var add_response_group_button: Button = %AddResponseGroupButton
+@onready var add_existing_response_button: Button = %AddExistingResponseButton
 @onready var add_response_menu_button: MenuButton = %AddResponseMenuButton
 @onready var edit_response_button: Button = %EditResponseButton
 @onready var remove_response_button: Button = %RemoveResponseButton
+@onready var responses_search_menu: ReactionUISearchMenu = %ResponsesSearchMenu
 
 @onready var responses_tree: Tree = %ResponsesTree
+@onready var add_exisiting_response_confirmation_dialog: ConfirmationDialog = %AddExistingResponseConfirmationDialog
 @onready var edit_response_dialog: AcceptDialog = %EditResponsetDialog
-@onready var delete_response_confirmation_dialog: AcceptDialog = %DeleteResponseConfirmationDialog
+@onready var delete_response_confirmation_dialog: ConfirmationDialog = %DeleteResponseConfirmationDialog
 
 var _dictionary_responses_data = {}
 
@@ -61,6 +64,8 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 
 		if response is ReactionResponseGroupItem:
 			add_child_responses_to_tree(child, response)
+		else:
+			print(response.have_choices)
 		
 		
 func setup(response_group: ReactionResponseGroupItem) -> void:
@@ -73,9 +78,15 @@ func setup(response_group: ReactionResponseGroupItem) -> void:
 		responses_menu.add_item(add_response.object_name)
 	
 	add_response_group_button.disabled = true
+	add_existing_response_button.disabled = true
 	add_response_menu_button.disabled = true
 	remove_response_button.disabled = true
 	
+	var response_resource: ReactionResponseItem = ReactionResponseItem.get_new_object()
+	var responses_list = response_resource.get_sqlite_list(null, true)
+	responses_search_menu.items_list = responses_list
+	
+	# setup responses tree
 	responses_tree.clear()
 	var root = responses_tree.create_item()
 	root.set_metadata(0, root_response_group)
@@ -106,6 +117,7 @@ func _get_selected_response() -> ReactionResponseBaseItem:
 func _deselect_item() -> void:
 	remove_response_button.disabled = true
 	add_response_group_button.disabled = true
+	add_existing_response_button.disabled = true
 	add_response_menu_button.disabled = true
 	_get_selected_tree_item().deselect(0)
 	
@@ -174,7 +186,8 @@ func _on_responses_tree_item_selected():
 		remove_response_button.disabled = false
 	else:
 		remove_response_button.disabled = true
-		
+	
+	add_existing_response_button.disabled = bool(not response is ReactionResponseGroupItem)
 	add_response_group_button.disabled = bool(not response is ReactionResponseGroupItem)
 	add_response_menu_button.disabled = bool(not response is ReactionResponseGroupItem)
 		
@@ -246,3 +259,28 @@ func _on_delete_response_confirmation_dialog_custom_action(action: StringName) -
 		"remove_relation":
 			_remove_response_response_group_relation()
 		
+		
+func _on_add_existing_response_button_pressed() -> void:
+	add_exisiting_response_confirmation_dialog.popup_centered()
+
+
+func _on_add_existing_response_confirmation_dialog_confirmed() -> void:
+	var popup = add_response_menu_button.get_popup()
+	
+	var selected_item : TreeItem = _get_selected_tree_item()
+	var response: ReactionResponseBaseItem = _get_selected_response()
+	
+	var new_response = responses_search_menu.current_item
+	if new_response:
+		var current_resource = ReactionGlobals.get_response_object_from_reaction_type(new_response.get("reaction_item_type"))
+		current_resource.sqlite_id = new_response.sqlite_id
+		current_resource.update_from_sqlite()
+		
+		response.add_sqlite_response(current_resource)
+		_create_response_tree_item(selected_item, current_resource)
+		
+	responses_search_menu.clean()
+
+
+func _on_add_existing_response_confirmation_dialog_canceled() -> void:
+	responses_search_menu.clean()

@@ -16,7 +16,7 @@ signal item_removed(item)
 
 var current_list = []
 
-var current_item = null
+var current_item: Resource = null
 
 @onready var search_input: LineEdit = %SearchLineEdit
 @onready var popup_menu: PopupMenu = %PopupMenu
@@ -31,6 +31,12 @@ func _ready():
 	
 	if Engine.is_editor_hint():
 		call_deferred("apply_theme")
+		
+		
+func clean():
+	item_removed.emit(current_item)
+	current_item = null
+	update_search_text_value("")
 	
 	
 func apply_theme() -> void:
@@ -82,6 +88,4 @@ func _on_popup_timer_timeout() -> void:
 
 
 func _on_clean_button_pressed() -> void:
-	item_removed.emit(current_item)
-	current_item = null
-	update_search_text_value("")
+	clean()

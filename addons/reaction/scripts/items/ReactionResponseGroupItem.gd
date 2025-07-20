@@ -72,22 +72,19 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 	""" % [groups_query, responses_query]
 	
 	_sqlite_database.query(query)
-	var results = _sqlite_database.query_result_by_reference
+	var results = _sqlite_database.query_result
 		
 	if get_resources:
 		var resource_result = []
 		for result in results:
 			var current_resource = ReactionGlobals.get_response_object_from_reaction_type(result.get("reaction_item_type"))
-			current_resource.deserialize(result)
+			current_resource.sqlite_id = result["id"]
+			current_resource.update_from_sqlite()
 			resource_result.append(current_resource)
 			
 		return resource_result
 	else:
-		var output = []
-		for row in results:
-			output.append(row.duplicate())
-	
-		return output
+		return results
 	
 	
 static func get_new_object():

@@ -42,7 +42,7 @@ func _get_related_objects_list() -> Array:
 	""" % [related_object_table_name, relation_table_name, related_object_table_name, related_relation_query_field_name, parent_relation_query_field_name, parent_object.sqlite_id]
 	
 	_sqlite_database.query(query)
-	var result = _sqlite_database.query_result_by_reference
+	var result = _sqlite_database.query_result
 	
 	return result
 	
