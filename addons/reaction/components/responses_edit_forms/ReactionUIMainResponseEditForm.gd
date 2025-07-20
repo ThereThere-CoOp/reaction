@@ -7,7 +7,6 @@ signal field_updated(field_name: String, value: Variant)
 var sqlite_database: SQLite
 
 var current_response: ReactionResponseBaseItem
-var current_tree_item: TreeItem
 
 
 @onready var label_input_line_edit: LineEdit = %LabelInputLineEdit
@@ -36,10 +35,9 @@ func _setup_panel():
 	
 	
 	
-func setup(response: ReactionResponseBaseItem, tree_item: TreeItem) -> void:
+func setup(response: ReactionResponseBaseItem) -> void:
 	current_response = response
 	# use signal to fix this
-	current_tree_item = tree_item
 	
 	label_input_line_edit = %LabelInputLineEdit
 	uid_line_edit = %UidLineEdit
@@ -53,8 +51,6 @@ func setup(response: ReactionResponseBaseItem, tree_item: TreeItem) -> void:
 func _on_label_input_line_edit_text_submitted(new_text):
 	if new_text != "":
 		current_response.label = new_text
-		# use signal to fix this
-		# current_tree_item.set_text(0, new_text)
 		current_response.update_sqlite()
 		field_updated.emit("label", new_text)
 		

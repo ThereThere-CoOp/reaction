@@ -64,8 +64,6 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 
 		if response is ReactionResponseGroupItem:
 			add_child_responses_to_tree(child, response)
-		else:
-			print(response.have_choices)
 		
 		
 func setup(response_group: ReactionResponseGroupItem) -> void:
@@ -145,8 +143,9 @@ func _show_edit_dialog() -> void:
 	for child in edit_response_dialog.get_children():
 		child.queue_free()
 	
-	form_scene.setup(selected_response, _get_selected_tree_item())
+	form_scene.setup(selected_response)
 	edit_response_dialog.add_child(form_scene)
+	form_scene.field_updated.connect(_on_response_label_updated)
 	edit_response_dialog.popup_centered()
 		
 		
@@ -284,3 +283,8 @@ func _on_add_existing_response_confirmation_dialog_confirmed() -> void:
 
 func _on_add_existing_response_confirmation_dialog_canceled() -> void:
 	responses_search_menu.clean()
+	
+func _on_response_label_updated(field_name: String, value: Variant):
+	if field_name == "label":
+		var selected_item : TreeItem = _get_selected_tree_item()
+		selected_item.set_text(0, value)

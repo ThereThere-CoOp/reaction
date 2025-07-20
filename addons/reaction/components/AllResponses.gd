@@ -47,7 +47,7 @@ func _set_response(response_data: ReactionResponseItem) -> void:
 	form_scene.field_updated.connect(_on_response_field_updated)
 	# form_scene.setup(current_response, null)
 	response_data_container.add_child(form_scene)
-	form_scene.call_deferred("setup", current_response, null)
+	form_scene.call_deferred("setup", current_response)
 	response_data_container.visible = true
 	
 	

@@ -34,8 +34,8 @@ func _setup_dialog_panel():
 		choices_container.visible = current_response.have_choices
 
 
-func setup(response: ReactionResponseBaseItem, tree_item: TreeItem):
-	super(response, tree_item)
+func setup(response: ReactionResponseBaseItem):
+	super(response)
 	
 	dialog_texts_list = %DialogTextsList
 	choices_container = %ChoicesList
