@@ -244,6 +244,9 @@ func _on_show_fact_references_button_pressed():
 	var text_result = ""
 	var references_count = 0
 	
+	var references = current_fact.get_references()
+	references_count = len(references)
+	
 	if references_count == 0:
 		text_result = "No references found"
 		
