@@ -157,6 +157,15 @@ func sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem]
 	return new_rules
 	
 
+func generate_sqlite_query_placeholders_from_array(array):
+	var arr := Array()
+	arr.resize(len(array))
+	arr.fill("?")
+	var placeholders = ",".join(arr)
+	
+	return placeholders
+	
+
 func remove_sqlite_database(database: SQLite) -> void:
 	var file_path = database.path
 	database.close_db()

@@ -1,6 +1,8 @@
 @tool
 extends MarginContainer
 
+var _sqlite_database: SQLite
+
 var current_fact: ReactionFactItem = null
 
 var undo_redo: EditorUndoRedoManager:
@@ -111,6 +113,7 @@ func _update_fact_default_value_input():
 
 
 func setup_facts() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 	facts_list.setup_items()
 
 
@@ -249,6 +252,41 @@ func _on_show_fact_references_button_pressed():
 	
 	if references_count == 0:
 		text_result = "No references found"
+	else:
+			
+		var rules_ids: Array[int] = []
+		for reference in references:
+			var rule_id = reference.get("rule_id", null)
+			if  rule_id != null:
+				rules_ids.append(rule_id)
+		
+		var placeholders = ReactionGlobals.generate_sqlite_query_placeholders_from_array(rules_ids)
+		
+		var query = """
+		SELECT rule.id AS rule_id,  rule.label AS rule_label, response.label AS response_label, event.label AS event_label
+		FROM rule
+		LEFT JOIN response ON rule.response_id = response.id
+		LEFT JOIN event ON rule.event_id = event.id
+		WHERE rule.id IN (%s)
+		""" % [placeholders]
+		_sqlite_database.query_with_bindings(query, rules_ids)
+		var rules = _sqlite_database.query_result
+		
+		for reference in references:
+			var rule_id = reference.get("rule_id")
+			var rule_data = rules.filter(func(rule): return rule.get("rule_id") == rule_id)[0]
+			
+			var response_label = rule_data.get('response_label')
+			var event_label = rule_data.get('event_label')
+			var rule_label = rule_data.get('rule_label')
+			var reference_type = reference.get("reaction_item_type")
+			var reference_label = reference.get("label")
+			var reference_human_type = "Modification" if ReactionGlobals.ItemsTypesEnum.MODIFICATION == reference_type else "Criteria"
+			
+			if response_label:
+				text_result += "Response: %s -> Rule: %s -> %s: %s" % [response_label, rule_label, reference_human_type, reference_label]
+			else:
+				text_result += "Event: %s -> Rule: %s -> %s: %s" % [event_label, rule_label, reference_human_type, reference_label]
 		
 	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
 	fact_references_dialog.popup_centered()

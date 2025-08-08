@@ -51,7 +51,6 @@ func get_references() -> Array:
 	var criterias = _sqlite_database.select_rows("criteria", "fact_id = %d OR function LIKE \'%%%s%%\'" % [sqlite_id, uid], ["*"])
 	var modifications = _sqlite_database.select_rows("modification", "fact_id = %d OR (function LIKE \'%%%s%%\' AND is_function = 1)" % [sqlite_id, uid], ["*"])
 	
-
 	results.append_array(criterias)
 	results.append_array(modifications)
 	
