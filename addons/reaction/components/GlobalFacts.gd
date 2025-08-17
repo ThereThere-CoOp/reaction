@@ -272,6 +272,7 @@ func _on_show_fact_references_button_pressed():
 		_sqlite_database.query_with_bindings(query, rules_ids)
 		var rules = _sqlite_database.query_result
 		
+		text_result += "[ol]"
 		for reference in references:
 			var rule_id = reference.get("rule_id")
 			var rule_data = rules.filter(func(rule): return rule.get("rule_id") == rule_id)[0]
@@ -284,9 +285,11 @@ func _on_show_fact_references_button_pressed():
 			var reference_human_type = "Modification" if ReactionGlobals.ItemsTypesEnum.MODIFICATION == reference_type else "Criteria"
 			
 			if response_label:
-				text_result += "Response: %s -> Rule: %s -> %s: %s" % [response_label, rule_label, reference_human_type, reference_label]
+				text_result += "[color=yellow]Response:[/color] %s [color=white][b]>>[/b][/color] [color=yellow]Rule:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]%s:[/color] %s \n" % [response_label, rule_label, reference_human_type, reference_label]
 			else:
-				text_result += "Event: %s -> Rule: %s -> %s: %s" % [event_label, rule_label, reference_human_type, reference_label]
+				text_result += "[color=yellow]Event:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]Rule:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]%s:[/color] %s \n" % [event_label, rule_label, reference_human_type, reference_label]
+		
+		text_result += "[/ol]"
 		
 	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
 	fact_references_dialog.popup_centered()
