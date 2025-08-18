@@ -160,7 +160,7 @@ func _on_fact_button_pressed() -> void:
 
 
 func _on_remove_button_pressed() -> void:
-	current_function_array.pop_back()
+	current_function_array.resize(current_function_array.size() - 1)
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
