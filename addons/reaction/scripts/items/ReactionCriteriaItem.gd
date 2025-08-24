@@ -121,9 +121,9 @@ func _init() -> void:
 # Update internal values for the given operation
 #------------------------------------------------------------------------
 func _update_internal_values() -> void:
-	var current_value_a = value_a if value_a != null else INT64_MIN
-	var current_value_b = value_b if value_b != null else INT64_MAX
-	
+	var current_value_a = value_a.to_int() if value_a != null else INT64_MIN
+	var current_value_b = value_b.to_int() if value_b != null else INT64_MAX
+		
 	match operation:
 		"<":
 			_internal_value_a = INT64_MIN
@@ -153,26 +153,31 @@ func set_value_a(value: String) -> void:
 				
 	_update_internal_values()
 
-
-func get_value_a() -> Variant:
+func get_value_a():
+	return value_a
 	
-	if fact:
-		match fact.type:
-			TYPE_STRING:
-				return value_a
-			TYPE_BOOL:
-				return !!value_a
-			TYPE_INT:
-				if value_a:
-					return int(value_a)
-			_:
-				return value_a
-	else:
-		if self is ReactionFunctionCriteriaItem:
-			if value_a:
-				return int(value_a)
-				
-	return null
+func get_value_b():
+	return value_b
+	
+#func get_value_a() -> Variant:
+	#
+	#if fact:
+		#match fact.type:
+			#TYPE_STRING:
+				#return value_a
+			#TYPE_BOOL:
+				#return !!int(value_a)
+			#TYPE_INT:
+				#if value_a:
+					#return int(value_a)
+			#_:
+				#return value_a
+	#else:
+		#if self is ReactionFunctionCriteriaItem:
+			#if value_a:
+				#return int(value_a)
+				#
+	#return null
 		
 
 
@@ -182,24 +187,24 @@ func set_value_b(value: String) -> void:
 	_update_internal_values()
 
 
-func get_value_b() -> Variant:
-	if fact:
-		match fact.type:
-			TYPE_STRING:
-				return value_b
-			TYPE_BOOL:
-				return !!value_b
-			TYPE_INT:
-				if value_b:
-					return int(value_b)
-			_:
-				return value_b
-	else:
-		if self is ReactionFunctionCriteriaItem:
-			if value_b:
-				return int(value_b)
-				
-	return null
+#func get_value_b() -> Variant:
+	#if fact:
+		#match fact.type:
+			#TYPE_STRING:
+				#return value_b
+			#TYPE_BOOL:
+				#return !!int(value_b)
+			#TYPE_INT:
+				#if value_b:
+					#return int(value_b)
+			#_:
+				#return value_b
+	#else:
+		#if self is ReactionFunctionCriteriaItem:
+			#if value_b:
+				#return int(value_b)
+				#
+	#return null
 
 
 ## ----------------------------------------------------------------------------[br]

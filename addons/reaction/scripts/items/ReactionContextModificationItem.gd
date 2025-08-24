@@ -20,9 +20,23 @@ extends ReactionBaseItem
 var fact_script: ReactionFactItem = ReactionFactItem.get_new_object()
 
 @export_group("Modification value")
-var modification_value: Variant:  ## Value to be used with the operation to modify
-	set(value):
-		modification_value = value
+@export var modification_value: String ## Value to be used with the operation to modify
+		
+
+func get_modification_real_value():
+	if fact:
+		if fact.type == TYPE_STRING:
+			print("string")
+			return modification_value
+		elif fact.type == TYPE_INT:
+			return int(modification_value)
+		elif fact.type == TYPE_BOOL:
+			return !!int(modification_value)
+		else:
+			return modification_value
+	else:
+		print("null")
+		return modification_value
 
 @export var operation: String:  ## Operation of the modification
 	set(value):
@@ -41,48 +55,48 @@ func _init() -> void:
 	
 
 
-func _get_property_list() -> Array:
-	var properties: Array = []
-	
-	if fact:
-		var numeric_operations_string_hints = "+,-,=,erase"
-		var default_operations_string_hints = "=,erase"
-
-		var modification_value_usage = (
-			PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
-		)
-
-		var operation_usage = (
-			PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
-		)
-
-		var operation_string_hint = (
-			numeric_operations_string_hints
-			if fact.type == TYPE_INT or fact.type == TYPE_FLOAT
-			else default_operations_string_hints
-		)
-
-		properties.append_array(
-			[
-				{"name": "modification_value", "type": fact.type, "usage": modification_value_usage},
-				{
-					"name": "operation",
-					"type": TYPE_STRING,
-					"usage": operation_usage,
-					"hint": PROPERTY_HINT_ENUM,
-					"hint_string": operation_string_hint
-				}
-			]
-		)
-
-	return properties
+#func _get_property_list() -> Array:
+	#var properties: Array = []
+	#
+	#if fact:
+		#var numeric_operations_string_hints = "+,-,=,erase"
+		#var default_operations_string_hints = "=,erase"
+#
+		#var modification_value_usage = (
+			#PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
+		#)
+#
+		#var operation_usage = (
+			#PROPERTY_USAGE_DEFAULT if fact != null and fact.type != null else PROPERTY_USAGE_READ_ONLY
+		#)
+#
+		#var operation_string_hint = (
+			#numeric_operations_string_hints
+			#if fact.type == TYPE_INT or fact.type == TYPE_FLOAT
+			#else default_operations_string_hints
+		#)
+#
+		#properties.append_array(
+			#[
+				#{"name": "modification_value", "type": fact.type, "usage": modification_value_usage},
+				#{
+					#"name": "operation",
+					#"type": TYPE_STRING,
+					#"usage": operation_usage,
+					#"hint": PROPERTY_HINT_ENUM,
+					#"hint_string": operation_string_hint
+				#}
+			#]
+		#)
+#
+	#return properties
 	
 	
 func _get_modification_value(context):
 	if is_function:
 		return ReactionGlobals.get_function_result(function, context, false)
 	else:
-		return modification_value
+		return get_modification_real_value()
 		
 
 ## ----------------------------------------------------------------------------[br]

@@ -68,7 +68,7 @@ func update_operation_menu_items() -> void:
 	
 func _get_value_a() -> Variant:
 	if item_object.modification_value:
-		return item_object.modification_value
+		return item_object.get_modification_real_value()
 	else:
 		match item_object.fact.type:
 			TYPE_STRING:
@@ -182,7 +182,7 @@ func _on_label_line_edit_text_submitted(new_text):
 	
 	
 func _on_value_numeric_text_submitted(new_text: String) -> void:
-	_set_modification_property("modification_value", int(new_text))
+	_set_modification_property("modification_value", new_text)
 	value_numeric_text_edit.release_focus()
 	
 	
@@ -207,7 +207,7 @@ func _on_values_menu_index_pressed(index: int):
 
 
 func _on_boolean_value_check_box_toggled(toggled_on):
-	_set_modification_property("modification_value", toggled_on)
+	_set_modification_property("modification_value", str(int(toggled_on)))
 
 
 func _on_check_button_toggled(toggled_on: bool) -> void:

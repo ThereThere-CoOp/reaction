@@ -10,7 +10,10 @@ extends ReactionCriteriaItem
 
 ## A string of ";" separated operators and facts uid to be calculated on execution time
 @export var function: String = ""
-	
+
+
+func get_function_result(context):
+	return ReactionGlobals.get_function_result(function, context)
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]
 ## [b]Parameter(s):[/b] [br]
@@ -21,7 +24,7 @@ extends ReactionCriteriaItem
 ## ----------------------------------------------------------------------------
 func test(context: ReactionBlackboard) -> bool:
 	
-	var result: int = ReactionGlobals.get_function_result(function, context)
+	var result: int = get_function_result(context)
 	
 	if result == null:
 		return false
@@ -29,8 +32,7 @@ func test(context: ReactionBlackboard) -> bool:
 	var criteria_test_result = (
 		result >= _internal_value_a
 		and result <= _internal_value_b
-	)
-	
+	)	
 	return criteria_test_result if not is_reverse else not criteria_test_result
 	
 	

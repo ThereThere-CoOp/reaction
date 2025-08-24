@@ -103,8 +103,7 @@ class TestRules:
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 500)
 		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 50)
 		
-		for op in _rules_criterias["pop_sum_less_500"].operations:
-			op.operation = "+"
+		_rules_criterias["pop_sum_less_500"].function = "%s;+;%s;+;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
 		
 		current_result = _rules_criterias["pop_sum_less_500"].test(
 			_global_blackboard
@@ -155,8 +154,7 @@ class TestRules:
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 100)
 		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 50)
 		
-		for op in _rules_criterias["pop_sum_less_500"].operations:
-			op.operation = "-"
+		_rules_criterias["pop_sus_more_500"].function = "%s;-;%s;-;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
 		
 		current_result = _rules_criterias["pop_sus_more_500"].test(
 			_global_blackboard
@@ -207,8 +205,7 @@ class TestRules:
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 1)
 		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 10)
 		
-		for op in _rules_criterias["pop_sum_less_500"].operations:
-			op.operation = "*"
+		_rules_criterias["pop_mult_more_500"].function = "%s;*;%s;*;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
 		
 		current_result = _rules_criterias["pop_mult_more_500"].test(
 			_global_blackboard
@@ -259,8 +256,7 @@ class TestRules:
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 100)
 		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 300)
 		
-		for op in _rules_criterias["pop_sum_less_500"].operations:
-			op.operation = "+"
+		_rules_criterias["pop_sum_less_500"].function = "%s;+;%s;+;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
 		
 		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
 			_global_blackboard
@@ -290,8 +286,9 @@ class TestRules:
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 500)
 		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 10)
 		
-		_rules_criterias["pop_sum_less_500"].operations[1].operation = "+"
-		_rules_criterias["pop_sum_less_500"].operations[2].operation = "/"
+		var uids_array = [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		var custom_complex_function_string_1 = "%s;+;%s;/;%s" % uids_array
+		_rules_criterias["pop_sum_less_500"].function = custom_complex_function_string_1
 		
 		current_result = _rules_criterias["pop_sum_less_500"].test(
 			_global_blackboard
@@ -308,15 +305,15 @@ class TestRules:
 		
 		assert_eq(
 			criteria_function_result_value,
-			60,
-			'Rule function criteria "pop_sum_less_500" result value must be 60'
+			150,
+			'Rule function criteria "pop_sum_less_500" result value must be 150'
 		)
 		
-		_global_blackboard.set_fact_value(_facts["population_size"], 300)
+		_global_blackboard.set_fact_value(_facts["population_size"], 3000)
 		_global_blackboard.set_fact_value(_facts["extra_population_size"], 200)
 		
-		_rules_criterias["pop_sum_less_500"].operations[1].operation = "-"
-		_rules_criterias["pop_sum_less_500"].operations[2].operation = "*"
+		var custom_complex_function_string_2 = "%s;-;%s;*;%s" % uids_array
+		_rules_criterias["pop_sum_less_500"].function = custom_complex_function_string_2
 		
 		current_result = _rules_criterias["pop_sum_less_500"].test(
 			_global_blackboard

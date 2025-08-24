@@ -59,9 +59,10 @@ class TestEvents:
 		_global_blackboard.set_fact_value(_facts["mind_type"], "mindundi")
 		_global_blackboard.set_fact_value(_facts["is_comunism"], false)
 		_global_blackboard.set_fact_value(_facts["population_size"], 50)
-
+		
+		var dialog_text_item: ReactionDialogTextItem = _dialog_responses["response_conditional_texts_choices"].get_text(_global_blackboard)
 		var dialog_returned: String = (
-			_dialog_responses["response_conditional_texts_choices"].get_text(_global_blackboard).text["es"]
+			dialog_text_item.text["es"] if dialog_text_item else ''
 		)
 
 		gut.p("Returned dialog: " + dialog_returned)

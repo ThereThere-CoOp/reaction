@@ -52,22 +52,22 @@ func before_all():
 	var criteria_is_mindundi = ReactionCriteriaItem.new()
 	criteria_is_mindundi.label = "mindtype_is_mindundi"
 	criteria_is_mindundi.fact = _facts["mind_type"]
-
-	criteria_is_mindundi.value_a = 2
+	
+	criteria_is_mindundi.value_a = '2'
 	criteria_is_mindundi.operation = "="
 
 	var criteria_population_lt_300 = ReactionCriteriaItem.new()
 	criteria_population_lt_300.label = "population_less_than_300"
 	criteria_population_lt_300.fact = _facts["population_size"]
 
-	criteria_population_lt_300.value_a = 300
+	criteria_population_lt_300.value_a = '300'
 	criteria_population_lt_300.operation = "<"
 
 	var criteria_not_comunism = ReactionCriteriaItem.new()
 	criteria_not_comunism.label = "not_comunism"
 	criteria_not_comunism.fact = _facts["is_comunism"]
 
-	criteria_not_comunism.value_a = true
+	criteria_not_comunism.value_a = '1'
 	criteria_not_comunism.operation = "="
 	criteria_not_comunism.is_reverse = true
 
@@ -75,54 +75,37 @@ func before_all():
 	criteria_population_b_100_400.label = "population_between_100_400"
 	criteria_population_b_100_400.fact = _facts["population_size"]
 
-	criteria_population_b_100_400.value_a = 100
-	criteria_population_b_100_400.value_b = 400
+	criteria_population_b_100_400.value_a = '100'
+	criteria_population_b_100_400.value_b = '400'
 	criteria_population_b_100_400.operation = "a<=x<=b"
 
 	var criteria_is_volao = ReactionCriteriaItem.new()
 	criteria_is_volao.label = "mindtype_is_volao"
 	criteria_is_volao.fact = _facts["mind_type"]
 
-	criteria_is_volao.value_a = 0
+	criteria_is_volao.value_a = '0'
 	criteria_is_volao.operation = "="
 	
 	# function criteria item init 
-	var pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
-	pop_size_criteria_fact_item.label = "population_size"
-	pop_size_criteria_fact_item.fact = fact_population_size
-	
-	var extra_pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
-	extra_pop_size_criteria_fact_item.label = "extra_population_size"
-	extra_pop_size_criteria_fact_item.fact = fact_extra_population_size
-	extra_pop_size_criteria_fact_item.operation = "+"
-	
-	var extra_small_pop_size_criteria_fact_item: ReactionCriteriaFunctionOperationItem = ReactionCriteriaFunctionOperationItem.new()
-	extra_small_pop_size_criteria_fact_item.label = "extra_small_population_size"
-	extra_small_pop_size_criteria_fact_item.fact = fact_extra_small_population_size
-	extra_small_pop_size_criteria_fact_item.operation = "-"
-	
-	var function_criteria_operations_array: Array[ReactionCriteriaFunctionOperationItem] = []
-	function_criteria_operations_array.append(pop_size_criteria_fact_item)
-	function_criteria_operations_array.append(extra_pop_size_criteria_fact_item)
-	function_criteria_operations_array.append(extra_small_pop_size_criteria_fact_item)
+	var criteria_function_string = "%s;+;%s;-;%s" % [fact_population_size.uid, fact_extra_population_size.uid, fact_extra_small_population_size.uid]
 	
 	var function_criteria_population_sum_less_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_sum_less_500.label = "pop_sum_less_500"
-	function_criteria_population_sum_less_500.value_a = 500
+	function_criteria_population_sum_less_500.value_a = '500'
 	function_criteria_population_sum_less_500.operation = "<"
-	function_criteria_population_sum_less_500.operations = function_criteria_operations_array
+	function_criteria_population_sum_less_500.function = criteria_function_string
 	
 	var function_criteria_population_sus_greater_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_sus_greater_500.label = "pop_sus_more_500"
-	function_criteria_population_sus_greater_500.value_a = 500
+	function_criteria_population_sus_greater_500.value_a = '500'
 	function_criteria_population_sus_greater_500.operation = ">"
-	function_criteria_population_sus_greater_500.operations = function_criteria_operations_array
+	function_criteria_population_sus_greater_500.function = criteria_function_string
 	
 	var function_criteria_population_mult_greater_500 = ReactionFunctionCriteriaItem.new()
 	function_criteria_population_mult_greater_500.label = "pop_mult_more_500"
-	function_criteria_population_mult_greater_500.value_a = 500
+	function_criteria_population_mult_greater_500.value_a = '500'
 	function_criteria_population_mult_greater_500.operation = ">"
-	function_criteria_population_mult_greater_500.operations = function_criteria_operations_array
+	function_criteria_population_mult_greater_500.function = criteria_function_string
 	
 	# adding criteria to global dict
 	_rules_criterias[criteria_is_mindundi.label] = criteria_is_mindundi
@@ -138,19 +121,19 @@ func before_all():
 	var modification_declare_comunism = ReactionContextModificationItem.new()
 	modification_declare_comunism.label = "declare_comunism"
 	modification_declare_comunism.fact = _facts["is_comunism"]
-	modification_declare_comunism.modification_value = true
+	modification_declare_comunism.modification_value = "1"
 	modification_declare_comunism.operation = "="
 
 	var modification_grow_population = ReactionContextModificationItem.new()
 	modification_grow_population.label = "grow_population_in_500"
 	modification_grow_population.fact = _facts["population_size"]
-	modification_grow_population.modification_value = 500
+	modification_grow_population.modification_value = "500"
 	modification_grow_population.operation = "+"
 
 	var modification_decrease_population = ReactionContextModificationItem.new()
 	modification_decrease_population.label = "decrease_population_in_100"
 	modification_decrease_population.fact = _facts["population_size"]
-	modification_decrease_population.modification_value = 100
+	modification_decrease_population.modification_value = "100"
 	modification_decrease_population.operation = "-"
 
 	var modification_erase_mindtype = ReactionContextModificationItem.new()
@@ -209,17 +192,17 @@ func before_all():
 	
 	var choice_response_conditional_texts_choices_1: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
 	choice_response_conditional_texts_choices_1.label = "choice_response_conditional_texts_choices_1"
-	choice_response_conditional_texts_choices_1.choice_text =  { "es": "Choice 1."}
+	choice_response_conditional_texts_choices_1.text =  { "es": "Choice 1."}
 	choice_response_conditional_texts_choices_1.criterias = [criteria_is_mindundi] as Array[ReactionCriteriaItem]
 	
 	var choice_response_conditional_texts_choices_2: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
 	choice_response_conditional_texts_choices_2.label = "choice_response_conditional_texts_choices_2"
-	choice_response_conditional_texts_choices_2.choice_text =  { "es": "Choice 2."}
+	choice_response_conditional_texts_choices_2.text =  { "es": "Choice 2."}
 	choice_response_conditional_texts_choices_2.criterias = [criteria_is_volao] as Array[ReactionCriteriaItem]
 	
 	var choice_response_conditional_texts_choices_3: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
 	choice_response_conditional_texts_choices_3.label = "choice_response_conditional_texts_choices_3"
-	choice_response_conditional_texts_choices_3.choice_text =  { "es": "Choice 3."}
+	choice_response_conditional_texts_choices_3.text =  { "es": "Choice 3."}
 	choice_response_conditional_texts_choices_3.criterias = [criteria_is_mindundi, criteria_population_lt_300] as Array[ReactionCriteriaItem]
 	
 	response_conditional_texts_choices.label = "response_conditional_texts_choices"
@@ -255,10 +238,10 @@ func before_all():
 	var response_group_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseGroupItem.new()
 	)
+	
 	response_group_mindundi_not_comunism_pop_100_400.label = "group_you_are_a_mindundi"
 	response_group_mindundi_not_comunism_pop_100_400.responses[response_mindundi_not_comunism_pop_100_400] = response_mindundi_not_comunism_pop_100_400
 	
-
 	_responses_groups[response_group_your_a_mindundi.label] = response_group_your_a_mindundi
 	_responses_groups[response_group_not_comunism_low_pop.label] = response_group_not_comunism_low_pop
 	_responses_groups[response_group_mindundi_not_comunism_pop_100_400.label] = response_group_mindundi_not_comunism_pop_100_400
@@ -272,14 +255,14 @@ func before_all():
 		[modification_declare_comunism, modification_decrease_population]
 	)
 
-	rule_is_mindundi.responses = response_group_your_a_mindundi
+	rule_is_mindundi.response_group = response_group_your_a_mindundi
 
 	var rule_not_comunism_and_low_population = ReactionRuleItem.new()
 	rule_not_comunism_and_low_population.label = "not_comunism_low_population"
 	rule_not_comunism_and_low_population.criterias.append_array(
 		[criteria_not_comunism, criteria_population_lt_300]
 	)
-	rule_not_comunism_and_low_population.responses = response_group_not_comunism_low_pop
+	rule_not_comunism_and_low_population.response_group = response_group_not_comunism_low_pop
 
 	var rule_mindundi_n_comunism_pop_b_100_400 = ReactionRuleItem.new()
 	rule_mindundi_n_comunism_pop_b_100_400.label = "mindundi_not_comunism_pop_between_100_400"
@@ -290,7 +273,7 @@ func before_all():
 			criteria_is_mindundi
 		]
 	)
-	rule_mindundi_n_comunism_pop_b_100_400.responses = response_group_mindundi_not_comunism_pop_100_400
+	rule_mindundi_n_comunism_pop_b_100_400.response_group = response_group_mindundi_not_comunism_pop_100_400
 
 	var rule_is_volao_p_1 = ReactionRuleItem.new()
 	rule_is_volao_p_1.label = "volao_priority_1"
