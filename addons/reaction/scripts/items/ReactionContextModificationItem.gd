@@ -26,7 +26,6 @@ var fact_script: ReactionFactItem = ReactionFactItem.get_new_object()
 func get_modification_real_value():
 	if fact:
 		if fact.type == TYPE_STRING:
-			print("string")
 			return modification_value
 		elif fact.type == TYPE_INT:
 			return int(modification_value)
@@ -35,7 +34,6 @@ func get_modification_real_value():
 		else:
 			return modification_value
 	else:
-		print("null")
 		return modification_value
 
 @export var operation: String:  ## Operation of the modification
