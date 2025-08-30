@@ -7,6 +7,10 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 @onready var change_database_path_button: Button = %ChangeDatabasesPathButton
 @onready var databases_path_lineedit: LineEdit = %DatabasesPathLineEdit
+
+@onready var change_export_path_button: Button = %ChangeExportPathButton
+@onready var export_path_lineedit: LineEdit = %ExportPathLineEdit
+
 @onready var change_default_database_path_button: Button = %ChangeDefaultDatabasePathButton 
 @onready var default_database_path_lineedit: LineEdit = %DefaultDatabasePathLineEdit
 
@@ -19,6 +23,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 
 # dialogs
 @onready var databases_path_dialog: FileDialog = %DatabasesFolderDialog
+@onready var export_path_dialog: FileDialog = %ExportFolderDialog
 @onready var default_database_path_dialog: FileDialog = %DefaultDatabaseFileDialog
 @onready var languages_edit_dialog: ConfirmationDialog = %LanguagesEditConfirmationDialog
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
@@ -31,6 +36,11 @@ func setup_settings() -> void:
 	databases_path_lineedit.text = ReactionSettings.get_setting(
 		ReactionSettings.DATABASES_PATH_SETTING_NAME,
 		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+	)
+	
+	export_path_lineedit.text = ReactionSettings.get_setting(
+		ReactionSettings.EXPORT_PATH_SETTING_NAME,
+		ReactionSettings.EXPORT_PATH_SETTING_DEFAULT
 	)
 	
 	var default_database_path = ReactionSettings.get_setting(
@@ -70,6 +80,7 @@ func apply_theme() -> void:
 	if is_instance_valid(change_database_path_button):
 		change_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		change_default_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
+		change_export_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		add_language_button.icon = get_theme_icon("New", "EditorIcons")
 		remove_language_button.icon = get_theme_icon("Remove", "EditorIcons")
 		
@@ -178,3 +189,12 @@ func _on_default_database_file_dialog_file_selected(path):
 	else:
 		warning_dialog.dialog_text = "File is not a reaction database."
 		warning_dialog.popup_centered()
+
+
+func _on_change_export_path_button_pressed() -> void:
+	export_path_dialog.popup_centered()
+
+
+func _on_export_folder_dialog_dir_selected(dir: String) -> void:
+	export_path_lineedit.text = dir
+	ReactionSettings.set_setting(ReactionSettings.EXPORT_PATH_SETTING_NAME, dir)
