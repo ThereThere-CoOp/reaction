@@ -247,6 +247,12 @@ func before_all():
 	_responses_groups[response_group_mindundi_not_comunism_pop_100_400.label] = response_group_mindundi_not_comunism_pop_100_400
 
 	# init rules
+	var defaultRuleNotCriterias = ReactionRuleItem.new()
+	defaultRuleNotCriterias.label = "default_rule"
+	defaultRuleNotCriterias.modifications.append_array(
+		[modification_decrease_population]
+	)
+
 	var rule_is_mindundi = ReactionRuleItem.new()
 	rule_is_mindundi.label = "is_mindundi"
 	rule_is_mindundi.criterias.append_array([criteria_is_mindundi])
@@ -288,7 +294,8 @@ func before_all():
 		[criteria_is_mindundi]
 	)
 	rule_is_mindundi_p_2.priority = 2
-
+	
+	_rules[defaultRuleNotCriterias.label] = defaultRuleNotCriterias
 	_rules[rule_is_mindundi.label] = rule_is_mindundi
 	_rules[rule_not_comunism_and_low_population.label] = rule_not_comunism_and_low_population
 	_rules[rule_mindundi_n_comunism_pop_b_100_400.label] = rule_mindundi_n_comunism_pop_b_100_400
@@ -300,7 +307,8 @@ func before_all():
 	var main_event_rules: Array[ReactionRuleItem] = [
 		rule_is_mindundi,
 		rule_not_comunism_and_low_population,
-		rule_mindundi_n_comunism_pop_b_100_400
+		rule_mindundi_n_comunism_pop_b_100_400,
+		defaultRuleNotCriterias,
 	]
 	main_event.rules = main_event_rules
 
