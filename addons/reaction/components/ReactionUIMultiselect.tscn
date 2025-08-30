@@ -20,6 +20,7 @@ text_overrun_behavior = 4
 [node name="ListAcceptDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
 title = "Select tag(s)"
+size = Vector2i(300, 357)
 
 [node name="ItemList" type="ItemList" parent="ListAcceptDialog"]
 unique_name_in_owner = true

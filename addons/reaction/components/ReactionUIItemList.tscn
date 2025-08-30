@@ -75,7 +75,7 @@ columns = 2
 [node name="AddItemMenuButton" type="MenuButton" parent="ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Add..."
+text = "Add Fact"
 
 [node name="RemoveItemButton" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
@@ -86,7 +86,7 @@ text = "Remove Fact"
 [node name="FilterAcceptDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
 title = "Tag filter"
-size = Vector2i(100, 250)
+size = Vector2i(300, 450)
 
 [node name="TagFilterItemList" type="ItemList" parent="FilterAcceptDialog"]
 unique_name_in_owner = true
