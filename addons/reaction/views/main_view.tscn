@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=51 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -263,6 +263,23 @@ description = ""
 scope = "Global"
 reaction_item_type = 13
 tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_nosmq"]
+script = ExtResource("14_2dj17")
+facts = {}
+uid = "e62d4b8d-9eaa-43af-ac3c-a20a7009c43c"
+label = "newTag"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 12
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://bb5087ylli2o7"
+
+[sub_resource type="Resource" id="Resource_t6gee"]
+script = ExtResource("12_cc7b5")
+object_name = "tag"
+object_resource_class = SubResource("Resource_nosmq")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [node name="MainView" type="Control"]
 clip_contents = true
@@ -802,6 +819,7 @@ unique_name_in_owner = true
 layout_mode = 2
 item_name = "tag"
 reaction_resource = SubResource("Resource_vsy2h")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_t6gee")])
 
 [node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]
 unique_name_in_owner = true
