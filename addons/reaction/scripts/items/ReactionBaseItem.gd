@@ -16,6 +16,7 @@ extends Resource
 
 @export_enum("Global", "Event") var scope: String = "Global"
 
+## enum value for reaction item type
 @export var reaction_item_type: int
 
 @export var tags: Array[ReactionTagItem]: 
@@ -32,26 +33,39 @@ extends Resource
 
 @export_group("")
 
+################################################################
+##            Sqlite managment properties
+################################################################
+
+## parent reaction item (Example: if items is a rule parent item could be an event or response
 var parent_item: ReactionBaseItem
 
+## sqlite id on database, add to use sqlite functions
 var sqlite_id: int
 
+## table name for the item on sqlite database
 var sqlite_table_name: String = ""
 
+## current sqlite database
 var _sqlite_database: SQLite
 
+## fields to ignore when serializing or deserialize
 var _ignore_fields = {
 	"resource_local_to_scene": true,
 	"resource_name": true,
 	"script": true,
 }
 
-# var _current_sqlite_data: Dictionary = {}
 
 func _init() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
 	reaction_item_type = get_type_string()
 
+## ----------------------------------------------------------------------------[br]
+## Internal where function to get an item data from sqlite, use "sqlite_id" [br]
+## property [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
 func _get_where():
 	return "id = %s" % [sqlite_id]
 
@@ -70,7 +84,7 @@ func remove_tag(tag_uid: String) -> void:
 		
 	tags.remove_at(index)
 	
-	
+
 func add_to_sqlite():
 	var data = serialize()
 	
@@ -97,7 +111,8 @@ func update_sqlite():
 	var where = _get_where()
 	_sqlite_database.update_rows(sqlite_table_name, where, data)
 	# update_from_sqlite()
-	
+
+
 func get_sqlite_list(custom_where=null, get_resources=false):
 	var results
 	if not parent_item:
