@@ -20,7 +20,9 @@ var undo_redo: EditorUndoRedoManager:
 @onready var database_menu_button = %DatabaseMenuButton
 @onready var edit_database_button = %EditDatabaseButton
 @onready var remove_database_button = %RemoveDatabaseButton
+@onready var export_database_as_resource_button = %ExportDatabaseAsResourceButton
 @onready var settings_button = %SettingsButton
+
 # panels
 @onready var database_managment_panel = %DatabaseDataManagment
 @onready var global_facts_panel = %GlobalFacts
@@ -28,9 +30,11 @@ var undo_redo: EditorUndoRedoManager:
 @onready var rules_panel = %Rules
 @onready var tags_panel = %Tags
 @onready var responses_panel = %"All Responses"
+
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
+@onready var export_database_resource_confirmation_dialog = %ExportDatabaseResourceConfirmationDialog
 @onready var settings_dialog = %SettingsDialog
 
 
@@ -94,6 +98,7 @@ func apply_theme() -> void:
 		database_menu_button.icon = get_theme_icon("Script", "EditorIcons")
 		edit_database_button.icon = get_theme_icon("Edit", "EditorIcons")
 		remove_database_button.icon = get_theme_icon("Remove", "EditorIcons")
+		export_database_as_resource_button.icon = get_theme_icon("Save", "EditorIcons")
 		settings_button.icon = get_theme_icon("Tools", "EditorIcons")
 
 
@@ -269,3 +274,8 @@ func _on_database_data_managment_tab_selected(tab):
 				tags_panel.setup_tags()
 			_:
 				global_facts_panel.setup_facts()
+
+
+func _on_export_database_as_resource_button_pressed() -> void:
+	export_database_resource_confirmation_dialog.title = ("Export database '%s'?" % databases.get(current_database_id).get_meta("name", ""))
+	export_database_resource_confirmation_dialog.popup_centered()

@@ -348,6 +348,13 @@ tooltip_text = "Remove Database"
 icon = SubResource("ImageTexture_dtkum")
 flat = true
 
+[node name="ExportDatabaseAsResourceButton" type="Button" parent="MainRows/ToolBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Export database as resource"
+icon = SubResource("ImageTexture_dtkum")
+flat = true
+
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -882,6 +889,27 @@ position = Vector2i(0, 36)
 [node name="RemoveDatabaseConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 
+[node name="ExportDatabaseResourceConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+size = Vector2i(400, 100)
+
+[node name="NameContainer" type="HBoxContainer" parent="ExportDatabaseResourceConfirmationDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="ResourceNameLineEdit" type="LineEdit" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="SettingsDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
 title = "Settings"
@@ -898,6 +926,7 @@ unique_name_in_owner = true
 [connection signal="about_to_popup" from="MainRows/ToolBar/DatabaseMenuButton" to="." method="_on_database_menu_about_to_popup"]
 [connection signal="pressed" from="MainRows/ToolBar/EditDatabaseButton" to="." method="_on_edit_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
+[connection signal="pressed" from="MainRows/ToolBar/ExportDatabaseAsResourceButton" to="." method="_on_export_database_as_resource_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="tab_selected" from="MainRows/DatabaseDataManagment" to="." method="_on_database_data_managment_tab_selected"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_added"]

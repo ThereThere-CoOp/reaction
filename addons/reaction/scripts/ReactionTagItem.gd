@@ -8,6 +8,7 @@ extends ReactionBaseItem
 ## [br]
 ## ----------------------------------------------------------------------------
 
+## each key is the uid of the facts with this tag
 @export var facts: Dictionary = {}
 
 

@@ -23,11 +23,6 @@ const ReactionSettings = preload("../utilities/settings.gd")
 ## Tags of the reaction database
 @export var tags: Dictionary = {}
 
-## dictionary that store facts references logs
-## each key is a fact value, and each value is a dict
-var fact_log: Dictionary = {}
-
-
 
 ## ----------------------------------------------------------------------------[br]
 ## Create a clean fact and add it to the database 
@@ -37,7 +32,6 @@ var fact_log: Dictionary = {}
 func create_new_fact() -> void:
 	var fact = ReactionFactItem.new()
 	global_facts[fact.uid] = fact
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -49,7 +43,6 @@ func create_new_fact() -> void:
 ## ----------------------------------------------------------------------------
 func add_fact(fact: ReactionFactItem) -> void:
 	global_facts[fact.uid] = fact
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -67,7 +60,6 @@ func remove_fact(fact_uid: String) -> void:
 		fact.update_tags()
 		
 	global_facts.erase(fact_uid)
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -79,7 +71,6 @@ func remove_fact(fact_uid: String) -> void:
 ## ----------------------------------------------------------------------------
 func add_event(event: ReactionEventItem) -> void:
 	events[event.uid] = event
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -91,7 +82,6 @@ func add_event(event: ReactionEventItem) -> void:
 ## ----------------------------------------------------------------------------
 func remove_event(event_uid: String) -> void:
 	events.erase(event_uid)
-	save_data()
 	
 	
 ## ----------------------------------------------------------------------------[br]
@@ -103,7 +93,6 @@ func remove_event(event_uid: String) -> void:
 ## ----------------------------------------------------------------------------
 func add_tag(tag: ReactionTagItem) -> void:
 	tags[tag.uid] = tag
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -115,7 +104,6 @@ func add_tag(tag: ReactionTagItem) -> void:
 ## ----------------------------------------------------------------------------
 func remove_tag(tag_uid: String) -> void:
 	tags.erase(tag_uid)
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -131,7 +119,6 @@ func add_rule_to_event(event_uid: String, new_rule: ReactionRuleItem) -> void:
 	if events.has(event_uid):
 		var event: ReactionEventItem = events[event_uid]
 		event.add_rule(new_rule)
-		save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -147,7 +134,6 @@ func remove_rule_from_event(event_uid: String, rule_uid: String) -> void:
 	if events.has(event_uid):
 		var event: ReactionEventItem = events[event_uid]
 		event.remove_rule(rule_uid)
-		save_data()
 		
 		
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
