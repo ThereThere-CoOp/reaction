@@ -26,6 +26,7 @@ var current_item: Resource = null
 var _current_search_text: String
 
 func _ready():
+	search_input = %SearchLineEdit
 	popup_timer.wait_time = popup_wait_time
 	search_input.text = search_input_text
 	

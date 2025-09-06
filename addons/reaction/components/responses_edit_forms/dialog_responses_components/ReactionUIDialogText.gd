@@ -57,8 +57,9 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	event_search_menu.items_list = event_resource.get_sqlite_list(null, true)
 	
 	if show_event and item_object.triggers:
-		var current_event_data = current_database.select_rows("event", "uid = %s" % [item_object.triggers], ["*"])
-		event_search_menu.update_search_text_value(current_event_data[0]["label"])
+		var current_event_data = current_database.select_rows("event", "uid = '%s'" % [item_object.triggers], ["*"])
+		if len(current_event_data) > 0:
+			event_search_menu.update_search_text_value(current_event_data[0]["label"])
 	
 	criterias_list.setup_objects(item_object)
 	modifications_list.setup_objects(item_object)
