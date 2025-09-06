@@ -80,33 +80,34 @@ func _get_value_a() -> Variant:
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
-	if item_object.fact:
-		value_label.visible = true
-		
-		var current_value_a = _get_value_a()
+	if not item_object.is_function:
+		if item_object.fact:
+			value_label.visible = true
 			
-		if item_object.fact.type == TYPE_INT:
-			value_numeric_input.visible = true
-			value_numeric_input.set_value_no_signal(int(current_value_a))
-			
-		if item_object.fact.type == TYPE_BOOL:
-			boolean_value_check.visible = true
-			boolean_value_check.set_pressed_no_signal(bool(current_value_a))
-			
-		if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
-			value_input.visible = true
-			value_input.text = str(current_value_a)
-			
-		if item_object.fact.type == TYPE_STRING and item_object.fact.is_enum:
-			enum_values_menu.visible = true
-			 
-			var enum_menu = enum_values_menu.get_popup()
-			enum_menu.clear()
-			var values = item_object.fact.enum_names
-			for value in values:
-				enum_menu.add_item(value)
+			var current_value_a = _get_value_a()
 				
-			enum_values_menu.text = str(current_value_a)
+			if item_object.fact.type == TYPE_INT:
+				value_numeric_input.visible = true
+				value_numeric_input.set_value_no_signal(int(current_value_a))
+				
+			if item_object.fact.type == TYPE_BOOL:
+				boolean_value_check.visible = true
+				boolean_value_check.set_pressed_no_signal(bool(current_value_a))
+				
+			if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
+				value_input.visible = true
+				value_input.text = str(current_value_a)
+				
+			if item_object.fact.type == TYPE_STRING and item_object.fact.is_enum:
+				enum_values_menu.visible = true
+				 
+				var enum_menu = enum_values_menu.get_popup()
+				enum_menu.clear()
+				var values = item_object.fact.enum_names
+				for value in values:
+					enum_menu.add_item(value)
+					
+				enum_values_menu.text = str(current_value_a)
 			
 			
 func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
@@ -214,6 +215,7 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	_set_modification_property("is_function", toggled_on)
 	function_button.visible = toggled_on
 	update_operation_menu_items()
+	update_values_input()
 
 
 func _on_facts_function_confirmation_dialog_confirmed() -> void:
