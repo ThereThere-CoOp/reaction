@@ -167,7 +167,8 @@ func export():
 	var text_object: ReactionDialogTextItem = ReactionDialogTextItem.new()
 	text_object.parent_item = self
 	
-	var text_list: Array[ReactionDialogTextItem] = text_object.get_sqlite_list(null, true)
+	var text_list: Array[ReactionDialogTextItem]
+	text_list.assign(text_object.get_sqlite_list(null, true))
 	
 	for text in text_list:
 		text.export()
@@ -178,7 +179,8 @@ func export():
 		var choice_object: ReactionDialogChoiceItem = ReactionDialogChoiceItem.new()
 		choice_object.parent_item = self
 	
-		var choice_list: Array[ReactionDialogChoiceItem] = choice_object.get_sqlite_list(null, true)
+		var choice_list: Array[ReactionDialogChoiceItem]
+		choice_list.assign(choice_object.get_sqlite_list(null, true))
 		
 		for choice in choice_list:
 			choice.export()

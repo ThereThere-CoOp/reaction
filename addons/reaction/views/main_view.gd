@@ -3,6 +3,8 @@ extends Control
 
 const ReactionSettings = preload("../utilities/settings.gd")
 
+const ExportDatabase = preload("../utilities/export_database.gd")
+
 var databases: Dictionary = {}
 
 var current_database_id: String = ""
@@ -22,6 +24,7 @@ var undo_redo: EditorUndoRedoManager:
 @onready var remove_database_button = %RemoveDatabaseButton
 @onready var export_database_as_resource_button = %ExportDatabaseAsResourceButton
 @onready var settings_button = %SettingsButton
+@onready var resource_database_name_lineedit: LineEdit = %ResourceDatabaseNameLineEdit
 
 # panels
 @onready var database_managment_panel = %DatabaseDataManagment
@@ -279,3 +282,17 @@ func _on_database_data_managment_tab_selected(tab):
 func _on_export_database_as_resource_button_pressed() -> void:
 	export_database_resource_confirmation_dialog.title = ("Export database '%s'?" % databases.get(current_database_id).get_meta("name", ""))
 	export_database_resource_confirmation_dialog.popup_centered()
+
+
+func _on_export_database_resource_confirmation_dialog_confirmed() -> void:
+	var database_name = "new_database_export"
+	
+	if resource_database_name_lineedit.text != "":
+		database_name = resource_database_name_lineedit.text
+		
+	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
+	new_database.label = database_name
+	new_database.save_data()
+		
+	
+		

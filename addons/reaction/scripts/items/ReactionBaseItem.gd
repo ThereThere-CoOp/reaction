@@ -98,6 +98,11 @@ func remove_tag(tag_uid: String) -> void:
 	tags.remove_at(index)
 	
 
+## ----------------------------------------------------------------------------[br]
+## Add object to sqlite database with the current data, if item have a [br]
+## parent item add foreign key data to the sqlite database [br]
+## [b]Returns: Dictionary The data saved in database [br]
+## ----------------------------------------------------------------------------
 func add_to_sqlite() -> Dictionary:
 	var data = serialize()
 	

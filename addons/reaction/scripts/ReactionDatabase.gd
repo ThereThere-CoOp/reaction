@@ -161,14 +161,13 @@ func save_data() -> void:
 	ResourceSaver.save(
 		self,
 		(
-			"%s/%s_%s.tres"
+			"%s/%s.tres"
 			% [
 				ReactionSettings.get_setting(
-					ReactionSettings.DATABASES_PATH_SETTING_NAME,
-					ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+					ReactionSettings.EXPORT_PATH_SETTING_NAME,
+					ReactionSettings.EXPORT_PATH_SETTING_DEFAULT
 				),
-				label.replace(" ", "_"),
-				uid
+				label.replace(" ", "_")
 			]
 		)
 	)

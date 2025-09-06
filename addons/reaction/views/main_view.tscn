@@ -905,10 +905,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Name:"
 
-[node name="ResourceNameLineEdit" type="LineEdit" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
+[node name="ResourceDatabaseNameLineEdit" type="LineEdit" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "Input database resource name"
 
 [node name="SettingsDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
@@ -962,4 +963,5 @@ unique_name_in_owner = true
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]
 [connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="ExportDatabaseResourceConfirmationDialog" to="." method="_on_export_database_resource_confirmation_dialog_confirmed"]
 [connection signal="databases_path_changed" from="SettingsDialog/SettingsView" to="." method="_on_setting_database_path_updated"]

@@ -166,18 +166,21 @@ func export():
 	var criteria_object: ReactionCriteriaItem = ReactionCriteriaItem.new()
 	criteria_object.parent_item = self
 	
-	var criterias_list: Array[ReactionCriteriaItem] = criteria_object.get_sqlite_list(null, true)
+	var criterias_list: Array[ReactionCriteriaItem]
+	criterias_list.assign(criteria_object.get_sqlite_list(null, true))
 		
 	criterias = criterias_list
 	
 	var modification_object: ReactionContextModificationItem = ReactionContextModificationItem.new()
 	modification_object.parent_item = self
 	
-	var modifications_list: Array[ReactionContextModificationItem] = modification_object.get_sqlite_list(null, true)
+	var modifications_list: Array[ReactionContextModificationItem]
+	modifications_list.assign(modification_object.get_sqlite_list(null, true))
 		
 	modifications = modifications_list
 	
-	response_group.export()
+	if response_group:
+		response_group.export()
 	
 	
 	

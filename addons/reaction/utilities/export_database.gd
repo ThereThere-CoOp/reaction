@@ -2,7 +2,7 @@
 extends Node
 
 
-func _get_items_tagged_by_tag(tag, item_table_name="fact"):
+static func _get_items_tagged_by_tag(tag, item_table_name="fact"):
 	var sqlite_database: SQLite = ReactionGlobals.current_sqlite_database
 	
 	var query = """
@@ -17,7 +17,7 @@ func _get_items_tagged_by_tag(tag, item_table_name="fact"):
 	return sqlite_database.query_result
 
 
-func get_resource_from_database() -> ReactionDatabase:
+static func get_resource_from_sqlite_database() -> ReactionDatabase:
 	var result_resource_database: ReactionDatabase = ReactionDatabase.new()
 	result_resource_database.label = 'exported_database'
 	var sqlite_database: SQLite = ReactionGlobals.current_sqlite_database
@@ -32,7 +32,7 @@ func get_resource_from_database() -> ReactionDatabase:
 	result_resource_database.global_facts = global_facts_dict
 	
 	# exporting tags
-	var tags_list: Array[ReactionTagItem] = ReactionTagItem.new().get_sqlite_list(null, true)
+	var tags_list = ReactionTagItem.new().get_sqlite_list(null, true)
 	var tags_dict: Dictionary = {}
 	
 	for tag in tags_list:
