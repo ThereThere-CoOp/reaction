@@ -85,7 +85,14 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 		return resource_result
 	else:
 		return results
-	
+		
+		
+func export():
+	var children_responses = get_sqlite_children_list(null, true)
+	for response in children_responses:
+		response.export()
+		responses[response.uid] = response
+		
 	
 static func get_new_object():
 	return ReactionResponseGroupItem.new()

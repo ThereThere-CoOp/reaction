@@ -22,6 +22,7 @@ func get_resource_from_database() -> ReactionDatabase:
 	result_resource_database.label = 'exported_database'
 	var sqlite_database: SQLite = ReactionGlobals.current_sqlite_database
 	
+	# exporting facts
 	var global_facts_list = ReactionFactItem.new().get_sqlite_list(null, true)
 	var global_facts_dict: Dictionary = {}
 	
@@ -30,7 +31,7 @@ func get_resource_from_database() -> ReactionDatabase:
 		
 	result_resource_database.global_facts = global_facts_dict
 	
-	
+	# exporting tags
 	var tags_list: Array[ReactionTagItem] = ReactionTagItem.new().get_sqlite_list(null, true)
 	var tags_dict: Dictionary = {}
 	
@@ -45,5 +46,15 @@ func get_resource_from_database() -> ReactionDatabase:
 		tags_dict[tag.uid] = tag
 			
 	result_resource_database.tags = tags_dict
+	
+	# exporting events
+	var event_list = ReactionEventItem.new().get_sqlite_list(null, true)
+	var event_dict: Dictionary = {}
+	
+	for event in event_list:
+		event.export()
+		event_dict[event.uid] = event
+		
+	result_resource_database.events = event_dict
 	
 	return result_resource_database

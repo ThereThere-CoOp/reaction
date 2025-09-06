@@ -61,6 +61,7 @@ func _init() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
 	reaction_item_type = get_type_string()
 
+
 ## ----------------------------------------------------------------------------[br]
 ## Internal where function to get an item data from sqlite, use "sqlite_id" [br]
 ## property [br]
@@ -70,10 +71,22 @@ func _get_where():
 	return "id = %s" % [sqlite_id]
 
 
+## ----------------------------------------------------------------------------[br]
+## Add a tag to the reaction item [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* tag | ReactionTagItem:[/b] Tag resource to add [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
 func add_tag(tag: ReactionTagItem) -> void:
 	tags.append(tag)
 	
-	
+
+## ----------------------------------------------------------------------------[br]
+## Remove a tag from the reaction item [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* tag_uid | String:[/b] Tag uid to remove [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
 func remove_tag(tag_uid: String) -> void:
 	var index = 0
 	for tag in tags:
@@ -85,7 +98,7 @@ func remove_tag(tag_uid: String) -> void:
 	tags.remove_at(index)
 	
 
-func add_to_sqlite():
+func add_to_sqlite() -> Dictionary:
 	var data = serialize()
 	
 	if parent_item:
@@ -234,6 +247,11 @@ func get_tags():
 	var result = _sqlite_database.query_result
 	
 	return result
+	
+	
+func export():
+	pass
+	
 	
 func _to_string():
 	return label

@@ -162,6 +162,25 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 		return results
 	
 
+func export():
+	var criteria_object: ReactionCriteriaItem = ReactionCriteriaItem.new()
+	criteria_object.parent_item = self
+	
+	var criterias_list: Array[ReactionCriteriaItem] = criteria_object.get_sqlite_list(null, true)
+		
+	criterias = criterias_list
+	
+	var modification_object: ReactionContextModificationItem = ReactionContextModificationItem.new()
+	modification_object.parent_item = self
+	
+	var modifications_list: Array[ReactionContextModificationItem] = modification_object.get_sqlite_list(null, true)
+		
+	modifications = modifications_list
+	
+	response_group.export()
+	
+	
+	
 static func get_new_object():
 	return ReactionRuleItem.new()
 	

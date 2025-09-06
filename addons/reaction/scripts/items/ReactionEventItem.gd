@@ -97,6 +97,20 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 				return []
 
 	return []
+	
+	
+func export():
+	var rule_object: ReactionRuleItem = ReactionRuleItem.new()
+	rule_object.parent_item = self
+	
+	var rules_list: Array[ReactionRuleItem] = rule_object.get_sqlite_list(null, true)
+	
+	for rule in rules_list:
+		rule.export()
+		
+	rules = rules_list
+	
+	
 
 
 static func get_new_object():
