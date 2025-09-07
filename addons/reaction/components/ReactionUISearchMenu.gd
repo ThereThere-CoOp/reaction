@@ -28,7 +28,9 @@ var _current_search_text: String
 func _ready():
 	search_input = %SearchLineEdit
 	popup_timer.wait_time = popup_wait_time
-	search_input.text = search_input_text
+	
+	if search_input:
+		search_input.text = search_input_text
 	
 	if Engine.is_editor_hint():
 		call_deferred("apply_theme")
@@ -48,6 +50,10 @@ func apply_theme() -> void:
 	
 func update_search_text_value(value: String) -> void:
 	search_input_text = value
+	
+	if not search_input:
+		search_input = %SearchLineEdit
+		
 	search_input.text = search_input_text
 
 
