@@ -83,6 +83,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="CleanResourceButton" type="Button" parent="Rows/Columns/Rows2/ResourceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clean"
+
 [node name="ResourcePathChooseButton" type="Button" parent="Rows/Columns/Rows2/ResourceContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -95,5 +100,6 @@ ok_button_text = "Open"
 file_mode = 0
 
 [connection signal="text_submitted" from="Rows/Columns/Rows1/LabelContainer/LabelInputLineEdit" to="." method="_on_label_input_line_edit_text_submitted"]
+[connection signal="pressed" from="Rows/Columns/Rows2/ResourceContainer/CleanResourceButton" to="." method="_on_clean_resource_button_pressed"]
 [connection signal="pressed" from="Rows/Columns/Rows2/ResourceContainer/ResourcePathChooseButton" to="." method="_on_resource_path_choose_button_pressed"]
 [connection signal="file_selected" from="ResourceFileDialog" to="." method="_on_resource_file_dialog_file_selected"]

@@ -17,8 +17,9 @@ var current_response: ReactionResponseBaseItem
 @onready var resource_file_dialog: FileDialog = %ResourceFileDialog
 @onready var resource_path_linedit: LineEdit = %ResourcePathLineEdit
 @onready var resource_path_choose_button: Button = %ResourcePathChooseButton
-
-	
+@onready var clean_resource_path_button: Button = %CleanResourceButton
+		
+		
 func _setup_panel():
 	if current_response:
 		sqlite_database = ReactionGlobals.current_sqlite_database
@@ -40,8 +41,6 @@ func _setup_panel():
 			if current_response.resource != null:
 				resource_path_linedit.text = current_response.resource
 	
-	
-	
 func setup(response: ReactionResponseBaseItem) -> void:
 	current_response = response
 	# use signal to fix this
@@ -53,8 +52,11 @@ func setup(response: ReactionResponseBaseItem) -> void:
 	resource_file_dialog = %ResourceFileDialog
 	resource_path_linedit = %ResourcePathLineEdit
 	resource_path_choose_button = %ResourcePathChooseButton
+	clean_resource_path_button = %CleanResourceButton
 	
 	_setup_panel()
+	
+	
 ###  signals
 
 
@@ -77,4 +79,10 @@ func _on_resource_path_choose_button_pressed() -> void:
 func _on_resource_file_dialog_file_selected(path: String) -> void:
 	resource_path_linedit.text = path
 	current_response.resource = path
+	current_response.update_sqlite()
+
+
+func _on_clean_resource_button_pressed() -> void:
+	resource_path_linedit.text = ""
+	current_response.resource = ""
 	current_response.update_sqlite()

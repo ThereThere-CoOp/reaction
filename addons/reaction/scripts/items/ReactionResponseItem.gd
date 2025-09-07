@@ -14,7 +14,7 @@ extends ReactionResponseBaseItem
 @export var triggers: String
 
 ## path of a resource to return with response to be use with load or preload
-@export var resource: String
+@export var resource: String = ""
 
 
 func _init() -> void:
