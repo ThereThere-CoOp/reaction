@@ -50,6 +50,9 @@ func setup(response: ReactionResponseBaseItem) -> void:
 	uid_line_edit = %UidLineEdit
 	triggers_container = %TriggersContainer
 	events_search_menu = %EventsSearchMenu
+	resource_file_dialog = %ResourceFileDialog
+	resource_path_linedit = %ResourcePathLineEdit
+	resource_path_choose_button = %ResourcePathChooseButton
 	
 	_setup_panel()
 ###  signals

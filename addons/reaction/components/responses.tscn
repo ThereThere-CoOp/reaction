@@ -15,6 +15,7 @@ texts = Array[ExtResource("7_4v3m6")]([])
 have_choices = false
 choices = Array[ExtResource("4_adtlr")]([])
 triggers = ""
+resource = ""
 uid = "2e16fcd6-a082-4db9-89e9-7fa98bc80a6a"
 label = "newResponse"
 description = "Item long description"
