@@ -2,7 +2,7 @@
 class_name ReactionUIMainResponseEditForm
 extends PanelContainer
 
-signal field_updated(field_name: String, value: Variant)
+signal field_updated()
 
 var sqlite_database: SQLite
 
@@ -13,7 +13,11 @@ var current_response: ReactionResponseBaseItem
 @onready var uid_line_edit: LineEdit = %UidLineEdit
 @onready var triggers_container: HBoxContainer = %TriggersContainer
 @onready var events_search_menu: ReactionUISearchMenu = %EventsSearchMenu
-	
+
+@onready var resource_file_dialog: FileDialog = %ResourceFileDialog
+@onready var resource_path_linedit: LineEdit = %ResourcePathLineEdit
+@onready var resource_path_choose_button: Button = %ResourcePathChooseButton
+
 	
 func _setup_panel():
 	if current_response:
@@ -32,6 +36,9 @@ func _setup_panel():
 			triggers_container.visible = true
 			if not events_search_menu.is_connected("item_selected", _on_label_events_search_menu_item_selected):
 				events_search_menu.item_selected.connect(_on_label_events_search_menu_item_selected)
+				
+			if current_response.resource != null:
+				resource_path_linedit.text = current_response.resource
 	
 	
 	
@@ -57,4 +64,14 @@ func _on_label_input_line_edit_text_submitted(new_text):
 		
 func _on_label_events_search_menu_item_selected(item: Resource):
 	current_response.triggers = item.uid
+	current_response.update_sqlite()
+
+
+func _on_resource_path_choose_button_pressed() -> void:
+	resource_file_dialog.popup_centered()
+
+
+func _on_resource_file_dialog_file_selected(path: String) -> void:
+	resource_path_linedit.text = path
+	current_response.resource = path
 	current_response.update_sqlite()

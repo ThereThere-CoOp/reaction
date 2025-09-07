@@ -40,7 +40,6 @@ size_flags_horizontal = 3
 
 [node name="TriggersContainer" type="HBoxContainer" parent="Rows/Columns/Rows1"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -71,4 +70,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
+[node name="ResourceContainer" type="HBoxContainer" parent="Rows/Columns/Rows2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Rows/Columns/Rows2/ResourceContainer"]
+layout_mode = 2
+text = "Resource Path:"
+
+[node name="ResourcePathLineEdit" type="LineEdit" parent="Rows/Columns/Rows2/ResourceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourcePathChooseButton" type="Button" parent="Rows/Columns/Rows2/ResourceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Choose"
+
+[node name="ResourceFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+
 [connection signal="text_submitted" from="Rows/Columns/Rows1/LabelContainer/LabelInputLineEdit" to="." method="_on_label_input_line_edit_text_submitted"]
+[connection signal="pressed" from="Rows/Columns/Rows2/ResourceContainer/ResourcePathChooseButton" to="." method="_on_resource_path_choose_button_pressed"]
+[connection signal="file_selected" from="ResourceFileDialog" to="." method="_on_resource_file_dialog_file_selected"]
