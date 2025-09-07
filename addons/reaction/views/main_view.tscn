@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=53 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
@@ -226,6 +226,7 @@ metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 [sub_resource type="Resource" id="Resource_jo51q"]
 script = ExtResource("18_irtov")
 triggers = ""
+resource = ""
 uid = "d6b969cf-7d5d-4cef-b971-7fc8f8681046"
 label = "newResponse"
 description = "Item long description"
@@ -234,12 +235,31 @@ reaction_item_type = 8
 tags = Array[ExtResource("14_2dj17")]([])
 metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
 
+[sub_resource type="Resource" id="Resource_saux0"]
+script = ExtResource("18_irtov")
+triggers = ""
+resource = ""
+uid = "7c7ce4fd-1d83-4996-bbfc-4701af8abe68"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 8
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
+
+[sub_resource type="Resource" id="Resource_nhcx7"]
+script = ExtResource("12_cc7b5")
+object_name = "Response"
+object_resource_class = SubResource("Resource_saux0")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
 [sub_resource type="Resource" id="Resource_iru7f"]
 script = ExtResource("20_j5jl6")
 texts = Array[ExtResource("21_dtkum")]([])
 have_choices = false
 choices = Array[ExtResource("19_6chnr")]([])
 triggers = ""
+resource = ""
 uid = "46a00bc8-475c-4a7f-a2a8-679584e32e50"
 label = "newResponse"
 description = "Item long description"
@@ -794,7 +814,7 @@ unique_name_in_owner = true
 layout_mode = 2
 item_name = "response"
 reaction_resource = SubResource("Resource_jo51q")
-objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_dhysa")])
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_nhcx7"), SubResource("Resource_dhysa")])
 
 [node name="ResponseDataContainer" type="MarginContainer" parent="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer"]
 unique_name_in_owner = true

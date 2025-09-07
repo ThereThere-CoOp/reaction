@@ -2,6 +2,7 @@
 extends MarginContainer
 
 @onready var dialog_response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIDialogResponseEditForm.tscn")
+@onready var response_edit_form_scene: PackedScene = preload("res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn")
 
 var current_response: ReactionResponseItem = null
 
@@ -38,6 +39,8 @@ func _set_response(response_data: ReactionResponseItem) -> void:
 	match response_type:
 		ReactionGlobals.ItemsTypesEnum.DIALOG:
 			form_scene = dialog_response_edit_form_scene.instantiate()
+		ReactionGlobals.ItemsTypesEnum.RESPONSE:
+			form_scene = response_edit_form_scene.instantiate()
 		_:
 			form_scene = dialog_response_edit_form_scene.instantiate()
 	
