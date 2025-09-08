@@ -118,8 +118,8 @@ func _deselect_item() -> void:
 	add_existing_response_button.disabled = true
 	add_response_menu_button.disabled = true
 	_get_selected_tree_item().deselect(0)
-	
-	
+		
+		
 func _get_response_from_add_data_array(response_type: int) -> ListObjectFormObjectToAdd:
 	for add_response in responses_to_add_data_array:
 		var tmp_object: ReactionResponseItem = add_response.object_resource_class.get_new_object()
@@ -190,7 +190,7 @@ func _on_responses_tree_item_selected():
 	add_response_group_button.disabled = bool(not response is ReactionResponseGroupItem)
 	add_response_menu_button.disabled = bool(not response is ReactionResponseGroupItem)
 		
-			
+
 func _on_responses_tree_nothing_selected():
 	_deselect_item()
 

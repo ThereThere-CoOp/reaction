@@ -54,11 +54,17 @@ func _ready():
 	default_database = get_default_database()
 	
 	
+## ----------------------------------------------------------------------------[br]
+## Use to save on the file system the current contexts data [br]
+## ----------------------------------------------------------------------------
 func save_all_contexts_data():
 	global_context.save_data()
 	## add below extra custom added context to save their data too
 		
-		
+
+## ----------------------------------------------------------------------------[br]
+## Get default rection resource item database to be used in-game [br]
+## ----------------------------------------------------------------------------
 func get_default_database() -> ReactionDatabase:
 	var default_database_path = ReactionSettings.get_setting(
 		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, 
@@ -89,7 +95,8 @@ func _change_reaction_ui_debug_visibility() -> void:
 ## [b]* check_only | bool:[/b] If true only check the validity of the math expression
 ## [br]
 ## [b]Returns: int[/b] [br]
-## The result of the execution of the function or null is the function is not valid [br]
+## The result of the execution of the function or null is the function is [br] 
+## not valid 
 ## ----------------------------------------------------------------------------
 func get_function_result(function: String, context: ReactionBlackboard, check_only: bool = false):
 	var expr = Expression.new()
@@ -119,7 +126,7 @@ func get_function_result(function: String, context: ReactionBlackboard, check_on
 		
 
 ## ----------------------------------------------------------------------------[br]
-## private fuction to sort rules when have priority higher than 0 [br]
+## Private fuction to sort rules when have priority higher than 0 [br]
 ## ----------------------------------------------------------------------------
 func _sort_priority_rules(a, b):
 	if a.priority < b.priority:
@@ -157,6 +164,13 @@ func sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem]
 	return new_rules
 	
 
+## ----------------------------------------------------------------------------[br]
+## Generate placeholder to query sqlite database table by an array of ids [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* array | Array:[/b] An array of sqlite database table ids [br]
+## [b]Returns: String[/b] [br]
+## The string with placeholder to be used on the database query [br] 
+## ----------------------------------------------------------------------------
 func generate_sqlite_query_placeholders_from_array(array):
 	var arr := Array()
 	arr.resize(len(array))
@@ -166,6 +180,9 @@ func generate_sqlite_query_placeholders_from_array(array):
 	return placeholders
 	
 
+## ----------------------------------------------------------------------------[br]
+## Remove sqlite database file from the file system [br]
+## ----------------------------------------------------------------------------
 func remove_sqlite_database(database: SQLite) -> void:
 	var file_path = database.path
 	database.close_db()
