@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://rqo7i15qw0cg"]
+
+[ext_resource type="Script" uid="uid://bu186uaejuyca" path="res://addons/reaction/components/responses_edit_forms/responses_groups_components/ReactionUIResponseGroupResponseConfig.gd" id="1_4umu1"]
+
+[node name="ReactionUIResponseGroupResponseConfig" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4umu1")
+
+[node name="ResponseDataContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ResponseNameLineEdit" type="LineEdit" parent="ResponseDataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResponseUidLineEdit" type="LineEdit" parent="ResponseDataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ExecutionOrderContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ExecutionOrderContainer"]
+layout_mode = 2
+text = "Execution Order:"
+
+[node name="OrderSpinBox" type="SpinBox" parent="ExecutionOrderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WeightContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WeightContainer"]
+layout_mode = 2
+text = "Weigth Function:"
+
+[node name="MatchOnceContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MatchOnceContainer"]
+layout_mode = 2
+text = "Match once:"
+
+[node name="ReturnOnceCheckButton" type="CheckButton" parent="MatchOnceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
