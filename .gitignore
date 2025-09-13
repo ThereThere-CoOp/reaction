@@ -6,5 +6,6 @@ addons/gut/
 # visual studio code ignores
 .vscode/
 examples/sqlite_databases/
+examples/sqlite_databases_backups/
 examples/export/
 
