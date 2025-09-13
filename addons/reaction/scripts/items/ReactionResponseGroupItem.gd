@@ -12,6 +12,19 @@ extends ReactionResponseBaseItem
 ## dict of responses or responses groups
 @export var responses = {}
 
+## the method how the group will return the response
+## by_order: By response order
+## random: Randomly each time
+## random_weight: By random using a weight from a function
+@export var return_method = "random"
+
+## dictionary to store response settings each key is the response uid
+## and the values is a dict with the settings
+@export var responses_settings = {}
+
+## dictionary to store the current executed responses
+## each key is an response uid
+@export var executed_responses = {}
 
 func _init() -> void:
 	super()
