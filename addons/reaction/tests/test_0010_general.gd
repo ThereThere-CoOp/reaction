@@ -140,11 +140,21 @@ func before_all():
 	modification_erase_mindtype.label = "erase_mind_type"
 	modification_erase_mindtype.fact = _facts["mind_type"]
 	modification_erase_mindtype.operation = "erase"
+	
+	var modification_function_string = "%s;+;10" % [fact_population_size.uid]
+	
+	var modification_function_add_population_size_plus_10_to_extra = ReactionContextModificationItem.new()
+	modification_function_add_population_size_plus_10_to_extra.label = "function_add_population_size_plus_10_to_extra"
+	modification_function_add_population_size_plus_10_to_extra.fact = _facts["extra_population_size"]
+	modification_function_add_population_size_plus_10_to_extra.is_function = true
+	modification_function_add_population_size_plus_10_to_extra.function = modification_function_string
+	modification_function_add_population_size_plus_10_to_extra.operation = "+"
 
 	_context_modifications[modification_declare_comunism.label] = modification_declare_comunism
 	_context_modifications[modification_decrease_population.label] = modification_decrease_population
 	_context_modifications[modification_grow_population.label] = modification_grow_population
 	_context_modifications[modification_erase_mindtype.label] = modification_erase_mindtype
+	_context_modifications[modification_function_add_population_size_plus_10_to_extra.label] = modification_function_add_population_size_plus_10_to_extra
 
 	# init responses
 	# init dialog responses
@@ -322,6 +332,7 @@ func before_all():
 		rule_is_volao_p_1,
 		rule_mindundi_n_comunism_pop_b_100_400
 	]
+	
 	priority_rule_event.rules = priority_rule_event_rules
 
 	priority_rule_event.label = "priority_rule_event"
