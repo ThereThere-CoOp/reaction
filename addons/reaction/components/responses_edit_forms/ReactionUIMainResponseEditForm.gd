@@ -8,12 +8,12 @@ var sqlite_database: SQLite
 
 var current_response: ReactionResponseBaseItem
 
-
 @onready var label_input_line_edit: LineEdit = %LabelInputLineEdit
 @onready var uid_line_edit: LineEdit = %UidLineEdit
 @onready var triggers_container: HBoxContainer = %TriggersContainer
 @onready var events_search_menu: ReactionUISearchMenu = %EventsSearchMenu
 
+@onready var resource_input_container: HBoxContainer = %ResourceContainer
 @onready var resource_file_dialog: FileDialog = %ResourceFileDialog
 @onready var resource_path_linedit: LineEdit = %ResourcePathLineEdit
 @onready var resource_path_choose_button: Button = %ResourcePathChooseButton
@@ -40,6 +40,8 @@ func _setup_panel():
 				
 			if current_response.resource != null:
 				resource_path_linedit.text = current_response.resource
+		else:
+			resource_input_container.visible = false
 	
 func setup(response: ReactionResponseBaseItem) -> void:
 	current_response = response
@@ -53,6 +55,7 @@ func setup(response: ReactionResponseBaseItem) -> void:
 	resource_path_linedit = %ResourcePathLineEdit
 	resource_path_choose_button = %ResourcePathChooseButton
 	clean_resource_path_button = %CleanResourceButton
+	resource_input_container = %ResourceContainer
 	
 	_setup_panel()
 	
