@@ -25,3 +25,12 @@ popup/item_1/text = "Random"
 popup/item_1/id = 1
 popup/item_2/text = "Random with weight"
 popup/item_2/id = 2
+
+[node name="ResponsesConfigContainer" type="VBoxContainer" parent="Rows" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Rows/ResponsesConfigContainer" index="0"]
+layout_mode = 2
+text = "Responses configurations:"
