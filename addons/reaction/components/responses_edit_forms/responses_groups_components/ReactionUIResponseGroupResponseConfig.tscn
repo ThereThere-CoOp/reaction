@@ -16,10 +16,12 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
 [node name="ReactionUIResponseGroupResponseConfig" type="PanelContainer"]
-offset_right = 454.0
-offset_bottom = 66.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dfj8p")
 script = ExtResource("1_4umu1")
 
@@ -68,15 +70,15 @@ layout_mode = 2
 text = "Function
 "
 
-[node name="MatchOnceContainer" type="VBoxContainer" parent="Columns"]
+[node name="ReturnOnceContainer" type="VBoxContainer" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Columns/MatchOnceContainer"]
+[node name="Label" type="Label" parent="Columns/ReturnOnceContainer"]
 layout_mode = 2
-text = "Match once:"
+text = "Return once:"
 
-[node name="ReturnOnceCheckButton" type="CheckButton" parent="Columns/MatchOnceContainer"]
+[node name="ReturnOnceCheckButton" type="CheckButton" parent="Columns/ReturnOnceContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 

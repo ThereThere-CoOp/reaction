@@ -41,5 +41,8 @@ func setup(response_group: ReactionResponseGroupItem, data: Dictionary):
 	elif response_group.return_method == "random_weight":
 		weigth_container.visible = true
 	
+	response_name_lineedit.text = data.get("label", "")
+	response_uid_lineedit.text = data.get("uid", "")
+	
 	
 	

@@ -29,8 +29,20 @@ popup/item_2/id = 2
 [node name="ResponsesConfigContainer" type="VBoxContainer" parent="Rows" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 5
+size_flags_vertical = 3
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Rows/ResponsesConfigContainer" index="0"]
 layout_mode = 2
 text = "Responses configurations:"
+
+[node name="ConfigsScrollContainer" type="ScrollContainer" parent="Rows/ResponsesConfigContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConfigsListContainer" type="VBoxContainer" parent="Rows/ResponsesConfigContainer/ConfigsScrollContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10

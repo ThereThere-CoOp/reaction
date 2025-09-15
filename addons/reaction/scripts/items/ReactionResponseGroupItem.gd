@@ -65,17 +65,33 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 		where = " AND (%s)" % [custom_where]
 		
 	var groups_query = """
-	SELECT response_group.id AS id, response_group.label AS label, response_group.uid AS uid, response_group.reaction_item_type AS reaction_item_type
+	SELECT response_group.id AS id, 
+	response_group.label AS label, 
+	response_group.uid AS uid, 
+	response_group.reaction_item_type AS reaction_item_type,
+	relation.id AS relation_id,
+	relation.return_once AS return_once,
+	relation.execution_order AS execution_order,
+	relation.weight_function AS weight_function
 	FROM response_group
-	INNER JOIN response_parent_group_rel ON response_group.id = response_parent_group_rel.response_group_id
-	WHERE response_parent_group_rel.parent_group_id = %d %s
+	INNER JOIN response_parent_group_rel as relation
+	ON response_group.id = relation.response_group_id
+	WHERE relation.parent_group_id = %d %s
 	""" % [ sqlite_id, where ]
 		
 	var responses_query = """
-	SELECT response.id AS id, response.label AS label, response.uid AS uid, response.reaction_item_type AS reaction_item_type
+	SELECT response.id AS id, 
+	response.label AS label, 
+	response.uid AS uid, 
+	response.reaction_item_type AS reaction_item_type,
+	relation.id AS relation_id,
+	relation.return_once AS return_once,
+	relation.execution_order AS execution_order,
+	relation.weight_function AS weight_function
 	FROM response
-	INNER JOIN response_parent_group_rel ON response.id = response_parent_group_rel.response_id
-	WHERE response_parent_group_rel.parent_group_id = %d %s
+	INNER JOIN response_parent_group_rel as relation 
+	ON response.id = relation.response_id
+	WHERE relation.parent_group_id = %d %s
 	""" % [ sqlite_id, where ]
 	
 	var query = """
