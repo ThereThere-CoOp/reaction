@@ -1,73 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://rqo7i15qw0cg"]
+[gd_scene load_steps=4 format=3 uid="uid://rqo7i15qw0cg"]
 
 [ext_resource type="Script" uid="uid://bu186uaejuyca" path="res://addons/reaction/components/responses_edit_forms/responses_groups_components/ReactionUIResponseGroupResponseConfig.gd" id="1_4umu1"]
 [ext_resource type="PackedScene" uid="uid://cl33asfebw70e" path="res://addons/reaction/components/ReactionUIFunctionManagment.tscn" id="2_dfj8p"]
 
-[node name="ReactionUIResponseGroupResponseConfig" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfj8p"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="ReactionUIResponseGroupResponseConfig" type="PanelContainer"]
+offset_right = 454.0
+offset_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dfj8p")
 script = ExtResource("1_4umu1")
 
-[node name="ResponseDataContainer" type="VBoxContainer" parent="."]
+[node name="Columns" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResponseDataContainer" type="VBoxContainer" parent="Columns"]
 layout_mode = 2
 
-[node name="ResponseNameLineEdit" type="LineEdit" parent="ResponseDataContainer"]
+[node name="ResponseNameLineEdit" type="LineEdit" parent="Columns/ResponseDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 editable = false
 expand_to_text_length = true
 
-[node name="ResponseUidLineEdit" type="LineEdit" parent="ResponseDataContainer"]
+[node name="ResponseUidLineEdit" type="LineEdit" parent="Columns/ResponseDataContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 editable = false
 expand_to_text_length = true
 
-[node name="ExecutionOrderContainer" type="VBoxContainer" parent="."]
+[node name="ExecutionOrderContainer" type="VBoxContainer" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ExecutionOrderContainer"]
+[node name="Label" type="Label" parent="Columns/ExecutionOrderContainer"]
 layout_mode = 2
 text = "Execution Order:"
 
-[node name="OrderSpinBox" type="SpinBox" parent="ExecutionOrderContainer"]
+[node name="OrderSpinBox" type="SpinBox" parent="Columns/ExecutionOrderContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="WeightContainer" type="VBoxContainer" parent="."]
+[node name="WeightContainer" type="VBoxContainer" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="WeightContainer"]
+[node name="Label" type="Label" parent="Columns/WeightContainer"]
 layout_mode = 2
 text = "Weigth Function:"
 
-[node name="FunctionButton" type="Button" parent="WeightContainer"]
+[node name="FunctionButton" type="Button" parent="Columns/WeightContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Function
 "
 
-[node name="MatchOnceContainer" type="VBoxContainer" parent="."]
+[node name="MatchOnceContainer" type="VBoxContainer" parent="Columns"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MatchOnceContainer"]
+[node name="Label" type="Label" parent="Columns/MatchOnceContainer"]
 layout_mode = 2
 text = "Match once:"
 
-[node name="ReturnOnceCheckButton" type="CheckButton" parent="MatchOnceContainer"]
+[node name="ReturnOnceCheckButton" type="CheckButton" parent="Columns/MatchOnceContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="FactsFunctionConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="FactsFunctionConfirmationDialog" type="ConfirmationDialog" parent="Columns"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "Facts Functions"
 size = Vector2i(500, 500)
 
-[node name="MarginContainer" type="MarginContainer" parent="FactsFunctionConfirmationDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="Columns/FactsFunctionConfirmationDialog"]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 315.0
@@ -75,20 +94,20 @@ offset_bottom = 451.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColumnsContainer" type="HBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer"]
+[node name="ColumnsContainer" type="HBoxContainer" parent="Columns/FactsFunctionConfirmationDialog/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="FunctionFactsContainer" type="VBoxContainer" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer"]
+[node name="FunctionFactsContainer" type="VBoxContainer" parent="Columns/FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer"]
+[node name="Label" type="Label" parent="Columns/FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer"]
 layout_mode = 2
 text = "Function:
 "
 
-[node name="FunctionManagment" parent="FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" instance=ExtResource("2_dfj8p")]
+[node name="FunctionManagment" parent="Columns/FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" instance=ExtResource("2_dfj8p")]
 unique_name_in_owner = true
 layout_mode = 2

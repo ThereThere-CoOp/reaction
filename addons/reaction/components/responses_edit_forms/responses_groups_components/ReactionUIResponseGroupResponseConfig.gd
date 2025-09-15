@@ -1,6 +1,6 @@
 @tool
 class_name ReactionUIResponseGroupResponseConfig
-extends HBoxContainer
+extends PanelContainer
 
 @onready var response_name_lineedit: LineEdit = %ResponseNameLineEdit
 @onready var response_uid_lineedit: LineEdit = %ResponseUidLineEdit
