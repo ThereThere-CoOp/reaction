@@ -17,7 +17,18 @@ var order_line_edit: LineEdit
 
 var _current_data: Dictionary
 
-func setup(response_group: ReactionResponseGroupItem, data: Dictionary):
+
+func change_inputs_visibility(response_group: ReactionResponseGroupItem) -> void:
+	execution_order_container.visible = false
+	weigth_container.visible = false
+	
+	if response_group.return_method == "order":
+		execution_order_container.visible = true
+	elif response_group.return_method == "random_weight":
+		weigth_container.visible = true
+		
+		
+func setup(response_group: ReactionResponseGroupItem, data: Dictionary) -> void:
 	response_name_lineedit = %ResponseNameLineEdit
 	response_uid_lineedit = %ResponseUidLineEdit
 
@@ -33,13 +44,7 @@ func setup(response_group: ReactionResponseGroupItem, data: Dictionary):
 	
 	order_line_edit = order_spinbox.get_line_edit()
 	
-	execution_order_container.visible = false
-	weigth_container.visible = false
-	
-	if response_group.return_method == "order":
-		execution_order_container.visible = true
-	elif response_group.return_method == "random_weight":
-		weigth_container.visible = true
+	change_inputs_visibility(response_group)
 	
 	response_name_lineedit.text = data.get("label", "")
 	response_uid_lineedit.text = data.get("uid", "")

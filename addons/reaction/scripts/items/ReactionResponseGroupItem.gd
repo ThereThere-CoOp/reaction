@@ -31,7 +31,11 @@ func _init() -> void:
 	label = "newResponseGroup"
 	sqlite_table_name = "response_group"
 	_ignore_fields.merge(
-		{ "responses": true }
+		{ 
+			"responses": true,
+			"responses_settings": true,
+			"executed_responses": true,
+		}
 	)
 	
 	
