@@ -224,7 +224,7 @@ func _on_facts_function_confirmation_dialog_confirmed() -> void:
 
 
 func _on_function_button_pressed() -> void:
-	fact_function_managment.setup(item_object)
+	fact_function_managment.setup(item_object.serialize())
 	function_confirmation_dialog.popup_centered()
 	
 

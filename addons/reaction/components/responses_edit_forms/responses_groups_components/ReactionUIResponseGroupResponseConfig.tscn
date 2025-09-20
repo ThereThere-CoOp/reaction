@@ -113,3 +113,8 @@ text = "Function:
 [node name="FunctionManagment" parent="Columns/FactsFunctionConfirmationDialog/MarginContainer/ColumnsContainer/FunctionFactsContainer" instance=ExtResource("2_dfj8p")]
 unique_name_in_owner = true
 layout_mode = 2
+function_field_name = "weight_function"
+
+[connection signal="pressed" from="Columns/WeightContainer/FunctionButton" to="." method="_on_function_button_pressed"]
+[connection signal="toggled" from="Columns/ReturnOnceContainer/ReturnOnceCheckButton" to="." method="_on_return_once_check_button_toggled"]
+[connection signal="confirmed" from="Columns/FactsFunctionConfirmationDialog" to="." method="_on_facts_function_confirmation_dialog_confirmed"]

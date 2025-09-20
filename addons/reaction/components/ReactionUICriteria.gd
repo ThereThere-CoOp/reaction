@@ -200,7 +200,7 @@ func setup(parent_object: Resource, object: Resource, index: int, is_new_object:
 	if is_new_object:
 		operation_menu.text = "Select operation"
 	
-	fact_function_managment.setup(object)
+	fact_function_managment.setup(object.serialize())
 		
 	fact_container.visible = true
 	facts_function_button.visible = false
@@ -296,7 +296,7 @@ func _on_negate_check_button_toggled(toggled_on):
 
 
 func _on_facts_function_button_pressed():
-	fact_function_managment.setup(item_object)
+	fact_function_managment.setup(item_object.serialize())
 	facts_functions_dialog.popup_centered()
 
 

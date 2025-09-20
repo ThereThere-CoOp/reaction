@@ -4,7 +4,7 @@ extends MarginContainer
 
 @export var function_field_name: String = "function"
 
-var object: ReactionBaseItem
+var object_data: Dictionary
 
 var current_function_array = []
 
@@ -76,7 +76,7 @@ func get_function_string():
 	return result.trim_suffix(";")
 			
 		
-func setup(current_object: ReactionBaseItem):
+func setup(current_object: Dictionary):
 	plus_button = %PlusButton
 	minus_button = %MinusButton
 	mult_button = %MultButton
@@ -98,12 +98,12 @@ func setup(current_object: ReactionBaseItem):
 	
 	OPERATOR_OPTIONS = ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS
 	
-	object = current_object
+	object_data = current_object
 	facts_list = ReactionFactItem.get_new_object().get_sqlite_list(null, true)
 	fact_search_menu.items_list = facts_list
 	
-	if current_object:
-		var object_function = object.get(function_field_name)
+	if object_data:
+		var object_function = object_data.get(function_field_name)
 		if object_function != "" and object_function != null:
 			current_function_array = object_function.split(";")
 		else:
