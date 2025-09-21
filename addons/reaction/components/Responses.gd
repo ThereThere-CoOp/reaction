@@ -64,7 +64,15 @@ func add_child_responses_to_tree(parent_node: TreeItem, response_group: Reaction
 
 		if response is ReactionResponseGroupItem:
 			add_child_responses_to_tree(child, response)
-		
+			
+			
+func _setup_responses_tree():
+	responses_tree.clear()
+	var root = responses_tree.create_item()
+	root.set_metadata(0, root_response_group)
+	root.set_text(0, root_response_group.label)
+	root.set_icon(0, get_theme_icon("Grid", "EditorIcons"))
+	add_child_responses_to_tree(root, root_response_group)	
 		
 func setup(response_group: ReactionResponseGroupItem) -> void:
 	root_response_group = response_group
@@ -85,12 +93,7 @@ func setup(response_group: ReactionResponseGroupItem) -> void:
 	responses_search_menu.items_list = responses_list
 	
 	# setup responses tree
-	responses_tree.clear()
-	var root = responses_tree.create_item()
-	root.set_metadata(0, root_response_group)
-	root.set_text(0, root_response_group.label)
-	root.set_icon(0, get_theme_icon("Grid", "EditorIcons"))
-	add_child_responses_to_tree(root, root_response_group)
+	_setup_responses_tree()
 	
 	
 func _get_selected_tree_item() -> TreeItem:
@@ -137,6 +140,8 @@ func _show_edit_dialog() -> void:
 	
 	if response_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
 		form_scene = response_group_edit_form_scene.instantiate()
+		form_scene.return_method_changed.connect(_on_responses_order_changed)
+		form_scene.execution_order_changed.connect(_on_responses_order_changed)
 	else:
 		form_scene = _get_response_from_add_data_array(response_type).form_scene.instantiate()
 	
@@ -288,3 +293,7 @@ func _on_response_label_updated(field_name: String, value: Variant):
 	if field_name == "label":
 		var selected_item : TreeItem = _get_selected_tree_item()
 		selected_item.set_text(0, value)
+		
+		
+func _on_responses_order_changed():
+	_setup_responses_tree()

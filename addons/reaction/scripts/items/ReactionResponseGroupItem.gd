@@ -9,6 +9,11 @@ extends ReactionResponseBaseItem
 ## ----------------------------------------------------------------------------
 
 
+var EXECUTION_ORDER_RETURN_METHOD = ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD
+var RANDOM_RETURN_METHOD = ReactionGlobals.RANDOM_RETURN_METHOD
+var RANDOM_WEIGHT_RETURN_METHOD = ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD
+
+
 ## dict of responses or responses groups
 @export var responses = {}
 
@@ -64,6 +69,7 @@ func add_sqlite_response(response: ReactionResponseItem) -> void:
 	
 	
 func get_sqlite_children_list(custom_where=null, get_resources=false):
+	
 	var where = ""
 	if custom_where:
 		where = " AND (%s)" % [custom_where]
@@ -98,11 +104,18 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 	WHERE relation.parent_group_id = %d %s
 	""" % [ sqlite_id, where ]
 	
+	var group_by_placeholders = []
+	group_by_placeholders = ["execution_order ASC"] if self.return_method == EXECUTION_ORDER_RETURN_METHOD else ["reaction_item_type ASC"]
+	var group_by = "ORDER BY %s" % group_by_placeholders
+	
+	
+	# if self.return_method
 	var query = """
 	%s
 	UNION
 	%s
-	""" % [groups_query, responses_query]
+	%s
+	""" % [groups_query, responses_query, group_by]
 	
 	_sqlite_database.query(query)
 	var results = _sqlite_database.query_result

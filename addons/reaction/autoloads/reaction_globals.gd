@@ -21,6 +21,11 @@ const CRITERIA_FUNCTION_OPERATOR_OPTIONS = {
 	")": ")"
 }
 
+const RANDOM_WEIGHT_RETURN_METHOD = 'random_weight'
+const RANDOM_RETURN_METHOD = 'random'
+const EXECUTION_ORDER_RETURN_METHOD = 'by_order'
+
+
 enum ItemsTypesEnum {
 	BASE,
 	FACT, 
@@ -189,6 +194,11 @@ func remove_sqlite_database(database: SQLite) -> void:
 
 	if FileAccess.file_exists(file_path):
 		DirAccess.remove_absolute(file_path)
+		
+		
+func remove_all_children(parent: Node):
+	for child in parent.get_children():
+		child.queue_free()
 	
 	
 func _unhandled_input(event):

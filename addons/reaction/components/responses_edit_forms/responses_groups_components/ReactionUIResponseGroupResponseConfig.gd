@@ -2,6 +2,8 @@
 class_name ReactionUIResponseGroupResponseConfig
 extends PanelContainer
 
+signal  execution_order_changed
+
 @onready var response_name_lineedit: LineEdit = %ResponseNameLineEdit
 @onready var response_uid_lineedit: LineEdit = %ResponseUidLineEdit
 
@@ -33,7 +35,7 @@ func change_inputs_visibility(response_group: ReactionResponseGroupItem) -> void
 	execution_order_container.visible = false
 	weigth_container.visible = false
 	
-	if response_group.return_method == "order":
+	if response_group.return_method == "by_order":
 		execution_order_container.visible = true
 	elif response_group.return_method == "random_weight":
 		weigth_container.visible = true
@@ -81,6 +83,7 @@ func _on_return_once_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_order_line_edit_text_submitted(text: String):
 	_set_response_configuration("execution_order", int(text))
+	execution_order_changed.emit()
 	order_line_edit.release_focus()
 
 
