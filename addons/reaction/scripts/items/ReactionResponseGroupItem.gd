@@ -68,8 +68,8 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 		
 	if responses_settings[current_response.uid].get("return_once", false):
 		executed_responses[current_response.uid] = true
-	
-	last_executed_response = current_response.uid
+	else:
+		last_executed_response = current_response.uid
 	
 	if current_response is ReactionResponseGroupItem:
 		return current_response.get_response_by_method()
@@ -238,9 +238,17 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 		
 func export():
 	var children_responses = get_sqlite_children_list(null, true)
-	for response in children_responses:
+	
+	var children_responses_dict = get_sqlite_children_list(null, false)
+	
+	for index in range(children_responses.size()):
+		var response = children_responses[index]
+		var response_setting = children_responses_dict[index]
+		
 		response.export()
 		responses[response.uid] = response
+		
+		responses_settings[response_setting.get("uid", "nop")] = response_setting		
 		
 	
 static func get_new_object():
