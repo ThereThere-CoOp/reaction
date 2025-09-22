@@ -9,11 +9,6 @@ extends ReactionResponseBaseItem
 ## ----------------------------------------------------------------------------
 
 
-var EXECUTION_ORDER_RETURN_METHOD = ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD
-var RANDOM_RETURN_METHOD = ReactionGlobals.RANDOM_RETURN_METHOD
-var RANDOM_WEIGHT_RETURN_METHOD = ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD
-
-
 ## dict of responses or responses groups
 @export var responses = {}
 
@@ -21,7 +16,7 @@ var RANDOM_WEIGHT_RETURN_METHOD = ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD
 ## by_order: By response order
 ## random: Randomly each time
 ## random_weight: By random using a weight from a function
-@export var return_method = RANDOM_RETURN_METHOD
+@export var return_method = ""
 
 ## dictionary to store response settings each key is the response uid
 ## and the values is a dict with the settings
@@ -153,11 +148,11 @@ func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionRe
 
 
 func get_response_by_method(context: ReactionBlackboard) -> ReactionResponseBaseItem:
-	if return_method == RANDOM_RETURN_METHOD:
+	if return_method == ReactionGlobals.RANDOM_RETURN_METHOD:
 		return return_response_by_random()
-	elif return_method == EXECUTION_ORDER_RETURN_METHOD:
+	elif return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order()
-	elif return_method == RANDOM_WEIGHT_RETURN_METHOD:
+	elif return_method == ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD:
 		return return_response_by_random_weight(context)
 	return null
 
@@ -213,7 +208,7 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 	""" % [ sqlite_id, where ]
 	
 	var group_by_placeholders = []
-	group_by_placeholders = ["execution_order ASC"] if self.return_method == EXECUTION_ORDER_RETURN_METHOD else ["reaction_item_type ASC"]
+	group_by_placeholders = ["execution_order ASC"] if self.return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD else ["reaction_item_type ASC"]
 	var group_by = "ORDER BY %s" % group_by_placeholders
 	
 	

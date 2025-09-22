@@ -10,7 +10,7 @@ var current_sqlite_database: SQLite
 
 @export var default_database: ReactionDatabase
 
-@export var responses_types: Dictionary = {"Dialog": "Dialog" }
+@export var responses_types: Dictionary = { "Dialog": "Dialog" }
 
 const CRITERIA_FUNCTION_OPERATOR_OPTIONS = {
 	"+": "+",
@@ -196,7 +196,7 @@ func remove_sqlite_database(database: SQLite) -> void:
 		DirAccess.remove_absolute(file_path)
 		
 		
-func remove_all_children(parent: Node) -> void:
+func remove_all_children(parent) -> void:
 	for child in parent.get_children():
 		child.queue_free()
 	
