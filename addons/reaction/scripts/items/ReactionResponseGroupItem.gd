@@ -67,8 +67,11 @@ func _get_not_executed_responses() -> Dictionary:
 	return result
 	
 	
-func _get_children_response_change_execution_stats(current_response) -> ReactionResponseBaseItem:
-	if responses_settings[current_response.uid]["return_once"]:
+func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem) -> ReactionResponseBaseItem:
+	if current_response == null:
+		return current_response
+		
+	if responses_settings[current_response.uid].get("return_once", false):
 		executed_responses[current_response.uid] = true
 	
 	last_executed_response = current_response.uid
@@ -100,7 +103,9 @@ func return_response_by_execution_order() -> ReactionResponseBaseItem:
 		
 	var sorted_responses_values = no_executed_responses.values()
 	
-	sorted_responses_values.sort_custom(func(a, b): return a.execution_order < b.execution_order)
+	sorted_responses_values.sort_custom(func(a, b): 
+		return responses_settings[a.uid].get("execution_order", 0) < responses_settings[a.uid].get("execution_order", 0)
+	)
 	
 	if last_executed_response != null or last_executed_response != "":
 		var last_executed_value = null
@@ -112,7 +117,7 @@ func return_response_by_execution_order() -> ReactionResponseBaseItem:
 	return _get_children_response_change_execution_stats(sorted_responses_values[0])
 	
 	
-func return_response_by_random_weight() -> ReactionResponseBaseItem:
+func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	var no_executed_responses = _get_not_executed_responses()
 	
 	if no_executed_responses.size() == 0:
@@ -120,16 +125,40 @@ func return_response_by_random_weight() -> ReactionResponseBaseItem:
 		
 	var responses_values = no_executed_responses.values()
 	
-	return _get_children_response_change_execution_stats(responses_values[0])
+	var weights: Array = []
+	var total: float = 0.0
+	
+	for response in responses_values:
+		var w = ReactionGlobals.get_function_result(responses_settings[response.uid].get("weight_function", "0.0"), context)
+		weights.append(w)
+		total += w
+
+	if total <= 0.0:
+		return null  # no valid weights
+
+	# Normalize weights
+	for i in range(weights.size()):
+		weights[i] /= total
+
+	# Pick by cumulative probability
+	var rnd = randf()
+	var cumulative: float = 0.0
+	var current_response = null
+	for i in range(responses_values.size()):
+		cumulative += weights[i]
+		if rnd <= cumulative:
+			current_response = responses_values[i]
+	
+	return _get_children_response_change_execution_stats(current_response)
 
 
-func get_response_by_method() -> ReactionResponseBaseItem:
+func get_response_by_method(context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	if return_method == RANDOM_RETURN_METHOD:
 		return return_response_by_random()
 	elif return_method == EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order()
 	elif return_method == RANDOM_WEIGHT_RETURN_METHOD:
-		return return_response_by_random_weight()
+		return return_response_by_random_weight(context: ReactionBlackboard)
 	return null
 
 

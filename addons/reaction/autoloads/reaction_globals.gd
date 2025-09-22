@@ -196,7 +196,7 @@ func remove_sqlite_database(database: SQLite) -> void:
 		DirAccess.remove_absolute(file_path)
 		
 		
-func remove_all_children(parent: Node):
+func remove_all_children(parent: Node) -> void:
 	for child in parent.get_children():
 		child.queue_free()
 	
