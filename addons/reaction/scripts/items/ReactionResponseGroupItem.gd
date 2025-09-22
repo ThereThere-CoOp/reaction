@@ -158,7 +158,7 @@ func get_response_by_method(context: ReactionBlackboard) -> ReactionResponseBase
 	elif return_method == EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order()
 	elif return_method == RANDOM_WEIGHT_RETURN_METHOD:
-		return return_response_by_random_weight(context: ReactionBlackboard)
+		return return_response_by_random_weight(context)
 	return null
 
 
