@@ -27,15 +27,15 @@ extends ReactionResponseBaseItem
 ## each key is an response uid
 @export var executed_responses = {}
 
-## uid of the last response to be executed
-@export var last_executed_response: String
+@export var order_current_index = 0
+
 
 func _init() -> void:
 	super()
 	label = "newResponseGroup"
 	sqlite_table_name = "response_group"
 	_ignore_fields.merge(
-		{ 
+		{
 			"responses": true,
 			"responses_settings": true,
 			"executed_responses": true,
@@ -53,32 +53,42 @@ func get_responses() -> Array[ReactionResponseBaseItem]:
 	return result
 	
 
-func _get_not_executed_responses() -> Dictionary:
+func _get_not_executed_responses(current_responses: Dictionary, executed_dict: Dictionary) -> Dictionary:
 	var result = {}
-	for response_uid in responses.keys():
-		if not executed_responses.has(response_uid):
+	for response_uid in current_responses.keys():
+		if not executed_dict.has(response_uid):
 			result[response_uid] = responses[response_uid]
 			
 	return result
 	
 	
-func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem) -> ReactionResponseBaseItem:
+func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem, context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	if current_response == null:
 		return current_response
-		
+	
+	var responses_size = responses.size()
 	if responses_settings[current_response.uid].get("return_once", false):
 		executed_responses[current_response.uid] = true
+		
+		if return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
+			responses_size = responses.size() - executed_responses.size()
+			if responses_size > 0:
+				order_current_index %= responses_size
+			else:
+				order_current_index = 0
 	else:
-		last_executed_response = current_response.uid
-	
+		if return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
+			responses_size = responses.size() - executed_responses.size()
+			order_current_index = (order_current_index + 1) % responses_size
+
 	if current_response is ReactionResponseGroupItem:
-		return current_response.get_response_by_method()
+		return current_response.get_response_by_method(context)
 	else:
 		return current_response
 		
 		
-func return_response_by_random()  -> ReactionResponseBaseItem:
-	var no_executed_responses = _get_not_executed_responses()
+func return_response_by_random(context: ReactionBlackboard)  -> ReactionResponseBaseItem:
+	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
 		return null
@@ -87,11 +97,11 @@ func return_response_by_random()  -> ReactionResponseBaseItem:
 	var random = randi_range(0, responses_values.size())
 	var current_response: ReactionResponseBaseItem = responses_values[random]
 	
-	return _get_children_response_change_execution_stats(current_response)
+	return _get_children_response_change_execution_stats(current_response, context)
 		
 		
-func return_response_by_execution_order() -> ReactionResponseBaseItem:
-	var no_executed_responses = _get_not_executed_responses()
+func return_response_by_execution_order(context: ReactionBlackboard) -> ReactionResponseBaseItem:
+	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
 		return null
@@ -99,21 +109,14 @@ func return_response_by_execution_order() -> ReactionResponseBaseItem:
 	var sorted_responses_values = no_executed_responses.values()
 	
 	sorted_responses_values.sort_custom(func(a, b): 
-		return responses_settings[a.uid].get("execution_order", 0) < responses_settings[a.uid].get("execution_order", 0)
+		return responses_settings[a.uid].get("execution_order", 0) < responses_settings[b.uid].get("execution_order", 0)
 	)
 	
-	if last_executed_response != null or last_executed_response != "":
-		var last_executed_value = null
-		for value in sorted_responses_values:
-			if sorted_responses_values.uid == last_executed_response:
-				last_executed_value = value
-				sorted_responses_values.erase(value)
-	
-	return _get_children_response_change_execution_stats(sorted_responses_values[0])
+	return _get_children_response_change_execution_stats(sorted_responses_values[order_current_index], context)
 	
 	
 func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionResponseBaseItem:
-	var no_executed_responses = _get_not_executed_responses()
+	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
 		return null
@@ -144,14 +147,14 @@ func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionRe
 		if rnd <= cumulative:
 			current_response = responses_values[i]
 	
-	return _get_children_response_change_execution_stats(current_response)
+	return _get_children_response_change_execution_stats(current_response, context)
 
 
 func get_response_by_method(context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	if return_method == ReactionGlobals.RANDOM_RETURN_METHOD:
-		return return_response_by_random()
+		return return_response_by_random(context)
 	elif return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
-		return return_response_by_execution_order()
+		return return_response_by_execution_order(context)
 	elif return_method == ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD:
 		return return_response_by_random_weight(context)
 	return null

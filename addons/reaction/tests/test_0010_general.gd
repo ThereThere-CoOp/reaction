@@ -243,19 +243,35 @@ func before_all():
 
 	var response_group_not_comunism_low_pop = ReactionResponseGroupItem.new()
 	response_group_not_comunism_low_pop.label = "group_not_comunism_low_pop"
-	response_group_not_comunism_low_pop.responses[response_not_comunism_low_pop] = response_not_comunism_low_pop
+	response_group_not_comunism_low_pop.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
+	
+	var response_group_order_method = ReactionResponseGroupItem.new()
+	response_group_order_method.label = "group_execution_order"
+	response_group_order_method.return_method = "by_order"
+	response_group_order_method.order_current_index = 0
+	
+	response_group_order_method.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
+	response_group_order_method.responses[response_mindundi_not_comunism_pop_100_400.uid] = response_mindundi_not_comunism_pop_100_400
+	response_group_order_method.responses[response_conditional_texts_choices.uid] = response_conditional_texts_choices
+	
+	response_group_order_method.responses_settings = {
+		response_not_comunism_low_pop.uid: {"execution_order": 4 },
+		response_mindundi_not_comunism_pop_100_400.uid: {"execution_order": 2 },
+		response_conditional_texts_choices.uid: {"execution_order": 1 },
+	}
 
 	var response_group_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseGroupItem.new()
 	)
 	
 	response_group_mindundi_not_comunism_pop_100_400.label = "group_you_are_a_mindundi"
-	response_group_mindundi_not_comunism_pop_100_400.responses[response_mindundi_not_comunism_pop_100_400] = response_mindundi_not_comunism_pop_100_400
+	response_group_mindundi_not_comunism_pop_100_400.responses[response_mindundi_not_comunism_pop_100_400.uid] = response_mindundi_not_comunism_pop_100_400
 	
 	_responses_groups[response_group_your_a_mindundi.label] = response_group_your_a_mindundi
 	_responses_groups[response_group_not_comunism_low_pop.label] = response_group_not_comunism_low_pop
 	_responses_groups[response_group_mindundi_not_comunism_pop_100_400.label] = response_group_mindundi_not_comunism_pop_100_400
-
+	_responses_groups[response_group_order_method.label] = response_group_order_method
+	
 	# init rules
 	var defaultRuleNotCriterias = ReactionRuleItem.new()
 	defaultRuleNotCriterias.label = "default_rule"
