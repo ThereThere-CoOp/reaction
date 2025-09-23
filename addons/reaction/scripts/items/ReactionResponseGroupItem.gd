@@ -27,6 +27,7 @@ extends ReactionResponseBaseItem
 ## each key is an response uid
 @export var executed_responses = {}
 
+## current index to cycle through when return method is by exection order
 @export var order_current_index = 0
 
 
@@ -87,14 +88,18 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 		return current_response
 		
 		
-func return_response_by_random(context: ReactionBlackboard)  -> ReactionResponseBaseItem:
+func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNumberGenerator)  -> ReactionResponseBaseItem:
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
 		return null
+		
+	if randomizer == null:
+		randomizer = RandomNumberGenerator.new()
+		randomizer.randomize()
 	
 	var responses_values = no_executed_responses.values()
-	var random = randi_range(0, responses_values.size())
+	var random = randomizer.randi_range(0, responses_values.size())
 	var current_response: ReactionResponseBaseItem = responses_values[random]
 	
 	return _get_children_response_change_execution_stats(current_response, context)
@@ -115,7 +120,7 @@ func return_response_by_execution_order(context: ReactionBlackboard) -> Reaction
 	return _get_children_response_change_execution_stats(sorted_responses_values[order_current_index], context)
 	
 	
-func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionResponseBaseItem:
+func return_response_by_random_weight(context: ReactionBlackboard, randomizer: RandomNumberGenerator) -> ReactionResponseBaseItem:
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
@@ -139,7 +144,12 @@ func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionRe
 		weights[i] /= total
 
 	# Pick by cumulative probability
-	var rnd = randf()
+	
+	if randomizer == null:
+		randomizer = RandomNumberGenerator.new()
+		randomizer.randomize()
+		
+	var rnd = randomizer.randf()
 	var cumulative: float = 0.0
 	var current_response = null
 	for i in range(responses_values.size()):
@@ -150,13 +160,13 @@ func return_response_by_random_weight(context: ReactionBlackboard) -> ReactionRe
 	return _get_children_response_change_execution_stats(current_response, context)
 
 
-func get_response_by_method(context: ReactionBlackboard) -> ReactionResponseBaseItem:
+func get_response_by_method(context: ReactionBlackboard, randomizer: RandomNumberGenerator=null) -> ReactionResponseBaseItem:
 	if return_method == ReactionGlobals.RANDOM_RETURN_METHOD:
-		return return_response_by_random(context)
+		return return_response_by_random(context, randomizer)
 	elif return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order(context)
 	elif return_method == ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD:
-		return return_response_by_random_weight(context)
+		return return_response_by_random_weight(context, randomizer)
 	return null
 
 
