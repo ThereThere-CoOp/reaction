@@ -68,7 +68,7 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 		return current_response
 	
 	var responses_size = responses.size()
-	if responses_settings[current_response.uid].get("return_once", false):
+	if responses_settings.get(current_response.uid, {}).get("return_once", false):
 		executed_responses[current_response.uid] = true
 		
 		if return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
@@ -99,7 +99,7 @@ func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNu
 		randomizer.randomize()
 	
 	var responses_values = no_executed_responses.values()
-	var random = randomizer.randi_range(0, responses_values.size())
+	var random = randomizer.randi_range(0, responses_values.size() - 1)
 	var current_response: ReactionResponseBaseItem = responses_values[random]
 	
 	return _get_children_response_change_execution_stats(current_response, context)
@@ -114,7 +114,7 @@ func return_response_by_execution_order(context: ReactionBlackboard) -> Reaction
 	var sorted_responses_values = no_executed_responses.values()
 	
 	sorted_responses_values.sort_custom(func(a, b): 
-		return responses_settings[a.uid].get("execution_order", 0) < responses_settings[b.uid].get("execution_order", 0)
+		return responses_settings.get(a.uid, {}).get("execution_order", 0) < responses_settings.get(b.uid, {}).get("execution_order", 0)
 	)
 	
 	return _get_children_response_change_execution_stats(sorted_responses_values[order_current_index], context)

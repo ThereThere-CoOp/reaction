@@ -86,7 +86,9 @@ func before_all():
 	criteria_is_volao.value_a = '0'
 	criteria_is_volao.operation = "="
 	
-	# function criteria item init 
+	################################################################################################################
+	## function criteria item init
+	################################################################################################################
 	var criteria_function_string = "%s;+;%s;-;%s" % [fact_population_size.uid, fact_extra_population_size.uid, fact_extra_small_population_size.uid]
 	
 	var function_criteria_population_sum_less_500 = ReactionFunctionCriteriaItem.new()
@@ -116,8 +118,10 @@ func before_all():
 	_rules_criterias[function_criteria_population_sum_less_500.label] = function_criteria_population_sum_less_500
 	_rules_criterias[function_criteria_population_sus_greater_500.label] = function_criteria_population_sus_greater_500
 	_rules_criterias[function_criteria_population_mult_greater_500.label] = function_criteria_population_mult_greater_500
-
-	# init modifications
+	
+	##########################################################################################################
+	## Initializing modifications
+	##########################################################################################################
 	var modification_declare_comunism = ReactionContextModificationItem.new()
 	modification_declare_comunism.label = "declare_comunism"
 	modification_declare_comunism.fact = _facts["is_comunism"]
@@ -187,7 +191,9 @@ func before_all():
 	response_mindundi_not_comunism_pop_100_400.label = "mindundi_not_comunism_pop_100_400"
 	response_mindundi_not_comunism_pop_100_400.texts = [response_mindundi_not_comunism_pop_100_400_text] as Array[ReactionDialogTextItem]
 	
-	# response to text criteria 
+	####################################################################################################################
+	## response to text criteria
+	####################################################################################################################
 	var response_conditional_texts_choices = ReactionResponseDialogItem.new()
 	
 	var text_response_conditional_texts_choices_1 = ReactionDialogTextItem.new()
@@ -234,8 +240,10 @@ func before_all():
 	_dialog_choices[choice_response_conditional_texts_choices_1.label] = choice_response_conditional_texts_choices_1
 	_dialog_choices[choice_response_conditional_texts_choices_2.label] = choice_response_conditional_texts_choices_2
 	_dialog_choices[choice_response_conditional_texts_choices_3.label] = choice_response_conditional_texts_choices_3
-
-	# init responses groups
+	
+	######################################################################################################################
+	## Initializing  responses groups
+	######################################################################################################################
 	var response_group_your_a_mindundi = ReactionResponseGroupItem.new()
 	response_group_your_a_mindundi.label = "group_you_are_a_mindundi"
 	response_group_your_a_mindundi.responses[response_your_a_mindundi] = response_your_a_mindundi
@@ -259,7 +267,16 @@ func before_all():
 		response_mindundi_not_comunism_pop_100_400.uid: {"execution_order": 2 },
 		response_conditional_texts_choices.uid: {"execution_order": 1 },
 	}
-
+	
+	var response_group_random_method = ReactionResponseGroupItem.new()
+	response_group_random_method.label = "group_execution_random"
+	response_group_random_method.return_method = "random"
+	
+	response_group_random_method.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
+	response_group_random_method.responses[response_mindundi_not_comunism_pop_100_400.uid] = response_mindundi_not_comunism_pop_100_400
+	response_group_random_method.responses[response_conditional_texts_choices.uid] = response_conditional_texts_choices
+	
+	
 	var response_group_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseGroupItem.new()
 	)
@@ -271,8 +288,11 @@ func before_all():
 	_responses_groups[response_group_not_comunism_low_pop.label] = response_group_not_comunism_low_pop
 	_responses_groups[response_group_mindundi_not_comunism_pop_100_400.label] = response_group_mindundi_not_comunism_pop_100_400
 	_responses_groups[response_group_order_method.label] = response_group_order_method
+	_responses_groups[response_group_random_method.label] = response_group_random_method
 	
-	# init rules
+	##############################################################################################################
+	## Init rules
+	##############################################################################################################
 	var defaultRuleNotCriterias = ReactionRuleItem.new()
 	defaultRuleNotCriterias.label = "default_rule"
 	defaultRuleNotCriterias.modifications.append_array(
@@ -327,8 +347,10 @@ func before_all():
 	_rules[rule_mindundi_n_comunism_pop_b_100_400.label] = rule_mindundi_n_comunism_pop_b_100_400
 	_rules[rule_is_volao_p_1.label] = rule_is_volao_p_1
 	_rules[rule_is_mindundi_p_2.label] = rule_is_mindundi_p_2
-
-	# init events
+	
+	#################################################################################################
+	## Initializing events
+	#################################################################################################
 	var main_event = ReactionEventItem.new()
 	var main_event_rules: Array[ReactionRuleItem] = [
 		rule_is_mindundi,
