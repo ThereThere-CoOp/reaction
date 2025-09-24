@@ -140,8 +140,8 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 		return null  # no valid weights
 
 	# Normalize weights
-	for i in range(weights.size()):
-		weights[i] /= total
+	#for i in range(weights.size()):
+		#weights[i] /= total
 
 	# Pick by cumulative probability
 	
