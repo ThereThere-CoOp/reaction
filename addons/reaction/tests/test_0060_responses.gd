@@ -6,6 +6,7 @@ func before_each():
 	super()
 	var response_group_order: ReactionResponseGroupItem = _responses_groups["group_execution_order"]
 	response_group_order.order_current_index = 0
+	response_group_order.executed_responses = {}
 	
 	var return_once_response = _dialog_responses["response_conditional_texts_choices"]	
 	response_group_order.responses_settings[return_once_response.uid]["return_once"] = false
@@ -121,9 +122,12 @@ class TestResponses:
 		var returned_count = 0
 		for n in range(0, 100):
 			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)
+			# gut.p(returned_response.label)
 			
 			if returned_response.label == "response_conditional_texts_choices":
 				returned_count += 1
+				
+			# gut.p(returned_count)
 				
 		assert_lt(
 			returned_count,

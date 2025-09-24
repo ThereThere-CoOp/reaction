@@ -65,7 +65,7 @@ func _get_not_executed_responses(current_responses: Dictionary, executed_dict: D
 	
 func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem, context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	if current_response == null:
-		return current_response
+		return null
 	
 	var responses_size = responses.size()
 	if responses_settings.get(current_response.uid, {}).get("return_once", false):
@@ -149,7 +149,7 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 		randomizer = RandomNumberGenerator.new()
 		randomizer.randomize()
 		
-	var rnd = randomizer.randf()
+	var rnd = randomizer.randf() * total
 	var cumulative: float = 0.0
 	var current_response = null
 	for i in range(responses_values.size()):
