@@ -12,6 +12,21 @@ theme_override_constants/separation = 20
 
 [node name="Operations" type="VBoxContainer" parent="Rows"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MathMethodHelperLabel" type="RichTextLabel" parent="Rows/Operations"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="MathMethodControlsHelpLabel" type="RichTextLabel" parent="Rows/Operations"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+bbcode_enabled = true
+text = "Introduce the math method operands. Use [color=\"yellow\"]<--[/color] button to remove method."
 
 [node name="Label" type="Label" parent="Rows/Operations"]
 layout_mode = 2
@@ -61,6 +76,16 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Fact"
 
+[node name="PowButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pow"
+
+[node name="SqrtButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sqrt"
+
 [node name="RemoveButton" type="Button" parent="Rows/Operations/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -94,6 +119,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 offset_right = 86.5625
 offset_bottom = 31.0
+max_value = 1000.0
+step = 0.1
+rounded = true
 allow_greater = true
 allow_lesser = true
 
@@ -111,6 +139,8 @@ unique_name_in_owner = true
 [connection signal="pressed" from="Rows/Operations/ButtonsContainer/RightParenthesisButton" to="." method="_on_right_parenthesis_button_pressed"]
 [connection signal="pressed" from="Rows/Operations/ButtonsContainer/ConstantButton" to="." method="_on_constant_button_pressed"]
 [connection signal="pressed" from="Rows/Operations/ButtonsContainer/FactButton" to="." method="_on_fact_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/PowButton" to="." method="_on_pow_button_pressed"]
+[connection signal="pressed" from="Rows/Operations/ButtonsContainer/SqrtButton" to="." method="_on_sqrt_button_pressed"]
 [connection signal="pressed" from="Rows/Operations/ButtonsContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
 [connection signal="confirmed" from="ConstantConfirmationDialog" to="." method="_on_constant_confirmation_dialog_confirmed"]
 [connection signal="confirmed" from="FactConfirmationDialog" to="." method="_on_fact_confirmation_dialog_confirmed"]
