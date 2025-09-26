@@ -92,7 +92,7 @@ func _init() -> void:
 	
 func _get_modification_value(context):
 	if is_function:
-		return ReactionGlobals.get_function_result(function, context, false)
+		return int(ReactionGlobals.get_function_result(function, context, false))
 	else:
 		return get_modification_real_value()
 		

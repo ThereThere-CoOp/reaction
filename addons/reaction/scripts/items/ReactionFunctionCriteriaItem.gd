@@ -12,8 +12,8 @@ extends ReactionCriteriaItem
 @export var function: String = ""
 
 
-func get_function_result(context):
-	return ReactionGlobals.get_function_result(function, context)
+func get_function_result(context) -> int:
+	return int(ReactionGlobals.get_function_result(function, context))
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]
 ## [b]Parameter(s):[/b] [br]
