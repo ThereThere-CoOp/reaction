@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Reaction"
 run/main_scene="res://examples/test.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.png"
 
 [autoload]
@@ -22,12 +22,12 @@ ReactionSignals="*res://addons/reaction/autoloads/reaction_signals.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/reaction/plugin.cfg")
 
 [reaction]
 
-databases_path="res://examples/databases"
-current_database_id="7cf1ce19-8baf-4e6e-918f-4856e6cf2150"
+databases_path="res://examples/sqlite_databases"
+current_database_id="0d0e4848-8468-4cb1-9bc9-b53de7eebaa0"
 languages_dict={
 "en": {
 "code": "en",
@@ -39,6 +39,7 @@ languages_dict={
 }
 }
 default_database_path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres"
+export_path="res://examples/export"
 
 [rendering]
 

@@ -42,6 +42,19 @@ class TestModifications:
 		assert_null(
 			_global_blackboard.get_fact_value(_facts["mind_type"].uid), "Mind type must not exists"
 		)
+		
+		
+	func test_modification_function_increase():
+		_global_blackboard.set_fact_value(_facts["population_size"], 200)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 30)
+		
+		_context_modifications["function_add_population_size_plus_10_to_extra"].execute(_global_blackboard)
+
+		assert_eq(
+			_global_blackboard.get_fact_value(_facts["extra_population_size"].uid),
+			240,
+			"Extra Population must be increased in 210 (initial 30)"
+		)
 
 	func test_modification_modified_signal_emitted():
 		_global_blackboard.set_fact_value(_facts["is_comunism"], false)

@@ -14,7 +14,7 @@ class TestRules:
 		# testing numeric less than criteria
 		_global_blackboard.set_fact_value(_facts["mind_type"], "volao")
 		current_result = _rules_criterias["mindtype_is_mindundi"].test(
-			_global_blackboard.get_blackboard_fact(_facts["mind_type"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result, 'Rule criteria "mindtype_is_mindundi" must test false for "volao"'
@@ -22,7 +22,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["mind_type"], "mindundi")
 		current_result = _rules_criterias["mindtype_is_mindundi"].test(
-			_global_blackboard.get_blackboard_fact(_facts["mind_type"].uid)
+			_global_blackboard
 		)
 		assert_true(
 			current_result, 'Rule criteria "mindtype_is_mindundi" must test true for "mindundi"'
@@ -33,7 +33,7 @@ class TestRules:
 		# testing numeric less than criteria
 		_global_blackboard.set_fact_value(_facts["population_size"], 400)
 		current_result = _rules_criterias["population_less_than_300"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result, 'Rule criteria "population_less_than_300" must test false for value 400'
@@ -41,7 +41,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 200)
 		current_result = _rules_criterias["population_less_than_300"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 
 		assert_true(
@@ -54,13 +54,13 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["is_comunism"], true)
 		current_result = _rules_criterias["not_comunism"].test(
-			_global_blackboard.get_blackboard_fact(_facts["is_comunism"].uid)
+			_global_blackboard
 		)
 		assert_false(current_result, 'Rule criteria "not_comunism" must test false for value true')
 
 		_global_blackboard.set_fact_value(_facts["is_comunism"], false)
 		current_result = _rules_criterias["not_comunism"].test(
-			_global_blackboard.get_blackboard_fact(_facts["is_comunism"].uid)
+			_global_blackboard
 		)
 		assert_true(current_result, 'Rule criteria "not_comunism" must test true for value false')
 
@@ -70,7 +70,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 500)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result,
@@ -79,7 +79,7 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 20)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_false(
 			current_result,
@@ -88,13 +88,253 @@ class TestRules:
 
 		_global_blackboard.set_fact_value(_facts["population_size"], 245)
 		current_result = _rules_criterias["population_between_100_400"].test(
-			_global_blackboard.get_blackboard_fact(_facts["population_size"].uid)
+			_global_blackboard
 		)
 		assert_true(
 			current_result,
 			'Rule criteria "population_between_100_400" must test true for value 245'
 		)
-
+		
+	func test_function_criteria_sum():
+		var current_result: bool
+		var criteria_function_result_value: int
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 100)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 500)
+		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 50)
+		
+		_rules_criterias["pop_sum_less_500"].function = "%s;+;%s;+;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		
+		current_result = _rules_criterias["pop_sum_less_500"].test(
+			_global_blackboard
+		)
+		
+		assert_false(
+			current_result,
+			'Rule function criteria "pop_sum_less_500" must test false for value 100, 500 and 50'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			650,
+			'Rule function criteria "pop_sum_less_500" result value must be 650'
+		)
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 100)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 200)
+		
+		current_result = _rules_criterias["pop_sum_less_500"].test(
+			_global_blackboard
+		)
+		
+		assert_true(
+			current_result,
+			'Rule function criteria "pop_sum_less_500" must test true for value 100, 200 y 50'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			350,
+			'Rule function criteria "pop_sum_less_500" result value must be 350'
+		)
+		
+	func test_function_criteria_sus():
+		var current_result: bool
+		var criteria_function_result_value: int
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 500)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 100)
+		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 50)
+		
+		_rules_criterias["pop_sus_more_500"].function = "%s;-;%s;-;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		
+		current_result = _rules_criterias["pop_sus_more_500"].test(
+			_global_blackboard
+		)
+		
+		assert_false(
+			current_result,
+			'Rule function criteria "pop_sus_more_500" must test false for value 500, 100 and 50'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sus_more_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			350,
+			'Rule function criteria "pop_sus_more_500" result value must be 350'
+		)
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 1000)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 200)
+		
+		current_result = _rules_criterias["pop_sus_more_500"].test(
+			_global_blackboard
+		)
+		
+		assert_true(
+			current_result,
+			'Rule function criteria "pop_sus_more_500" must test true for value 1000, 200 y 50'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sus_more_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			750,
+			'Rule function criteria "pop_sus_more_500" result value must be 750'
+		)
+		
+	func test_function_criteria_mult():
+		var current_result: bool
+		var criteria_function_result_value: int
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 10)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 1)
+		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 10)
+		
+		_rules_criterias["pop_mult_more_500"].function = "%s;*;%s;*;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		
+		current_result = _rules_criterias["pop_mult_more_500"].test(
+			_global_blackboard
+		)
+		
+		assert_false(
+			current_result,
+			'Rule function criteria "pop_mult_more_500" must test false for value 10, 1 and 10'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_mult_more_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			100,
+			'Rule function criteria "pop_mult_more_500" result value must be 100'
+		)
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 500)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 100)
+		
+		current_result = _rules_criterias["pop_mult_more_500"].test(
+			_global_blackboard
+		)
+		
+		assert_true(
+			current_result,
+			'Rule function criteria "pop_mult_more_500" must test true for value 500, 100 y 10'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_mult_more_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			500000,
+			'Rule function criteria "pop_mult_more_500" result value must be 500000'
+		)
+		
+	func test_function_criteria_first_fact_null_sum():
+		var current_result: bool
+		var criteria_function_result_value: int
+		
+		_global_blackboard.erase_fact(_facts["population_size"].uid)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 100)
+		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 300)
+		
+		_rules_criterias["pop_sum_less_500"].function = "%s;+;%s;+;%s" % [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		
+		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			400,
+			'Rule function criteria "pop_sum_less_500" result value must be 400'
+		)
+		
+		current_result = _rules_criterias["pop_sum_less_500"].test(
+			_global_blackboard
+		)
+		
+		assert_true(
+			current_result,
+			'Rule function criteria "pop_sum_less_500" must test true for value 500, 100 y 10'
+		)
+		
+		
+	func test_function_criteria_complex_operation():
+		var current_result: bool
+		var criteria_function_result_value: int
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 100)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 500)
+		_global_blackboard.set_fact_value(_facts["extra_small_population_size"], 10)
+		
+		var uids_array = [_facts["population_size"].uid, _facts["extra_population_size"].uid, _facts["extra_small_population_size"].uid]
+		var custom_complex_function_string_1 = "%s;+;%s;/;%s" % uids_array
+		_rules_criterias["pop_sum_less_500"].function = custom_complex_function_string_1
+		
+		current_result = _rules_criterias["pop_sum_less_500"].test(
+			_global_blackboard
+		)
+		
+		assert_true(
+			current_result,
+			'Rule function criteria "pop_sum_less_500" must test true for value 100, 500 and 10'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			150,
+			'Rule function criteria "pop_sum_less_500" result value must be 150'
+		)
+		
+		_global_blackboard.set_fact_value(_facts["population_size"], 3000)
+		_global_blackboard.set_fact_value(_facts["extra_population_size"], 200)
+		
+		var custom_complex_function_string_2 = "%s;-;%s;*;%s" % uids_array
+		_rules_criterias["pop_sum_less_500"].function = custom_complex_function_string_2
+		
+		current_result = _rules_criterias["pop_sum_less_500"].test(
+			_global_blackboard
+		)
+		
+		assert_false(
+			current_result,
+			'Rule function criteria "pop_sum_less_500" must test false for value 300, 200 y 10'
+		)
+		
+		criteria_function_result_value = _rules_criterias["pop_sum_less_500"].get_function_result(
+			_global_blackboard
+		)
+		
+		assert_eq(
+			criteria_function_result_value,
+			1000,
+			'Rule function criteria "pop_sum_less_500" result value must be 1000'
+		)
+		
+		
 	func test_not_matching_rule():
 		_global_blackboard.set_fact_value(_facts["population_size"], 500)
 		_global_blackboard.set_fact_value(_facts["is_comunism"], false)

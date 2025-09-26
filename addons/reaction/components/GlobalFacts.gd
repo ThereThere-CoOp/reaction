@@ -1,7 +1,7 @@
 @tool
 extends MarginContainer
 
-var current_database: ReactionDatabase
+var _sqlite_database: SQLite
 
 var current_fact: ReactionFactItem = null
 
@@ -19,7 +19,7 @@ var fact_scope_menu_text_options: Dictionary = {
 	"global": "Global", "event": "Event"
 }
 
-@onready var facts_list: VBoxContainer = %FactsList
+@onready var facts_list: ReactionUIItemList = %FactsList
 @onready var fact_data_container: VBoxContainer = %FactDataContainer
 
 @onready var fact_references_dialog: AcceptDialog = %FactReferenceAcceptDialog
@@ -106,15 +106,15 @@ func _update_fact_default_value_input():
 			
 		if current_fact.type == TYPE_BOOL:
 			fact_default_value_bool.visible = true
-			fact_default_value_bool.set_pressed_no_signal(bool(current_fact.default_value))
+			fact_default_value_bool.set_pressed_no_signal(!!current_fact.default_value)
 			
 		fact_have_default_value_container.visible = current_fact.have_default_value
 		fact_have_default_value_check_box.set_pressed_no_signal(current_fact.have_default_value)
-	
-	
-func setup_facts(database: ReactionDatabase) -> void:
-	current_database = database
-	facts_list.setup_items(current_database)
+
+
+func setup_facts() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
+	facts_list.setup_items()
 
 
 func _set_fact_type_menu_text(value: Variant.Type) -> String:
@@ -148,13 +148,13 @@ func _set_fact(fact_data: ReactionFactItem) -> void:
 		
 	fact_data_container.visible = true
 	
-	fact_tags_multiselect.setup(current_fact, current_database.tags.values())
+	fact_tags_multiselect.setup(current_fact)
 	_update_fact_default_value_input()
 
 
 func _set_fact_property(property_name: StringName, value: Variant) -> void:
 	current_fact.set(property_name, value)
-	current_database.save_data()
+	current_fact.update_sqlite()
 
 
 func _set_visibility_enum_hint(value: bool) -> void:
@@ -207,7 +207,7 @@ func _on_fact_hint_string_line_edit_text_submitted(new_text):
 
 
 func _on_fact_type_menu_index_pressed(index):
-	if not current_fact.have_references(current_database):
+	if current_fact.get_references().size() == 0:
 		var popup = fact_type_menu.get_popup()
 		var label = popup.get_item_text(index)
 		if fact_type_menu_text_options["string"] == label:
@@ -233,7 +233,7 @@ func _on_facts_list_item_added(index, item_data):
 
 
 func _on_facts_list_item_removed(index, item_data):
-	if current_database.global_facts.size() > 0:
+	if facts_list.items_list.item_count > 0:
 		_set_fact(facts_list.current_item)
 	else:
 		fact_data_container.visible = false
@@ -246,28 +246,53 @@ func _on_facts_list_item_list_updated():
 func _on_show_fact_references_button_pressed():
 	var text_result = ""
 	var references_count = 0
-	for event: ReactionEventItem in current_database.events.values():
-		if current_fact.uid in event.fact_reference_log:
-			for log_item: ReactionReferenceLogItem in event.fact_reference_log[current_fact.uid].values():
-				references_count += 1
-				text_result += "[b]*[/b] %s %s: " % [ReactionGlobals.get_item_type(log_item.object), log_item.object.label]
-				
-				text_result += "[b]Event:[/b] %s" % event.label
-				if log_item.rule:
-					text_result += " -> [b]Rule:[/b] %s" % log_item.rule.label
-				if log_item.response:
-					text_result += " ->  [b]Response:[/b] %s" % log_item.response.label
-					
-				if log_item.choice:
-					text_result += " ->  [b]Choice:[/b] %s" % log_item.choice.label
-					
-				text_result += "\n"
+	
+	var references = current_fact.get_references()
+	references_count = len(references)
 	
 	if references_count == 0:
 		text_result = "No references found"
+	else:
+			
+		var rules_ids: Array[int] = []
+		for reference in references:
+			var rule_id = reference.get("rule_id", null)
+			if  rule_id != null:
+				rules_ids.append(rule_id)
+		
+		var placeholders = ReactionGlobals.generate_sqlite_query_placeholders_from_array(rules_ids)
+		
+		var query = """
+		SELECT rule.id AS rule_id,  rule.label AS rule_label, response.label AS response_label, event.label AS event_label
+		FROM rule
+		LEFT JOIN response ON rule.response_id = response.id
+		LEFT JOIN event ON rule.event_id = event.id
+		WHERE rule.id IN (%s)
+		""" % [placeholders]
+		_sqlite_database.query_with_bindings(query, rules_ids)
+		var rules = _sqlite_database.query_result
+		
+		text_result += "[ol]"
+		for reference in references:
+			var rule_id = reference.get("rule_id")
+			var rule_data = rules.filter(func(rule): return rule.get("rule_id") == rule_id)[0]
+			
+			var response_label = rule_data.get('response_label')
+			var event_label = rule_data.get('event_label')
+			var rule_label = rule_data.get('rule_label')
+			var reference_type = reference.get("reaction_item_type")
+			var reference_label = reference.get("label")
+			var reference_human_type = "Modification" if ReactionGlobals.ItemsTypesEnum.MODIFICATION == reference_type else "Criteria"
+			
+			if response_label:
+				text_result += "[color=yellow]Response:[/color] %s [color=white][b]>>[/b][/color] [color=yellow]Rule:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]%s:[/color] %s. \n" % [response_label, rule_label, reference_human_type, reference_label]
+			else:
+				text_result += "[color=yellow]Event:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]Rule:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]%s:[/color] %s. \n" % [event_label, rule_label, reference_human_type, reference_label]
+		
+		text_result += "[/ol]"
 		
 	fact_references_label.text = ("Cant of references: %s \n" % references_count) + text_result
-	fact_references_dialog.popup_centered()			
+	fact_references_dialog.popup_centered()
 
 
 func _on_fact_default_value_string_line_edit_text_submitted(new_text):

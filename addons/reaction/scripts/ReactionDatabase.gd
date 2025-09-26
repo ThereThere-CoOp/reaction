@@ -23,10 +23,6 @@ const ReactionSettings = preload("../utilities/settings.gd")
 ## Tags of the reaction database
 @export var tags: Dictionary = {}
 
-## dictionary that store facts references logs
-## each key is a fact value, and each value is a dict
-var fact_log: Dictionary = {}
-
 
 ## ----------------------------------------------------------------------------[br]
 ## Create a clean fact and add it to the database 
@@ -36,7 +32,6 @@ var fact_log: Dictionary = {}
 func create_new_fact() -> void:
 	var fact = ReactionFactItem.new()
 	global_facts[fact.uid] = fact
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -48,7 +43,6 @@ func create_new_fact() -> void:
 ## ----------------------------------------------------------------------------
 func add_fact(fact: ReactionFactItem) -> void:
 	global_facts[fact.uid] = fact
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -59,8 +53,13 @@ func add_fact(fact: ReactionFactItem) -> void:
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
 func remove_fact(fact_uid: String) -> void:
+	
+	var fact: ReactionFactItem = global_facts.get(fact_uid, null)
+	
+	if fact:
+		fact.update_tags()
+		
 	global_facts.erase(fact_uid)
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -72,7 +71,6 @@ func remove_fact(fact_uid: String) -> void:
 ## ----------------------------------------------------------------------------
 func add_event(event: ReactionEventItem) -> void:
 	events[event.uid] = event
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -84,19 +82,17 @@ func add_event(event: ReactionEventItem) -> void:
 ## ----------------------------------------------------------------------------
 func remove_event(event_uid: String) -> void:
 	events.erase(event_uid)
-	save_data()
 	
 	
 ## ----------------------------------------------------------------------------[br]
 ## Add a given tag to the database
 ## [br]
 ## [b]Parameter(s):[/b] [br]
-## [b]* event | ReactionTag:[/b] New tag to add [br]
+## [b]* event | ReactionTagItem:[/b] New tag to add [br]
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
-func add_tag(tag: ReactionTag) -> void:
+func add_tag(tag: ReactionTagItem) -> void:
 	tags[tag.uid] = tag
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -108,7 +104,6 @@ func add_tag(tag: ReactionTag) -> void:
 ## ----------------------------------------------------------------------------
 func remove_tag(tag_uid: String) -> void:
 	tags.erase(tag_uid)
-	save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -124,7 +119,6 @@ func add_rule_to_event(event_uid: String, new_rule: ReactionRuleItem) -> void:
 	if events.has(event_uid):
 		var event: ReactionEventItem = events[event_uid]
 		event.add_rule(new_rule)
-		save_data()
 
 
 ## ----------------------------------------------------------------------------[br]
@@ -140,18 +134,19 @@ func remove_rule_from_event(event_uid: String, rule_uid: String) -> void:
 	if events.has(event_uid):
 		var event: ReactionEventItem = events[event_uid]
 		event.remove_rule(rule_uid)
-		save_data()
 		
 		
 func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
 	if object.object.parents and object.object.parents.size() > 0:
-		var event_uid = object.object.parents[0]
+		var splited_parent: PackedStringArray = object.object.parents[0].split(":")
+		var event_uid = splited_parent[1]
 		events[event_uid].add_fact_reference_log(object)
 	
 
 func remove_fact_reference_log(item: Resource) -> void:
 	if item.parents and item.parents.size() > 0:
-		var event_uid = item.parents[0]
+		var splited_parent: PackedStringArray = item.parents[0].split(":")
+		var event_uid = splited_parent[1]
 		events[event_uid].remove_fact_reference_log(item)
 
 
@@ -166,14 +161,13 @@ func save_data() -> void:
 	ResourceSaver.save(
 		self,
 		(
-			"%s/%s_%s.tres"
+			"%s/%s.tres"
 			% [
 				ReactionSettings.get_setting(
-					ReactionSettings.DATABASES_PATH_SETTING_NAME,
-					ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+					ReactionSettings.EXPORT_PATH_SETTING_NAME,
+					ReactionSettings.EXPORT_PATH_SETTING_DEFAULT
 				),
-				label.replace(" ", "_"),
-				uid
+				label.replace(" ", "_")
 			]
 		)
 	)

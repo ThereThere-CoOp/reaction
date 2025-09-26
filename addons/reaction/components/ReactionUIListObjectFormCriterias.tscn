@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3q1esa7jwsba"]
+
+[ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="1_s6jhn"]
+
+[node name="ReactionUIListObjectForm" instance=ExtResource("1_s6jhn")]
+
+[node name="AddOperationCriteriaButton" type="Button" parent="Rows/AddButtonsContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add operation criteria"

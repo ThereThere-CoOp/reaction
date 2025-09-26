@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4tm8i3lmwl6q"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIIText.gd" id="1_qe0f8"]
+[ext_resource type="Script" uid="uid://dpv4cx7d6r06a" path="res://addons/reaction/components/ReactionUIIText.gd" id="1_qe0f8"]
 
 [node name="ReactionUIIText" type="VBoxContainer"]
 anchors_preset = 15

@@ -6,9 +6,7 @@ extends Resource
 ##
 ## A base class for reaction items like facts, rules, concepts and responses.
 ## Contains common fields and functions for reaction items. [br]
-## ----------------------------------------------------------------------------
-
-@export var parents: Array[String] = []
+## --------------------------------------------------------------------------------
 
 @export_group("Reaction item general data")
 @export var uid: String = Uuid.v4()
@@ -18,15 +16,77 @@ extends Resource
 
 @export_enum("Global", "Event") var scope: String = "Global"
 
-@export var tags: Array[ReactionTag]
+## enum value for reaction item type
+@export var reaction_item_type: int
+
+@export var tags: Array[ReactionTagItem]: 
+	set(value):
+		if self is ReactionFactItem:
+			if tags:
+				for tag in tags:
+					tag.facts.erase(self.uid)
+					
+			for tag in value:
+				tag.facts[self.uid] = true
+				
+		tags = value
 
 @export_group("")
 
+################################################################
+##            Sqlite managment properties
+################################################################
 
-func add_tag(tag: ReactionTag) -> void:
+## parent reaction item (Example: if items is a rule parent item could be an event or response
+var parent_item: ReactionBaseItem
+
+## sqlite id on database, add to use sqlite functions
+var sqlite_id: int
+
+## table name for the item on sqlite database
+var sqlite_table_name: String = ""
+
+## current sqlite database
+var _sqlite_database: SQLite
+
+## fields to ignore when serializing or deserialize
+var _ignore_fields = {
+	"resource_local_to_scene": true,
+	"resource_name": true,
+	"script": true,
+}
+
+
+func _init() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
+	reaction_item_type = get_type_string()
+
+
+## ----------------------------------------------------------------------------[br]
+## Internal where function to get an item data from sqlite, use "sqlite_id" [br]
+## property [br]
+## [b]Returns: void[/b] [br]
+## ----------------------------------------------------------------------------
+func _get_where():
+	return "id = %s" % [sqlite_id]
+
+
+## ----------------------------------------------------------------------------[br]
+## Add a tag to the reaction item [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* tag | ReactionTagItem:[/b] Tag resource to add [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
+func add_tag(tag: ReactionTagItem) -> void:
 	tags.append(tag)
 	
-	
+
+## ----------------------------------------------------------------------------[br]
+## Remove a tag from the reaction item [br]
+## [b]Parameter(s):[/b] [br]
+## [b]* tag_uid | String:[/b] Tag uid to remove [br]
+## [b]Returns: void [br]
+## ----------------------------------------------------------------------------
 func remove_tag(tag_uid: String) -> void:
 	var index = 0
 	for tag in tags:
@@ -37,17 +97,174 @@ func remove_tag(tag_uid: String) -> void:
 		
 	tags.remove_at(index)
 	
+
+## ----------------------------------------------------------------------------[br]
+## Add object to sqlite database with the current data, if item have a [br]
+## parent item add foreign key data to the sqlite database [br]
+## [b]Returns: Dictionary The data saved in database [br]
+## ----------------------------------------------------------------------------
+func add_to_sqlite() -> Dictionary:
+	var data = serialize()
 	
-func update_parents(parent_object: Resource) -> void:
-	if parent_object and parent_object is ReactionBaseItem:
-		var new_parents = parent_object.parents.duplicate()
-		new_parents.append(parent_object.uid)
-		parents = new_parents
+	if parent_item:
+		data[parent_item.sqlite_table_name + "_id"] = parent_item.sqlite_id
+	
+	_sqlite_database.insert_row(sqlite_table_name, data)
+	sqlite_id = _sqlite_database.last_insert_rowid
+	# update_from_sqlite()
+	
+	return data
 	
 	
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	pass
+func remove_from_sqlite() -> bool:
+	var where = _get_where()
+	var success = _sqlite_database.delete_rows(sqlite_table_name, where)
+	sqlite_id = _sqlite_database.last_insert_rowid
+	
+	return success
+	
+	
+func update_sqlite():
+	var data = serialize()
+	var where = _get_where()
+	_sqlite_database.update_rows(sqlite_table_name, where, data)
+	# update_from_sqlite()
+
+
+func get_sqlite_list(custom_where=null, get_resources=false):
+	var results
+	if not parent_item:
+		var where = ""
+		if custom_where:
+			where += str(custom_where)
+		
+		results = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
+	else:
+		var where = " %s_id = %d" % [parent_item.sqlite_table_name, parent_item.sqlite_id]
+		
+		if custom_where:
+			where += " AND %s" % [custom_where]
+		results = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
+		
+	if get_resources:
+		var resource_result = []
+		for result in results:
+			var current_resource = get_new_object()
+			current_resource.deserialize(result)
+			resource_result.append(current_resource)
+			
+		return resource_result
+	else:
+		var output = []
+		for row in results:
+			output.append(row.duplicate())
+		return output
+	
+	
+func serialize() -> Dictionary:
+	var result = {}
+	
+	if sqlite_id:
+		result["id"] = sqlite_id
+		
+	for prop in self.get_property_list():
+		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
+			var name = prop.name
+			var type = prop.type
+			if not _ignore_fields.has(name):
+				match type:
+					#TYPE_NIL:
+						#result[name] = str(get(name))
+					TYPE_INT:
+						result[name] = get(name)
+					TYPE_STRING:
+						result[name] = str(get(name))
+					TYPE_BOOL:
+						result[name] = 0 if not get(name) else 1
+					TYPE_DICTIONARY:
+						result[name] = JSON.stringify(get(name))
+					TYPE_OBJECT:
+							var object = get(name)
+							if object and object.sqlite_id > 0:
+								result[name + "_id"] = object.sqlite_id
+							else:
+								result[name + "_id"] = null
+					_:
+						continue
+	
+	return result
 	
 
-func remove_fact_reference_log(item: Resource) -> void:
+func deserialize(data: Dictionary) -> void:
+	sqlite_id = data.get("id", null)
+	
+	for prop in self.get_property_list():
+		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
+			var name = prop.name
+			var type = prop.type
+			if not _ignore_fields.has(name):
+				if data.has(name) or type == TYPE_OBJECT:
+					match type:
+						#TYPE_NIL:
+							#set(name, str(data.get(name)))
+						TYPE_INT:
+							set(name, int(data.get(name)))
+						TYPE_STRING:
+							set(name, str(data.get(name)))
+						TYPE_BOOL:
+							set(name, !!data.get(name))
+						TYPE_DICTIONARY:
+							set(name, JSON.parse_string(data.get(name)))
+						TYPE_OBJECT:
+							var object = get(name)
+							var resource = get(name + "_script")
+							var resource_new = resource.get_new_object()
+							var tmp_id = data.get(name + "_id", null)
+							if tmp_id and tmp_id > 0:
+								resource_new.sqlite_id = tmp_id
+								resource_new.update_from_sqlite()
+								set(name, resource_new)
+						_:
+							continue
+				
+func update_from_sqlite():
+	var where = _get_where()
+	var result = _sqlite_database.select_rows(sqlite_table_name, where, ["*"])
+	
+	if len(result) > 0:
+		result = result[0]
+		deserialize(result)
+		
+		
+func get_tags():
+	var where = "%s = %d" % [sqlite_table_name + "_id", sqlite_id]
+	
+	var related_relation_query_field_name = "%s.%s" % ["tag_item_rel", "tag_id"]
+	var parent_relation_query_field_name = "%s.%s" % ["tag_item_rel", sqlite_table_name + "_id"]
+		
+	var query = """
+	SELECT tag.id AS id, tag_item_rel.id AS rel_id, tag.label AS label, tag.uid AS uid FROM %s 
+	INNER JOIN %s ON %s.id = %s
+	WHERE %s = %d;
+	""" % ["tag", "tag_item_rel", "tag", related_relation_query_field_name, parent_relation_query_field_name, sqlite_id]
+	
+	_sqlite_database.query(query)
+	var result = _sqlite_database.query_result
+	
+	return result
+	
+	
+func export():
+	pass
+	
+	
+func _to_string():
+	return label
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.BASE
+	
+	
+static func get_new_object():
 	pass

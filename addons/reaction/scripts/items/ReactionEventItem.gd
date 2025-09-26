@@ -12,53 +12,23 @@ extends ReactionBaseItem
 
 @export var fact_reference_log = {}
 
+
 ## array of ordered rules to be checked for this concept,
 ## rules are ordered for their criteria count in descending order
 @export var rules: Array[ReactionRuleItem]:
 	set(value):
-		rules = _sort_rules(value)
+		rules = ReactionGlobals.sort_rules(value)
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 			
+			
+func _init() -> void:
+	super()
+	_ignore_fields.merge({"fact_reference_log": true})
+	label = "NEW_EVENT"
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.EVENT
+	sqlite_table_name = "event"
 
-## ----------------------------------------------------------------------------[br]
-## fuction to sort rules when have priority higher than 0 [br]
-## ----------------------------------------------------------------------------
-func _sort_priority_rules(a, b):
-	if a.priority < b.priority:
-		return true
-
-	if a.priority == b.priority:
-		return a.get_criterias_count() > b.get_criterias_count()
-
-	return false
-	
-
-## ----------------------------------------------------------------------------[br]
-## private fuction to sort rules [br]
-## ----------------------------------------------------------------------------
-func _sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRuleItem]:
-	var new_rules: Array[ReactionRuleItem] = []
-	var temp_priority_rules: Array[ReactionRuleItem] = []
-	var temp_non_priority_rules: Array[ReactionRuleItem] = []
-
-	for rule in rules_array:
-		if rule and rule.priority > 0:
-			temp_priority_rules.append(rule)
-		else:
-			temp_non_priority_rules.append(rule)
-
-	temp_priority_rules.sort_custom(_sort_priority_rules)
-
-	temp_non_priority_rules.sort_custom(
-		func(a, b): return a.get_criterias_count() > b.get_criterias_count()
-	)
-
-	new_rules.append_array(temp_priority_rules)
-	new_rules.append_array(temp_non_priority_rules)
-
-	return new_rules
-	
 
 ## ----------------------------------------------------------------------------[br]
 ## Add a rule to event and reorder the rules using priority and rule's criteria 
@@ -86,7 +56,6 @@ func remove_rule(rule_uid: String) -> void:
 	var index = 0
 	for rule in rules:
 		if rule.uid == rule_uid:
-			rule.remove_fact_reference_log(rule)
 			break
 			
 		index += 1
@@ -108,6 +77,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 	var new_event_log_item: ReactionEventExecutionLogItem = ReactionEventExecutionLogItem.new()
 	new_event_log_item.label = self.label
 	new_event_log_item.event_triggered = self
+	
 	new_event_log_item.old_blackboard = context.clone()
 	
 	for rule in rules:
@@ -121,57 +91,33 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			ReactionSignals.event_execution_log_created.emit(new_event_log_item)
 			
 			ReactionSignals.rule_executed.emit(rule)
-			return rule.responses.get_responses()
+			if rule.response_group:
+				return rule.response_group.get_responses()
+			else:
+				return []
 
 	return []
 	
-
-## ----------------------------------------------------------------------------[br]
-## Add an item on the fact references logs
-## [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* object | ReactionReferenceLogItem:[/b] New log item to add [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------	
-func add_fact_reference_log(object: ReactionReferenceLogItem) -> void:
-	var fact_uid: String = object.object.fact.uid
-	if fact_uid in fact_reference_log:
-		fact_reference_log[fact_uid][object.uid] = object
-	else:
-		fact_reference_log[fact_uid] = {}
-		fact_reference_log[fact_uid][object.uid] = object
+	
+func export():
+	var rule_object: ReactionRuleItem = ReactionRuleItem.new()
+	rule_object.parent_item = self
+	
+	var rules_list: Array[ReactionRuleItem]
+	rules_list.assign(rule_object.get_sqlite_list(null, true))
+	
+	for rule in rules_list:
+		rule.export()
+		
+	rules = rules_list
+	
 	
 
-## ----------------------------------------------------------------------------[br]
-## Remove an item on the fact references logs
-## [br]
-## [b]Parameter(s):[/b] [br]
-## [b]* item | Resource:[/b] Item to removed from the log could be an
-## rule, criteria, modification, response or dialog choice [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------	
-func remove_fact_reference_log(item: Resource) -> void:
-	for object_log in fact_reference_log.values():
-		if item is ReactionCriteriaItem or item is ReactionContextModificationItem:
-			object_log.erase(item.uid)
-		else:
-			for log_item in object_log.values():
-				if item is ReactionRuleItem:
-					if log_item.rule.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionResponseItem:
-					if log_item.response.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				if item is ReactionDialogChoiceItem:
-					if log_item.choice.uid == item.uid:
-						object_log.erase(log_item.uid)
-						
-				## add here extra if for custom items
-				
 
-func get_new_object():
+static func get_new_object():
 	var new_event = ReactionEventItem.new()
-	new_event.label = "NEW_EVENT"
 	return new_event
+	
+	
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.EVENT

@@ -14,6 +14,11 @@ var value_numeric_text_edit: LineEdit
 var enum_values_menu: MenuButton
 var boolean_value_check: CheckBox
 
+var fact_function_managment: ReactionUIFunctionManagment
+var is_function_checkbox: CheckButton
+var function_button: Button
+var function_confirmation_dialog: ConfirmationDialog
+
 
 func _ready():
 	super()
@@ -41,6 +46,9 @@ func update_operation_menu_items() -> void:
 	if not item_object.fact:
 		operation_menu_labels = []
 		_set_operation_input_visibility(false)
+	elif item_object.is_function:
+		operation_menu_labels = ["=", "+", "-"]
+		_set_operation_input_visibility(true)
 	elif item_object.fact.type == TYPE_INT:
 		operation_menu_labels = ["=", "+", "-", "erase"]
 		_set_operation_input_visibility(true)
@@ -60,7 +68,7 @@ func update_operation_menu_items() -> void:
 	
 func _get_value_a() -> Variant:
 	if item_object.modification_value:
-		return item_object.modification_value
+		return item_object.get_modification_real_value()
 	else:
 		match item_object.fact.type:
 			TYPE_STRING:
@@ -72,36 +80,37 @@ func _get_value_a() -> Variant:
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
-	if item_object.fact:
-		value_label.visible = true
-		
-		var current_value_a = _get_value_a()
+	if not item_object.is_function:
+		if item_object.fact:
+			value_label.visible = true
 			
-		if item_object.fact.type == TYPE_INT:
-			value_numeric_input.visible = true
-			value_numeric_input.set_value_no_signal(int(current_value_a))
-			
-		if item_object.fact.type == TYPE_BOOL:
-			boolean_value_check.visible = true
-			boolean_value_check.set_pressed_no_signal(bool(current_value_a))
-			
-		if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
-			value_input.visible = true
-			value_input.text = str(current_value_a)
-			
-		if item_object.fact.type == TYPE_STRING and item_object.fact.is_enum:
-			enum_values_menu.visible = true
-			 
-			var enum_menu = enum_values_menu.get_popup()
-			enum_menu.clear()
-			var values = item_object.fact.enum_names
-			for value in values:
-				enum_menu.add_item(value)
+			var current_value_a = _get_value_a()
 				
-			enum_values_menu.text = str(current_value_a)
+			if item_object.fact.type == TYPE_INT:
+				value_numeric_input.visible = true
+				value_numeric_input.set_value_no_signal(int(current_value_a))
+				
+			if item_object.fact.type == TYPE_BOOL:
+				boolean_value_check.visible = true
+				boolean_value_check.set_pressed_no_signal(bool(current_value_a))
+				
+			if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
+				value_input.visible = true
+				value_input.text = str(current_value_a)
+				
+			if item_object.fact.type == TYPE_STRING and item_object.fact.is_enum:
+				enum_values_menu.visible = true
+				 
+				var enum_menu = enum_values_menu.get_popup()
+				enum_menu.clear()
+				var values = item_object.fact.enum_names
+				for value in values:
+					enum_menu.add_item(value)
+					
+				enum_values_menu.text = str(current_value_a)
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
 	index_label = %IndexLabel
 	label_input = %LabelLineEdit
 	fact_search_menu = %FactsSearchMenu
@@ -114,6 +123,12 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	enum_values_menu = %EnumValuesMenuButton
 	boolean_value_check = %BooleanValueCheckBox
 	
+	is_function_checkbox = %CheckButton
+	function_button = %FunctionButton
+	
+	function_confirmation_dialog = %FactsFunctionConfirmationDialog
+	fact_function_managment = %FunctionManagment
+	
 	var operation_popup_menu: PopupMenu = operation_menu.get_popup()
 	var values_popup_menu: PopupMenu = enum_values_menu.get_popup()
 	
@@ -122,7 +137,6 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	value_numeric_text_edit.text_submitted.connect(_on_value_numeric_text_submitted)
 	
 	
-	current_database = database
 	current_parent_object = parent_object
 	object_index = index
 	item_object = object
@@ -132,7 +146,12 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	if item_object.fact:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
-	fact_search_menu.items_list = current_database.global_facts.values()
+	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
+	var facts_list = fact_resource.get_sqlite_list(null, true)
+	fact_search_menu.items_list = facts_list
+	
+	function_button.visible = object.is_function
+	is_function_checkbox.set_pressed_no_signal(object.is_function)
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -143,7 +162,7 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 
 func _set_modification_property(property_name: StringName, value: Variant) -> void:
 	item_object.set(property_name, value)
-	current_database.save_data()
+	item_object.update_sqlite()
 
 
 ### Signals
@@ -153,15 +172,7 @@ func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
 	
-	if item_object.fact:
-		current_database.remove_fact_reference_log(item_object)
-	
 	_set_modification_property("fact", fact_search_menu.current_item)
-	
-	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
-	new_item_log.update_log_objects(item_object, current_database)
-	current_database.add_fact_reference_log(new_item_log)
-	current_database.save_data()
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -172,7 +183,7 @@ func _on_label_line_edit_text_submitted(new_text):
 	
 	
 func _on_value_numeric_text_submitted(new_text: String) -> void:
-	_set_modification_property("modification_value", int(new_text))
+	_set_modification_property("modification_value", new_text)
 	value_numeric_text_edit.release_focus()
 	
 	
@@ -197,4 +208,32 @@ func _on_values_menu_index_pressed(index: int):
 
 
 func _on_boolean_value_check_box_toggled(toggled_on):
-	_set_modification_property("modification_value", toggled_on)
+	_set_modification_property("modification_value", str(int(toggled_on)))
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	_set_modification_property("is_function", toggled_on)
+	function_button.visible = toggled_on
+	update_operation_menu_items()
+	update_values_input()
+
+
+func _on_facts_function_confirmation_dialog_confirmed() -> void:
+	if fact_function_managment.check_function():
+		_set_modification_property("function", fact_function_managment.get_function_string())
+
+
+func _on_function_button_pressed() -> void:
+	fact_function_managment.setup(item_object.serialize())
+	function_confirmation_dialog.popup_centered()
+	
+
+
+func _on_facts_search_menu_item_removed(item: Variant) -> void:
+	operation_menu.text = "Select operation"
+	enum_values_menu.text = "Select value"
+	
+	_set_modification_property("fact", null)
+	
+	update_operation_menu_items()
+	update_values_input()

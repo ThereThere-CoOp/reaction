@@ -8,7 +8,7 @@ signal object_list_form_removed(object_index: int)
 
 @export var remove_object_function_name: String = "remove_function_name"
 
-var current_database: ReactionDatabase
+var current_database: SQLite
 
 var current_parent_object: Resource
 
@@ -29,8 +29,8 @@ func _ready():
 	remove_object_button.tooltip_text = "Remove %s" % object_name
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:	
-	current_database = database
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:	
+	current_database = ReactionGlobals.current_sqlite_database
 	current_parent_object = parent_object
 	object_index = index
 	item_object = object
@@ -55,10 +55,7 @@ func _on_main_view_theme_changed() -> void:
 
 
 func _on_remove_object_button_pressed():
-	var remove_function_callable = Callable(current_parent_object, remove_object_function_name)
-	current_database.remove_fact_reference_log(item_object)
-	remove_function_callable.call(object_index)
-	# current_parent_object.remove_modification_by_index(object_index)
-	current_database.save_data()
+	item_object.remove_from_sqlite()
+
 	queue_free()
 	object_list_form_removed.emit(object_index)

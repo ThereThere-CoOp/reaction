@@ -1,58 +1,108 @@
-[gd_scene load_steps=27 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=53 format=3 uid="uid://bqf20gwkbuy8n"]
 
-[ext_resource type="Script" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
-[ext_resource type="Script" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
+[ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
+[ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
 [ext_resource type="PackedScene" uid="uid://jc4ei7i0bj2v" path="res://addons/reaction/components/edit_database_dialog.tscn" id="2_jeeb5"]
 [ext_resource type="PackedScene" uid="uid://tycacr0sxsef" path="res://addons/reaction/views/settings_view.tscn" id="3_6kxn8"]
-[ext_resource type="PackedScene" uid="uid://dt65kcmm087t4" path="res://addons/reaction/components/ReactionItemList.tscn" id="3_cpcid"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_jdoy6"]
-[ext_resource type="Script" path="res://addons/reaction/components/Events.gd" id="5_s4hfs"]
+[ext_resource type="PackedScene" uid="uid://dt65kcmm087t4" path="res://addons/reaction/components/ReactionUIItemList.tscn" id="3_cpcid"]
+[ext_resource type="Script" uid="uid://dmky1i8wo1xnp" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_jdoy6"]
+[ext_resource type="Script" uid="uid://g88brts5kaat" path="res://addons/reaction/components/Events.gd" id="5_s4hfs"]
 [ext_resource type="PackedScene" uid="uid://caa0vtulg73kt" path="res://addons/reaction/components/ReactionUIMultiselect.tscn" id="5_wmdgq"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionEventItem.gd" id="7_0knvx"]
-[ext_resource type="Script" path="res://addons/reaction/components/Rules.gd" id="7_4prge"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="7_jvxl4"]
+[ext_resource type="Script" uid="uid://csvfnuf04lqwa" path="res://addons/reaction/scripts/items/ReactionEventItem.gd" id="7_0knvx"]
+[ext_resource type="Script" uid="uid://cpahh466xtp5o" path="res://addons/reaction/components/Rules.gd" id="7_4prge"]
+[ext_resource type="Script" uid="uid://17qnylmuqehb" path="res://addons/reaction/scripts/items/ReactionRuleItem.gd" id="7_jvxl4"]
 [ext_resource type="PackedScene" uid="uid://bujjba3nge54o" path="res://addons/reaction/components/ReactionUIListObjectForm.tscn" id="9_4equ7"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="11_vsk32"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="12_5a862"]
+[ext_resource type="Script" uid="uid://bv2nf0mygo3er" path="res://addons/reaction/scripts/items/ReactionCriteriaItem.gd" id="11_vsk32"]
+[ext_resource type="Script" uid="uid://b02twwj7k3kqc" path="res://addons/reaction/scripts/items/ReactionContextModificationItem.gd" id="12_5a862"]
+[ext_resource type="Script" uid="uid://wjclotthw7aj" path="res://addons/reaction/scripts/ListObjectFormObjectToAdd.gd" id="12_cc7b5"]
 [ext_resource type="PackedScene" uid="uid://du1las4wvlpxc" path="res://addons/reaction/components/ReactionUIModification.tscn" id="12_m2k4m"]
 [ext_resource type="PackedScene" uid="uid://dp6pp31ltd4g4" path="res://addons/reaction/components/responses.tscn" id="13_giylq"]
-[ext_resource type="Script" path="res://addons/reaction/scripts/ReactionTag.gd" id="14_2dj17"]
-[ext_resource type="Script" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
+[ext_resource type="Script" uid="uid://bb5087ylli2o7" path="res://addons/reaction/scripts/ReactionTagItem.gd" id="14_2dj17"]
+[ext_resource type="Script" uid="uid://cg4cl4b37p8ga" path="res://addons/reaction/components/Tags.gd" id="14_qvwfu"]
+[ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="15_ucfj6"]
+[ext_resource type="Script" uid="uid://cfr5o7fjvdmjr" path="res://addons/reaction/scripts/items/ReactionResponseItem.gd" id="18_irtov"]
+[ext_resource type="Script" uid="uid://0b6puqk6sjfu" path="res://addons/reaction/components/AllResponses.gd" id="18_j5jl6"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="19_6chnr"]
+[ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="20_j5jl6"]
+[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="21_dtkum"]
 
-[sub_resource type="Image" id="Image_k47tk"]
+[sub_resource type="Image" id="Image_j5jl6"]
 data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 255, 91, 91, 45, 255, 93, 93, 44, 0, 0, 0, 0, 255, 91, 91, 42, 255, 91, 91, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": "RGBA8",
 "height": 16,
 "mipmaps": false,
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_207ah"]
-image = SubResource("Image_k47tk")
+[sub_resource type="ImageTexture" id="ImageTexture_dtkum"]
+image = SubResource("Image_j5jl6")
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
 type = 0
 is_enum = false
 trigger_signal_on_modified = false
-parents = Array[String]([])
+hint_string = ""
+have_default_value = false
+default_value = null
 uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 1
 tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_0hcmb"]
+script = ExtResource("4_jdoy6")
+type = 4
+is_enum = false
+trigger_signal_on_modified = false
+hint_string = ""
+have_default_value = false
+default_value = null
+uid = "99fd2562-99e5-48f0-be0e-a87d33930318"
+label = "newFact"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 1
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://dmky1i8wo1xnp"
+
+[sub_resource type="Resource" id="Resource_dtkum"]
+script = ExtResource("12_cc7b5")
+object_name = "fact"
+object_resource_class = SubResource("Resource_0hcmb")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_57f2n"]
 script = ExtResource("7_0knvx")
 fact_reference_log = {}
 rules = Array[ExtResource("7_jvxl4")]([])
-parents = Array[String]([])
-uid = "7825e03c-4c9f-42e6-8813-19d34c215b16"
-label = "item_label"
+uid = "6fcec7d0-452a-4865-af58-08758b5fde36"
+label = "NEW_EVENT"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 2
 tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_c105b"]
+script = ExtResource("7_0knvx")
+fact_reference_log = {}
+rules = Array[ExtResource("7_jvxl4")]([])
+uid = "602937a5-ee17-4df5-869f-82a60f3937b2"
+label = "NEW_EVENT"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 2
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://csvfnuf04lqwa"
+
+[sub_resource type="Resource" id="Resource_angv0"]
+script = ExtResource("12_cc7b5")
+object_name = "event"
+object_resource_class = SubResource("Resource_c105b")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
@@ -60,38 +110,196 @@ criterias = Array[ExtResource("11_vsk32")]([])
 modifications = Array[ExtResource("12_5a862")]([])
 match_once = false
 priority = 0
-parents = Array[String]([])
 uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 3
 tags = Array[ExtResource("14_2dj17")]([])
 
-[sub_resource type="Resource" id="Resource_mkqyv"]
+[sub_resource type="Resource" id="Resource_pg2dt"]
+script = ExtResource("7_jvxl4")
+criterias = Array[ExtResource("11_vsk32")]([])
+modifications = Array[ExtResource("12_5a862")]([])
+match_once = false
+priority = 0
+uid = "410d9228-0b01-4652-97b9-0cab5791c0a2"
+label = "new_rule"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 3
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://17qnylmuqehb"
+
+[sub_resource type="Resource" id="Resource_5tspb"]
+script = ExtResource("12_cc7b5")
+object_name = "rule"
+object_resource_class = SubResource("Resource_pg2dt")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
+[sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
 operation = ""
 is_reverse = false
-parents = Array[String]([])
-uid = "eff43469-c2d2-4e4c-aa07-07c5ea38e122"
+value_a = ""
+value_b = ""
+uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 4
 tags = Array[ExtResource("14_2dj17")]([])
 
-[sub_resource type="Resource" id="Resource_ygi3k"]
+[sub_resource type="Resource" id="Resource_x0si4"]
+script = ExtResource("12_cc7b5")
+object_name = "criteria"
+object_resource_class = SubResource("Resource_hhbcw")
+
+[sub_resource type="Resource" id="Resource_6chnr"]
+script = ExtResource("15_ucfj6")
+function = ""
+operation = ""
+is_reverse = false
+value_a = ""
+value_b = ""
+uid = "ec834976-4538-4dd7-99b3-f81c7ab9466f"
+label = "new_criteria"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 6
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://pdmf7t801lbs"
+
+[sub_resource type="Resource" id="Resource_j5jl6"]
+script = ExtResource("12_cc7b5")
+object_name = "function criteria"
+object_resource_class = SubResource("Resource_6chnr")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
+[sub_resource type="Resource" id="Resource_irtov"]
+script = ExtResource("11_vsk32")
+operation = ""
+is_reverse = false
+value_a = ""
+value_b = ""
+uid = "326e1b4b-6932-4646-a661-228804e743cb"
+label = "new_criteria"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 4
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://bv2nf0mygo3er"
+
+[sub_resource type="Resource" id="Resource_ucfj6"]
 script = ExtResource("12_5a862")
-parents = Array[String]([])
-uid = "e655a111-e080-42f6-bb7d-a768718c96fc"
+modification_value = ""
+operation = ""
+function = ""
+is_function = false
+uid = "762dac46-7a11-4216-acdb-186c8c6d31fd"
+label = "new_modification"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 5
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://b02twwj7k3kqc"
+
+[sub_resource type="Resource" id="Resource_rp5i7"]
+script = ExtResource("12_cc7b5")
+object_name = "modification"
+object_resource_class = SubResource("Resource_ucfj6")
+
+[sub_resource type="Resource" id="Resource_bm01k"]
+script = ExtResource("12_5a862")
+modification_value = ""
+operation = ""
+function = ""
+is_function = false
+uid = "8a5354aa-6d34-4baf-bec9-72b305d7d756"
 label = "item_label"
 description = "Item long description"
 scope = "Global"
+reaction_item_type = 0
 tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://b02twwj7k3kqc"
+
+[sub_resource type="Resource" id="Resource_jo51q"]
+script = ExtResource("18_irtov")
+triggers = ""
+resource = ""
+uid = "d6b969cf-7d5d-4cef-b971-7fc8f8681046"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 8
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
+
+[sub_resource type="Resource" id="Resource_saux0"]
+script = ExtResource("18_irtov")
+triggers = ""
+resource = ""
+uid = "7c7ce4fd-1d83-4996-bbfc-4701af8abe68"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 8
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
+
+[sub_resource type="Resource" id="Resource_nhcx7"]
+script = ExtResource("12_cc7b5")
+object_name = "Response"
+object_resource_class = SubResource("Resource_saux0")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
+
+[sub_resource type="Resource" id="Resource_iru7f"]
+script = ExtResource("20_j5jl6")
+texts = Array[ExtResource("21_dtkum")]([])
+have_choices = false
+choices = Array[ExtResource("19_6chnr")]([])
+triggers = ""
+resource = ""
+uid = "46a00bc8-475c-4a7f-a2a8-679584e32e50"
+label = "newResponse"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 9
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://ct08x83xg4ivu"
+
+[sub_resource type="Resource" id="Resource_dhysa"]
+script = ExtResource("12_cc7b5")
+object_name = "Dialog response"
+object_resource_class = SubResource("Resource_iru7f")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_vsy2h"]
 script = ExtResource("14_2dj17")
-label = "tagLabel"
+facts = {}
 uid = "535c9aca-4ec3-4b42-a92a-9b494ef404e4"
+label = "tagLabel"
 description = ""
+scope = "Global"
+reaction_item_type = 13
+tags = Array[ExtResource("14_2dj17")]([])
+
+[sub_resource type="Resource" id="Resource_nosmq"]
+script = ExtResource("14_2dj17")
+facts = {}
+uid = "e62d4b8d-9eaa-43af-ac3c-a20a7009c43c"
+label = "newTag"
+description = "Item long description"
+scope = "Global"
+reaction_item_type = 12
+tags = Array[ExtResource("14_2dj17")]([])
+metadata/_custom_type_script = "uid://bb5087ylli2o7"
+
+[sub_resource type="Resource" id="Resource_t6gee"]
+script = ExtResource("12_cc7b5")
+object_name = "tag"
+object_resource_class = SubResource("Resource_nosmq")
+metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [node name="MainView" type="Control"]
 clip_contents = true
@@ -126,7 +334,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("ImageTexture_207ah")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -136,38 +344,49 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "test_database"
-icon = SubResource("ImageTexture_207ah")
-item_count = 1
-popup/item_0/text = "test_database"
-popup/item_0/icon = SubResource("ImageTexture_207ah")
+text = "new"
+icon = SubResource("ImageTexture_dtkum")
+item_count = 2
+popup/item_0/text = "new"
+popup/item_0/icon = SubResource("ImageTexture_dtkum")
 popup/item_0/id = 0
+popup/item_1/text = "other"
+popup/item_1/icon = SubResource("ImageTexture_dtkum")
+popup/item_1/id = 1
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("ImageTexture_207ah")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("ImageTexture_207ah")
+icon = SubResource("ImageTexture_dtkum")
+flat = true
+
+[node name="ExportDatabaseAsResourceButton" type="Button" parent="MainRows/ToolBar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Export database as resource"
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
-icon = SubResource("ImageTexture_207ah")
+icon = SubResource("ImageTexture_dtkum")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 
 [node name="GlobalFacts" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
@@ -177,6 +396,7 @@ theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 script = ExtResource("2_bgi7c")
+metadata/_tab_index = 0
 
 [node name="FactsMainPanel" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts"]
 layout_mode = 2
@@ -186,8 +406,8 @@ theme_override_constants/separation = 10
 [node name="FactsList" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel" instance=ExtResource("3_cpcid")]
 unique_name_in_owner = true
 layout_mode = 2
-item_name = "fact"
 reaction_resource = SubResource("Resource_qew6w")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_dtkum")])
 
 [node name="FactDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel"]
 unique_name_in_owner = true
@@ -273,8 +493,6 @@ text = "Tags:"
 [node name="TabsMultiselect" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/TabsContainer" instance=ExtResource("5_wmdgq")]
 unique_name_in_owner = true
 layout_mode = 2
-add_related_function_name = "add_tag"
-remove_related_function_name = "remove_tag"
 
 [node name="ShowFactReferencesButton" type="Button" parent="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer"]
 unique_name_in_owner = true
@@ -395,6 +613,7 @@ theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 script = ExtResource("5_s4hfs")
+metadata/_tab_index = 1
 
 [node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events"]
 layout_mode = 2
@@ -408,10 +627,8 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "event"
-item_list_field_name = "events"
-add_function_name = "add_event"
-remove_function_name = "remove_event"
 reaction_resource = SubResource("Resource_57f2n")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_angv0")])
 
 [node name="EventDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel"]
 unique_name_in_owner = true
@@ -466,8 +683,7 @@ text = "Tags:"
 [node name="EventTabsMultiselect" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/TabsContainer" instance=ExtResource("5_wmdgq")]
 unique_name_in_owner = true
 layout_mode = 2
-add_related_function_name = "add_tag"
-remove_related_function_name = "remove_tag"
+parent_field_name = "event_id"
 
 [node name="Rules" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer"]
 unique_name_in_owner = true
@@ -481,19 +697,19 @@ custom_minimum_size = Vector2(300, 250)
 layout_mode = 2
 size_flags_vertical = 3
 item_name = "rule"
-item_list_field_name = "rules"
-add_function_name = "add_rule"
-remove_function_name = "remove_rule"
 reaction_resource = SubResource("Resource_ep52h")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_5tspb")])
 
 [node name="RuleDataContainer" type="TabContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 
 [node name="General" type="MarginContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="DataContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General"]
 layout_mode = 2
@@ -557,24 +773,54 @@ max_value = 1e+06
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-object_name = "criteria"
-objects_list_field_name = "criterias"
-parent_object_add_function_name = "add_criteria"
-object_resource_class = SubResource("Resource_mkqyv")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_x0si4"), SubResource("Resource_j5jl6")])
+list_resource_class = SubResource("Resource_irtov")
+metadata/_tab_index = 1
 
 [node name="Modifications" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer" instance=ExtResource("9_4equ7")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-object_name = "modification"
-objects_list_field_name = "modifications"
-parent_object_add_function_name = "add_modification"
-object_resource_class = SubResource("Resource_ygi3k")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_rp5i7")])
+list_resource_class = SubResource("Resource_bm01k")
 object_scene = ExtResource("12_m2k4m")
+metadata/_tab_index = 2
 
 [node name="Responses" parent="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer" instance=ExtResource("13_giylq")]
 unique_name_in_owner = true
 layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="All Responses" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+script = ExtResource("18_j5jl6")
+metadata/_tab_index = 2
+
+[node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/All Responses"]
+layout_mode = 2
+
+[node name="ResponsesMainContainer" type="HBoxContainer" parent="MainRows/DatabaseDataManagment/All Responses/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResponsesList" parent="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer" instance=ExtResource("3_cpcid")]
+unique_name_in_owner = true
+layout_mode = 2
+item_name = "response"
+reaction_resource = SubResource("Resource_jo51q")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_nhcx7"), SubResource("Resource_dhysa")])
+
+[node name="ResponseDataContainer" type="MarginContainer" parent="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Tags" type="MarginContainer" parent="MainRows/DatabaseDataManagment"]
 unique_name_in_owner = true
@@ -585,6 +831,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("14_qvwfu")
+metadata/_tab_index = 3
 
 [node name="Rows" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags"]
 layout_mode = 2
@@ -598,10 +845,8 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 item_name = "tag"
-item_list_field_name = "tags"
-add_function_name = "add_tag"
-remove_function_name = "remove_tag"
 reaction_resource = SubResource("Resource_vsy2h")
+objects_to_add_data_array = Array[ExtResource("12_cc7b5")]([SubResource("Resource_t6gee")])
 
 [node name="TagDataContainer" type="VBoxContainer" parent="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel"]
 unique_name_in_owner = true
@@ -664,6 +909,28 @@ position = Vector2i(0, 36)
 [node name="RemoveDatabaseConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 
+[node name="ExportDatabaseResourceConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+size = Vector2i(400, 100)
+
+[node name="NameContainer" type="HBoxContainer" parent="ExportDatabaseResourceConfirmationDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="ResourceDatabaseNameLineEdit" type="LineEdit" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Input database resource name"
+
 [node name="SettingsDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
 title = "Settings"
@@ -680,6 +947,7 @@ unique_name_in_owner = true
 [connection signal="about_to_popup" from="MainRows/ToolBar/DatabaseMenuButton" to="." method="_on_database_menu_about_to_popup"]
 [connection signal="pressed" from="MainRows/ToolBar/EditDatabaseButton" to="." method="_on_edit_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
+[connection signal="pressed" from="MainRows/ToolBar/ExportDatabaseAsResourceButton" to="." method="_on_export_database_as_resource_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="tab_selected" from="MainRows/DatabaseDataManagment" to="." method="_on_database_data_managment_tab_selected"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_added"]
@@ -704,13 +972,16 @@ unique_name_in_owner = true
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleNameInputContainer/RuleNameLineEdit" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleMatchOnceCheckButton" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_match_once_check_button_pressed"]
+[connection signal="item_added" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_added"]
+[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_list_updated"]
+[connection signal="item_removed" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_removed"]
+[connection signal="item_selected" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_response_list_item_selected"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_added"]
 [connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_list_updated"]
 [connection signal="item_removed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_removed"]
 [connection signal="item_selected" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]
 [connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
-[connection signal="confirmed" from="EditDatabaseDialog" to="EditDatabaseDialog" method="_on_edit_board_dialog_confirmed"]
-[connection signal="database_updated" from="EditDatabaseDialog" to="." method="_on_edit_database_dialog_database_updated"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="ExportDatabaseResourceConfirmationDialog" to="." method="_on_export_database_resource_confirmation_dialog_confirmed"]
 [connection signal="databases_path_changed" from="SettingsDialog/SettingsView" to="." method="_on_setting_database_path_updated"]

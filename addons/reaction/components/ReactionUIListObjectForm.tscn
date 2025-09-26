@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bujjba3nge54o"]
 
-[ext_resource type="Script" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="1_04rig"]
+[ext_resource type="Script" uid="uid://dckfeuuvcybx5" path="res://addons/reaction/components/ReactionUIListObjectForm.gd" id="1_04rig"]
 
 [node name="ReactionUIListObjectForm" type="MarginContainer"]
 script = ExtResource("1_04rig")
@@ -8,11 +8,14 @@ script = ExtResource("1_04rig")
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="AddObjectButton" type="Button" parent="Rows"]
+[node name="AddButtonsContainer" type="HBoxContainer" parent="Rows"]
+layout_mode = 2
+
+[node name="AddObjectsMenuButton" type="MenuButton" parent="Rows/AddButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Add object"
+text = "Select object to add..."
+flat = false
 
 [node name="ObjectsScrollContainer" type="ScrollContainer" parent="Rows"]
 unique_name_in_owner = true
@@ -22,5 +25,3 @@ size_flags_vertical = 3
 [node name="ObjectsRows" type="VBoxContainer" parent="Rows/ObjectsScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[connection signal="pressed" from="Rows/AddObjectButton" to="." method="_on_add_criteria_button_pressed"]

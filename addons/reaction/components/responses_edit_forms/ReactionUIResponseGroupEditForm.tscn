@@ -1,7 +1,49 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1532kie35qf"]
 
 [ext_resource type="PackedScene" uid="uid://k3csipi6igv0" path="res://addons/reaction/components/responses_edit_forms/ReactionUIMainResponseEditForm.tscn" id="1_nw4bw"]
-[ext_resource type="Script" path="res://addons/reaction/components/responses_edit_forms/ReactionUIResponseGroupEditForm.gd" id="2_7iu3p"]
+[ext_resource type="Script" uid="uid://c5cbppd7k5u4t" path="res://addons/reaction/components/responses_edit_forms/ReactionUIResponseGroupEditForm.gd" id="2_7iu3p"]
 
 [node name="ReactionUIResponseGroupEditForm" instance=ExtResource("1_nw4bw")]
 script = ExtResource("2_7iu3p")
+
+[node name="ReturnMethodContainer" type="HBoxContainer" parent="Rows/Columns/Rows2" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Rows/Columns/Rows2/ReturnMethodContainer" index="0"]
+layout_mode = 2
+text = "Return Method:"
+
+[node name="ReturnMethodMenuButton" type="MenuButton" parent="Rows/Columns/Rows2/ReturnMethodContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "By order
+"
+item_count = 3
+popup/item_0/text = "By order"
+popup/item_0/id = 0
+popup/item_1/text = "Random"
+popup/item_1/id = 1
+popup/item_2/text = "Random with weight"
+popup/item_2/id = 2
+
+[node name="ResponsesConfigContainer" type="VBoxContainer" parent="Rows" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Rows/ResponsesConfigContainer" index="0"]
+layout_mode = 2
+text = "Responses configurations:"
+
+[node name="ConfigsScrollContainer" type="ScrollContainer" parent="Rows/ResponsesConfigContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConfigsListContainer" type="VBoxContainer" parent="Rows/ResponsesConfigContainer/ConfigsScrollContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10

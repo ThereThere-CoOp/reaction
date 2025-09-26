@@ -73,4 +73,3 @@ func set_fact_value(value: Variant, context: ReactionBlackboard = null) -> void:
 		ReactionGlobals.global_context.set_fact_value(selected_object, value)
 	else:
 		print("No fact object with uuid %s" % object_uid)
-

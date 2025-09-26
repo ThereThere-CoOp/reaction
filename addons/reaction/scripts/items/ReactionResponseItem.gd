@@ -12,3 +12,20 @@ extends ReactionResponseBaseItem
 
 ## Uuid of the event that this response triggers
 @export var triggers: String
+
+## path of a resource to return with response to be use with load or preload
+@export var resource: String = ""
+
+
+func _init() -> void:
+	super()
+	label = "newResponse"
+	sqlite_table_name = "response"
+	
+	
+static func get_new_object():
+	return ReactionResponseItem.new()
+
+
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.RESPONSE

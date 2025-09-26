@@ -24,7 +24,16 @@ extends ReactionBaseItem
 @export var priority: int = 0
 
 ## rule group of responses
-@export var responses: ReactionResponseGroupItem
+@export var response_group: ReactionResponseGroupItem
+
+var response_group_script: ReactionResponseGroupItem = ReactionResponseGroupItem.get_new_object()
+
+
+func _init() -> void:
+	super()
+	label = "new_rule"
+	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.RULE
+	sqlite_table_name = "rule"
 
 
 ## Returns the length of the rule criterias array
@@ -43,14 +52,8 @@ func get_criterias_count() -> int:
 ## ----------------------------------------------------------------------------
 func test(context: ReactionBlackboard) -> bool:
 	for criteria in criterias:
-		var current_bfact = context.get_blackboard_fact(criteria.fact.uid)
 
-		# if criteria fact do not exists on blackboard
-		# rule do not match
-		if current_bfact == null:
-			return false
-
-		if not criteria.test(current_bfact):
+		if not criteria.test(context):
 			return false
 
 	return true
@@ -75,6 +78,7 @@ func execute_modifications(context: ReactionBlackboard) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------
 func add_criteria(criteria: ReactionCriteriaItem) -> void:
+	criteria.update_parents(self)
 	criterias.append(criteria)
 
 
@@ -87,6 +91,14 @@ func add_criteria(criteria: ReactionCriteriaItem) -> void:
 func remove_criteria_by_index(index: int) -> void:
 	criterias[index].remove_fact_reference_log(criterias[index])
 	criterias.remove_at(index)
+	
+	
+func get_criteria_by_uid(uid: String):
+	for criteria in self.criterias:
+		if criteria.uid == uid:
+			return criteria
+			
+	return null
 		
 		
 ## ----------------------------------------------------------------------------[br]
@@ -108,11 +120,73 @@ func add_modification(modification: ReactionContextModificationItem) -> void:
 func remove_modification_by_index(index: int) -> void:
 	modifications[index].remove_fact_reference_log(modifications[index])
 	modifications.remove_at(index)
+	
+	
+func get_modification_by_uid(uid: String):
+	for modification in self.modifications:
+		if modification.uid == uid:
+			return modification
+			
+	return null
+	
+	
+func get_sqlite_list(custom_where=null, get_resources=false):
+	var select_st = "SELECT " + sqlite_table_name + ".id, " + sqlite_table_name + ".label, " + sqlite_table_name + ".priority, " + sqlite_table_name + ".reaction_item_type, " + sqlite_table_name + ".uid, COUNT(criteria.id) AS criteria_count "
+	
+	var where = ""
+	if custom_where:
+		where = " AND (%s)" % [custom_where]
+		
+	var query = """
+	%s
+	FROM %s
+	LEFT JOIN criteria ON %s.id = criteria.rule_id
+	WHERE %s_id = %d %s
+	GROUP BY %s.id
+	ORDER BY priority DESC, criteria_count DESC
+	""" % [select_st, sqlite_table_name, sqlite_table_name, parent_item.sqlite_table_name, parent_item.sqlite_id, where, sqlite_table_name]
+	
+	_sqlite_database.query(query)
+	var results = _sqlite_database.query_result
+		
+	if get_resources:
+		var resource_result = []
+		for result in results:
+			var current_resource = get_new_object()
+			current_resource.sqlite_id = result.get("id")
+			current_resource.update_from_sqlite()
+			resource_result.append(current_resource)
+			
+		return resource_result
+	else:
+		return results
+	
 
-
-func get_new_object():
+func export():
+	var criteria_object: ReactionCriteriaItem = ReactionCriteriaItem.new()
+	criteria_object.parent_item = self
+	
+	var criterias_list: Array[ReactionCriteriaItem]
+	criterias_list.assign(criteria_object.get_sqlite_list(null, true))
+		
+	criterias = criterias_list
+	
+	var modification_object: ReactionContextModificationItem = ReactionContextModificationItem.new()
+	modification_object.parent_item = self
+	
+	var modifications_list: Array[ReactionContextModificationItem]
+	modifications_list.assign(modification_object.get_sqlite_list(null, true))
+		
+	modifications = modifications_list
+	
+	if response_group:
+		response_group.export()
+	
+	
+	
+static func get_new_object():
 	return ReactionRuleItem.new()
 	
 	
-func _to_string():
-	return label
+func get_type_string() -> int:
+	return ReactionGlobals.ItemsTypesEnum.RULE

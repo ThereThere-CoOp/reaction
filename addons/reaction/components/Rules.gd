@@ -1,8 +1,6 @@
 @tool
 extends VBoxContainer
 
-var current_database: ReactionDatabase
-
 var current_event: ReactionEventItem
 
 var current_rule: ReactionRuleItem = null
@@ -13,8 +11,9 @@ var undo_redo: EditorUndoRedoManager:
 	get:
 		return undo_redo
 
+var _sqlite_database: SQLite
 
-@onready var rules_list: ReactionItemList = %RulesList
+@onready var rules_list: ReactionUIItemList = %RulesList
 @onready var rule_data_container: TabContainer = %RuleDataContainer
 @onready var criterias_container: ReactionUIListObjectForm = %Criterias
 @onready var modifications_container: ReactionUIListObjectForm = %Modifications
@@ -42,14 +41,21 @@ func setup_rules(current_event: ReactionEventItem) -> void:
 
 
 func _update_criterias_container_name() -> void:
-	criterias_container.name = "Criterias (%d)" % current_rule.criterias.size()
+	var resource = ReactionCriteriaItem.get_new_object()
+	resource.parent_item = current_rule
+	var results = resource.get_sqlite_list()
+	criterias_container.name = "Criterias (%d)" % results.size()
 
 	
 func _update_modifications_container_name() -> void:
-	modifications_container.name = "Modifications (%d)" % current_rule.modifications.size()
+	var resource = ReactionContextModificationItem.get_new_object()
+	resource.parent_item = current_rule
+	var results = resource.get_sqlite_list()
+	modifications_container.name = "Modifications (%d)" % results.size()
 	
 	
 func _set_rule(rule_data: ReactionRuleItem) -> void:
+	rule_data.update_from_sqlite()
 	current_rule = rule_data
 	# set input default values
 	# general
@@ -79,15 +85,15 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 	
 	# responses
 	var responses : ReactionResponseGroupItem = null
-	if current_rule.responses != null:
-		responses = current_rule.responses
+	if current_rule.response_group != null:
+		responses = current_rule.response_group
 	else: 
 		responses = ReactionResponseGroupItem.get_new_object()
 		responses.label = "rootResponseGroup"
-		responses.update_parents(current_rule)
-		current_rule.responses = responses
-		current_database.save_data()
-	
+		responses.add_to_sqlite()
+		current_rule.response_group = responses
+		current_rule.update_sqlite()
+		
 	responses_container.setup(responses)
 	
 	
@@ -98,19 +104,19 @@ func _set_rule(rule_data: ReactionRuleItem) -> void:
 
 func _set_rule_property(property_name: StringName, value: Variant) -> void:
 	current_rule.set(property_name, value)
-	current_database.save_data()
+	current_rule.update_sqlite()
 	
 	
 func _sort_rules_item_list() -> void:
-	current_event.set("rules", current_event.rules.duplicate())
+	# current_event.set("rules", current_event.rules.duplicate())
 	rules_list.setup_items(current_event)
 
 
 ## signals
 
 
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 
 
 func _on_rules_list_item_selected(item_data: ReactionRuleItem) -> void:
@@ -127,8 +133,9 @@ func _on_rules_list_item_added(index: int, item_data: ReactionRuleItem):
 
 
 func _on_rules_list_item_removed(index: int, item_data: ReactionRuleItem):
-	if current_event.rules.size() > 0:
-		_set_rule(rules_list.current_item)
+	if false: #current_event.rules.size() > 0:
+		#_set_rule(rules_list.current_item)
+		pass
 	else:
 		rule_data_container.visible = false
 
@@ -138,7 +145,7 @@ func _on_rule_match_once_check_button_pressed():
 
 
 func _on_rule_priority_spin_box_text_submitted(new_text: String):
-	_set_rule_property("priority", float(new_text))
+	_set_rule_property("priority", int(new_text))
 	rule_priority_text_edit.release_focus()
 	_sort_rules_item_list()
 	

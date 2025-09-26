@@ -3,7 +3,10 @@ class_name ReactionUICriteria
 extends ReactionUIListObjectFormItem
 
 var label_input: LineEdit
-var fact_search_menu: HBoxContainer
+var facts_function_button: Button
+var fact_container: VBoxContainer
+var fact_search_menu: ReactionUISearchMenu
+var fact_function_managment: ReactionUIFunctionManagment
 var operation_label: Label
 var operation_menu: MenuButton
 var value_a_label: Label
@@ -18,6 +21,7 @@ var boolean_value_check: CheckBox
 var negate_check: CheckButton
 
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
+@onready var facts_functions_dialog: AcceptDialog = %FactsFunctionConfirmationDialog
 
 
 func _ready():
@@ -45,7 +49,10 @@ func update_operation_menu_items() -> void:
 	var operation_menu_labels : Array[String]
 	var menu: PopupMenu = operation_menu.get_popup()
 	
-	if not item_object.fact:
+	if item_object is ReactionFunctionCriteriaItem:
+		operation_menu_labels = ["=", "<", ">", "a<=x<=b"]
+		_set_operation_input_visibility(true)
+	elif not item_object.fact:
 		operation_menu_labels = []
 		_set_operation_input_visibility(false)
 	elif item_object.fact.type == TYPE_INT:
@@ -69,11 +76,15 @@ func _get_value_a() -> Variant:
 	if item_object.value_a:
 		return item_object.value_a
 	else:
-		match item_object.fact.type:
-			TYPE_STRING:
-				return "Select value"
-			_:
-				return 0
+		if not item_object is ReactionFunctionCriteriaItem:
+			match item_object.fact.type:
+				TYPE_STRING:
+					return "Select value"
+				_:
+					return 0
+		else:
+			return 0
+		
 				
 				
 func _check_input_range_values(min_value, max_value) -> bool:
@@ -94,7 +105,20 @@ func _get_value_b() -> Variant:
 func update_values_input() -> void:
 	_set_no_visible_inputs()
 	
-	if item_object.fact:
+	if item_object is ReactionFunctionCriteriaItem:
+		value_a_label.visible = true
+		
+		var current_value_a = _get_value_a()
+		var current_value_b = _get_value_b()
+		value_a_numeric_input.visible = true
+		value_a_numeric_input.set_value_no_signal(int(current_value_a))
+		
+		if item_object.operation == "a<=x<=b":
+			value_b_label.visible = true
+			value_b_input.visible = true
+			value_b_input.set_value_no_signal(int(current_value_b))
+		
+	elif item_object.fact:
 		value_a_label.visible = true
 		
 		var current_value_a = _get_value_a()
@@ -130,11 +154,14 @@ func update_values_input() -> void:
 			value_b_input.set_value_no_signal(int(current_value_b))
 			
 			
-func setup(database: ReactionDatabase, parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
-	super(database, parent_object, object, index, is_new_object)
+func setup(parent_object: Resource, object: Resource, index: int, is_new_object: bool = false) -> void:
+	super(parent_object, object, index, is_new_object)
 	
 	label_input = %LabelLineEdit
+	fact_container = %FactContainer
 	fact_search_menu = %FactsSearchMenu
+	facts_function_button = %FactsFunctionButton
+	fact_function_managment = %FunctionManagment
 	operation_label = %OperationLabel
 	operation_menu = %OperationMenuButton
 	value_a_label = %ValueLabel
@@ -158,23 +185,42 @@ func setup(database: ReactionDatabase, parent_object: Resource, object: Resource
 	
 	label_input.text = item_object.label
 	
-	if item_object.fact:
+	if item_object.fact and item_object.fact.sqlite_id and item_object.fact.sqlite_id != 0:
 		fact_search_menu.search_input_text = item_object.fact.label
 	
-	fact_search_menu.items_list = current_database.global_facts.values()
+	var fact_resource: ReactionFactItem = ReactionFactItem.get_new_object()
+	var facts_list = fact_resource.get_sqlite_list(null, true)
+	fact_search_menu.items_list = facts_list
 	
 	negate_check.button_pressed = item_object.is_reverse
-	
+		
 	update_operation_menu_items()
 	update_values_input()
 	
 	if is_new_object:
 		operation_menu.text = "Select operation"
+	
+	fact_function_managment.setup(object.serialize())
+		
+	fact_container.visible = true
+	facts_function_button.visible = false
+	
+	if item_object is ReactionFunctionCriteriaItem:
+		fact_container.visible = false
+		facts_function_button.visible = true
+	
+	 
 
 
 func _set_criteria_property(property_name: StringName, value: Variant) -> void:
-	item_object.set(property_name, value)
-	current_database.save_data()
+	if property_name == "value_a":
+		item_object.set_value_a(str(value))
+	elif property_name == "value_b":
+		item_object.set_value_b(str(value))
+	else:
+		item_object.set(property_name, value)
+		
+	item_object.update_sqlite()
 
 
 func _show_warning_dialog(text: String):
@@ -193,15 +239,7 @@ func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
 	
-	if item_object.fact:
-		current_database.remove_fact_reference_log(item_object)
-	
 	_set_criteria_property("fact", fact_search_menu.current_item)
-	
-	var new_item_log: ReactionReferenceLogItem = ReactionReferenceLogItem.new()
-	new_item_log.update_log_objects(item_object, current_database)
-	current_database.add_fact_reference_log(new_item_log)
-	current_database.save_data()
 	
 	update_operation_menu_items()
 	update_values_input()
@@ -255,3 +293,23 @@ func _on_boolean_value_check_box_toggled(toggled_on):
 
 func _on_negate_check_button_toggled(toggled_on):
 	_set_criteria_property("is_reverse", toggled_on)
+
+
+func _on_facts_function_button_pressed():
+	fact_function_managment.setup(item_object.serialize())
+	facts_functions_dialog.popup_centered()
+
+
+func _on_facts_function_confirmation_dialog_confirmed() -> void:
+	if fact_function_managment.check_function():
+		_set_criteria_property("function", fact_function_managment.get_function_string())
+
+
+func _on_facts_search_menu_item_removed(item: Variant) -> void:
+	operation_menu.text = "Select operation"
+	enum_values_menu.text = "Select value"
+	
+	_set_criteria_property("fact", null)
+	
+	update_operation_menu_items()
+	update_values_input()

@@ -9,3 +9,4 @@ func _ready():
 	print(reaction_fact.selected_object.label)
 	print(reaction_event.selected_object.label)
 	
+	

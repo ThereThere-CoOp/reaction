@@ -2,27 +2,27 @@
 class_name ReactionUIMultiselect
 extends MarginContainer
 
+var objects_list = []
 
-var current_database: ReactionDatabase
-
-var objects_list: Array
-
-var related_object: Resource
+var parent_object: ReactionBaseItem
 
 @export var object_name: String = "tag"
 
-@export var related_object_relationship_field_name: String = "tags"
+@export var related_object_table_name: String = "tag"
+
+@export var relation_table_name: String = "tag_item_rel"
+
+@export var parent_field_name: String = "fact_id"
+
+@export var related_field_name: String = "tag_id"
 
 @export var list_object_label_field_name: String = "label"
-
-@export var add_related_function_name: String = "add_related"
-
-@export var remove_related_function_name: String = "remove_related"
 
 @onready var selected_button: Button = %SelectedButton
 @onready var list_dialog: AcceptDialog = %ListAcceptDialog
 @onready var item_list: ItemList = %ItemList
 
+var _sqlite_database: SQLite
 
 func _ready() -> void:
 	list_dialog.title = "Select %s(s)" % object_name
@@ -30,11 +30,21 @@ func _ready() -> void:
 
 
 func _get_related_objects_list() -> Array:
-	var related_objects_field = related_object.get(related_object_relationship_field_name)
-	if related_objects_field is Dictionary:
-		return related_objects_field.values()
-	else:
-		return related_objects_field
+	var where = "%s = %d" % [parent_field_name, parent_object.sqlite_id]
+	
+	var related_relation_query_field_name = "%s.%s" % [relation_table_name, related_field_name]
+	var parent_relation_query_field_name = "%s.%s" % [relation_table_name, parent_field_name]
+		
+	var query = """
+	SELECT * FROM %s 
+	INNER JOIN %s ON %s.id = %s
+	WHERE %s = %d;
+	""" % [related_object_table_name, relation_table_name, related_object_table_name, related_relation_query_field_name, parent_relation_query_field_name, parent_object.sqlite_id]
+	
+	_sqlite_database.query(query)
+	var result = _sqlite_database.query_result
+	
+	return result
 	
 	
 func _update_selected_button_text() -> void:
@@ -51,60 +61,97 @@ func _update_selected_button_text() -> void:
 	selected_button.tooltip_text = result_text
 	
 	
-func _add_object_to_related_field(object: Resource) -> void:
-	var add_function_callable = Callable(related_object, add_related_function_name)
-	add_function_callable.call(object)
-	current_database.save_data()
-	_update_selected_button_text()
-	
-	
-func _remove_object_from_related_field(object: Resource) -> void:
-	var remove_function_callable = Callable(related_object, remove_related_function_name)
-	remove_function_callable.call(object.uid)
-	current_database.save_data()
-	_update_selected_button_text()
-	
-	
 func _reselect_items() -> void:
 	item_list.deselect_all()
 	for rel_obj in _get_related_objects_list():
-		var index = objects_list.find(rel_obj)
-		item_list.select(index, false)
-
-
-func setup(object: Resource, list: Array) -> void:
-	related_object = object
-	objects_list = list
+		var index = -1
+		var current_index = 0
+		for object in objects_list:
+			if object.get("id") == rel_obj.get(related_field_name):
+				index = current_index
+				break
+			
+			current_index += 1
+		
+		if index != -1:
+			item_list.select(index, false)
+			
+			
+func _update_objects_list():
+	objects_list = _sqlite_database.select_rows(related_object_table_name, "", ["*"])
 	
 	item_list.clear()
 	for obj in objects_list:
 		var current_index = item_list.add_item(obj.get(list_object_label_field_name))
 		item_list.set_item_metadata(current_index, obj)
+
+func setup(object: Resource) -> void:
+	parent_object = object
 	
+	_update_objects_list()
 	_reselect_items()
 	_update_selected_button_text()
 
 
 ### signals
 
-
-func _on_database_selected(database: ReactionDatabase) -> void:
-	current_database = database
+func _on_database_selected() -> void:
+	_sqlite_database = ReactionGlobals.current_sqlite_database
 	
 
 func _on_selected_button_pressed():
+	_update_objects_list()
 	_reselect_items()
 	list_dialog.popup_centered()
-
+	
+	
+func _get_array_str(array: Array) -> String:
+	var result = ""
+	for value in array:
+		result += "%s," % [str(value)]
+		
+	return result.trim_suffix(",")
+	
 
 func _on_list_accept_dialog_confirmed():
 	var selected_indexes = item_list.get_selected_items()
-	var result: Array = []
-	var typed_result: Array[ReactionTag] = []
-	for ind in selected_indexes:
-		result.append(item_list.get_item_metadata(ind))
+	var related_objects = _get_related_objects_list()
 	
-	typed_result.assign(result)
-	related_object.set(related_object_relationship_field_name, typed_result)
-	current_database.save_data()
+	var ids_to_add: Array[int] = []
+	var ids_to_delete:  Array[int] = []
+	var selected_ids: Array[int] = []
+	var related_ids: Array[int] = []
+	
+	for ind in selected_indexes:
+		var selected_id = item_list.get_item_metadata(ind).get("id")
+		selected_ids.append(selected_id)
+		
+	for related_obj in related_objects:
+		var related_id = related_obj.get(related_field_name)
+		related_ids.append(related_id)
+		
+		if selected_ids.find(related_id) == -1:
+			ids_to_delete.append(related_id)
+			
+	for selected_id in selected_ids:
+		if related_ids.find(selected_id) == -1:
+			ids_to_add.append(selected_id)
+	
+	if ids_to_delete.size() > 0:
+		var where_in_array_str = _get_array_str(ids_to_delete)
+		var delete_where = "%s IN (%s) AND %s = %d" % [related_field_name, where_in_array_str, parent_field_name, parent_object.sqlite_id]
+		
+		_sqlite_database.delete_rows(relation_table_name, delete_where)
+	
+	var rows_data_to_add = []
+	
+	if ids_to_add.size() > 0:
+		for id in ids_to_add:
+			var current_data = {}
+			current_data[related_field_name] = id
+			current_data[parent_field_name] = parent_object.sqlite_id
+			rows_data_to_add.append(current_data)
+		
+		_sqlite_database.insert_rows(relation_table_name, rows_data_to_add)
+	
 	_update_selected_button_text()

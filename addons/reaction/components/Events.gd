@@ -2,7 +2,6 @@
 extends MarginContainer
 
 
-var current_database: ReactionDatabase
 
 var current_event: ReactionEventItem = null
 
@@ -13,7 +12,7 @@ var undo_redo: EditorUndoRedoManager:
 		return undo_redo
 
 
-@onready var events_list: VBoxContainer = %EventsList
+@onready var events_list: ReactionUIItemList = %EventsList
 @onready var event_data_container: VBoxContainer = %EventDataContainer
 @onready var rules_panel = %Rules
 
@@ -28,9 +27,8 @@ func _ready() -> void:
 	ReactionSignals.database_selected.connect(setup_events)
 
 
-func setup_events(database: ReactionDatabase) -> void:
-	current_database = database
-	events_list.setup_items(current_database)
+func setup_events() -> void:
+	events_list.setup_items()
 	
 	
 func _set_event(event_data: ReactionEventItem) -> void:
@@ -43,12 +41,12 @@ func _set_event(event_data: ReactionEventItem) -> void:
 	rules_panel.current_event = current_event
 	rules_panel.rule_data_container.visible = false
 	event_data_container.visible = true
-	event_tags_input.setup(current_event, current_database.tags.values())
+	event_tags_input.setup(current_event)
 
 
 func _set_event_property(property_name: StringName, value: Variant) -> void:
 	current_event.set(property_name, value)
-	current_database.save_data()
+	current_event.update_sqlite()
 	
 	
 ### signals
@@ -66,7 +64,7 @@ func _on_events_list_item_added(index, item_data):
 
 
 func _on_events_list_item_removed(index, item_data):
-	if current_database.events.size() > 0:
+	if events_list.items_list.item_count > 0:
 		_set_event(events_list.current_item)
 	else:
 		event_data_container.visible = false

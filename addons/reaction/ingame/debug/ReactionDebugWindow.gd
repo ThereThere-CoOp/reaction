@@ -83,7 +83,24 @@ func _update_criterias(criterias: Array[ReactionCriteriaItem]) -> void:
 	if criterias and criterias.size() > 0:
 		var result: String = ""
 		for criteria: ReactionCriteriaItem in criterias:
-			result += "[color=yellow]%s:[/color] Fact: [color=yellow]%s[/color] %s %s" % [criteria.label, criteria.fact.label, criteria.operation,  str(criteria.value_a)]
+			if not criteria is ReactionFunctionCriteriaItem: 
+				result += "[color=yellow]%s:[/color] Fact: [color=yellow]%s[/color] %s %s" % [criteria.label, criteria.fact.label, criteria.operation,  str(criteria.value_a)]
+			else:
+				var function_text: String = ""
+				
+				var first_operation_flag: bool = true
+				
+				for function_operation in criteria.operations:
+					if function_operation.fact:
+						var operation_text: String = function_operation.operation
+						
+						if first_operation_flag:
+							operation_text = ""
+							first_operation_flag = false
+							
+						function_text += "[color=green]%s[/color] [color=yellow]%s[/color] " % [operation_text, function_operation.fact.label]
+						
+				result += "[color=yellow]%s:[/color] Function (%s) %s %s" % [criteria.label, function_text, criteria.operation,  str(criteria.value_a)]
 			
 			if criteria.operation == "a<=x<=b":
 				result += " ,%s" % [str(criteria.value_b)]
@@ -112,6 +129,7 @@ func _update_blackboard_data(old_blackboard: ReactionBlackboard, new_blackboard:
 	
 	for old_value: ReactionBlackboardFact in old_blackboard.get_facts():
 		result_dict[old_value.fact.uid] = "[color=yellow]%s:[/color] %s -> " % [old_value.fact.label, str(old_value.real_value)]
+		
 		if old_value.fact.uid not in new_blackboard_facts_dict:
 			# old value do not exists on new blackboard
 			result_dict[old_value.fact.uid] += "[color=red][s]null[/s][/color]\n"

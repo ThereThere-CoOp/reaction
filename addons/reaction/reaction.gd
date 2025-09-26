@@ -24,6 +24,7 @@ func _enter_tree():
 		main_view_instance.global_facts_panel.facts_list.undo_redo = get_undo_redo()
 		main_view_instance.events_panel.events_list.undo_redo = get_undo_redo()
 		main_view_instance.rules_panel.rules_list.undo_redo = get_undo_redo()
+		main_view_instance.responses_panel.responses_list.undo_redo = get_undo_redo()
 		main_view_instance.tags_panel.tags_list.undo_redo = get_undo_redo()
 		
 		_make_visible(false)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh4pmkwqh73yw"]
 
-[ext_resource type="Script" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
+[ext_resource type="Script" uid="uid://brxyhec4v1ohw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.gd" id="1_flcq3"]
 [ext_resource type="FontFile" uid="uid://rv76uuj0fvrf" path="res://addons/reaction/fonts/CourierPrime-Regular.ttf" id="2_y5fdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw8x0"]
@@ -48,6 +48,7 @@ size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="MainPanelContainer/Columns/EventLogDataContainer"]
 layout_mode = 2
+current_tab = 0
 
 [node name="General" type="MarginContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer"]
 layout_mode = 2
@@ -55,6 +56,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/General"]
 layout_mode = 2
@@ -267,6 +269,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainPanelContainer/Columns/EventLogDataContainer/TabContainer/Blackboard"]
 layout_mode = 2

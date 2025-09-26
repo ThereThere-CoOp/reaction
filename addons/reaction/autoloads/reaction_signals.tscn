@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkisldnporqs2"]
 
-[ext_resource type="Script" path="res://addons/reaction/autoloads/reaction_signals.gd" id="1_m4lvd"]
+[ext_resource type="Script" uid="uid://cdok08dvp0n01" path="res://addons/reaction/autoloads/reaction_signals.gd" id="1_m4lvd"]
 
 [node name="ReactionSignals" type="Node"]
 script = ExtResource("1_m4lvd")
