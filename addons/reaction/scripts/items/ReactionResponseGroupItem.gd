@@ -132,7 +132,7 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 	var total: float = 0.0
 	
 	for response in responses_values:
-		var w = ReactionGlobals.get_function_result(responses_settings[response.uid].get("weight_function", "0.0"), context)
+		var w = ReactionGlobals.get_function_result(responses_settings[response.uid].get("weight_function", "0.0"), context, false)
 		weights.append(w)
 		total += w
 
@@ -156,6 +156,7 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 		cumulative += weights[i]
 		if rnd <= cumulative:
 			current_response = responses_values[i]
+			break
 	
 	return _get_children_response_change_execution_stats(current_response, context)
 

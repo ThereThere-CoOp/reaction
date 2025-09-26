@@ -277,6 +277,20 @@ func before_all():
 	response_group_random_method.responses[response_conditional_texts_choices.uid] = response_conditional_texts_choices
 	
 	
+	var response_group_random_weight_method = ReactionResponseGroupItem.new()
+	response_group_random_weight_method.label = "group_execution_random_weight"
+	response_group_random_weight_method.return_method = "random_weight"
+	
+	response_group_random_weight_method.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
+	response_group_random_weight_method.responses[response_mindundi_not_comunism_pop_100_400.uid] = response_mindundi_not_comunism_pop_100_400
+	response_group_random_weight_method.responses[response_conditional_texts_choices.uid] = response_conditional_texts_choices
+	
+	response_group_random_weight_method.responses_settings = {
+		response_not_comunism_low_pop.uid: {"weight_function": "sqrt;(;9;)" },
+		response_mindundi_not_comunism_pop_100_400.uid: {"weight_function": "5" },
+		response_conditional_texts_choices.uid: {"weight_function": "pow;(;2;,;1;)" },
+	}
+	
 	var response_group_mindundi_not_comunism_pop_100_400 = (
 		ReactionResponseGroupItem.new()
 	)
@@ -289,6 +303,7 @@ func before_all():
 	_responses_groups[response_group_mindundi_not_comunism_pop_100_400.label] = response_group_mindundi_not_comunism_pop_100_400
 	_responses_groups[response_group_order_method.label] = response_group_order_method
 	_responses_groups[response_group_random_method.label] = response_group_random_method
+	_responses_groups[response_group_random_weight_method.label] = response_group_random_weight_method
 	
 	##############################################################################################################
 	## Init rules

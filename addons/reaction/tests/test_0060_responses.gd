@@ -109,6 +109,7 @@ class TestResponses:
 			"Wrong response returned by order must return second response cause order responses must cycle including return once"
 		)
 	
+	
 	func test_response_group_return_random():
 		var response_group_random: ReactionResponseGroupItem = _responses_groups["group_execution_random"]
 		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
@@ -122,6 +123,33 @@ class TestResponses:
 		var returned_count = 0
 		for n in range(0, 100):
 			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)
+			# gut.p(returned_response.label)
+			
+			if returned_response.label == "response_conditional_texts_choices":
+				returned_count += 1
+				
+			# gut.p(returned_count)
+				
+		assert_lt(
+			returned_count,
+			2,
+			"Return once response must returned max one"
+		)
+		
+	func test_response_group_return_weight_random():
+		var response_group_random_weight: ReactionResponseGroupItem = _responses_groups["group_execution_random_weight"]
+		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
+		response_group_random_weight.responses_settings[return_once_response.uid]["return_once"] = true
+		
+		gut.p(response_group_random_weight.responses_settings)
+				
+		var custom_randomizer = RandomNumberGenerator.new()
+		custom_randomizer.randomize()
+		
+		var returned_response = null
+		var returned_count = 0
+		for n in range(0, 100):
+			returned_response = response_group_random_weight.get_response_by_method(_global_blackboard, custom_randomizer)
 			# gut.p(returned_response.label)
 			
 			if returned_response.label == "response_conditional_texts_choices":
