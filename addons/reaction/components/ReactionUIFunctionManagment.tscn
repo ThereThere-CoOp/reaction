@@ -120,10 +120,10 @@ unique_name_in_owner = true
 offset_right = 86.5625
 offset_bottom = 31.0
 max_value = 1000.0
-step = 0.1
-rounded = true
+step = 0.01
 allow_greater = true
 allow_lesser = true
+custom_arrow_step = 0.1
 
 [node name="FactConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
