@@ -110,6 +110,7 @@ func get_function_result(function: String, context: ReactionBlackboard, check_on
 	
 	var function_array = function.split(";")
 	var formated_function = ""
+	var index = 0
 	
 	for operator in function_array:
 		if not CRITERIA_FUNCTION_OPERATOR_OPTIONS.has(operator) and not operator.is_valid_float():
@@ -123,7 +124,15 @@ func get_function_result(function: String, context: ReactionBlackboard, check_on
 				formated_function += str(1)
 		else:
 			formated_function += operator
-	
+			
+			if operator == CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("pow", "") or operator == CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("sqrt", ""):
+				var index_minus_one = index - 1
+				if index != 0 and not (CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("+", "") == function_array[index_minus_one] or CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("-", "") == function_array[index_minus_one] or CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("*", "") == function_array[index_minus_one] or CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("/", "") == function_array[index_minus_one]):
+					return null
+		
+		index += 1
+		
+		
 	var parse_result = expr.parse(formated_function)
 	if parse_result == OK:
 		var result = expr.execute()
