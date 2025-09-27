@@ -17,5 +17,6 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_vertical = 3
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
