@@ -40,6 +40,7 @@ languages_dict={
 }
 default_database_path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres"
 export_path="res://examples/export"
+dialog_files_path="res://examples/dialogs"
 
 [rendering]
 

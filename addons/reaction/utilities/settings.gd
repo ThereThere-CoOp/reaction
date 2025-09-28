@@ -9,12 +9,14 @@ const DATABASES_PATH_SETTING_NAME = "databases_path"
 const EXPORT_PATH_SETTING_NAME = "export_path"
 const BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME = "blackboards_save_path"
 const DEFAULT_DATABASE_PATH_SETTING_NAME = "default_database_path"
+const DEFAULT_DIALOG_FILES_PATH_SETTING_NAME = "dialog_files_path"
 const LANGUAGES_SETTING_NAME = "languages_dict"
 
 # settings default
 const DEFAULT_DATABASE_PATH_SETTING_DEFAULT = ""
 const DATABASES_PATH_SETTING_DEFAULT = "res://reaction_data/databases"
 const EXPORT_PATH_SETTING_DEFAULT = "res://reaction_data/export"
+const DIALOG_PATH_SETTING_DEFAULT = "res://reaction_data/dialogs"
 const BLACKBOARDS_SAVE_PATHS_DEFAULT = "user://reaction_blackboards"
 const LANGUAGES_SETTING_DEFAULT = {
 	"en": { "name": "English", "code": "en"}, 

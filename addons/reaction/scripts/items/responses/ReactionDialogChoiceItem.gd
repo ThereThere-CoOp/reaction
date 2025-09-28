@@ -14,6 +14,12 @@ extends ReactionRuleItem
 ## Uuid of the event to trigger when choice is selected
 @export var triggers: String
 
+## true if use text file instead
+@export var use_file: bool = true
+
+## text files path if use_file = true
+@export var file_path: Dictionary = {}
+
 
 func _init() -> void:
 	super()

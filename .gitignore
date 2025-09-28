@@ -1,5 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
+.import/
 
 addons/gut/
 
@@ -8,4 +9,5 @@ addons/gut/
 examples/sqlite_databases/
 examples/sqlite_databases_backups/
 examples/export/
+examples/dialogs/
 

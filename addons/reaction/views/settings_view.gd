@@ -14,6 +14,9 @@ const ReactionSettings = preload("../utilities/settings.gd")
 @onready var change_default_database_path_button: Button = %ChangeDefaultDatabasePathButton 
 @onready var default_database_path_lineedit: LineEdit = %DefaultDatabasePathLineEdit
 
+@onready var change_default_dialog_file_path_button: Button = %ChangeDefaultDialogFilesPathButton
+@onready var default_dialog_files_path_lineedit: LineEdit = %DefaultDialogFilesPathLineEdit
+
 # languages settings edit
 @onready var languages_menu: MenuButton = %LanguagesMenuButton
 @onready var add_language_button: Button =  %AddLanguageButton
@@ -25,6 +28,7 @@ const ReactionSettings = preload("../utilities/settings.gd")
 @onready var databases_path_dialog: FileDialog = %DatabasesFolderDialog
 @onready var export_path_dialog: FileDialog = %ExportFolderDialog
 @onready var default_database_path_dialog: FileDialog = %DefaultDatabaseFileDialog
+@onready var default_dialog_files_path_dialog: FileDialog = %DialogFilesFolderDialog
 @onready var languages_edit_dialog: ConfirmationDialog = %LanguagesEditConfirmationDialog
 @onready var warning_dialog: AcceptDialog = %WarningAcceptDialog
 
@@ -41,6 +45,11 @@ func setup_settings() -> void:
 	export_path_lineedit.text = ReactionSettings.get_setting(
 		ReactionSettings.EXPORT_PATH_SETTING_NAME,
 		ReactionSettings.EXPORT_PATH_SETTING_DEFAULT
+	)
+	
+	default_dialog_files_path_lineedit.text = ReactionSettings.get_setting(
+		ReactionSettings.DEFAULT_DIALOG_FILES_PATH_SETTING_NAME,
+		ReactionSettings.DIALOG_PATH_SETTING_DEFAULT
 	)
 	
 	var default_database_path = ReactionSettings.get_setting(
@@ -81,6 +90,7 @@ func apply_theme() -> void:
 		change_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		change_default_database_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		change_export_path_button.icon = get_theme_icon("Folder", "EditorIcons")
+		change_default_dialog_file_path_button.icon = get_theme_icon("Folder", "EditorIcons")
 		add_language_button.icon = get_theme_icon("New", "EditorIcons")
 		remove_language_button.icon = get_theme_icon("Remove", "EditorIcons")
 		
@@ -198,3 +208,12 @@ func _on_change_export_path_button_pressed() -> void:
 func _on_export_folder_dialog_dir_selected(dir: String) -> void:
 	export_path_lineedit.text = dir
 	ReactionSettings.set_setting(ReactionSettings.EXPORT_PATH_SETTING_NAME, dir)
+
+
+func _on_dialog_files_folder_dialog_dir_selected(dir: String) -> void:
+	default_dialog_files_path_lineedit.text = dir
+	ReactionSettings.set_setting(ReactionSettings.DEFAULT_DIALOG_FILES_PATH_SETTING_NAME, dir)
+
+
+func _on_change_default_dialog_files_path_button_pressed() -> void:
+	default_dialog_files_path_dialog.popup_centered()

@@ -27,6 +27,9 @@ func _enter_tree():
 		main_view_instance.responses_panel.responses_list.undo_redo = get_undo_redo()
 		main_view_instance.tags_panel.tags_list.undo_redo = get_undo_redo()
 		
+		ReactionSignals.opened_dialog_file.connect(_on_dialog_file_opened)
+		ReactionSignals.created_dialog_file.connect(_on_dialog_file_created)
+		
 		_make_visible(false)
 
 
@@ -63,3 +66,10 @@ func create_main_icon(scale: float = 1.0) -> Texture2D:
 	var image: Image = base_icon.get_image()
 	image.resize(size.x, size.y, Image.INTERPOLATE_TRILINEAR)
 	return ImageTexture.create_from_image(image)
+	
+	
+func _on_dialog_file_opened(path: String):
+	pass
+	
+func _on_dialog_file_created(path: String):
+	EditorInterface.get_resource_filesystem().scan()

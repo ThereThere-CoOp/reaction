@@ -214,7 +214,9 @@ func deserialize(data: Dictionary) -> void:
 						TYPE_BOOL:
 							set(name, !!data.get(name))
 						TYPE_DICTIONARY:
-							set(name, JSON.parse_string(data.get(name)))
+							var sqlite_text = data.get(name)
+							if sqlite_text != null:
+								set(name, JSON.parse_string(sqlite_text))
 						TYPE_OBJECT:
 							var object = get(name)
 							var resource = get(name + "_script")

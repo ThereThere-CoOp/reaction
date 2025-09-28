@@ -8,8 +8,14 @@ extends ReactionRuleItem
 ## and trigger a next event [br]
 ## ----------------------------------------------------------------------------
 
-## text of the choice
+## dialog text if option is not used
 @export var text: Dictionary = {}
+
+## true if use text file instead
+@export var use_file: bool = true
+
+## text files path if use_file = true
+@export var file_path: Dictionary = {}
 
 
 func _init() -> void:

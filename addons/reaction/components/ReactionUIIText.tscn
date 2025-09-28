@@ -10,3 +10,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_qe0f8")
+
+[node name="UseFileCheckButton" type="CheckButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Use dialog file"
+
+[node name="TextsContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="toggled" from="UseFileCheckButton" to="." method="_on_use_file_check_button_toggled"]
