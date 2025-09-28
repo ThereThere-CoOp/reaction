@@ -119,7 +119,7 @@ func add_to_sqlite() -> Dictionary:
 func remove_from_sqlite() -> bool:
 	var where = _get_where()
 	var success = _sqlite_database.delete_rows(sqlite_table_name, where)
-	sqlite_id = _sqlite_database.last_insert_rowid
+	# sqlite_id = _sqlite_database.last_insert_rowid
 	
 	return success
 	
