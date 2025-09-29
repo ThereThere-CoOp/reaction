@@ -2,8 +2,6 @@
 extends Node
 
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 var databases: Dictionary = {}
 
 var current_sqlite_database: SQLite
@@ -74,7 +72,7 @@ func save_all_contexts_data():
 ## ----------------------------------------------------------------------------
 func get_default_database() -> ReactionDatabase:
 	var default_database_path = ReactionSettings.get_setting(
-		ReactionSettings.DEFAULT_DATABASE_PATH_SETTING_NAME, 
+		ReactionSettings.DEFAULT_RESOURCE_DATABASE_PATH_SETTING_NAME, 
 		"")
 		
 	if FileAccess.file_exists(default_database_path):

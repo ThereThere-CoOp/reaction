@@ -41,6 +41,10 @@ languages_dict={
 default_database_path="res://examples/databases/test_database_7cf1ce19-8baf-4e6e-918f-4856e6cf2150.tres"
 export_path="res://examples/export"
 dialog_files_path="res://examples/dialogs"
+databases/current_database_id="f3a9cd93-c0f4-4132-ac3f-fac65a629307"
+databases/sqlite_databases_path="res://examples/sqlite_databases"
+databases/resource_export_path="res://examples/export"
+dialogs/dialog_files_path="res://examples/dialogs"
 
 [rendering]
 

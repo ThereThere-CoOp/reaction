@@ -1,9 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://bqf20gwkbuy8n"]
+[gd_scene load_steps=51 format=3 uid="uid://bqf20gwkbuy8n"]
 
 [ext_resource type="Script" uid="uid://cal04mr1unpl7" path="res://addons/reaction/views/main_view.gd" id="1_2hpc4"]
 [ext_resource type="Script" uid="uid://ddjwhcduhoacj" path="res://addons/reaction/components/GlobalFacts.gd" id="2_bgi7c"]
 [ext_resource type="PackedScene" uid="uid://jc4ei7i0bj2v" path="res://addons/reaction/components/edit_database_dialog.tscn" id="2_jeeb5"]
-[ext_resource type="PackedScene" uid="uid://tycacr0sxsef" path="res://addons/reaction/views/settings_view.tscn" id="3_6kxn8"]
 [ext_resource type="PackedScene" uid="uid://dt65kcmm087t4" path="res://addons/reaction/components/ReactionUIItemList.tscn" id="3_cpcid"]
 [ext_resource type="Script" uid="uid://dmky1i8wo1xnp" path="res://addons/reaction/scripts/items/ReactionFactItem.gd" id="4_jdoy6"]
 [ext_resource type="Script" uid="uid://g88brts5kaat" path="res://addons/reaction/components/Events.gd" id="5_s4hfs"]
@@ -26,14 +25,16 @@
 [ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="20_j5jl6"]
 [ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="21_dtkum"]
 
-[sub_resource type="DPITexture" id="DPITexture_j5jl6"]
+[sub_resource type="DPITexture" id="DPITexture_6chnr"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
 "
 
 [sub_resource type="Resource" id="Resource_qew6w"]
 script = ExtResource("4_jdoy6")
+type = 4
 default_value = null
 uid = "2ed2e79a-3639-4f54-88f9-d98b292597c9"
+label = "newFact"
 reaction_item_type = 1
 
 [sub_resource type="Resource" id="Resource_0hcmb"]
@@ -73,6 +74,7 @@ metadata/_custom_type_script = "uid://wjclotthw7aj"
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
 uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
+label = "new_rule"
 reaction_item_type = 3
 
 [sub_resource type="Resource" id="Resource_pg2dt"]
@@ -91,6 +93,7 @@ metadata/_custom_type_script = "uid://wjclotthw7aj"
 [sub_resource type="Resource" id="Resource_hhbcw"]
 script = ExtResource("11_vsk32")
 uid = "7df8f606-88bc-4b04-bd69-48538ecfe14c"
+label = "new_criteria"
 reaction_item_type = 4
 
 [sub_resource type="Resource" id="Resource_x0si4"]
@@ -133,6 +136,8 @@ object_resource_class = SubResource("Resource_ucfj6")
 [sub_resource type="Resource" id="Resource_bm01k"]
 script = ExtResource("12_5a862")
 uid = "8a5354aa-6d34-4baf-bec9-72b305d7d756"
+label = "new_modification"
+reaction_item_type = 5
 metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 
 [sub_resource type="Resource" id="Resource_jo51q"]
@@ -221,7 +226,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("DPITexture_j5jl6")
+icon = SubResource("DPITexture_6chnr")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -231,43 +236,36 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "new"
-icon = SubResource("DPITexture_j5jl6")
-item_count = 1
-popup/item_0/text = "new"
-popup/item_0/icon = SubResource("DPITexture_j5jl6")
-popup/item_0/id = 0
+disabled = true
+text = "No databases yet"
+icon = SubResource("DPITexture_6chnr")
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("DPITexture_j5jl6")
+disabled = true
+icon = SubResource("DPITexture_6chnr")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("DPITexture_j5jl6")
+disabled = true
+icon = SubResource("DPITexture_6chnr")
 flat = true
 
 [node name="ExportDatabaseAsResourceButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Export database as resource"
-icon = SubResource("DPITexture_j5jl6")
-flat = true
-
-[node name="SettingsButton" type="Button" parent="MainRows/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Settings"
-icon = SubResource("DPITexture_j5jl6")
+icon = SubResource("DPITexture_6chnr")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
@@ -815,14 +813,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Input database resource name"
 
-[node name="SettingsDialog" type="AcceptDialog" parent="."]
-unique_name_in_owner = true
-title = "Settings"
-size = Vector2i(800, 300)
-min_size = Vector2i(700, 300)
-
-[node name="SettingsView" parent="SettingsDialog" instance=ExtResource("3_6kxn8")]
-
 [node name="WarningAcceptDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
 
@@ -836,7 +826,6 @@ dialog_text = "Delete also dialgo text files? This operation is permanet you sho
 [connection signal="pressed" from="MainRows/ToolBar/EditDatabaseButton" to="." method="_on_edit_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/ExportDatabaseAsResourceButton" to="." method="_on_export_database_as_resource_button_pressed"]
-[connection signal="pressed" from="MainRows/ToolBar/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="tab_selected" from="MainRows/DatabaseDataManagment" to="." method="_on_database_data_managment_tab_selected"]
 [connection signal="item_added" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_added"]
 [connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_list_updated"]
@@ -872,5 +861,4 @@ dialog_text = "Delete also dialgo text files? This operation is permanet you sho
 [connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
 [connection signal="confirmed" from="ExportDatabaseResourceConfirmationDialog" to="." method="_on_export_database_resource_confirmation_dialog_confirmed"]
-[connection signal="databases_path_changed" from="SettingsDialog/SettingsView" to="." method="_on_setting_database_path_updated"]
 [connection signal="confirmed" from="DeleteDialogFilesConfirmationDialog" to="." method="_on_delete_dialog_files_confirmation_dialog_confirmed"]

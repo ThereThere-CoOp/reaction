@@ -10,7 +10,6 @@ extends Resource
 ## [br]
 ## ----------------------------------------------------------------------------
 
-const ReactionSettings = preload("../utilities/settings.gd")
 
 @export var database: ReactionDatabase :
 	set(value):

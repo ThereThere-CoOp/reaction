@@ -1,8 +1,6 @@
 @tool
 extends ConfirmationDialog
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 signal database_updated(database: SQLite)
 
 var data: SQLite = null
@@ -39,8 +37,8 @@ func _on_edit_database_dialog_confirmed():
 		data.open_db()
 	else:
 		var databases_path = ReactionSettings.get_setting(
-			ReactionSettings.DATABASES_PATH_SETTING_NAME,
-			ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+			ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME,
+			ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME].value
 		)
 		var new_database_path = databases_path.path_join(new_file_name)
 		

@@ -1,8 +1,6 @@
 @tool
 extends Control
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 const ExportDatabase = preload("../utilities/export_database.gd")
 
 var databases: Dictionary = {}
@@ -23,7 +21,6 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_button = %EditDatabaseButton
 @onready var remove_database_button = %RemoveDatabaseButton
 @onready var export_database_as_resource_button = %ExportDatabaseAsResourceButton
-@onready var settings_button = %SettingsButton
 @onready var resource_database_name_lineedit: LineEdit = %ResourceDatabaseNameLineEdit
 
 # panels
@@ -38,7 +35,6 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
 @onready var export_database_resource_confirmation_dialog = %ExportDatabaseResourceConfirmationDialog
-@onready var settings_dialog = %SettingsDialog
 @onready var delete_dialog_files_dialog = %DeleteDialogFilesConfirmationDialog
 
 var _current_dialog_files_path_to_delete: Array[String]
@@ -55,8 +51,8 @@ func _ready() -> void:
 func load_databases_from_filesystem() -> void:
 	databases.clear()
 	var databases_path = ReactionSettings.get_setting(
-		ReactionSettings.DATABASES_PATH_SETTING_NAME,
-		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+		ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME,
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME].value
 	)
 
 	var dir = DirAccess.open(databases_path)
@@ -105,7 +101,6 @@ func apply_theme() -> void:
 		edit_database_button.icon = get_theme_icon("Edit", "EditorIcons")
 		remove_database_button.icon = get_theme_icon("Remove", "EditorIcons")
 		export_database_as_resource_button.icon = get_theme_icon("Save", "EditorIcons")
-		settings_button.icon = get_theme_icon("Tools", "EditorIcons")
 
 
 func go_to_database(id: String) -> void:
@@ -222,11 +217,6 @@ func _on_remove_database_button_pressed():
 
 func _on_remove_database_confirmation_dialog_confirmed():
 	remove_database()
-
-
-func _on_settings_button_pressed():
-	settings_dialog.get_child(0).setup_settings()
-	settings_dialog.popup_centered()
 
 
 func _on_edit_database_dialog_database_updated(data: SQLite):

@@ -8,7 +8,6 @@ extends Resource
 ## available. [br]
 ## ----------------------------------------------------------------------------
 
-const ReactionSettings = preload("../utilities/settings.gd")
 
 @export var label: String
 
@@ -165,30 +164,12 @@ func save_data() -> void:
 			% [
 				ReactionSettings.get_setting(
 					ReactionSettings.EXPORT_PATH_SETTING_NAME,
-					ReactionSettings.EXPORT_PATH_SETTING_DEFAULT
+					ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.EXPORT_PATH_SETTING_NAME].value
 				),
 				label.replace(" ", "_")
 			]
 		)
 	)
-
-
-## ----------------------------------------------------------------------------[br]
-## Remove the database's file .tres saved on the path defined on the setting
-## defined with name on DATABASES_PATH_SETTING_NAME if exists. 
-## [br]
-## [b]Returns: void [br]
-## ----------------------------------------------------------------------------
-func remove_savedata() -> void:
-	var databases_path = ReactionSettings.get_setting(
-		ReactionSettings.DATABASES_PATH_SETTING_NAME,
-		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
-	)
-
-	var file_path = "%s/%s_%s.tres" % [databases_path, label.replace(" ", "_"), uid]
-
-	if FileAccess.file_exists(file_path):
-		DirAccess.remove_absolute(file_path)
 
 
 func _to_string():

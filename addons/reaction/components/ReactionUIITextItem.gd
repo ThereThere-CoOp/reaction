@@ -2,8 +2,6 @@
 class_name ReactionUIITextItem
 extends VBoxContainer
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 var current_database: SQLite
 
 var object: Resource
@@ -55,7 +53,7 @@ func _change_component_visibility():
 func _update_component_data():
 	var settings_language = ReactionSettings.get_setting(
 		ReactionSettings.LANGUAGES_SETTING_NAME,
-		ReactionSettings.LANGUAGES_SETTING_DEFAULT
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.LANGUAGES_SETTING_NAME].value
 	).duplicate()
 	
 	if code:
@@ -91,8 +89,8 @@ func setup(parent: Resource, field_name: String, file_paths_field_name: String, 
 	open_file_link_button = %OpenFileLinkButton
 	
 	var settings_dialog_files_path = ReactionSettings.get_setting(
-		ReactionSettings.DEFAULT_DIALOG_FILES_PATH_SETTING_NAME,
-		ReactionSettings.DIALOG_PATH_SETTING_DEFAULT
+		ReactionSettings.DIALOG_FILES_PATH_SETTING_NAME,
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.DIALOG_FILES_PATH_SETTING_NAME].value
 	)
 	
 	dialog_file_dialog.filters = ["*.txt", "*.dialogue"]

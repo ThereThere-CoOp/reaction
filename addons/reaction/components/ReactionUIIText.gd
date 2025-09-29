@@ -4,8 +4,6 @@ extends VBoxContainer
 
 const text_item_scene: PackedScene = preload("res://addons/reaction/components/ReactionUIITextItem.tscn")
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 var current_database: SQLite
 
 var parent_object: Resource
@@ -28,7 +26,7 @@ func setup(parent: Resource) -> void:
 	
 	var settings_language = ReactionSettings.get_setting(
 		ReactionSettings.LANGUAGES_SETTING_NAME,
-		ReactionSettings.LANGUAGES_SETTING_DEFAULT
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.LANGUAGES_SETTING_NAME].value
 	)
 	
 	var object_texts_dicts = parent_object.get(text_field_name)

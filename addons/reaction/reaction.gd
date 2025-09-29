@@ -30,6 +30,8 @@ func _enter_tree():
 		ReactionSignals.opened_dialog_file.connect(_on_dialog_file_opened)
 		ReactionSignals.created_dialog_file.connect(_on_dialog_file_created)
 		
+		ReactionSettings.prepare()
+		
 		_make_visible(false)
 
 
