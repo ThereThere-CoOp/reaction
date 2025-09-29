@@ -40,6 +40,7 @@ func _init() -> void:
 			"responses": true,
 			"responses_settings": true,
 			"executed_responses": true,
+			"order_current_index": true,
 		}
 	)
 	

@@ -236,15 +236,17 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-disabled = true
-text = "No databases yet"
+text = "new"
 icon = SubResource("DPITexture_6chnr")
+item_count = 1
+popup/item_0/text = "new"
+popup/item_0/icon = SubResource("DPITexture_6chnr")
+popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-disabled = true
 icon = SubResource("DPITexture_6chnr")
 flat = true
 
@@ -252,7 +254,6 @@ flat = true
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-disabled = true
 icon = SubResource("DPITexture_6chnr")
 flat = true
 
@@ -265,7 +266,6 @@ flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
@@ -818,6 +818,9 @@ unique_name_in_owner = true
 
 [node name="DeleteDialogFilesConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
+oversampling_override = 1.0
+position = Vector2i(554, 597)
+size = Vector2i(599, 100)
 dialog_text = "Delete also dialgo text files? This operation is permanet you should be sure."
 
 [connection signal="theme_changed" from="." to="." method="_on_main_view_theme_changed"]
