@@ -39,7 +39,9 @@ var undo_redo: EditorUndoRedoManager:
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
 @onready var export_database_resource_confirmation_dialog = %ExportDatabaseResourceConfirmationDialog
 @onready var settings_dialog = %SettingsDialog
+@onready var delete_dialog_files_dialog = %DeleteDialogFilesConfirmationDialog
 
+var _current_dialog_files_path_to_delete: Array[String]
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -47,6 +49,7 @@ func _ready() -> void:
 
 		load_databases_update_view()
 		edit_database_dialog.database_updated.connect(_on_edit_database_dialog_database_updated)
+		ReactionSignals.dialog_text_removed.connect(_on_delete_dialog_texts)
 
 
 func load_databases_from_filesystem() -> void:
@@ -293,6 +296,23 @@ func _on_export_database_resource_confirmation_dialog_confirmed() -> void:
 	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
 	new_database.label = database_name
 	new_database.save_data()
+	
+	
+func _on_delete_dialog_texts(file_paths_array: Array[String]):
+	_current_dialog_files_path_to_delete = file_paths_array
+	delete_dialog_files_dialog.popup_centered()
 		
 	
-		
+func _on_delete_dialog_files_confirmation_dialog_confirmed() -> void:
+	for path in _current_dialog_files_path_to_delete:
+		if FileAccess.file_exists(path):
+			var dir := DirAccess.open("res://")  # or any base dir
+			var err := dir.remove(path)
+			if err == OK:
+				print("Deleted dialog file:", path)
+			else:
+				push_error("Could not delete dialog file: %s (error %s)" % [path, err])
+		else:
+			push_error("Dialog file not found: %s" % path)
+			
+	EditorInterface.get_resource_filesystem().scan()

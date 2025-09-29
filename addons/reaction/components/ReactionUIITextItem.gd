@@ -143,8 +143,9 @@ func _on_dialog_file_dialog_confirmed() -> void:
 	var path = ''
 	if dialog_file_dialog.current_file.get_basename() == "":
 		path = "res://untitled.txt"
-		
-	_update_file_path(path)
+		_update_file_path(path)
+	else:
+		_update_file_path(dialog_file_dialog.current_path)
 
 
 func _on_open_file_link_button_pressed() -> void:

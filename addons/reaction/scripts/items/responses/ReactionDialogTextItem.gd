@@ -22,10 +22,21 @@ func _init() -> void:
 	super()
 	label = "newDialogText"
 	
+
+func remove_from_sqlite() -> bool:
+	var dialog_text_file_paths: Array[String] = []
 	
+	dialog_text_file_paths.append_array(file_path.values())
+	
+	var success = super()
+		
+	ReactionSignals.dialog_text_removed.emit(dialog_text_file_paths)
+	return success 
+	
+		
 static func get_new_object():
 	return ReactionDialogTextItem.new()
 	
-	
+
 func get_type_string() -> int:
 	return ReactionGlobals.ItemsTypesEnum.DIALOG_TEXT
