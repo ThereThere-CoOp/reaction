@@ -2,6 +2,7 @@
 class_name ReactionSettings extends Node
 
 #region Editor
+signal sqlite_databases_path_changed()
 
 const REACTION_SETTINGS_BASE_NAME = "reaction"
 

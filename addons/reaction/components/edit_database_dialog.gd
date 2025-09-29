@@ -32,7 +32,7 @@ func _on_edit_database_dialog_confirmed():
 		var new_path = data.path.get_base_dir()
 		new_path = new_path.path_join(new_file_name)
 		data.backup_to(new_path)
-		ReactionGlobals.remove_sqlite_database(data)
+		ReactionUtilities.remove_sqlite_database(data)
 		data.path = new_path
 		data.open_db()
 	else:

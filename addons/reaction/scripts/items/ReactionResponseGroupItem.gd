@@ -72,14 +72,14 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 	if responses_settings.get(current_response.uid, {}).get("return_once", false):
 		executed_responses[current_response.uid] = true
 		
-		if return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
+		if return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 			responses_size = responses.size() - executed_responses.size()
 			if responses_size > 0:
 				order_current_index %= responses_size
 			else:
 				order_current_index = 0
 	else:
-		if return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
+		if return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 			responses_size = responses.size() - executed_responses.size()
 			order_current_index = (order_current_index + 1) % responses_size
 
@@ -133,7 +133,7 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 	var total: float = 0.0
 	
 	for response in responses_values:
-		var w = ReactionGlobals.get_function_result(responses_settings[response.uid].get("weight_function", "0.0"), context, false)
+		var w = ReactionUtilities.get_function_result(responses_settings[response.uid].get("weight_function", "0.0"), context, false)
 		weights.append(w)
 		total += w
 
@@ -163,11 +163,11 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 
 
 func get_response_by_method(context: ReactionBlackboard, randomizer: RandomNumberGenerator=null) -> ReactionResponseBaseItem:
-	if return_method == ReactionGlobals.RANDOM_RETURN_METHOD:
+	if return_method == ReactionConstants.RANDOM_RETURN_METHOD:
 		return return_response_by_random(context, randomizer)
-	elif return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD:
+	elif return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order(context)
-	elif return_method == ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD:
+	elif return_method == ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD:
 		return return_response_by_random_weight(context, randomizer)
 	return null
 
@@ -223,7 +223,7 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 	""" % [ sqlite_id, where ]
 	
 	var group_by_placeholders = []
-	group_by_placeholders = ["execution_order ASC"] if self.return_method == ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD else ["reaction_item_type ASC"]
+	group_by_placeholders = ["execution_order ASC"] if self.return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD else ["reaction_item_type ASC"]
 	var group_by = "ORDER BY %s" % group_by_placeholders
 	
 	
@@ -241,7 +241,7 @@ func get_sqlite_children_list(custom_where=null, get_resources=false):
 	if get_resources:
 		var resource_result = []
 		for result in results:
-			var current_resource = ReactionGlobals.get_response_object_from_reaction_type(result.get("reaction_item_type"))
+			var current_resource = ReactionUtilities.get_response_object_from_reaction_type(result.get("reaction_item_type"))
 			current_resource.sqlite_id = result["id"]
 			current_resource.update_from_sqlite()
 			resource_result.append(current_resource)
@@ -271,4 +271,4 @@ static func get_new_object():
 		
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP
+	return ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP

@@ -13,7 +13,7 @@ extends ReactionCriteriaItem
 
 
 func get_function_result(context) -> int:
-	return int(ReactionGlobals.get_function_result(function, context))
+	return int(ReactionUtilities.get_function_result(function, context))
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]
 ## [b]Parameter(s):[/b] [br]
@@ -41,4 +41,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.FUNC_CRITERIA
+	return ReactionConstants.ITEMS_TYPE_ENUM.FUNC_CRITERIA

@@ -42,4 +42,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.CHOICE
+	return ReactionConstants.ITEMS_TYPE_ENUM.CHOICE

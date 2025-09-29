@@ -260,7 +260,7 @@ func _on_show_fact_references_button_pressed():
 			if  rule_id != null:
 				rules_ids.append(rule_id)
 		
-		var placeholders = ReactionGlobals.generate_sqlite_query_placeholders_from_array(rules_ids)
+		var placeholders = ReactionUtilities.generate_sqlite_query_placeholders_from_array(rules_ids)
 		
 		var query = """
 		SELECT rule.id AS rule_id,  rule.label AS rule_label, response.label AS response_label, event.label AS event_label

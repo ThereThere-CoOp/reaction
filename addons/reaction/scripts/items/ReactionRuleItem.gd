@@ -189,4 +189,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.RULE
+	return ReactionConstants.ITEMS_TYPE_ENUM.RULE

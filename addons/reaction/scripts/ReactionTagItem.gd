@@ -28,6 +28,6 @@ static func get_new_object() -> ReactionTagItem:
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.TAG
+	return ReactionConstants.ITEMS_TYPE_ENUM.TAG
 	
 	

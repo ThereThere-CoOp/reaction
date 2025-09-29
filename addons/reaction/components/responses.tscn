@@ -59,9 +59,11 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add new response"
-item_count = 1
-popup/item_0/text = "Dialog"
+item_count = 2
+popup/item_0/text = "Response"
 popup/item_0/id = 0
+popup/item_1/text = "Dialog Response"
+popup/item_1/id = 1
 
 [node name="AddExistingResponseButton" type="Button" parent="Rows/ButtonsContainers"]
 unique_name_in_owner = true

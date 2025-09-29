@@ -30,8 +30,8 @@ func _ready():
 	
 	var add_response_menu_popup: PopupMenu = add_response_menu_button.get_popup()
 	add_response_menu_popup.clear()
-	for response_type in ReactionGlobals.responses_types.values():
-		add_response_menu_popup.add_item(response_type)
+	for add_response: ListObjectFormObjectToAdd in responses_to_add_data_array:
+		add_response_menu_popup.add_item(add_response.object_name)
 		
 	add_response_menu_popup.index_pressed.connect(_on_add_response_menu_index_pressed)
 	
@@ -280,7 +280,7 @@ func _on_add_existing_response_confirmation_dialog_confirmed() -> void:
 	
 	var new_response = responses_search_menu.current_item
 	if new_response:
-		var current_resource = ReactionGlobals.get_response_object_from_reaction_type(new_response.get("reaction_item_type"))
+		var current_resource = ReactionUtilities.get_response_object_from_reaction_type(new_response.get("reaction_item_type"))
 		current_resource.sqlite_id = new_response.sqlite_id
 		current_resource.update_from_sqlite()
 		

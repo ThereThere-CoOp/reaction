@@ -172,14 +172,14 @@ func set_database_data(data: SQLite) -> void:
 
 
 func _remove_database(uid: String) -> void:
-	ReactionGlobals.remove_sqlite_database(databases[uid])
+	ReactionUtilities.remove_sqlite_database(databases[uid])
 	databases.erase(uid)
 	go_to_database(databases.keys().front() if databases.size() > 0 else "")
 	build_databases_menu()
 
 
 func _remove_database_savefile(data: SQLite) -> void:
-	ReactionGlobals.remove_sqlite_database(data)
+	ReactionUtilities.remove_sqlite_database(data)
 
 
 func remove_database() -> void:

@@ -15,7 +15,7 @@ extends ReactionResponseItem
 		rules.assign(value)
 		
 		var order_result: Array[ReactionDialogTextItem]
-		order_result.assign(ReactionGlobals.sort_rules(rules))
+		order_result.assign(ReactionUtilities.sort_rules(rules))
 		texts = order_result
 		
 		if Engine.is_editor_hint():
@@ -210,4 +210,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.DIALOG
+	return ReactionConstants.ITEMS_TYPE_ENUM.DIALOG
