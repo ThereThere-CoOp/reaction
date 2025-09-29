@@ -135,15 +135,19 @@ func _get_response_from_add_data_array(response_type: int) -> ListObjectFormObje
 func _show_edit_dialog() -> void:
 	var selected_response = _get_selected_response()
 	var response_type = selected_response.reaction_item_type
-	edit_response_dialog.title = ("Edit %s" % response_type)
 	var form_scene: ReactionUIMainResponseEditForm
+	var response_type_human = ""
 	
 	if response_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
 		form_scene = response_group_edit_form_scene.instantiate()
 		form_scene.return_method_changed.connect(_on_responses_order_changed)
 		form_scene.execution_order_changed.connect(_on_responses_order_changed)
+		response_type_human = "response group"
 	else:
 		form_scene = _get_response_from_add_data_array(response_type).form_scene.instantiate()
+		response_type_human = "response"
+	
+	edit_response_dialog.title = ("Edit %s %s" % [response_type_human, selected_response.label])
 	
 	for child in edit_response_dialog.get_children():
 		child.queue_free()
