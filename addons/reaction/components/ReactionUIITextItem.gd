@@ -97,6 +97,7 @@ func setup(parent: Resource, field_name: String, file_paths_field_name: String, 
 	
 	dialog_file_dialog.filters = ["*.txt", "*.dialogue"]
 	dialog_file_dialog.root_subfolder = settings_dialog_files_path
+	dialog_file_dialog.current_file = "%s_%s_%s.txt" % [object.uid, object.label, code]
 	
 	_change_component_visibility()
 		
