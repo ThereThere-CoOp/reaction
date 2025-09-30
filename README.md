@@ -1,6 +1,6 @@
 # Godot 4 Reaction
 
-![icon.png]
+![Reaction icon](icon.png)
 
 A Godot 4.x Engine plugin for that implements the  the [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System) used in games like **Left 4 Dead**. This pattern is used also by **Naughty Dog** in **Last Of Us** and by **Campo Santo** developers in **Firewatch** videogame. Credits also to [aarthificial](https://www.youtube.com/@aarthificial) developer for the implementation for Unity3D called [TypeWriter](https://github.com/aarthificial-unity/typewriter), that also serve as guide for this plugin.
 
