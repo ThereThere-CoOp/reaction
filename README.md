@@ -10,7 +10,7 @@ This plugin is still on early development and testing, at the moment is a barebo
 
 ### Documentation
 
-For more information check our documentation [here](https://github.com/ThereThere-CoOp/reaction_docs/blob/main/en/About%20Reaction.md)
+For more information check our documentation [here](https://reaction-docs-digital-garden.vercel.app)
 
 ### Dependencies
 
