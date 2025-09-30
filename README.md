@@ -15,7 +15,7 @@ For more information check our documentation [here](https://github.com/ThereTher
 ### Dependencies
 
 * [GUT Plugin for unit testing](https://github.com/bitwes/Gut)
-* [Godot Sqlite plugin for sqlite database connection](https://github.com/bitwes/Gut](https://github.com/2shady4u/godot-sqlite)
+* [Godot Sqlite plugin for sqlite database connection](https://github.com/2shady4u/godot-sqlite)
 
 ### External references
 * [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System)
