@@ -16,6 +16,7 @@ extends ReactionResponseBaseItem
 ## by_order: By response order
 ## random: Randomly each time
 ## random_weight: By random using a weight from a function
+## return all functions
 @export var return_method = ""
 
 ## dictionary to store response settings each key is the response uid
@@ -62,11 +63,13 @@ func _get_not_executed_responses(current_responses: Dictionary, executed_dict: D
 			result[response_uid] = responses[response_uid]
 			
 	return result
+
+
+func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem, context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
+	var result: Array[ReactionResponseBaseItem] = []
 	
-	
-func _get_children_response_change_execution_stats(current_response: ReactionResponseBaseItem, context: ReactionBlackboard) -> ReactionResponseBaseItem:
 	if current_response == null:
-		return null
+		return []
 	
 	var responses_size = responses.size()
 	if responses_settings.get(current_response.uid, {}).get("return_once", false):
@@ -84,16 +87,34 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 			order_current_index = (order_current_index + 1) % responses_size
 
 	if current_response is ReactionResponseGroupItem:
-		return current_response.get_response_by_method(context)
+		result += current_response.get_response_by_method(context)
 	else:
-		return current_response
+		result.append(current_response)
+		
+	return result
+	
+	
+func return_response_by_all(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
+	var result: Array[ReactionResponseBaseItem] = []
+	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
+	
+	for current_response in no_executed_responses.values():
+		if responses_settings.get(current_response.uid, {}).get("return_once", false):
+			executed_responses[current_response.uid] = true
+		
+		if current_response is ReactionResponseGroupItem:
+			result += current_response.get_response_by_method(context)
+		else:
+			result.append(current_response)
+	
+	return result
 		
 		
-func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNumberGenerator)  -> ReactionResponseBaseItem:
+func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNumberGenerator)  -> Array[ReactionResponseBaseItem]:
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
-		return null
+		return []
 		
 	if randomizer == null:
 		randomizer = RandomNumberGenerator.new()
@@ -106,11 +127,11 @@ func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNu
 	return _get_children_response_change_execution_stats(current_response, context)
 		
 		
-func return_response_by_execution_order(context: ReactionBlackboard) -> ReactionResponseBaseItem:
+func return_response_by_execution_order(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
-		return null
+		return []
 		
 	var sorted_responses_values = no_executed_responses.values()
 	
@@ -121,11 +142,11 @@ func return_response_by_execution_order(context: ReactionBlackboard) -> Reaction
 	return _get_children_response_change_execution_stats(sorted_responses_values[order_current_index], context)
 	
 	
-func return_response_by_random_weight(context: ReactionBlackboard, randomizer: RandomNumberGenerator) -> ReactionResponseBaseItem:
+func return_response_by_random_weight(context: ReactionBlackboard, randomizer: RandomNumberGenerator) -> Array[ReactionResponseBaseItem]:
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
-		return null
+		return []
 		
 	var responses_values = no_executed_responses.values()
 	
@@ -138,7 +159,7 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 		total += w
 
 	if total <= 0.0:
-		return null  # no valid weights
+		return []  # no valid weights
 
 	# Normalize weights
 	#for i in range(weights.size()):
@@ -162,14 +183,16 @@ func return_response_by_random_weight(context: ReactionBlackboard, randomizer: R
 	return _get_children_response_change_execution_stats(current_response, context)
 
 
-func get_response_by_method(context: ReactionBlackboard, randomizer: RandomNumberGenerator=null) -> ReactionResponseBaseItem:
+func get_response_by_method(context: ReactionBlackboard, randomizer: RandomNumberGenerator=null) -> Array[ReactionResponseBaseItem]:
 	if return_method == ReactionConstants.RANDOM_RETURN_METHOD:
 		return return_response_by_random(context, randomizer)
 	elif return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 		return return_response_by_execution_order(context)
 	elif return_method == ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD:
 		return return_response_by_random_weight(context, randomizer)
-	return null
+	elif return_method == ReactionConstants.ALL_RETURN_METHOD:
+		return return_response_by_all(context)
+	return []
 
 
 func add_sqlite_response_group(response_group: ReactionResponseGroupItem) -> void:

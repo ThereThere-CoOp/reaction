@@ -17,7 +17,7 @@ class TestResponses:
 	func test_response_group_return_by_order():
 		var response_group_order: ReactionResponseGroupItem = _responses_groups["group_execution_order"]
 		
-		var returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		var returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		
@@ -29,7 +29,7 @@ class TestResponses:
 			"Wrong response returned by order the first response"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		assert_eq(
@@ -38,7 +38,7 @@ class TestResponses:
 			"Wrong response returned by order must return second response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		assert_eq(
@@ -47,7 +47,7 @@ class TestResponses:
 			"Wrong response returned by order must return third response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response must not be null")
 		assert_eq(
@@ -63,7 +63,7 @@ class TestResponses:
 		
 		response_group_order.responses_settings[return_once_response.uid]["return_once"] = true
 		
-		var returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		var returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		#gut.p(response_group_order.responses_settings)
 		#gut.p(response_group_order.order_current_index)
@@ -76,7 +76,7 @@ class TestResponses:
 			"Wrong response returned by order the first response"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -87,7 +87,7 @@ class TestResponses:
 			"Wrong response returned by order must return second response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -98,7 +98,7 @@ class TestResponses:
 			"Wrong response returned by order must return third response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -122,7 +122,7 @@ class TestResponses:
 		var returned_response = null
 		var returned_count = 0
 		for n in range(0, 100):
-			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)
+			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)[0]
 			# gut.p(returned_response.label)
 			
 			if returned_response.label == "response_conditional_texts_choices":
@@ -141,7 +141,7 @@ class TestResponses:
 		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
 		response_group_random_weight.responses_settings[return_once_response.uid]["return_once"] = true
 		
-		gut.p(response_group_random_weight.responses_settings)
+		# gut.p(response_group_random_weight.responses_settings)
 				
 		var custom_randomizer = RandomNumberGenerator.new()
 		custom_randomizer.randomize()
@@ -149,7 +149,7 @@ class TestResponses:
 		var returned_response = null
 		var returned_count = 0
 		for n in range(0, 100):
-			returned_response = response_group_random_weight.get_response_by_method(_global_blackboard, custom_randomizer)
+			returned_response = response_group_random_weight.get_response_by_method(_global_blackboard, custom_randomizer)[0]
 			# gut.p(returned_response.label)
 			
 			if returned_response.label == "response_conditional_texts_choices":
