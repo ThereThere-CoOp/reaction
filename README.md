@@ -1,14 +1,21 @@
 # Godot 4 Reaction
 
-An implementation for the Godot 4 Engine of the [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System) used in games like **Left 4 Dead**. Used also as references the implementation by **Naughty Dog** in **Last Of Us** and by **Campo Santo** developers in **Firewatch** videogame. Credits also to [aarthificial](https://www.youtube.com/@aarthificial) developer for the implementation for Unity3D called [TypeWriter](https://github.com/aarthificial-unity/typewriter), that also serve as guide for this plugin.
+![Reaction icon](icon.png)
+
+A Godot 4.x Engine plugin for that implements the  the [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System) used in games like **Left 4 Dead**. This pattern is used also by **Naughty Dog** in **Last Of Us** and by **Campo Santo** developers in **Firewatch** videogame. Credits also to [aarthificial](https://www.youtube.com/@aarthificial) developer for the implementation for Unity3D called [TypeWriter](https://github.com/aarthificial-unity/typewriter), that also serve as guide for this plugin.
 
 ### Disclaimer
 
 This plugin is still on early development and testing, at the moment is a barebone implementation. Hoping to be able to keep working on it while developing my own game. 
 
+### Documentation
+
+For more information check our documentation [here](https://github.com/ThereThere-CoOp/reaction_docs/blob/main/en/About%20Reaction.md)
+
 ### Dependencies
 
 * [GUT Plugin for unit testing](https://github.com/bitwes/Gut)
+* [Godot Sqlite plugin for sqlite database connection](https://github.com/2shady4u/godot-sqlite)
 
 ### External references
 * [Valve's Response System](https://developer.valvesoftware.com/wiki/Response_System)
