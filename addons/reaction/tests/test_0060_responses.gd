@@ -162,4 +162,32 @@ class TestResponses:
 			2,
 			"Return once response must returned max one"
 		)
+		
+	func test_response_group_return_all():
+		var response_group_execution_all: ReactionResponseGroupItem = _responses_groups["group_execution_all"]
+		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
+		response_group_execution_all.responses_settings[return_once_response.uid] = { "return_once": true }
+		
+		# gut.p(response_group_execution_all.responses_settings)
+		
+
+		var returned_responses = response_group_execution_all.get_response_by_method(_global_blackboard)
+		
+		# gut.p(returned_response.label)
+			
+		assert_eq(
+			returned_responses.size(),
+			3,
+			"Must return all response"
+		)
+		
+		returned_responses = response_group_execution_all.get_response_by_method(_global_blackboard)
+		
+		# gut.p(returned_response.label)
+			
+		assert_eq(
+			returned_responses.size(),
+			2,
+			"Must return all response, but the one that is match once"
+		)
 	
