@@ -386,5 +386,5 @@ class TestRules:
 		assert_eq(
 			_global_blackboard.get_fact_value(_facts["population_size"].uid),
 			100,
-			"Population must be decreased in 100 (origianl 200)"
+			"Population must be decreased in 100 (original 200)"
 		)

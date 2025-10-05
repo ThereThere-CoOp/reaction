@@ -63,7 +63,7 @@ static func get_new_object():
 	
 
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.FACT
+	return ReactionConstants.ITEMS_TYPE_ENUM.FACT
 	
 	
 func update_tags():

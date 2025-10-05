@@ -1,8 +1,6 @@
 @tool
 extends Control
 
-const ReactionSettings = preload("../utilities/settings.gd")
-
 const ExportDatabase = preload("../utilities/export_database.gd")
 
 var databases: Dictionary = {}
@@ -23,7 +21,6 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_button = %EditDatabaseButton
 @onready var remove_database_button = %RemoveDatabaseButton
 @onready var export_database_as_resource_button = %ExportDatabaseAsResourceButton
-@onready var settings_button = %SettingsButton
 @onready var resource_database_name_lineedit: LineEdit = %ResourceDatabaseNameLineEdit
 
 # panels
@@ -38,8 +35,9 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
 @onready var export_database_resource_confirmation_dialog = %ExportDatabaseResourceConfirmationDialog
-@onready var settings_dialog = %SettingsDialog
+@onready var delete_dialog_files_dialog = %DeleteDialogFilesConfirmationDialog
 
+var _current_dialog_files_path_to_delete: Array[String]
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -47,13 +45,14 @@ func _ready() -> void:
 
 		load_databases_update_view()
 		edit_database_dialog.database_updated.connect(_on_edit_database_dialog_database_updated)
+		ReactionSignals.dialog_text_removed.connect(_on_delete_dialog_texts)
 
 
 func load_databases_from_filesystem() -> void:
 	databases.clear()
 	var databases_path = ReactionSettings.get_setting(
-		ReactionSettings.DATABASES_PATH_SETTING_NAME,
-		ReactionSettings.DATABASES_PATH_SETTING_DEFAULT
+		ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME,
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.SQLITE_DATABASES_PATH_SETTING_NAME].value
 	)
 
 	var dir = DirAccess.open(databases_path)
@@ -102,7 +101,6 @@ func apply_theme() -> void:
 		edit_database_button.icon = get_theme_icon("Edit", "EditorIcons")
 		remove_database_button.icon = get_theme_icon("Remove", "EditorIcons")
 		export_database_as_resource_button.icon = get_theme_icon("Save", "EditorIcons")
-		settings_button.icon = get_theme_icon("Tools", "EditorIcons")
 
 
 func go_to_database(id: String) -> void:
@@ -174,14 +172,14 @@ func set_database_data(data: SQLite) -> void:
 
 
 func _remove_database(uid: String) -> void:
-	ReactionGlobals.remove_sqlite_database(databases[uid])
+	ReactionUtilities.remove_sqlite_database(databases[uid])
 	databases.erase(uid)
 	go_to_database(databases.keys().front() if databases.size() > 0 else "")
 	build_databases_menu()
 
 
 func _remove_database_savefile(data: SQLite) -> void:
-	ReactionGlobals.remove_sqlite_database(data)
+	ReactionUtilities.remove_sqlite_database(data)
 
 
 func remove_database() -> void:
@@ -219,11 +217,6 @@ func _on_remove_database_button_pressed():
 
 func _on_remove_database_confirmation_dialog_confirmed():
 	remove_database()
-
-
-func _on_settings_button_pressed():
-	settings_dialog.get_child(0).setup_settings()
-	settings_dialog.popup_centered()
 
 
 func _on_edit_database_dialog_database_updated(data: SQLite):
@@ -293,6 +286,23 @@ func _on_export_database_resource_confirmation_dialog_confirmed() -> void:
 	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
 	new_database.label = database_name
 	new_database.save_data()
+	
+	
+func _on_delete_dialog_texts(file_paths_array: Array[String]):
+	_current_dialog_files_path_to_delete = file_paths_array
+	delete_dialog_files_dialog.popup_centered()
 		
 	
-		
+func _on_delete_dialog_files_confirmation_dialog_confirmed() -> void:
+	for path in _current_dialog_files_path_to_delete:
+		if FileAccess.file_exists(path):
+			var dir := DirAccess.open("res://")  # or any base dir
+			var err := dir.remove(path)
+			if err == OK:
+				print("Deleted dialog file:", path)
+			else:
+				push_error("Could not delete dialog file: %s (error %s)" % [path, err])
+		else:
+			push_error("Dialog file not found: %s" % path)
+			
+	EditorInterface.get_resource_filesystem().scan()

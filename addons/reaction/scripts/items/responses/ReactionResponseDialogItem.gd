@@ -15,7 +15,7 @@ extends ReactionResponseItem
 		rules.assign(value)
 		
 		var order_result: Array[ReactionDialogTextItem]
-		order_result.assign(ReactionGlobals.sort_rules(rules))
+		order_result.assign(ReactionUtilities.sort_rules(rules))
 		texts = order_result
 		
 		if Engine.is_editor_hint():
@@ -188,10 +188,26 @@ func export():
 		choices = choice_list
 		
 	
+func remove_from_sqlite() -> bool:
+	var dialog_text_file_paths: Array[String] = []
+		
+	var where = "response_id = %d" % [sqlite_id]
+	var dialog_choices = _sqlite_database.select_rows("rule", where, ['file_path'])
+	
+	for text_data in dialog_choices:
+		var file_path = text_data.get("file_path", {})
+		file_path = JSON.parse_string(file_path)
+		dialog_text_file_paths.append_array(file_path.values())
+		
+	var success = super()
+	
+	ReactionSignals.dialog_text_removed.emit(dialog_text_file_paths)
+	return success 
+	
 	
 static func get_new_object():
 	return ReactionResponseDialogItem.new()
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.DIALOG
+	return ReactionConstants.ITEMS_TYPE_ENUM.DIALOG

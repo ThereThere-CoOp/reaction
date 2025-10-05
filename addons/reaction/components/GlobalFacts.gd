@@ -260,7 +260,7 @@ func _on_show_fact_references_button_pressed():
 			if  rule_id != null:
 				rules_ids.append(rule_id)
 		
-		var placeholders = ReactionGlobals.generate_sqlite_query_placeholders_from_array(rules_ids)
+		var placeholders = ReactionUtilities.generate_sqlite_query_placeholders_from_array(rules_ids)
 		
 		var query = """
 		SELECT rule.id AS rule_id,  rule.label AS rule_label, response.label AS response_label, event.label AS event_label
@@ -282,7 +282,7 @@ func _on_show_fact_references_button_pressed():
 			var rule_label = rule_data.get('rule_label')
 			var reference_type = reference.get("reaction_item_type")
 			var reference_label = reference.get("label")
-			var reference_human_type = "Modification" if ReactionGlobals.ItemsTypesEnum.MODIFICATION == reference_type else "Criteria"
+			var reference_human_type = "Modification" if ReactionConstants.ITEMS_TYPE_ENUM.MODIFICATION == reference_type else "Criteria"
 			
 			if response_label:
 				text_result += "[color=yellow]Response:[/color] %s [color=white][b]>>[/b][/color] [color=yellow]Rule:[/color] %s [b][color=white]>>[/color][/b] [color=yellow]%s:[/color] %s. \n" % [response_label, rule_label, reference_human_type, reference_label]

@@ -9,7 +9,6 @@ extends Resource
 ## blackboard [br]
 ## ----------------------------------------------------------------------------
 
-const ReactionSettings = preload("../../utilities/settings.gd")
 
 ## black board label
 @export var label: String = "context_blackboard"
@@ -165,7 +164,7 @@ func clean_scope(scope: String) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------	
 func save_data() -> void:
-	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
+	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME,ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME])
 	
 	if not DirAccess.dir_exists_absolute(save_path_dir):
 		DirAccess.make_dir_absolute(save_path_dir)
@@ -184,7 +183,10 @@ func save_data() -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------	
 func load_data() -> void:
-	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME, ReactionSettings.BLACKBOARDS_SAVE_PATHS_DEFAULT)
+	var save_path_dir = ReactionSettings.get_setting(
+		ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME,
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME].value
+	)
 	var save_path = save_path_dir + "/%s.tres" % label 
 	
 	var saved_context: ReactionBlackboard = load(save_path)

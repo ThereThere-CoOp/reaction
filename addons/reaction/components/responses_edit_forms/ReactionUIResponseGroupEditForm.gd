@@ -16,16 +16,17 @@ var responses_config_list_container: VBoxContainer
 var return_method_menu_button: MenuButton
 
 var return_method_menu_text_options: Dictionary = {
-	ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD: "By order", 
-	ReactionGlobals.RANDOM_RETURN_METHOD: "Random", 
-	ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD: "Random with weight"
+	ReactionConstants.ALL_RETURN_METHOD: "All",
+	ReactionConstants.EXECUTION_ORDER_RETURN_METHOD: "By order", 
+	ReactionConstants.RANDOM_RETURN_METHOD: "Random", 
+	ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD: "Random with weight",
 }
 
 
 func _setup_responses_config_components():
 	var responses_data = current_response.get_sqlite_children_list(null, false)
 	
-	ReactionGlobals.remove_all_children(responses_config_list_container)
+	ReactionUtilities.remove_all_children(responses_config_list_container)
 	
 	for data in responses_data:
 		var response_config: ReactionUIResponseGroupResponseConfig = responses_config_form_scene.instantiate()
@@ -65,12 +66,12 @@ func _on_return_method_menu_index_pressed(index):
 	var label = popup.get_item_text(index)
 	
 	var return_method = ""
-	if return_method_menu_text_options[ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD] == label:
-		return_method = ReactionGlobals.EXECUTION_ORDER_RETURN_METHOD
+	if return_method_menu_text_options[ReactionConstants.EXECUTION_ORDER_RETURN_METHOD] == label:
+		return_method = ReactionConstants.EXECUTION_ORDER_RETURN_METHOD
 	if return_method_menu_text_options["random"] == label:
-		return_method = ReactionGlobals.RANDOM_RETURN_METHOD
-	if return_method_menu_text_options[ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD] == label:
-		return_method = ReactionGlobals.RANDOM_WEIGHT_RETURN_METHOD
+		return_method = ReactionConstants.RANDOM_RETURN_METHOD
+	if return_method_menu_text_options[ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD] == label:
+		return_method = ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD
 	
 	return_method_menu_button.text = return_method_menu_text_options[return_method]
 	current_response.return_method = return_method

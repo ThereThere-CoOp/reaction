@@ -119,7 +119,7 @@ func add_to_sqlite() -> Dictionary:
 func remove_from_sqlite() -> bool:
 	var where = _get_where()
 	var success = _sqlite_database.delete_rows(sqlite_table_name, where)
-	sqlite_id = _sqlite_database.last_insert_rowid
+	# sqlite_id = _sqlite_database.last_insert_rowid
 	
 	return success
 	
@@ -214,7 +214,9 @@ func deserialize(data: Dictionary) -> void:
 						TYPE_BOOL:
 							set(name, !!data.get(name))
 						TYPE_DICTIONARY:
-							set(name, JSON.parse_string(data.get(name)))
+							var sqlite_text = data.get(name)
+							if sqlite_text != null:
+								set(name, JSON.parse_string(sqlite_text))
 						TYPE_OBJECT:
 							var object = get(name)
 							var resource = get(name + "_script")
@@ -263,7 +265,7 @@ func _to_string():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.BASE
+	return ReactionConstants.ITEMS_TYPE_ENUM.BASE
 	
 	
 static func get_new_object():

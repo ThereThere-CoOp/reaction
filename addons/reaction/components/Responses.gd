@@ -30,8 +30,8 @@ func _ready():
 	
 	var add_response_menu_popup: PopupMenu = add_response_menu_button.get_popup()
 	add_response_menu_popup.clear()
-	for response_type in ReactionGlobals.responses_types.values():
-		add_response_menu_popup.add_item(response_type)
+	for add_response: ListObjectFormObjectToAdd in responses_to_add_data_array:
+		add_response_menu_popup.add_item(add_response.object_name)
 		
 	add_response_menu_popup.index_pressed.connect(_on_add_response_menu_index_pressed)
 	
@@ -135,15 +135,19 @@ func _get_response_from_add_data_array(response_type: int) -> ListObjectFormObje
 func _show_edit_dialog() -> void:
 	var selected_response = _get_selected_response()
 	var response_type = selected_response.reaction_item_type
-	edit_response_dialog.title = ("Edit %s" % response_type)
 	var form_scene: ReactionUIMainResponseEditForm
+	var response_type_human = ""
 	
-	if response_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+	if response_type == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP:
 		form_scene = response_group_edit_form_scene.instantiate()
 		form_scene.return_method_changed.connect(_on_responses_order_changed)
 		form_scene.execution_order_changed.connect(_on_responses_order_changed)
+		response_type_human = "response group"
 	else:
 		form_scene = _get_response_from_add_data_array(response_type).form_scene.instantiate()
+		response_type_human = "response"
+	
+	edit_response_dialog.title = ("Edit %s %s" % [response_type_human, selected_response.label])
 	
 	for child in edit_response_dialog.get_children():
 		child.queue_free()
@@ -230,7 +234,7 @@ func _on_remove_response_button_pressed():
 		var selected_item : TreeItem = _get_selected_tree_item()
 		var response: ReactionResponseBaseItem = _get_selected_response()
 		
-		if response.reaction_item_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+		if response.reaction_item_type == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP:
 			response.remove_from_sqlite()
 			var parent: TreeItem = selected_item.get_parent()
 			_deselect_item()
@@ -276,7 +280,7 @@ func _on_add_existing_response_confirmation_dialog_confirmed() -> void:
 	
 	var new_response = responses_search_menu.current_item
 	if new_response:
-		var current_resource = ReactionGlobals.get_response_object_from_reaction_type(new_response.get("reaction_item_type"))
+		var current_resource = ReactionUtilities.get_response_object_from_reaction_type(new_response.get("reaction_item_type"))
 		current_resource.sqlite_id = new_response.sqlite_id
 		current_resource.update_from_sqlite()
 		

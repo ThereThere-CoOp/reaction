@@ -17,7 +17,7 @@ extends ReactionBaseItem
 ## rules are ordered for their criteria count in descending order
 @export var rules: Array[ReactionRuleItem]:
 	set(value):
-		rules = ReactionGlobals.sort_rules(value)
+		rules = ReactionUtilities.sort_rules(value)
 		if Engine.is_editor_hint():
 			notify_property_list_changed()
 			
@@ -26,7 +26,7 @@ func _init() -> void:
 	super()
 	_ignore_fields.merge({"fact_reference_log": true})
 	label = "NEW_EVENT"
-	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.EVENT
+	# reaction_item_type = ReactionConstants.ITEMS_TYPE_ENUM.EVENT
 	sqlite_table_name = "event"
 
 
@@ -120,4 +120,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.EVENT
+	return ReactionConstants.ITEMS_TYPE_ENUM.EVENT

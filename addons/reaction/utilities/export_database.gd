@@ -1,5 +1,10 @@
 @tool
 extends Node
+###########################################################################################
+##
+## Functions to export reaction sqlite database to godot resource 
+##
+############################################################################################
 
 
 static func _get_items_tagged_by_tag(tag, item_table_name="fact"):

@@ -69,7 +69,7 @@ func _generate_function_text() -> String:
 func check_function() -> bool:
 	if current_function_array.size() > 0:
 		var function_string = ";".join(current_function_array)
-		var result = ReactionGlobals.get_function_result(function_string, null, true)
+		var result = ReactionUtilities.get_function_result(function_string, null, true)
 		if result == null:
 			return false
 	else:
@@ -128,14 +128,14 @@ func _add_initial_math_method():
 	var method_operands = math_methods_config.get(_current_math_method, [])
 	
 	current_function_array.append(_current_math_method)
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("(", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("(", ""))
 	for operand in method_operands:
 		current_function_array.append(operand.get("internal_name", "X"))
 		_current_math_method_operands_indexes.append(current_function_array.size() - 1)
-		current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(",", ""))
+		current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(",", ""))
 	
 	current_function_array.pop_back()
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(")", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(")", ""))
 	
 	
 func _update_math_method_operand_label():
@@ -209,7 +209,7 @@ func setup(current_object: Dictionary):
 	_current_math_method = ""
 	_current_math_method_operand_index = 0
 	
-	OPERATOR_OPTIONS = ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS
+	OPERATOR_OPTIONS = ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS
 	
 	object_data = current_object
 	facts_list = ReactionFactItem.get_new_object().get_sqlite_list(null, true)
@@ -230,37 +230,37 @@ func setup(current_object: Dictionary):
 ### signals
 
 func _on_plus_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("+", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("+", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 	
 
 func _on_minus_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("-", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("-", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
 
 func _on_mult_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("*", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("*", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
 
 func _on_division_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("/", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("/", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
 
 func _on_left_parenthesis_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("(", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("(", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
 
 func _on_right_parenthesis_button_pressed() -> void:
-	current_function_array.append(ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(")", ""))
+	current_function_array.append(ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get(")", ""))
 	function_label.text = _generate_function_text()
 	_update_warning_label()
 
@@ -298,7 +298,7 @@ func _on_fact_confirmation_dialog_confirmed() -> void:
 
 func _on_pow_button_pressed() -> void:
 	_use_math_method_mode = true
-	_current_math_method = ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("pow", "")
+	_current_math_method = ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("pow", "")
 	_enable_disable_buttons()
 	_add_initial_math_method()
 	_update_math_method_operand_label()
@@ -308,7 +308,7 @@ func _on_pow_button_pressed() -> void:
 
 func _on_sqrt_button_pressed() -> void:
 	_use_math_method_mode = true
-	_current_math_method = ReactionGlobals.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("sqrt", "")
+	_current_math_method = ReactionConstants.CRITERIA_FUNCTION_OPERATOR_OPTIONS.get("sqrt", "")
 	_enable_disable_buttons()
 	_add_initial_math_method()
 	_update_math_method_operand_label()

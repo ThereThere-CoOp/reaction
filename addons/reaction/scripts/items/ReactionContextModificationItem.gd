@@ -92,7 +92,7 @@ func _init() -> void:
 	
 func _get_modification_value(context):
 	if is_function:
-		return int(ReactionGlobals.get_function_result(function, context, false))
+		return int(ReactionUtilities.get_function_result(function, context, false))
 	else:
 		return get_modification_real_value()
 		
@@ -139,4 +139,4 @@ static func get_new_object():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.MODIFICATION
+	return ReactionConstants.ITEMS_TYPE_ENUM.MODIFICATION

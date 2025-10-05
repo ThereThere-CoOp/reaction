@@ -7,6 +7,12 @@ signal database_data_changed(database: ReactionDatabase)
 # emited when a database is selected
 signal database_selected()
 
+# ------------------ plugin signals ------------------------
+signal opened_dialog_file(path: String)
+
+signal created_dialog_file(path: String)
+
+signal dialog_text_removed(file_paths_array: Array[String])
 # ----------------- blackboards facts signals ---------------
 signal blackboard_fact_modified(fact: ReactionBlackboardFact, real_value: Variant)
 

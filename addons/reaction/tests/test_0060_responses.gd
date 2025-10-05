@@ -17,7 +17,7 @@ class TestResponses:
 	func test_response_group_return_by_order():
 		var response_group_order: ReactionResponseGroupItem = _responses_groups["group_execution_order"]
 		
-		var returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		var returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		
@@ -29,7 +29,7 @@ class TestResponses:
 			"Wrong response returned by order the first response"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		assert_eq(
@@ -38,7 +38,7 @@ class TestResponses:
 			"Wrong response returned by order must return second response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response not must be null")
 		assert_eq(
@@ -47,7 +47,7 @@ class TestResponses:
 			"Wrong response returned by order must return third response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		assert_not_null(returned_response, "Returned response must not be null")
 		assert_eq(
@@ -63,7 +63,7 @@ class TestResponses:
 		
 		response_group_order.responses_settings[return_once_response.uid]["return_once"] = true
 		
-		var returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		var returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		
 		#gut.p(response_group_order.responses_settings)
 		#gut.p(response_group_order.order_current_index)
@@ -76,7 +76,7 @@ class TestResponses:
 			"Wrong response returned by order the first response"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -87,7 +87,7 @@ class TestResponses:
 			"Wrong response returned by order must return second response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -98,7 +98,7 @@ class TestResponses:
 			"Wrong response returned by order must return third response cause oreder responses must cycle"
 		)
 		
-		returned_response = response_group_order.get_response_by_method(_global_blackboard)
+		returned_response = response_group_order.get_response_by_method(_global_blackboard)[0]
 		#gut.p(response_group_order.order_current_index)
 		#gut.p(response_group_order.executed_responses.size())
 		
@@ -108,6 +108,7 @@ class TestResponses:
 			"mindundi_not_comunism_pop_100_400",
 			"Wrong response returned by order must return second response cause order responses must cycle including return once"
 		)
+	
 	
 	func test_response_group_return_random():
 		var response_group_random: ReactionResponseGroupItem = _responses_groups["group_execution_random"]
@@ -121,7 +122,7 @@ class TestResponses:
 		var returned_response = null
 		var returned_count = 0
 		for n in range(0, 100):
-			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)
+			returned_response = response_group_random.get_response_by_method(_global_blackboard, custom_randomizer)[0]
 			# gut.p(returned_response.label)
 			
 			if returned_response.label == "response_conditional_texts_choices":
@@ -133,5 +134,60 @@ class TestResponses:
 			returned_count,
 			2,
 			"Return once response must returned max one"
+		)
+		
+	func test_response_group_return_weight_random():
+		var response_group_random_weight: ReactionResponseGroupItem = _responses_groups["group_execution_random_weight"]
+		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
+		response_group_random_weight.responses_settings[return_once_response.uid]["return_once"] = true
+		
+		# gut.p(response_group_random_weight.responses_settings)
+				
+		var custom_randomizer = RandomNumberGenerator.new()
+		custom_randomizer.randomize()
+		
+		var returned_response = null
+		var returned_count = 0
+		for n in range(0, 100):
+			returned_response = response_group_random_weight.get_response_by_method(_global_blackboard, custom_randomizer)[0]
+			# gut.p(returned_response.label)
+			
+			if returned_response.label == "response_conditional_texts_choices":
+				returned_count += 1
+				
+			# gut.p(returned_count)
+				
+		assert_lt(
+			returned_count,
+			2,
+			"Return once response must returned max one"
+		)
+		
+	func test_response_group_return_all():
+		var response_group_execution_all: ReactionResponseGroupItem = _responses_groups["group_execution_all"]
+		var return_once_response = _dialog_responses["response_conditional_texts_choices"]
+		response_group_execution_all.responses_settings[return_once_response.uid] = { "return_once": true }
+		
+		# gut.p(response_group_execution_all.responses_settings)
+		
+
+		var returned_responses = response_group_execution_all.get_response_by_method(_global_blackboard)
+		
+		# gut.p(returned_response.label)
+			
+		assert_eq(
+			returned_responses.size(),
+			3,
+			"Must return all response"
+		)
+		
+		returned_responses = response_group_execution_all.get_response_by_method(_global_blackboard)
+		
+		# gut.p(returned_response.label)
+			
+		assert_eq(
+			returned_responses.size(),
+			2,
+			"Must return all response, but the one that is match once"
 		)
 	

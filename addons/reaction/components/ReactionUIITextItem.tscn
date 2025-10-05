@@ -17,5 +17,37 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogFileContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="OpenFileLinkButton" type="LinkButton" parent="DialogFileContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Open file in editor"
+
+[node name="DialogFilePathLineEdit" type="LineEdit" parent="DialogFileContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EditDialogFileButton" type="Button" parent="DialogFileContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save dialog file"
+
+[node name="DialogFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Create or select dialog file"
+size = Vector2i(840, 560)
+option_count = 1
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="DialogFileContainer/OpenFileLinkButton" to="." method="_on_open_file_link_button_pressed"]
+[connection signal="pressed" from="DialogFileContainer/EditDialogFileButton" to="." method="_on_edit_dialog_file_button_pressed"]
+[connection signal="confirmed" from="DialogFileDialog" to="." method="_on_dialog_file_dialog_confirmed"]
+[connection signal="file_selected" from="DialogFileDialog" to="." method="_on_dialog_file_dialog_file_selected"]
