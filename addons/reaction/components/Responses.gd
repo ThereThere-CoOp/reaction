@@ -138,7 +138,7 @@ func _show_edit_dialog() -> void:
 	var form_scene: ReactionUIMainResponseEditForm
 	var response_type_human = ""
 	
-	if response_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+	if response_type == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP:
 		form_scene = response_group_edit_form_scene.instantiate()
 		form_scene.return_method_changed.connect(_on_responses_order_changed)
 		form_scene.execution_order_changed.connect(_on_responses_order_changed)
@@ -234,7 +234,7 @@ func _on_remove_response_button_pressed():
 		var selected_item : TreeItem = _get_selected_tree_item()
 		var response: ReactionResponseBaseItem = _get_selected_response()
 		
-		if response.reaction_item_type == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP:
+		if response.reaction_item_type == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP:
 			response.remove_from_sqlite()
 			var parent: TreeItem = selected_item.get_parent()
 			_deselect_item()

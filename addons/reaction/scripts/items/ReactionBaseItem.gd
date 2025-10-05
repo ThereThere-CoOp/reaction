@@ -265,7 +265,7 @@ func _to_string():
 	
 	
 func get_type_string() -> int:
-	return ReactionGlobals.ItemsTypesEnum.BASE
+	return ReactionConstants.ITEMS_TYPE_ENUM.BASE
 	
 	
 static func get_new_object():

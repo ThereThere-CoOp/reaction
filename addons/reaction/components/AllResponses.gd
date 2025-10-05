@@ -37,9 +37,9 @@ func _set_response(response_data: ReactionResponseItem) -> void:
 	var form_scene
 	
 	match response_type:
-		ReactionGlobals.ItemsTypesEnum.DIALOG:
+		ReactionConstants.ITEMS_TYPE_ENUM.DIALOG:
 			form_scene = dialog_response_edit_form_scene.instantiate()
-		ReactionGlobals.ItemsTypesEnum.RESPONSE:
+		ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE:
 			form_scene = response_edit_form_scene.instantiate()
 		_:
 			form_scene = dialog_response_edit_form_scene.instantiate()

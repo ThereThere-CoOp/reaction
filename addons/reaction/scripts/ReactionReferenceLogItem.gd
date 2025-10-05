@@ -61,18 +61,18 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 		var splited_parent: PackedStringArray = parent.split(":")
 		
 		# print(splited_parent[0])
-		if  int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.EVENT:
+		if  int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.EVENT:
 			parent_event = current_database.events[splited_parent[1]]
 			event = parent_event
 				
-		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.RULE:
+		elif int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.RULE:
 			for rul in parent_event.rules:
 				if rul.uid == splited_parent[1]:
 					parent_rule = rul
 			rule = parent_rule
 				
 				
-		elif int(splited_parent[0]) ==	ReactionGlobals.ItemsTypesEnum.CRITERIA or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.FUNC_CRITERIA:
+		elif int(splited_parent[0]) ==	ReactionConstants.ITEMS_TYPE_ENUM.CRITERIA or int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.FUNC_CRITERIA:
 			var parent_criteria: ReactionCriteriaItem = null
 			
 			if parent_dialog_text:
@@ -85,7 +85,7 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 			criteria = parent_criteria
 			
 			
-		elif int(splited_parent[0]) ==	ReactionGlobals.ItemsTypesEnum.MODIFICATION:
+		elif int(splited_parent[0]) ==	ReactionConstants.ITEMS_TYPE_ENUM.MODIFICATION:
 			var parent_modification: ReactionContextModificationItem = null
 			
 			if parent_dialog_text:
@@ -98,17 +98,17 @@ func update_log_objects(new_object: Resource, current_database: ReactionDatabase
 			modification = parent_modification
 				
 				
-		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.RESPONSE_GROUP or int(splited_parent[0]) ==  ReactionGlobals.ItemsTypesEnum.RESPONSE or int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG:
+		elif int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP or int(splited_parent[0]) ==  ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE or int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.DIALOG:
 			parent_response = _get_response(splited_parent[1], parent_rule.responses)
 			
 			if parent_response:
 				response = parent_response
 				
-		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.CHOICE:
+		elif int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.CHOICE:
 				parent_choice = parent_response.get_choice_by_uid(splited_parent[1])
 				choice = parent_choice
 				
-		elif int(splited_parent[0]) == ReactionGlobals.ItemsTypesEnum.DIALOG_TEXT:
+		elif int(splited_parent[0]) == ReactionConstants.ITEMS_TYPE_ENUM.DIALOG_TEXT:
 				parent_dialog_text = parent_response.get_text_by_uid(splited_parent[1])
 				dialog_text = parent_dialog_text
 				

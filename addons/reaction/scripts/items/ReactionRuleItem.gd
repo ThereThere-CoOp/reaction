@@ -32,7 +32,7 @@ var response_group_script: ReactionResponseGroupItem = ReactionResponseGroupItem
 func _init() -> void:
 	super()
 	label = "new_rule"
-	# reaction_item_type = ReactionGlobals.ItemsTypesEnum.RULE
+	# reaction_item_type = ReactionConstants.ITEMS_TYPE_ENUM.RULE
 	sqlite_table_name = "rule"
 
 
