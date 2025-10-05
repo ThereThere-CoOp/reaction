@@ -16,9 +16,10 @@ var responses_config_list_container: VBoxContainer
 var return_method_menu_button: MenuButton
 
 var return_method_menu_text_options: Dictionary = {
+	ReactionConstants.ALL_RETURN_METHOD: "All",
 	ReactionConstants.EXECUTION_ORDER_RETURN_METHOD: "By order", 
 	ReactionConstants.RANDOM_RETURN_METHOD: "Random", 
-	ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD: "Random with weight"
+	ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD: "Random with weight",
 }
 
 
