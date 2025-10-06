@@ -53,7 +53,7 @@ func setup(response: ReactionResponseBaseItem) -> void:
 	if return_method:
 		return_method_menu_button.text = return_method_menu_text_options[return_method]
 	else:
-		return_method_menu_button.text = ''
+		return_method_menu_button.text = 'Select a return method'
 		
 	if current_response:
 		responses_config_form_scene = preload("res://addons/reaction/components/responses_edit_forms/responses_groups_components/ReactionUIResponseGroupResponseConfig.tscn") 
@@ -68,11 +68,13 @@ func _on_return_method_menu_index_pressed(index):
 	var return_method = ""
 	if return_method_menu_text_options[ReactionConstants.EXECUTION_ORDER_RETURN_METHOD] == label:
 		return_method = ReactionConstants.EXECUTION_ORDER_RETURN_METHOD
-	if return_method_menu_text_options["random"] == label:
+	if return_method_menu_text_options[ReactionConstants.RANDOM_RETURN_METHOD] == label:
 		return_method = ReactionConstants.RANDOM_RETURN_METHOD
 	if return_method_menu_text_options[ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD] == label:
 		return_method = ReactionConstants.RANDOM_WEIGHT_RETURN_METHOD
-	
+	if return_method_menu_text_options[ReactionConstants.ALL_RETURN_METHOD] == label:
+		return_method = ReactionConstants.ALL_RETURN_METHOD
+		
 	return_method_menu_button.text = return_method_menu_text_options[return_method]
 	current_response.return_method = return_method
 	current_response.update_sqlite()
