@@ -12,7 +12,7 @@ extends ReactionRuleItem
 @export var text: Dictionary = {}
 
 ## true if use text file instead
-@export var use_file: bool = true
+@export var use_file: bool = false
 
 ## text files path if use_file = true
 @export var file_path: Dictionary = {}
@@ -21,6 +21,7 @@ extends ReactionRuleItem
 func _init() -> void:
 	super()
 	label = "newDialogText"
+	use_file = true
 	
 
 func remove_from_sqlite() -> bool:
