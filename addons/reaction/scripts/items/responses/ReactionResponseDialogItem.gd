@@ -168,7 +168,8 @@ func export():
 	text_object.parent_item = self
 	
 	var text_list: Array[ReactionDialogTextItem]
-	text_list.assign(text_object.get_sqlite_list(null, true))
+	var texts_where = "rule.reaction_item_type = %d" % [ReactionConstants.ITEMS_TYPE_ENUM.DIALOG_TEXT]
+	text_list.assign(text_object.get_sqlite_list(texts_where, true))
 	
 	for text in text_list:
 		text.export()
@@ -180,7 +181,8 @@ func export():
 		choice_object.parent_item = self
 	
 		var choice_list: Array[ReactionDialogChoiceItem]
-		choice_list.assign(choice_object.get_sqlite_list(null, true))
+		var choice_where = "rule.reaction_item_type = %d" % [ReactionConstants.ITEMS_TYPE_ENUM.CHOICE]
+		choice_list.assign(choice_object.get_sqlite_list(choice_where, true))
 		
 		for choice in choice_list:
 			choice.export()
