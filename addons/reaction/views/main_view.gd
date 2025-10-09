@@ -21,7 +21,6 @@ var undo_redo: EditorUndoRedoManager:
 @onready var edit_database_button = %EditDatabaseButton
 @onready var remove_database_button = %RemoveDatabaseButton
 @onready var export_database_as_resource_button = %ExportDatabaseAsResourceButton
-@onready var resource_database_name_lineedit: LineEdit = %ResourceDatabaseNameLineEdit
 
 # panels
 @onready var database_managment_panel = %DatabaseDataManagment
@@ -34,7 +33,7 @@ var undo_redo: EditorUndoRedoManager:
 # dialogs
 @onready var edit_database_dialog = %EditDatabaseDialog
 @onready var remove_database_dialog = %RemoveDatabaseConfirmationDialog
-@onready var export_database_resource_confirmation_dialog = %ExportDatabaseResourceConfirmationDialog
+@onready var export_database_resource_file_dialog = %ExportDatabaseResourceFileDialog
 @onready var delete_dialog_files_dialog = %DeleteDialogFilesConfirmationDialog
 
 var _current_dialog_files_path_to_delete: Array[String]
@@ -44,6 +43,13 @@ func _ready() -> void:
 		call_deferred("apply_theme")
 
 		load_databases_update_view()
+		
+		export_database_resource_file_dialog.root_subfolder = ReactionSettings.get_setting(
+			ReactionSettings.EXPORT_PATH_SETTING_NAME,
+			ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.EXPORT_PATH_SETTING_NAME].value
+		)
+		export_database_resource_file_dialog.filters = ["*.tres"]
+		
 		edit_database_dialog.database_updated.connect(_on_edit_database_dialog_database_updated)
 		ReactionSignals.dialog_text_removed.connect(_on_delete_dialog_texts)
 
@@ -273,19 +279,9 @@ func _on_database_data_managment_tab_selected(tab):
 
 
 func _on_export_database_as_resource_button_pressed() -> void:
-	export_database_resource_confirmation_dialog.title = ("Export database '%s'?" % databases.get(current_database_id).get_meta("name", ""))
-	export_database_resource_confirmation_dialog.popup_centered()
-
-
-func _on_export_database_resource_confirmation_dialog_confirmed() -> void:
-	var database_name = "new_database_export"
+	export_database_resource_file_dialog.title = ("Export database '%s'?" % databases.get(current_database_id).get_meta("name", ""))
+	export_database_resource_file_dialog.popup_centered()
 	
-	if resource_database_name_lineedit.text != "":
-		database_name = resource_database_name_lineedit.text
-		
-	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
-	new_database.label = database_name
-	new_database.save_data()
 	
 	
 func _on_delete_dialog_texts(file_paths_array: Array[String]):
@@ -306,3 +302,12 @@ func _on_delete_dialog_files_confirmation_dialog_confirmed() -> void:
 			push_error("Dialog file not found: %s" % path)
 			
 	EditorInterface.get_resource_filesystem().scan()
+
+
+func _on_export_database_resource_file_dialog_file_selected(path: String) -> void:
+	var database_name = path.get_file().split(".")[0]
+	print(database_name)
+		
+	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
+	new_database.label = database_name
+	new_database.save_data(path)

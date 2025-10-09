@@ -150,16 +150,20 @@ func remove_fact_reference_log(item: Resource) -> void:
 
 
 ## ----------------------------------------------------------------------------[br]
-## Save the database to a file .tres on the path defined on the setting
-## defined with name on DATABASES_PATH_SETTING_NAME. The file will be named
-## with a combination of the database's name and the database's uid.
+## Save database resource file on the file system.
+## If not path is passed save the database to a file .tres on the path defined 
+## on the setting defined with name on DATABASES_PATH_SETTING_NAME.
+## The file will be named with a combination of the database's name and the 
+## database's uid.
 ## [br]
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
-func save_data() -> void:
-	ResourceSaver.save(
-		self,
-		(
+func save_data(path: String = "") -> void:
+	
+	var path_to_save = path
+	
+	if path_to_save == "":
+		path_to_save = (
 			"%s/%s.tres"
 			% [
 				ReactionSettings.get_setting(
@@ -169,6 +173,10 @@ func save_data() -> void:
 				label.replace(" ", "_")
 			]
 		)
+	
+	ResourceSaver.save(
+		self,
+		path_to_save
 	)
 
 

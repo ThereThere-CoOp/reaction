@@ -791,27 +791,12 @@ position = Vector2i(0, 36)
 [node name="RemoveDatabaseConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 
-[node name="ExportDatabaseResourceConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ExportDatabaseResourceFileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
-size = Vector2i(400, 100)
-
-[node name="NameContainer" type="HBoxContainer" parent="ExportDatabaseResourceConfirmationDialog"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
-layout_mode = 2
-text = "Name:"
-
-[node name="ResourceDatabaseNameLineEdit" type="LineEdit" parent="ExportDatabaseResourceConfirmationDialog/NameContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Input database resource name"
+title = "Save database resource"
+size = Vector2i(400, 166)
+root_subfolder = "res://examples/export"
+filters = PackedStringArray("*.tres")
 
 [node name="WarningAcceptDialog" type="AcceptDialog" parent="."]
 unique_name_in_owner = true
@@ -863,5 +848,5 @@ dialog_text = "Delete also dialgo text files? This operation is permanet you sho
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]
 [connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
-[connection signal="confirmed" from="ExportDatabaseResourceConfirmationDialog" to="." method="_on_export_database_resource_confirmation_dialog_confirmed"]
+[connection signal="file_selected" from="ExportDatabaseResourceFileDialog" to="." method="_on_export_database_resource_file_dialog_file_selected"]
 [connection signal="confirmed" from="DeleteDialogFilesConfirmationDialog" to="." method="_on_delete_dialog_files_confirmation_dialog_confirmed"]
