@@ -97,6 +97,17 @@ func _update_item_list() -> void:
 		
 	item_list_updated.emit()
 	
+	
+func _update_tag_list():
+	tag_filter_item_list.clear()
+	tag_filter_item_list.deselect_all()
+	
+	var tags = _sqlite_database.select_rows(sqlite_tag_table_name, "", ["*"])
+	
+	for tag in tags:
+		var index = tag_filter_item_list.add_item(tag.get(item_name_field))
+		tag_filter_item_list.set_item_metadata(index, tag)
+		
 		
 func setup_items(parent_item: Resource = null) -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
@@ -117,15 +128,8 @@ func setup_items(parent_item: Resource = null) -> void:
 	
 	_current_item_list = _all_item_list
 	
-	tag_filter_item_list.clear()
-	tag_filter_item_list.deselect_all()
 	
-	var tags = _sqlite_database.select_rows(sqlite_tag_table_name, "", ["*"])
-	
-	for tag in tags:
-		var index = tag_filter_item_list.add_item(tag.get(item_name_field))
-		tag_filter_item_list.set_item_metadata(index, tag)
-		
+	_update_tag_list()
 	_update_item_list()
 	
 	
@@ -264,9 +268,6 @@ func _on_clear_filter_button_pressed():
 	_update_item_list()
 	
 	
-
-
-
 # not a very efficient search function
 func _on_filter_accept_dialog_confirmed():
 	var selected_indexes = tag_filter_item_list.get_selected_items()
@@ -287,4 +288,5 @@ func _on_filter_accept_dialog_confirmed():
 
 
 func _on_tag_filter_button_pressed():
+	_update_tag_list()
 	filter_accept_dialog.popup_centered()
