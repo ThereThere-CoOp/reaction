@@ -92,7 +92,7 @@ func get_responses(context: ReactionBlackboard) -> Array[ReactionResponseBaseIte
 			
 			ReactionSignals.rule_executed.emit(rule)
 			if rule.response_group:
-				return rule.response_group.get_responses()
+				return rule.response_group.get_response_by_method(context)
 			else:
 				return []
 
@@ -112,8 +112,6 @@ func export():
 	rules = rules_list
 	
 	
-
-
 static func get_new_object():
 	var new_event = ReactionEventItem.new()
 	return new_event

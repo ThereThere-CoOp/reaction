@@ -159,9 +159,11 @@ func before_all():
 	_context_modifications[modification_grow_population.label] = modification_grow_population
 	_context_modifications[modification_erase_mindtype.label] = modification_erase_mindtype
 	_context_modifications[modification_function_add_population_size_plus_10_to_extra.label] = modification_function_add_population_size_plus_10_to_extra
-
-	# init responses
-	# init dialog responses
+	
+	###################################################################################################################################
+	## init responses
+	## init dialog responses
+	###################################################################################################################################
 	var response_your_a_mindundi = ReactionResponseDialogItem.new()
 	
 	var response_your_a_mindundi_text = ReactionDialogTextItem.new()
@@ -247,11 +249,13 @@ func before_all():
 	var response_group_your_a_mindundi = ReactionResponseGroupItem.new()
 	response_group_your_a_mindundi.label = "group_you_are_a_mindundi"
 	response_group_your_a_mindundi.responses[response_your_a_mindundi] = response_your_a_mindundi
+	response_group_your_a_mindundi.return_method = ReactionConstants.ALL_RETURN_METHOD
 	
 
 	var response_group_not_comunism_low_pop = ReactionResponseGroupItem.new()
 	response_group_not_comunism_low_pop.label = "group_not_comunism_low_pop"
 	response_group_not_comunism_low_pop.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
+	response_group_not_comunism_low_pop.return_method = ReactionConstants.ALL_RETURN_METHOD
 	
 	var response_group_order_method = ReactionResponseGroupItem.new()
 	response_group_order_method.label = "group_execution_order"
