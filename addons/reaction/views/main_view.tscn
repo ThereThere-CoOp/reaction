@@ -794,7 +794,7 @@ unique_name_in_owner = true
 [node name="ExportDatabaseResourceFileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
 title = "Save database resource"
-size = Vector2i(400, 166)
+size = Vector2i(600, 300)
 root_subfolder = "res://examples/export"
 filters = PackedStringArray("*.tres")
 

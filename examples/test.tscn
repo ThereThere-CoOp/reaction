@@ -1,17 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvia7eenu6s0s"]
+[gd_scene load_steps=11 format=3 uid="uid://bvia7eenu6s0s"]
 
 [ext_resource type="Script" uid="uid://dotu6in6u56cf" path="res://examples/test.gd" id="1_4d5mw"]
 [ext_resource type="PackedScene" uid="uid://bh4pmkwqh73yw" path="res://addons/reaction/ingame/debug/ReactionDebugWindow.tscn" id="2_lgm08"]
+[ext_resource type="Resource" uid="uid://b851odwtaug22" path="res://examples/export/test.tres" id="2_yfg8j"]
 [ext_resource type="Script" uid="uid://884m7rwn6tlt" path="res://examples/ReactionComponent.gd" id="3_fpsli"]
 [ext_resource type="Resource" uid="uid://dyvrubfyguaml" path="res://examples/databases/test_database_3043f628-c225-4be1-a72f-972825de7386.tres" id="4_hj2aw"]
 [ext_resource type="Script" uid="uid://bd1jq6mundhyb" path="res://addons/reaction/scripts/ReactionComponetVariableFact.gd" id="5_h5tdd"]
 [ext_resource type="Script" uid="uid://8ddh6hl64vce" path="res://addons/reaction/scripts/ReactionComponetVariableEvent.gd" id="6_allq4"]
 
-[sub_resource type="Resource" id="Resource_y0omc"]
+[sub_resource type="Resource" id="Resource_0p7cm"]
 script = ExtResource("6_allq4")
-database = ExtResource("4_hj2aw")
-object_uid = "391db66d-92b8-496d-a087-abeecd81adbe"
+database = ExtResource("2_yfg8j")
+object_uid = "b332ee58-8470-4427-bc5e-da8b9f39e164"
 object_index = 0
+metadata/_custom_type_script = "uid://8ddh6hl64vce"
 
 [sub_resource type="Resource" id="Resource_lwf1y"]
 script = ExtResource("5_h5tdd")
@@ -33,7 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4d5mw")
-test_event = SubResource("Resource_y0omc")
+test_event = SubResource("Resource_0p7cm")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -42,6 +44,7 @@ offset_bottom = 23.0
 text = "Test"
 
 [node name="ReactionDebugWindow" parent="." instance=ExtResource("2_lgm08")]
+oversampling_override = 1.0
 default_alpha = 0.5
 
 [node name="Timer" type="Timer" parent="."]

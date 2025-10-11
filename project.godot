@@ -45,6 +45,7 @@ databases/current_database_id="f3a9cd93-c0f4-4132-ac3f-fac65a629307"
 databases/sqlite_databases_path="res://examples/sqlite_databases"
 databases/resource_export_path="res://examples/export"
 dialogs/dialog_files_path="res://examples/dialogs"
+databases/default_resource_database_path="uid://b851odwtaug22"
 
 [rendering]
 
