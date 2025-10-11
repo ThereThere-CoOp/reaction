@@ -53,7 +53,7 @@ func before_all():
 	criteria_is_mindundi.label = "mindtype_is_mindundi"
 	criteria_is_mindundi.fact = _facts["mind_type"]
 	
-	criteria_is_mindundi.value_a = '2'
+	criteria_is_mindundi.value_a = 'mindundi'
 	criteria_is_mindundi.operation = "="
 
 	var criteria_population_lt_300 = ReactionCriteriaItem.new()

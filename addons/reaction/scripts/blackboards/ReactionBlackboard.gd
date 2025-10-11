@@ -164,8 +164,11 @@ func clean_scope(scope: String) -> void:
 ## [b]Returns: void[/b] [br]
 ## ----------------------------------------------------------------------------	
 func save_data() -> void:
-	var save_path_dir = ReactionSettings.get_setting(ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME,ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME])
-	
+	var save_path_dir = ReactionSettings.get_setting(
+		ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME,
+		ReactionSettings.SETTINGS_CONFIGURATIONS[ReactionSettings.BLACKBOARDS_SAVE_PATHS_SETTINGS_NAME].value
+	)
+		
 	if not DirAccess.dir_exists_absolute(save_path_dir):
 		DirAccess.make_dir_absolute(save_path_dir)
 		

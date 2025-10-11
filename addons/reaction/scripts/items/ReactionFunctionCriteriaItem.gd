@@ -14,6 +14,8 @@ extends ReactionCriteriaItem
 
 func get_function_result(context) -> int:
 	return int(ReactionUtilities.get_function_result(function, context))
+	
+	
 ## ----------------------------------------------------------------------------[br]
 ## Tests if the criteria match with a blackboard fact [br]
 ## [b]Parameter(s):[/b] [br]
