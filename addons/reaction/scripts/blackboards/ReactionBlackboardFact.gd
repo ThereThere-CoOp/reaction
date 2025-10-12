@@ -16,11 +16,14 @@ extends Resource
 		real_value = r_value
 		
 		if r_value != null and fact:
-			if fact.is_enum:
-				# TODO: find better way of handle index search
-				var founded_value = fact.enum_names.find(r_value)
-				if founded_value != -1:
-					value = founded_value
+			if fact.type == TYPE_STRING:
+				if fact.is_enum:
+					# TODO: find better way of handle index search
+					var founded_value = fact.enum_names.find(r_value)
+					if founded_value != -1:
+						value = founded_value
+				else:
+					value = hash(r_value)
 			else:
 				value = int(r_value)
 

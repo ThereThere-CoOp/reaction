@@ -125,6 +125,10 @@ func _update_internal_values() -> void:
 	var current_value_a = get_real_value(value_a) if value_a != null else INT64_MIN
 	var current_value_b = get_real_value(value_b) if value_b != null else INT64_MAX
 	
+	if fact and fact.type == TYPE_STRING and not fact.is_enum:
+		current_value_a = hash(current_value_a)
+		current_value_b = hash(current_value_b)
+	
 	match operation:
 		"<":
 			_internal_value_a = INT64_MIN
@@ -206,8 +210,10 @@ func test(context: ReactionBlackboard) -> bool:
 	# rule do not match
 	if b_fact == null:
 			return false
-	
-	# print("Criteria values %s " % [label], b_fact.value, " ", _internal_value_a, " ", value_a)
+			
+	if label == "isNotJacinto":
+		print(is_reverse)
+		print("Criteria values %s " % [label], b_fact.value, " ", _internal_value_a, " ", value_a)
 	
 	var criteria_test_result = (
 		b_fact.value >= _internal_value_a
