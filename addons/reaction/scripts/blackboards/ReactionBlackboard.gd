@@ -199,9 +199,6 @@ func load_data() -> void:
 		facts = saved_context.facts
 		facts_lookup = saved_context.facts_lookup
 		facts_scope_lookup = saved_context.facts_scope_lookup
-		
-		for fact in self.facts:
-			fact._init()
 
 
 func _to_string() -> String:
