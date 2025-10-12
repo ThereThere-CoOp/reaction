@@ -211,9 +211,9 @@ func test(context: ReactionBlackboard) -> bool:
 	if b_fact == null:
 			return false
 			
-	if label == "isNotJacinto":
-		print(is_reverse)
-		print("Criteria values %s " % [label], b_fact.value, " ", _internal_value_a, " ", value_a)
+	#if label == "isNotJacinto":
+		#print(is_reverse)
+		#print("Criteria values %s " % [label], b_fact.value, " ", _internal_value_a, " ", value_a)
 	
 	var criteria_test_result = (
 		b_fact.value >= _internal_value_a
