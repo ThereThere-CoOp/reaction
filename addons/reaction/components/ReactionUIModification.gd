@@ -176,7 +176,11 @@ func _on_facts_search_menu_item_selected(item):
 	operation_menu.text = "Select operation"
 	enum_values_menu.text = "Select value"
 	
-	_set_modification_property("fact", fact_search_menu.current_item)
+	var current_item = fact_search_menu.current_item
+	_set_modification_property("fact", current_item)
+	
+	if current_item.type == TYPE_BOOL:
+		_set_modification_property("modification_value", "0")
 	
 	update_operation_menu_items()
 	update_values_input()
