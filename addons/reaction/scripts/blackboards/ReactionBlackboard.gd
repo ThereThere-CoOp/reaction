@@ -40,6 +40,10 @@ func get_fact_value(fact_uid: String) -> Variant:
 	return facts[facts_lookup.get(fact_uid)].value
 
 
+## ----------------------------------------------------------------------------[br]
+## Get the fact resource using the uid, blackboard if don't exists yet, returns [br]
+## null [br]
+## ----------------------------------------------------------------------------
 func get_blackboard_fact(fact_uid: String) -> ReactionBlackboardFact:
 	if not facts_lookup.has(fact_uid):
 		return null

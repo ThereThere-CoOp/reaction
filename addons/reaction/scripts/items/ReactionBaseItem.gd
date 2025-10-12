@@ -161,6 +161,11 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 		return output
 	
 	
+## ----------------------------------------------------------------------------[br]
+## Get the dictionary from resource fields marked with @export and not[br]
+## included on dict field _ignore_fields [br]
+## [b]Returns: Dictionary with resource data [br]
+## ----------------------------------------------------------------------------
 func serialize() -> Dictionary:
 	var result = {}
 	
@@ -194,7 +199,11 @@ func serialize() -> Dictionary:
 	
 	return result
 	
-
+	
+## ----------------------------------------------------------------------------[br]
+## Creates ans returns a resource from dict data obtained from sqlite. [br]
+## [b]Returns: Resource from dictionary data [br]
+## ----------------------------------------------------------------------------
 func deserialize(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)
 	
@@ -217,6 +226,9 @@ func deserialize(data: Dictionary) -> void:
 							var sqlite_text = data.get(name)
 							if sqlite_text != null:
 								set(name, JSON.parse_string(sqlite_text))
+						## type object need a field with suffix _script
+						## to get the correct resource to fetch from
+						## sqlite
 						TYPE_OBJECT:
 							var object = get(name)
 							var resource = get(name + "_script")
