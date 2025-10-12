@@ -41,7 +41,7 @@ func get_default_database() -> ReactionDatabase:
 		"")
 		
 	if FileAccess.file_exists(default_database_path):
-		return ResourceLoader.load(default_database_path)
+		return ResourceLoader.load(default_database_path, "", ResourceLoader.CACHE_MODE_REPLACE).duplicate(true)
 		
 	return null
 		

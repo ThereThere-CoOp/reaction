@@ -11,21 +11,21 @@
 script = ExtResource("6_allq4")
 database = ExtResource("2_yfg8j")
 object_uid = "b332ee58-8470-4427-bc5e-da8b9f39e164"
-object_index = 0
+object_index = 1
 metadata/_custom_type_script = "uid://8ddh6hl64vce"
 
 [sub_resource type="Resource" id="Resource_j0ux0"]
 script = ExtResource("5_h5tdd")
 database = ExtResource("2_yfg8j")
-object_uid = "4509a6c0-0150-4eb1-bd43-f0d40e379158"
-object_index = 0
+object_uid = "c94ff4c3-779e-4192-bbeb-b9da09bcd758"
+object_index = 4
 metadata/_custom_type_script = "uid://bd1jq6mundhyb"
 
 [sub_resource type="Resource" id="Resource_yfg8j"]
 script = ExtResource("6_allq4")
 database = ExtResource("2_yfg8j")
 object_uid = "b332ee58-8470-4427-bc5e-da8b9f39e164"
-object_index = 0
+object_index = 1
 metadata/_custom_type_script = "uid://8ddh6hl64vce"
 
 [node name="Test" type="Control"]

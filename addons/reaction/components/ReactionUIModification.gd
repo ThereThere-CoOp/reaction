@@ -92,7 +92,11 @@ func update_values_input() -> void:
 				
 			if item_object.fact.type == TYPE_BOOL:
 				boolean_value_check.visible = true
-				boolean_value_check.set_pressed_no_signal(bool(current_value_a))
+				
+				if current_value_a == null:
+					current_value_a = 0
+				
+				boolean_value_check.set_pressed_no_signal(!!int(current_value_a))
 				
 			if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
 				value_input.visible = true

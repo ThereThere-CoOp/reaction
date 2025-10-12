@@ -170,7 +170,7 @@ func get_real_value(value) -> Variant:
 				else:
 					return value
 			TYPE_BOOL:
-				return !!int(value)
+				return ReactionUtilities.get_boolean_from_string(value)
 			TYPE_INT:
 				if value:
 					return int(value)
@@ -206,6 +206,8 @@ func test(context: ReactionBlackboard) -> bool:
 	# rule do not match
 	if b_fact == null:
 			return false
+	
+	# print("Criteria values %s " % [label], b_fact.value, " ", _internal_value_a, " ", value_a)
 	
 	var criteria_test_result = (
 		b_fact.value >= _internal_value_a

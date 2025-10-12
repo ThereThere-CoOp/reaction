@@ -89,6 +89,11 @@ static func sort_rules(rules_array: Array[ReactionRuleItem]) -> Array[ReactionRu
 	return new_rules
 	
 
+static func get_boolean_from_string(string_value: String) -> bool:
+	var lower_value = string_value.to_lower()
+	
+	return lower_value == "true"
+		
 ## ----------------------------------------------------------------------------[br]
 ## Generate placeholder to query sqlite database table by an array of ids [br]
 ## [b]Parameter(s):[/b] [br]

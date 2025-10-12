@@ -131,9 +131,16 @@ func update_values_input() -> void:
 			
 		if item_object.fact.type == TYPE_BOOL:
 			boolean_value_check.visible = true
-			boolean_value_check.set_pressed_no_signal(bool(current_value_a))
+			
+			if current_value_a == null:
+				current_value_a = false
+			else:
+				current_value_a = ReactionUtilities.get_boolean_from_string(current_value_a)
+				
+			boolean_value_check.set_pressed_no_signal(current_value_a)
 		
 		if item_object.fact.type == TYPE_STRING and not item_object.fact.is_enum:
+			
 			value_a_input.visible = true
 			value_a_input.text = str(current_value_a)
 			
