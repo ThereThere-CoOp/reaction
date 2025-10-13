@@ -311,3 +311,6 @@ func _on_export_database_resource_file_dialog_file_selected(path: String) -> voi
 	var new_database: ReactionDatabase = ExportDatabase.get_resource_from_sqlite_database()
 	new_database.label = database_name
 	new_database.save_data(path)
+	
+	ReactionGlobals.get_default_database()
+	EditorInterface.get_resource_filesystem().update_file(path)

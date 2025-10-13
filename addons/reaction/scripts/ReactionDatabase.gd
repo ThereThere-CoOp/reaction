@@ -178,6 +178,8 @@ func save_data(path: String = "") -> void:
 		self,
 		path_to_save
 	)
+	
+	print("Database %s %s saved" % [label, uid])
 
 
 func _to_string():
