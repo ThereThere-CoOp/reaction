@@ -128,3 +128,14 @@ static func remove_all_children(parent) -> void:
 		
 static func get_response_object_from_reaction_type(type: int):
 	return ReactionResponseGroupItem.get_new_object() if type == ReactionConstants.ITEMS_TYPE_ENUM.RESPONSE_GROUP else ReactionResponseDialogItem.get_new_object() 
+
+
+static func create_folder_if_not_exists(path: String):
+	var exists := DirAccess.dir_exists_absolute(path)
+	
+	if not exists:
+		# Parent dir doesn't exist → try relative to res://
+		print("Creating dir %s" % [path])
+		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path))
+		
+		# EditorInterface.get_resource_filesystem().scan()

@@ -51,7 +51,9 @@ func _ready() -> void:
 		export_database_resource_file_dialog.filters = ["*.tres"]
 		
 		edit_database_dialog.database_updated.connect(_on_edit_database_dialog_database_updated)
+		
 		ReactionSignals.dialog_text_removed.connect(_on_delete_dialog_texts)
+		ReactionSignals.created_dialog_file.connect(_on_dialog_file_created)
 
 
 func load_databases_from_filesystem() -> void:
@@ -282,6 +284,9 @@ func _on_export_database_as_resource_button_pressed() -> void:
 	export_database_resource_file_dialog.title = ("Export database '%s'?" % databases.get(current_database_id).get_meta("name", ""))
 	export_database_resource_file_dialog.popup_centered()
 	
+
+func _on_dialog_file_created(path: String):
+	EditorInterface.get_resource_filesystem().scan()
 	
 	
 func _on_delete_dialog_texts(file_paths_array: Array[String]):

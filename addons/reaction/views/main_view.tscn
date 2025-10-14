@@ -21,9 +21,9 @@
 [ext_resource type="Script" uid="uid://pdmf7t801lbs" path="res://addons/reaction/scripts/items/ReactionFunctionCriteriaItem.gd" id="15_ucfj6"]
 [ext_resource type="Script" uid="uid://cfr5o7fjvdmjr" path="res://addons/reaction/scripts/items/ReactionResponseItem.gd" id="18_irtov"]
 [ext_resource type="Script" uid="uid://0b6puqk6sjfu" path="res://addons/reaction/components/AllResponses.gd" id="18_j5jl6"]
-[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="19_6chnr"]
+[ext_resource type="Script" uid="uid://b4ytdhbhx7htw" path="res://addons/reaction/scripts/items/responses/ReactionDialogChoiceItem.gd" id="20_6chnr"]
 [ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="20_j5jl6"]
-[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="21_dtkum"]
+[ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="22_j5jl6"]
 
 [sub_resource type="DPITexture" id="DPITexture_6chnr"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
@@ -73,13 +73,13 @@ metadata/_custom_type_script = "uid://wjclotthw7aj"
 
 [sub_resource type="Resource" id="Resource_ep52h"]
 script = ExtResource("7_jvxl4")
-uid = "54293359-b684-4e3c-86c3-b34bfe32fd2d"
+uid = "73ef0ea3-ec42-484f-a26d-a12501062461"
 label = "new_rule"
 reaction_item_type = 3
 
 [sub_resource type="Resource" id="Resource_pg2dt"]
 script = ExtResource("7_jvxl4")
-uid = "410d9228-0b01-4652-97b9-0cab5791c0a2"
+uid = "238a4a03-54ab-4be0-a239-92c8e03b51af"
 label = "new_rule"
 reaction_item_type = 3
 metadata/_custom_type_script = "uid://17qnylmuqehb"
@@ -142,14 +142,14 @@ metadata/_custom_type_script = "uid://b02twwj7k3kqc"
 
 [sub_resource type="Resource" id="Resource_jo51q"]
 script = ExtResource("18_irtov")
-uid = "d6b969cf-7d5d-4cef-b971-7fc8f8681046"
+uid = "6cb92a07-b931-4898-9980-dcaa755ab1d2"
 label = "newResponse"
 reaction_item_type = 8
 metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
 
 [sub_resource type="Resource" id="Resource_saux0"]
 script = ExtResource("18_irtov")
-uid = "7c7ce4fd-1d83-4996-bbfc-4701af8abe68"
+uid = "d3070b3e-44e5-4d75-9f41-f6d2c3ff8dbf"
 label = "newResponse"
 reaction_item_type = 8
 metadata/_custom_type_script = "uid://cfr5o7fjvdmjr"
@@ -815,10 +815,6 @@ dialog_text = "Delete also dialgo text files? This operation is permanet you sho
 [connection signal="pressed" from="MainRows/ToolBar/RemoveDatabaseButton" to="." method="_on_remove_database_button_pressed"]
 [connection signal="pressed" from="MainRows/ToolBar/ExportDatabaseAsResourceButton" to="." method="_on_export_database_as_resource_button_pressed"]
 [connection signal="tab_selected" from="MainRows/DatabaseDataManagment" to="." method="_on_database_data_managment_tab_selected"]
-[connection signal="item_added" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_added"]
-[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_list_updated"]
-[connection signal="item_removed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_removed"]
-[connection signal="item_selected" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactsList" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_facts_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactNameInputContainer/FactNameInputLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/FactIsSignalCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_is_signal_check_button_pressed"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/LeftColumnContainer/ShowFactReferencesButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_show_fact_references_button_pressed"]
@@ -827,24 +823,9 @@ dialog_text = "Delete also dialgo text files? This operation is permanet you sho
 [connection signal="toggled" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactHaveDefaultValueCheckButton" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_have_default_value_check_button_toggled"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactDefaultValueContainer/FactDefaultValueStringLineEdit" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_default_value_string_line_edit_text_submitted"]
 [connection signal="toggled" from="MainRows/DatabaseDataManagment/GlobalFacts/FactsMainPanel/FactDataContainer/ColumnsContainer/RightColumnContainer/FactDefaultValueContainer/FactDefaultValueBooleanCheckBox" to="MainRows/DatabaseDataManagment/GlobalFacts" method="_on_fact_default_value_boolean_check_box_toggled"]
-[connection signal="item_added" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_added"]
-[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_list_updated"]
-[connection signal="item_removed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_removed"]
-[connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventsList" to="MainRows/DatabaseDataManagment/Events" method="_on_events_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/NameUidContainer/EventNameInputContainer/EventNameLineEdit" to="MainRows/DatabaseDataManagment/Events" method="_on_event_name_input_line_edit_text_submitted"]
-[connection signal="item_added" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_added"]
-[connection signal="item_removed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_removed"]
-[connection signal="item_selected" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RulesList" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rules_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleNameInputContainer/RuleNameLineEdit" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules/RuleDataContainer/General/DataContainer/LeftColumnContainer/RuleMatchOnceCheckButton" to="MainRows/DatabaseDataManagment/Events/Rows/EventsMainPanel/EventDataContainer/Rules" method="_on_rule_match_once_check_button_pressed"]
-[connection signal="item_added" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_added"]
-[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_list_updated"]
-[connection signal="item_removed" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_responses_list_item_removed"]
-[connection signal="item_selected" from="MainRows/DatabaseDataManagment/All Responses/Rows/ResponsesMainContainer/ResponsesList" to="MainRows/DatabaseDataManagment/All Responses" method="_on_response_list_item_selected"]
-[connection signal="item_added" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_added"]
-[connection signal="item_list_updated" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_list_updated"]
-[connection signal="item_removed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tags_list_item_removed"]
-[connection signal="item_selected" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagList" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_list_item_selected"]
 [connection signal="text_submitted" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/Columns/RowsLeft/LabelContainer/TagLabelLineEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_label_line_edit_text_submitted"]
 [connection signal="text_changed" from="MainRows/DatabaseDataManagment/Tags/Rows/TagsMainPanel/TagDataContainer/TagDescriptionTextEdit" to="MainRows/DatabaseDataManagment/Tags" method="_on_tag_description_text_edit_text_changed"]
 [connection signal="confirmed" from="RemoveDatabaseConfirmationDialog" to="." method="_on_remove_database_confirmation_dialog_confirmed"]
