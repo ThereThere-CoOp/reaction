@@ -67,7 +67,7 @@ func before_all():
 	criteria_not_comunism.label = "not_comunism"
 	criteria_not_comunism.fact = _facts["is_comunism"]
 
-	criteria_not_comunism.value_a = '1'
+	criteria_not_comunism.value_a = 'true'
 	criteria_not_comunism.operation = "="
 	criteria_not_comunism.is_reverse = true
 
@@ -260,7 +260,6 @@ func before_all():
 	var response_group_order_method = ReactionResponseGroupItem.new()
 	response_group_order_method.label = "group_execution_order"
 	response_group_order_method.return_method = ReactionConstants.EXECUTION_ORDER_RETURN_METHOD
-	response_group_order_method.order_current_index = 0
 	
 	response_group_order_method.responses[response_not_comunism_low_pop.uid] = response_not_comunism_low_pop
 	response_group_order_method.responses[response_mindundi_not_comunism_pop_100_400.uid] = response_mindundi_not_comunism_pop_100_400

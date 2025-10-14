@@ -24,13 +24,6 @@ extends ReactionResponseBaseItem
 ## ordered by the execution order value
 @export var responses_settings = {}
 
-## dictionary to store the current executed responses
-## each key is an response uid
-@export var executed_responses = {}
-
-## current index to cycle through when return method is by exection order
-@export var order_current_index = 0
-
 
 func _init() -> void:
 	super()
@@ -40,8 +33,6 @@ func _init() -> void:
 		{
 			"responses": true,
 			"responses_settings": true,
-			"executed_responses": true,
-			"order_current_index": true,
 		}
 	)
 	
@@ -72,8 +63,13 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 		return []
 	
 	var responses_size = responses.size()
+	var executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
+	var order_current_index = ReactionGlobals.get_response_group_order_current_index(uid) 
+	
 	if responses_settings.get(current_response.uid, {}).get("return_once", false):
-		executed_responses[current_response.uid] = true
+		ReactionGlobals.add_executed_response(uid, current_response.uid)
+		
+		executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
 		
 		if return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 			responses_size = responses.size() - executed_responses.size()
@@ -81,10 +77,13 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 				order_current_index %= responses_size
 			else:
 				order_current_index = 0
+				
+			ReactionGlobals.update_responses_groups_order_current_index(uid, order_current_index)
 	else:
 		if return_method == ReactionConstants.EXECUTION_ORDER_RETURN_METHOD:
 			responses_size = responses.size() - executed_responses.size()
 			order_current_index = (order_current_index + 1) % responses_size
+			ReactionGlobals.update_responses_groups_order_current_index(uid, order_current_index)
 
 	if current_response is ReactionResponseGroupItem:
 		result += current_response.get_response_by_method(context)
@@ -96,11 +95,12 @@ func _get_children_response_change_execution_stats(current_response: ReactionRes
 	
 func return_response_by_all(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
 	var result: Array[ReactionResponseBaseItem] = []
+	var executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	for current_response in no_executed_responses.values():
 		if responses_settings.get(current_response.uid, {}).get("return_once", false):
-			executed_responses[current_response.uid] = true
+			ReactionGlobals.add_executed_response(uid, current_response.uid)
 		
 		if current_response is ReactionResponseGroupItem:
 			result += current_response.get_response_by_method(context)
@@ -111,6 +111,7 @@ func return_response_by_all(context: ReactionBlackboard) -> Array[ReactionRespon
 		
 		
 func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNumberGenerator)  -> Array[ReactionResponseBaseItem]:
+	var executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
@@ -128,6 +129,7 @@ func return_response_by_random(context: ReactionBlackboard, randomizer: RandomNu
 		
 		
 func return_response_by_execution_order(context: ReactionBlackboard) -> Array[ReactionResponseBaseItem]:
+	var executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:
@@ -139,10 +141,12 @@ func return_response_by_execution_order(context: ReactionBlackboard) -> Array[Re
 		return responses_settings.get(a.uid, {}).get("execution_order", 0) < responses_settings.get(b.uid, {}).get("execution_order", 0)
 	)
 	
+	var order_current_index = ReactionGlobals.get_response_group_order_current_index(uid) 
 	return _get_children_response_change_execution_stats(sorted_responses_values[order_current_index], context)
 	
 	
 func return_response_by_random_weight(context: ReactionBlackboard, randomizer: RandomNumberGenerator) -> Array[ReactionResponseBaseItem]:
+	var executed_responses = ReactionGlobals.get_response_group_execution_dict(uid)
 	var no_executed_responses = _get_not_executed_responses(responses, executed_responses)
 	
 	if no_executed_responses.size() == 0:

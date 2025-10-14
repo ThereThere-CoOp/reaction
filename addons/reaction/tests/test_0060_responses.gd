@@ -5,8 +5,8 @@ extends TestGeneralReactionGut
 func before_each():
 	super()
 	var response_group_order: ReactionResponseGroupItem = _responses_groups["group_execution_order"]
-	response_group_order.order_current_index = 0
-	response_group_order.executed_responses = {}
+	ReactionGlobals.clear_responses_groups_execution()
+	ReactionGlobals.clear_responses_groups_execution_index()
 	
 	var return_once_response = _dialog_responses["response_conditional_texts_choices"]	
 	response_group_order.responses_settings[return_once_response.uid]["return_once"] = false
