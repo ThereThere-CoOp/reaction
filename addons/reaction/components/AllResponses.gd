@@ -17,12 +17,13 @@ var undo_redo: EditorUndoRedoManager:
 @onready var response_data_container: MarginContainer = %ResponseDataContainer
 
 
-# event inputs
+# responses inputs
 
 func _ready() -> void:
 	response_data_container.visible = false
 	
 	ReactionSignals.database_selected.connect(setup_responses)
+	responses_list.item_selected.connect(_on_response_list_item_selected)
 
 
 func setup_responses() -> void:

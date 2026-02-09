@@ -25,6 +25,7 @@ func _ready() -> void:
 	event_data_container.visible = false
 	
 	ReactionSignals.database_selected.connect(setup_events)
+	events_list.item_selected.connect(_on_events_list_item_selected)
 
 
 func setup_events() -> void:

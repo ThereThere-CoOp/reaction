@@ -16,6 +16,7 @@ func _ready() -> void:
 	tag_data_container.visible = false
 	
 	ReactionSignals.database_selected.connect(setup_tags)
+	tags_list.item_selected.connect(_on_tag_list_item_selected)
 
 
 func setup_tags() -> void:

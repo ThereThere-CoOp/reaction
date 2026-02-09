@@ -72,6 +72,7 @@ func _ready() -> void:
 	fact_data_container.visible = false
 	
 	ReactionSignals.database_selected.connect(setup_facts)
+	facts_list.item_selected.connect(_on_facts_list_item_selected)
 
 
 func _update_fact_default_value_input():

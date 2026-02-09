@@ -34,6 +34,7 @@ func _ready() -> void:
 	
 	ReactionSignals.database_selected.connect(_on_database_selected)
 	rule_priority_text_edit.text_submitted.connect(_on_rule_priority_spin_box_text_submitted)
+	rules_list.item_selected.connect(_on_rules_list_item_selected)
 
 
 func setup_rules(current_event: ReactionEventItem) -> void:
