@@ -63,18 +63,15 @@ func _update_selected_button_text() -> void:
 	
 func _reselect_items() -> void:
 	item_list.deselect_all()
+	var index_map = {}
+	
+	for i in objects_list.size():
+			index_map[objects_list[i].get("id")] = i
+	
 	for rel_obj in _get_related_objects_list():
-		var index = -1
-		var current_index = 0
-		for object in objects_list:
-			if object.get("id") == rel_obj.get(related_field_name):
-				index = current_index
-				break
-			
-			current_index += 1
-		
-		if index != -1:
-			item_list.select(index, false)
+		var key = rel_obj.get(related_field_name)
+		if key in index_map:
+			item_list.select(index_map[key], false)
 			
 			
 func _update_objects_list():

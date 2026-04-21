@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://ct08x83xg4ivu" path="res://addons/reaction/scripts/items/responses/ReactionResponseDialogItem.gd" id="20_j5jl6"]
 [ext_resource type="Script" uid="uid://8g4d38ylvlvv" path="res://addons/reaction/scripts/items/responses/ReactionDialogTextItem.gd" id="22_j5jl6"]
 
-[sub_resource type="DPITexture" id="DPITexture_6chnr"]
+[sub_resource type="DPITexture" id="DPITexture_0fhaw"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
 "
 
@@ -226,7 +226,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Add Database"
-icon = SubResource("DPITexture_6chnr")
+icon = SubResource("DPITexture_0fhaw")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="MainRows/ToolBar"]
@@ -236,32 +236,32 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-text = "new"
-icon = SubResource("DPITexture_6chnr")
+text = "test"
+icon = SubResource("DPITexture_0fhaw")
 item_count = 1
-popup/item_0/text = "new"
-popup/item_0/icon = SubResource("DPITexture_6chnr")
+popup/item_0/text = "test"
+popup/item_0/icon = SubResource("DPITexture_0fhaw")
 popup/item_0/id = 0
 
 [node name="EditDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit Database"
-icon = SubResource("DPITexture_6chnr")
+icon = SubResource("DPITexture_0fhaw")
 flat = true
 
 [node name="RemoveDatabaseButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Remove Database"
-icon = SubResource("DPITexture_6chnr")
+icon = SubResource("DPITexture_0fhaw")
 flat = true
 
 [node name="ExportDatabaseAsResourceButton" type="Button" parent="MainRows/ToolBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Export database as resource"
-icon = SubResource("DPITexture_6chnr")
+icon = SubResource("DPITexture_0fhaw")
 flat = true
 
 [node name="DatabaseDataManagment" type="TabContainer" parent="MainRows"]
