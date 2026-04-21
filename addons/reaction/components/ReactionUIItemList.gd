@@ -272,18 +272,26 @@ func _on_clear_filter_button_pressed():
 # not a very efficient search function
 func _on_filter_accept_dialog_confirmed():
 	var selected_indexes = tag_filter_item_list.get_selected_items()
-	var result = []
+	
+	var result_dict = {}
 	var filter_label_text = ""
+	
 	for index in selected_indexes:
 		var tag = tag_filter_item_list.get_item_metadata(index)
+		
 		filter_label_text += " (tag = '%s')" % tag.label
 		
 		for item in _current_item_list:
-			var item_tags = item.get_tags()
-			if result.find_custom(func(i): return i.get("uid") == item.uid) == -1 and item_tags.find_custom(func(i): return i.get("id") == tag.id) != -1:
-				result.append(item)
+			
+			if item.uid in result_dict:
+				continue
 				
-	_current_item_list = result
+			var item_tags = item.get_tags()
+			
+			if item_tags.any(func(t): return t.get("id") == tag.id):
+				result_dict[item.uid] = item 
+				
+	_current_item_list = result_dict.values()
 	_update_filter_label_text(filter_label_text)
 	_update_item_list()
 
