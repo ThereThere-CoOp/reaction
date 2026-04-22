@@ -56,6 +56,8 @@ var _ignore_fields = {
 	"script": true,
 }
 
+# Cache keyed by script path — one entry per subclass                                                                                                                                                                         
+static var _cached_props: Dictionary = {}
 
 func _init() -> void:
 	_sqlite_database = ReactionGlobals.current_sqlite_database
@@ -159,6 +161,23 @@ func get_sqlite_list(custom_where=null, get_resources=false):
 		for row in results:
 			output.append(row.duplicate())
 		return output
+
+
+## ----------------------------------------------------------------------------[br]                                                                                                                                           
+## Returns the cached list of serializable properties for this item's class.[br]                                                                                                                                              
+## Builds the list on first call using reflection and caches it by script path[br]                                                                                                                                            
+## so subclasses each get their own entry. [br]                                                                                                                                                                               
+## [b]Returns: Array of property dictionaries ready for serialize/deserialize [br]                                                                                                                                            
+## ----------------------------------------------------------------------------   
+func _get_serializable_props() -> Array:                                                                                                                                                                                      
+	var key = get_script().resource_path
+	if not _cached_props.has(key):                                                                                                                                                                                            
+		var props = []
+		for prop in get_property_list():
+			if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0 and not _ignore_fields.has(prop.name):                                                                                                                                                                    
+				props.append(prop)
+		_cached_props[key] = props                                                                                                                                                                                            
+	return _cached_props[key]
 	
 	
 ## ----------------------------------------------------------------------------[br]
@@ -172,30 +191,29 @@ func serialize() -> Dictionary:
 	if sqlite_id:
 		result["id"] = sqlite_id
 		
-	for prop in self.get_property_list():
-		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
-			var name = prop.name
-			var type = prop.type
-			if not _ignore_fields.has(name):
-				match type:
-					#TYPE_NIL:
-						#result[name] = str(get(name))
-					TYPE_INT:
-						result[name] = get(name)
-					TYPE_STRING:
-						result[name] = str(get(name))
-					TYPE_BOOL:
-						result[name] = 0 if not get(name) else 1
-					TYPE_DICTIONARY:
-						result[name] = JSON.stringify(get(name))
-					TYPE_OBJECT:
-							var object = get(name)
-							if object and object.sqlite_id > 0:
-								result[name + "_id"] = object.sqlite_id
-							else:
-								result[name + "_id"] = null
-					_:
-						continue
+	for prop in _get_serializable_props():
+		var name = prop.name
+		var type = prop.type
+			
+		match type:
+			#TYPE_NIL:
+				#result[name] = str(get(name))
+			TYPE_INT:
+				result[name] = get(name)
+			TYPE_STRING:
+				result[name] = str(get(name))
+			TYPE_BOOL:
+				result[name] = 0 if not get(name) else 1
+			TYPE_DICTIONARY:
+				result[name] = JSON.stringify(get(name))
+			TYPE_OBJECT:
+					var object = get(name)
+					if object and object.sqlite_id > 0:
+						result[name + "_id"] = object.sqlite_id
+					else:
+						result[name + "_id"] = null
+			_:
+				continue
 	
 	return result
 	
@@ -207,39 +225,39 @@ func serialize() -> Dictionary:
 func deserialize(data: Dictionary) -> void:
 	sqlite_id = data.get("id", null)
 	
-	for prop in self.get_property_list():
-		if prop.has("usage") and (prop.usage & PROPERTY_USAGE_STORAGE) != 0:
-			var name = prop.name
-			var type = prop.type
-			if not _ignore_fields.has(name):
-				if data.has(name) or type == TYPE_OBJECT:
-					match type:
-						#TYPE_NIL:
-							#set(name, str(data.get(name)))
-						TYPE_INT:
-							set(name, int(data.get(name)))
-						TYPE_STRING:
-							set(name, str(data.get(name)))
-						TYPE_BOOL:
-							set(name, !!data.get(name))
-						TYPE_DICTIONARY:
-							var sqlite_text = data.get(name)
-							if sqlite_text != null:
-								set(name, JSON.parse_string(sqlite_text))
-						## type object need a field with suffix _script
-						## to get the correct resource to fetch from
-						## sqlite
-						TYPE_OBJECT:
-							var object = get(name)
-							var resource = get(name + "_script")
-							var resource_new = resource.get_new_object()
-							var tmp_id = data.get(name + "_id", null)
-							if tmp_id and tmp_id > 0:
-								resource_new.sqlite_id = tmp_id
-								resource_new.update_from_sqlite()
-								set(name, resource_new)
-						_:
-							continue
+	for prop in _get_serializable_props():
+		
+		var name = prop.name
+		var type = prop.type
+			
+		if data.has(name) or type == TYPE_OBJECT:
+			match type:
+				#TYPE_NIL:
+					#set(name, str(data.get(name)))
+				TYPE_INT:
+					set(name, int(data.get(name)))
+				TYPE_STRING:
+					set(name, str(data.get(name)))
+				TYPE_BOOL:
+					set(name, !!data.get(name))
+				TYPE_DICTIONARY:
+					var sqlite_text = data.get(name)
+					if sqlite_text != null:
+						set(name, JSON.parse_string(sqlite_text))
+				## type object need a field with suffix _script
+				## to get the correct resource to fetch from
+				## sqlite
+				TYPE_OBJECT:
+					var object = get(name)
+					var resource = get(name + "_script")
+					var resource_new = resource.get_new_object()
+					var tmp_id = data.get(name + "_id", null)
+					if tmp_id and tmp_id > 0:
+						resource_new.sqlite_id = tmp_id
+						resource_new.update_from_sqlite()
+						set(name, resource_new)
+				_:
+					continue
 				
 func update_from_sqlite():
 	var where = _get_where()
