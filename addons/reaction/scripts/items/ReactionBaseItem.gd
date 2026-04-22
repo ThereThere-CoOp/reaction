@@ -90,16 +90,12 @@ func add_tag(tag: ReactionTagItem) -> void:
 ## [b]Returns: void [br]
 ## ----------------------------------------------------------------------------
 func remove_tag(tag_uid: String) -> void:
-	var index = 0
-	for tag in tags:
-		if tag.uid == tag_uid:
-			break
-		
-		index += 1
-		
-	tags.remove_at(index)
+	for i in tags.size():
+		if tags[i].uid == tag_uid:
+			tags[i] = tags[-1]  # swap with last
+			tags.resize(tags.size() - 1)
+			return
 	
-
 ## ----------------------------------------------------------------------------[br]
 ## Add object to sqlite database with the current data, if item have a [br]
 ## parent item add foreign key data to the sqlite database [br]
